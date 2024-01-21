@@ -1,0 +1,368 @@
+/*******************************************************/
+/****************** 16. Pricing Area *******************/
+/*******************************************************/
+.pricing-area
+    .wave-shapes
+        .shape.one
+            bottom: 20%
+        .shape.two
+            bottom: 10%
+.pricing-plan-item
+    display: flex
+    flex-wrap: wrap
+    overflow: hidden
+    background: white
+    position: relative
+    box-shadow: 10px 0 60px rgba(170, 170, 170, 0.2)
+    &:not(:last-child)
+        margin-bottom: 30px
+    .price-features
+        align-self: center
+        padding: 40px 50px 35px
+        +res-ab(lg)
+            width: 65%
+        +res-bl(lg)
+            position: relative
+            border-bottom: 1px solid $border-color
+        +res-bl(xs)
+            +gapLR(padding, 25px)
+        h4
+            margin-bottom: 20px
+        .list-style-two
+            display: flex
+            flex-wrap: wrap
+            li
+                width: 50%
+                +res-ab(xl)
+                    font-size: 18px
+                +res-bl(md)
+                    width: 100%
+        .badge
+            position: absolute
+            top: 0
+            left: 65%
+            color: white
+            font-size: 18px
+            transition: 0.5s
+            font-weight: 700
+            border-radius: 0
+            padding: 40px 16px 30px
+            text-transform: uppercase
+            background: $yellow-color
+            font-family: $heading-font
+            -webkit-writing-mode: vertical-rl
+            transform: translate(-50%, -100%) rotate(180deg)
+            clip-path: polygon(50% 15px, 100% 0, 100% 100%, 0 100%, 0 0)
+            +res-bl(lg)
+                left: 100%
+                transform: translate(-100%, -100%) rotate(180deg)
+            +res-bl(xs)
+                font-size: 14px
+                padding: 30px 8px 20px
+.price-and-btn
+    +flexcenter(center)
+    padding: 45px 50px 50px
+    +res-ab(lg)
+        width: 35%
+        border-left: 1px solid $border-color
+    +res-bl(xs)
+        +gapLR(padding, 25px)
+    .price
+        font-size: 40px
+        font-weight: 700
+        color: $secondary-color
+        font-family: $heading-font
+        &:before
+            content: '$'
+        &:after
+            color: white
+            font-size: 18px
+            content: '/monthly'
+    .save
+        display: block
+        font-size: 18px
+        margin-bottom: 20px
+        span
+            color: $primary-color
+    .theme-btn.style-three
+        border-color: $primary-color
+        &:after
+            background: $primary-color
+            
+.pricing-plan-item:hover
+    .badge
+        transform: translate(-50%, 0) rotate(180deg)
+        +res-bl(lg)
+            transform: translate(-100%, 0) rotate(180deg)
+    .theme-btn
+        color: white
+        &:after
+            transform: scaleX(1)
+            transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66)
+        
+.text-white
+    .pricing-plan-item
+        box-shadow: none
+        background: #0b1630
+        .list-style-two
+            li
+                opacity: 0.7
+    .price-and-btn
+        .theme-btn.style-three
+            color: white
+        .save
+            span
+                color: $yellow-color
+        
+/* Pricing Plan Two */
+.pricing-item-two
+    overflow: hidden
+    background: white
+    position: relative
+    border-radius: 7px
+    margin-bottom: 30px
+    padding: 30px 40px 40px
+    box-shadow: 10px 0 60px rgba(162, 162, 162, 0.3)
+    +res-bl(xs)
+        +gapLR(padding, 25px)
+    .title
+        font-size: 22px
+        text-align: center
+        margin-bottom: 25px
+        padding-bottom: 20px
+        text-transform: uppercase
+        border-bottom: 1px solid $border-color
+        letter-spacing: 6px
+        +res-bt(lg, xl)
+            text-align: left
+        +res-bl(md)
+            text-align: left
+        +res-bl(ms)
+            font-size: 20px
+            letter-spacing: 2px
+        +res-bl(xs)
+            font-size: 16px
+    .badge
+        position: absolute
+        top: 0
+        right: 0
+        opacity: 0
+        width: 250px
+        font-size: 16px
+        transition: 0.5s
+        border-radius: 0
+        text-align: center
+        text-transform: uppercase
+        background: $orange-color
+        padding: 15px 20px 12px 40px
+        transform: rotate(30deg) translate(45px, -100px)
+        +res-bl(xs)
+            font-size: 12px
+    .pricing-inner
+        display: flex
+        align-items: flex-end
+        justify-content: space-between
+        +res-bt(lg, xl)
+            display: block
+        +res-bl(md)
+            display: block
+        .list-style-two
+            +res-ab(xs)
+                font-size: 20px
+        .price-and-btn
+            padding: 0
+            width: auto
+            border-left: none
+            +res-bt(lg, xl)
+                margin-top: 25px
+                justify-content: flex-start
+            +res-bl(md)
+                margin-top: 25px
+                justify-content: flex-start
+            .price
+                font-weight: 600
+                color: $orange-color
+                &:after
+                    font-weight: 400
+                    color: $base-color
+            .save
+                font-weight: 600
+                color: $heading-color
+                span
+                    color: $heading-color
+            .theme-btn.style-three
+                border-color: $orange-color
+                &:not(:hover)
+                    color: $orange-color
+                &:after
+                    background: $orange-color
+    &:hover
+        .badge
+            opacity: 1
+            transform: rotate(30deg) translate(45px, 0)
+            +res-bl(xs)
+                transform: rotate(50deg) translate(66px, -44px)
+        
+.pricing-shapes
+    .shape
+        z-index: -1
+        position: absolute
+        &.dots
+            top: 130px
+            left: 50%
+            max-width: 100%
+            transform: translate(-50%)
+        &.wave
+            left: 0
+            bottom: 0
+            max-width: 50%
+            
+/* Pricing plan three */
+.pricing-area-three
+    .pricing-plan-three
+        +res-ab(xl)
+            margin-left: 15px
+.pricing-plan-three
+    position: relative
+    margin-bottom: 30px
+    padding: 40px 45px
+    background: white
+    overflow: hidden
+    box-shadow: 10px 0 60px rgba(170, 170, 170, 0.2)
+    +res-bl(ms)
+        +gapLR(padding, 25px)
+    .badge
+        position: absolute
+        top: 0
+        right: 0
+        color: white
+        font-size: 18px
+        transition: 0.5s
+        font-weight: 700
+        border-radius: 0
+        overflow: hidden
+        text-transform: uppercase
+        background: $yellow-color
+        font-family: $heading-font
+        transform: translate(100%)
+        padding: 17px 30px 15px 40px
+        clip-path: polygon(100% 0, 100% 0, 100% 100%, 0 100%, 15px 50%, 0 0)
+        +res-bl(xs)
+            font-size: 14px
+            padding: 12px 25px 10px 35px
+    h4
+        font-size: 20px
+        margin-bottom: 25px
+        display: inline-block
+        padding: 15px 20px 5px
+        background: url(../images/shapes/pricing-title-bg.png) no-repeat 100%/100%
+    .list-style-two
+        margin-bottom: 35px
+        +res-ab(xs)
+            font-size: 18px
+    .price-and-btn
+        padding: 0
+        width: auto
+        border-left: none
+        justify-content: flex-start
+        .price
+            color: $primary-color
+            +res-bl(xs)
+                font-size: 33px
+            &:after
+                color: $base-color
+        .save
+            font-weight: 500
+    &:hover
+        .badge
+            transform: translate(0)
+    &.style-two
+        transition: 0.5s
+        h4,
+        .price,
+        .save span,
+        .price:after,
+        .list-style-two li:before
+            transition: 0.5s
+        .price-and-btn
+            .theme-btn.style-three:after
+                background: #52cecc
+        &:hover
+            color: white
+            background: $primary-color
+            background-image: url(../images/shapes/price-plan-bg.png)
+            h4
+                background-image: url(../images/shapes/pricing-title-bg-white.png)
+            h4,
+            .price,
+            .save span,
+            .price:after,
+            .theme-btn.style-three
+                color: white
+            .list-style-two li:before
+                background: white
+            .price-and-btn
+                .theme-btn.style-three
+                    border-color: #52cecc
+                    &:after
+                        transform: scaleX(1)
+                        transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66)
+        
+.yearly
+    .price-and-btn
+        .price
+            &:after
+                content: '/yearly'
+            
+/* Pricing Area Five */
+.pricing-area-five
+    .pricing-plan-three.style-two
+        .badge
+            padding: 12px 25px 10px 35px
+            +res-ab(xs)
+                font-size: 16px
+        
+/* Pricing Tab */
+.pricing-tab
+    padding: 11px 35px
+    border-radius: 5px
+    display: inline-flex
+    background: $primary-color
+    li
+        &:first-child button:after,
+        &:last-child button:before
+            content: ''
+            +size(20px)
+            transition: 0.5s
+            background: white
+            border-radius: 50%
+        &:first-child button:after
+            margin-left: 10px
+        &:last-child button:before
+            margin-right: 10px
+        &:first-child button:before
+            position: absolute
+            +size(40px, 20px)
+            content: ''
+            top: 50%
+            right: 0
+            z-index: -1
+            background: white
+            border-radius: 10px
+            transform: translate(50%, -50%)
+        button
+            padding: 0
+            z-index: 1
+            display: flex
+            color: #fefeff
+            font-size: 16px
+            font-weight: 700
+            align-items: center
+            position: relative
+            background: transparent
+            &:focus,
+            &:hover
+                color: #fefeff
+        &:first-child button.active:after,
+        &:last-child button.active:before
+            background: $secondary-color

@@ -1,0 +1,245 @@
+/*******************************************************/
+/**************** 17. Testimonials Area ****************/
+/*******************************************************/
+.feedback-active
+    +gapLR(margin, -15px)
+    .feedback-item
+        margin-top: 15px
+        +gapLR(margin, 15px)
+        box-shadow: 5px 5px 15px rgba(218, 218, 218, 0.75)
+.feedback-item
+    background: white
+    border-radius: 7px
+    padding: 40px 50px
+    margin-bottom: 30px
+    box-shadow: 10px 0 60px rgba(218, 218, 218, 0.75)
+    +res-bl(ms)
+        +gapLR(padding, 25px)
+    .author-logo
+        margin-bottom: 20px
+        +flexcenter(space-between)
+        > i
+            color: white
+            font-size: 20px
+            margin-right: 15px
+            +circle($yellow-color, 55px)
+            +res-bl(xs)
+                +size(45px)
+                line-height: 45px
+    h4
+        font-size: 22px
+        margin-bottom: 16px
+        +res-bl(xs)
+            font-size: 20px
+    .feedback-author
+        margin-top: 25px
+        align-items: center
+        +res-ab(xs)
+            display: flex
+        img
+            max-width: 65px
+            margin-right: 20px
+            border-radius: 50%
+            +res-bl(xs)
+                margin-bottom: 10px
+        .content
+            h5
+                margin-bottom: 0
+                color: $primary-color
+                +res-ab(xs)
+                    font-size: 20px
+                    
+.feedback-shape
+    z-index: -1
+    max-width: 20%
+    position: absolute
+    transform: rotate(20deg)
+    animation: semi_rotated 10s infinite
+    &:after
+        content: ''
+        +size(100%)
+        z-index: -2
+        top: 20px
+        left: 20px
+        position: absolute
+        border: 1px solid $border-color
+        animation: move_arround 10s infinite
+    &.one
+        left: 60px
+        bottom: 10%
+    &.two
+        right: 5%
+        top: 22%
+        animation-delay: 5s
+        &:after
+            animation-delay: 5s
+        
+/* Testimonial Two */
+.slider-arrow-btns
+    button
+        &:first-child
+            margin-right: 5px
+        
+.testimonial-two-active
+    +gapLR(margin, -110px)
+    +res-bl(xl)
+        +gapLR(margin, -30px)
+    .testimonial-item-two
+        +gapLR(margin, 110px)
+        +res-ab(ms)
+            display: flex
+        +res-bl(xl)
+            +gapLR(margin, 30px)
+        
+.testimonial-item-two
+    padding-top: 10px
+    +res-ab(ms)
+        display: flex
+    .testimonial-author
+        flex: none
+        max-width: 120px
+        position: relative
+        margin-right: 30px
+        margin-bottom: 20px
+        img
+            border-radius: 50%
+        &:before
+            top: -10px
+            right: 0
+            color: white
+            content: "\f10e"
+            position: absolute
+            +circle($orange-color, 45px)
+            font-family: "Font Awesome 5 Pro"
+    .testimonial-content
+        p
+            font-size: 20px
+    .author-description
+        padding-left: 70px
+        position: relative
+        .h5
+            display: block
+            font-size: 20px
+            margin-bottom: 0
+            color: $orange-color
+        .designation
+            color: $heading-color
+        &:before
+            position: absolute
+            content: ''
+            left: 0
+            top: 20px
+            height: 3px
+            width: 40px
+            background: $orange-color
+        
+.for-middle-border
+    position: relative
+    &:after,
+    &:before
+        position: absolute
+        content: ''
+        z-index: -1
+        background: $border-color
+        +res-bl(lg)
+            display: none
+    &:before
+        height: 1px
+        width: 100%
+        left: 0
+        top: 145px
+    &:after
+        width: 1px
+        height: 100%
+        left: 50%
+        top: 0
+    
+/* Testimonials Four */
+.testimonial-four-active
+    background: white
+    padding: 70px 60px 20px
+    box-shadow: 10px 10px $black-color
+    +res-bl(ms)
+        +gapLR(padding, 25px)
+    &:before
+        content: '\f125'
+        +size(85px)
+        left: 50%
+        top: 0
+        color: white
+        font-size: 45px
+        text-align: center
+        line-height: 85px
+        position: absolute
+        border-radius: 50%
+        font-family: 'Flaticon'
+        background: $orange-color
+        transform: translate(-50%, -50%)
+        box-shadow: 6px 6px $black-color
+    .author-speech
+        font-size: 24px
+        line-height: 1.65
+        text-align: center
+        color: $black-color
+        +res-bl(md)
+            font-size: 20px
+        +res-bl(xs)
+            font-size: 18px
+    .feedback-author
+        display: flex
+        margin-top: 20px
+        margin-bottom: 20px
+        align-items: center
+        +container(max-content)
+        img
+            +size(65px)
+            margin-right: 25px
+            border-radius: 50%
+            box-shadow: 6px 6px $black-color
+            +res-bl(xs)
+                +size(50px)
+                margin-right: 15px
+        h5
+            margin-bottom: 0
+            +res-ab(sm)
+                font-size: 20px
+            +res-bl(xs)
+                font-size: 18px
+        
+.testimonials-shapes
+    .shape
+        z-index: -1
+        max-width: 10%
+        position: absolute
+        &.one
+            top: 20%
+            left: 10%
+            animation: leftRightOne 20s infinite
+        &.two
+            top: 50%
+            left: 15%
+            animation: leftRightOne 10s infinite
+        &.three
+            bottom: 10%
+            left: 8%
+            animation: upDownLeft 10s infinite
+        &.four
+            left: 25%
+            bottom: 8%
+            animation: shapeAnimationFive 30s infinite
+        &.five
+            top: 20%
+            right: 25%
+            animation: down-up-two 10s infinite
+        &.six
+            top: 15%
+            right: 8%
+            animation: down-up-one 10s infinite
+        &.seven
+            bottom: 10%
+            right: 40%
+            animation: shapeAnimationFour 40s infinite
+        &.eight
+            bottom: 12%
+            right: 15%
+            animation: leftRightOne 20s 5s infinite

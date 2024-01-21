@@ -1,0 +1,135 @@
+/*******************************************************/
+/******************** 15. Team Area ********************/
+/*******************************************************/
+.team-member
+    padding: 35px
+    position: relative
+    text-align: center
+    margin-bottom: 30px
+    img
+        border-radius: 50%
+        margin-bottom: 25px
+    h5
+        margin-bottom: 3px
+        +res-ab(xs)
+            font-size: 20px
+    .designation
+        display: block
+        font-weight: 500
+        margin-bottom: 10px
+        color: $primary-color
+    .social-style-one
+        opacity: 0
+        transition: 0.25s
+        visibility: hidden
+    &:after
+        position: absolute
+        content: ''
+        left: 0
+        top: 0
+        z-index: -1
+        transition: 0.5s
+        border-radius: 7px
+        +size(100%, calc(100% - 65px))
+        border: 1px solid $border-color
+    &:hover
+        .social-style-one
+            opacity: 1
+            transition: 0.5s
+            visibility: visible
+            transition-delay: 0.5s
+        &:after
+            height: 100%
+            border-color: white
+            @extend %box-shadow
+        
+/* Team Slider */
+.team-slider-active
+    +gapLR(margin, -15px)
+    .team-member
+        +gapLR(margin, 15px)
+        
+/* Team Filter */
+.team-active
+    .team-member
+        margin-bottom: 0
+        
+/* Team Profile */
+.team-profile-content
+    .section-title
+        h2
+            margin-bottom: 5px
+        .designation
+            font-size: 20px
+            font-weight: 500
+            color: $primary-color
+            
+.experience-item
+    padding-bottom: 10px
+    +res-ab(xs)
+        display: flex
+    .image
+        flex: none
+        max-width: 88px
+        margin: 5px 25px 15px 0
+    .content
+        h5
+            margin-bottom: 0
+        .duration
+            display: block
+            margin-bottom: 10px
+            
+/* Team Four */
+.team-item-four
+    transition: 0.5s
+    margin-right: 10px
+    padding: 40px 25px
+    text-align: center
+    margin-bottom: 40px
+    background: #f4edcc
+    box-shadow: 8px 8px $black-color
+    .image
+        margin-bottom: 35px
+        img
+            border-radius: 50%
+            box-shadow: 6px 6px 0 $orange-color
+    h4
+        font-size: 22px
+        margin-bottom: 0
+    .designation
+        display: block
+        margin-bottom: 10px
+    .social-style-two
+        a
+            background: white
+            box-shadow: 4px 4px 0 $black-color
+    &:hover
+        background: white
+        .social-style-two
+            a
+                background: #f4edcc
+                &:hover
+                    background: $orange-color
+                    box-shadow: 4px 4px 0 $black-color
+            
+.team-shapes
+    .shape
+        z-index: -1
+        max-width: 10%
+        position: absolute
+        &.one
+            left: 5%
+            top: 15%
+            animation: 20s leftRightOne infinite
+        &.two
+            left: 5%
+            bottom: 10%
+            animation: 10s down-up-one infinite
+        &.three
+            right: 5%
+            top: 10%
+            animation: 10s down-up-one infinite
+        &.four
+            right: 5%
+            bottom: 10%
+            animation: 10s down-up-two infinite

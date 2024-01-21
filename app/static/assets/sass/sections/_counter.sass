@@ -1,0 +1,126 @@
+/*******************************************************/
+/****************** 11. Counter Area *******************/
+/*******************************************************/
+.count-text
+    @extend %h2
+    &:after
+        content: '+'
+    
+.counter-item
+    display: flex
+    margin-bottom: 30px
+    flex-direction: column
+    > i
+        font-size: 60px
+        margin-bottom: 25px
+        color: $secondary-color
+    .counter-title
+        margin-top: 10px
+    &.style-two
+        transition: 0.5s
+        padding: 35px 30px 15px
+        border: 1px solid $border-color
+        .count-text
+            font-weight: 500
+            font-size: 40px
+        .counter-title
+            font-weight: 500
+            margin-bottom: 8px
+            +res-ab(xs)
+                font-size: 18px
+        &:hover
+            border-color: white
+            box-shadow: 10px 0 60px rgba(178, 178, 178, 0.3)
+        
+.counter-cta
+    flex-wrap: wrap
+    border-radius: 7px
+    text-align: center
+    padding: 20px 35px
+    +flexcenter(center)
+    +container(max-content)
+    background: $primary-color
+    +res-bl(xs)
+        +gapLR(padding, 10px)
+    h4,
+    .theme-btn
+        margin: 10px 15px
+        
+/* Statistics Two */
+.statistics-two-counters
+    .counter-item
+        padding: 40px
+        background: white
+        > i
+            color: $primary-color
+        .count-text
+            font-size: 40px
+        .counter-title
+            font-weight: 500
+        &.for-margin
+            +res-ab(sm)
+                margin-top: -30px
+        
+/* Statistics Three */
+.statistics-three-image
+    &:before
+        background: #f1f1f5
+    .image-right
+        position: absolute
+        left: 110%
+        top: -5%
+        width: 26%
+        animation: down-up-one 10s infinite
+        
+/* Statistics Four */
+.statistics-area-four
+    margin-top: -200px
+    transform: translateY(200px)
+.statistics-four-counters
+    padding: 60px 70px 30px
+    +res-bl(md)
+        +gapLR(padding, 25px)
+    .counter-item
+        padding: 40px
+        background: white
+        border-radius: 7px
+        box-shadow: 10px 0 60px rgba(64, 64, 64, 0.1)
+        +res-bl(sm)
+            margin-top: 0
+        +res-bl(xs)
+            +gapLR(padding, 25px)
+            
+/* Statistics Five */
+.statistics-five-content
+    max-width: 535px
+    
+/* Skill Four */
+.amazing-skill-counter-wrap
+    background: #f4edcc
+    padding: 50px 50px 5px
+    +res-ab(lg)
+        margin-left: -300px
+    
+.circle-progress-two-item
+    width: max-content
+    text-align: center
+    margin: 0 auto 40px
+    .skill-counter
+        z-index: 1
+        position: relative
+        &:after
+            content: ''
+            +size(142px)
+            z-index: -1
+            left: 50%
+            top: 12px
+            background: white
+            border-radius: 50%
+            position: absolute
+            transform: translate(-50%)
+        h3
+            +abs-middle()
+            top: 45%
+            font-size: 35px
+        h4
+            font-size: 22px

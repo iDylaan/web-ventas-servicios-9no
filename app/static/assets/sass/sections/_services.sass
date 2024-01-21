@@ -1,0 +1,151 @@
+/*******************************************************/
+/****************** 13. Services Area ******************/
+/*******************************************************/
+.service-item
+    z-index: 1
+    transition: 0.5s
+    position: relative
+    padding: 40px 30px
+    text-align: center
+    background: white
+    border-radius: 7px
+    margin-bottom: 30px
+    @extend %box-shadow
+    .icon
+        font-size: 65px
+        transition: 0.5s
+        margin-bottom: 25px
+        color: $primary-color
+    h5
+        margin-bottom: 15px
+        a
+            text-decoration: underline
+    p
+        transition: 0.5s
+        margin-bottom: 10px
+    &:after
+        content: ''
+        +size(100%)
+        position: absolute
+        z-index: -1
+        left: 0
+        top: 0
+        opacity: 0
+        transition: 0.5s
+        background: url('../images/services/service-bg.png') no-repeat center/cover
+    &:hover
+        background: $primary-color
+        box-shadow: 10px 0 60px rgba(0, 102, 254, 0.25)
+        &:after
+            opacity: 1
+        .icon, a, p
+            color: white
+        
+    &.style-two
+        padding: 35px 25px
+        h5
+            margin-bottom: 0
+            a
+                text-decoration: none
+        &:after
+            background-image: url('../images/services/service-bg-two.png')
+        &:hover
+            transform: translateY(-10px)
+        
+    &.style-three
+        box-shadow: none
+        background: #16161c
+        .icon
+            font-size: 70px
+            margin-bottom: 22px
+            i
+                color: $orange-color
+        h4
+            font-size: 22px
+        .more-btn
+            font-size: 50px
+        &:after
+            display: none
+        
+/* Service Four */
+.service-item-four
+    padding: 40px
+    background: white
+    text-align: center
+    border-radius: 7px
+    margin-bottom: 30px
+    +res-bl(xs)
+        +gapLR(padding, 25px)
+    .image
+        width: 100%
+        padding-top: 70%
+        position: relative
+        margin-bottom: 25px
+        img
+            +abs-middle()
+            max-width: 75%
+    h5
+        line-height: 1.6
+        margin-bottom: 22px
+        +res-ab(xs)
+            font-size: 20px
+    .theme-btn
+        width: 100%
+        
+/* Service Five */
+.service-item-five
+    transition: 0.5s
+    padding: 40px 50px
+    border-radius: 7px
+    margin-bottom: 30px
+    border: 1px solid $border-color
+    +res-bl(xs)
+        +gapLR(padding, 25px)
+    .icon
+        margin-bottom: 30px
+    h4
+        margin-bottom: 15px
+    .theme-btn.style-three
+        border: none
+        margin-top: 5px
+        background: #f0f3f9
+    &:hover
+        border-color: white
+        box-shadow: 10px 0 60px rgba(153, 153, 153, 0.2)
+    
+/* Service Six */
+.service-item-six
+    transition: 0.5s
+    padding: 50px 40px
+    margin-right: 10px
+    text-align: center
+    margin-bottom: 40px
+    border: 1px solid $black-color
+    box-shadow: 8px 8px $black-color
+    +res-bl(ms)
+        +gapLR(padding, 25px)
+    .category
+        font-size: 18px
+        transition: 0.5s
+        font-weight: 700
+        margin-bottom: 10px
+        color: $orange-color
+        display: inline-block
+        text-transform: uppercase
+    h4
+        line-height: 1.6
+        margin-bottom: 30px
+        +res-ab(sm)
+            font-size: 26px
+        +res-bl(xs)
+            font-size: 22px
+    .theme-btn
+        margin-bottom: 60px
+        +gapTB(padding, 9px)
+        &.style-two
+            &:after
+                background: $black-color
+    &:hover
+        box-shadow: 8px 8px $green-color
+        .category
+            color: $green-color

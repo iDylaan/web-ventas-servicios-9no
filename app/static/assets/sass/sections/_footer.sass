@@ -1,0 +1,187 @@
+/*******************************************************/
+/******************* 27. Main Footer *******************/
+/*******************************************************/
+.footer-top-newsletter
+    transform: translateY(-250px)
+    background-position: bottom
+    margin-bottom: -250px
+    margin-top: 250px
+    +res-bl(md)
+        +gapLR(padding, 45px)
+    +res-bl(ms)
+        +gapLR(padding, 25px)
+    h2
+        +res-bl(xs)
+            font-size: 26px
+    form
+        width: 100%
+        display: flex
+        padding: 10px
+        background: white
+        align-items: center
+        border-radius: 7px
+        padding-left: 30px
+        +res-bl(ms)
+            flex-wrap: wrap
+            padding-right: 30px
+        label
+            position: absolute
+            left: 0
+            top: 50%
+            margin: 0
+            right: auto
+            transform: translateY(-50%)
+            i
+                color: $base-color
+        input
+            border: none
+            border-radius: 0
+            font-weight: 500
+            color: $base-color
+            padding: 0 0 0 30px
+            background: transparent
+            +res-bl(ms)
+                +gapTB(padding, 15px)
+        button
+            flex: none
+            +res-bl(ms)
+                width: 100%
+    .footer-newsletter-image
+        margin-bottom: -130px
+        max-width: 100%
+        +res-ab(lg)
+            width: max-content
+            margin-left: auto
+        img
+            width: 100%
+            
+.copyright-area
+    border-top: 1px solid rgba(255, 255, 255, 0.1)
+    .footer-menu
+        flex-wrap: wrap
+        +flexcenter(center)
+        +gapLR(margin, -13px)
+        li
+            font-weight: 500
+            margin: 0 13px 5px
+            +res-bl(ms)
+                font-weight: 400
+                +gapLR(margin, 10px)
+                
+/* Footer Widgets */
+.footer-widget
+    margin-bottom: 50px
+.footer-title
+    margin-bottom: 25px
+.widget_nav_menu
+    .list-style-two
+        +res-ab(xs)
+            display: flex
+            flex-wrap: wrap
+        li
+            margin-bottom: 8px
+            +res-ab(xs)
+                &:nth-child(odd)
+                    width: 55%
+                &:nth-child(even)
+                    width: 45%
+            a
+                &:hover
+                    text-decoration: underline
+            &:before
+                transition: 0.5s
+                background: #afafaf
+            &:hover
+                &:before
+                    background: $primary-color
+            
+.widget_newsletter
+    padding: 35px 40px 45px
+    background: url(../images/footer/newslette-widget-bg.png) no-repeat center/cover
+    +res-bl(xs)
+        +gapLR(padding, 25px)
+    .footer-title
+        margin-bottom: 2px
+    form
+        input
+            border: none
+            margin-top: 10px
+            padding: 14px 30px
+            margin-bottom: 15px
+            
+/* Footer Bottom */
+.footer-bottom
+    position: relative
+    border-top: 1px solid $border-color
+    .copyright-text
+        font-size: 18px
+        color: $heading-color
+    .scroll-top
+        position: absolute
+        top: -24px
+        left: calc(50% - 24px)
+        +circle($yellow-color, 48px)
+.footer-bottom-menu
+    ul
+        display: inline-flex
+        +gapLR(margin, -15px)
+        li
+            margin: 0 15px 5px
+            a
+                color: $heading-color
+                &:hover
+                    text-decoration: underline
+                
+/* Footer Two */
+.main-footer.footer-two
+    .widget_newsletter
+        border-radius: 7px
+        background-image: none
+        border: 1px solid $border-color
+    .footer-bottom
+        border-top: none
+        background: #e9e9ec
+                
+/* Footer Three */
+.main-footer.footer-three
+    .widget_nav_menu .list-style-two li:before
+        background: #ffe483
+    .contact-info-item
+        .icon
+            box-shadow: 5px 5px 0 #ffe483
+        .title
+            font-size: 14px
+            text-transform: uppercase
+        .text
+            font-size: 20px
+            font-family: $heading-font
+    .widget_newsletter
+        padding: 0
+        background: none
+        .footer-title
+            margin-bottom: 25px
+        form
+            display: flex
+            background: white
+            align-items: center
+            box-shadow: 7px 7px 0 #ffe483
+            input
+                margin: 0
+                padding-right: 0
+                border-radius: 0
+                +gapTB(padding, 17px)
+            button
+                padding: 5px 20px 5px 0
+                background-color: transparent
+                i
+                    color: $heading-color
+        
+    .footer-bottom
+        border-color: white
+        .footer-bottom-menu ul li a
+            color: white
+        .scroll-to-target
+            background: $green-color
+            box-shadow: 4px 5px 0 #ffe483
+            +res-ab(xl)
+                top: 20px

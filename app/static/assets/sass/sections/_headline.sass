@@ -1,0 +1,43 @@
+/*******************************************************/
+/****************** ## Headline Area ******************/
+/*******************************************************/
+.headline-area
+    margin-left: -50px
+    +gapLR(padding, 50px)
+    transform: rotate(1deg)
+    width: calc(100% + 100px)
+    &:after,
+    &:before
+        content: ''
+        +size(100%)
+        left: 0
+        top: 0
+        position: absolute
+    &:after
+        z-index: -1
+        background: #ffe483
+    &:before
+        z-index: -2
+        transform: rotate(-2deg)
+        background: $orange-color
+.headline-wrap
+    +flexcenter(center)
+.marquee-item
+    align-items: center
+    display: inline-flex
+    +gapLR(margin, 22px)
+    +res-bl(md)
+        +gapLR(margin, 10px)
+    i
+        font-size: 45px
+        margin-right: 25px
+        color: $green-color
+        +res-bl(xl)
+            font-size: 25px
+            margin-right: 15px
+    b
+        font-size: 24px
+        color: $heading-color
+        font-family: $heading-font
+        +res-bl(xl)
+            font-size: 18px

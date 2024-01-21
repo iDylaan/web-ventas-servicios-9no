@@ -1,0 +1,29 @@
+/*******************************************************/
+/****************** 22. Video Section ******************/
+/*******************************************************/
+.video-part
+    +overlay(#070c13, 0.1)
+    +res-ab(lg)
+        margin-bottom: -80px
+    &:before
+        z-index: 1
+    .video-play
+        z-index: 2
+        +size(70px)
+        +abs-middle()
+        color: white
+        font-size: 15px
+        line-height: 70px
+        background: $secondary-color
+.video-content
+    h2
+        +res-bt(lg, xl)
+            font-size: 35px
+    .list-style-three
+        display: flex
+        font-size: 18px
+        flex-wrap: wrap
+        li
+            width: 50%
+            +res-bl(sm)
+                width: 100%

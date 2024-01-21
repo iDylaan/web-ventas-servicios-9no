@@ -1,0 +1,581 @@
+
+.main-header .logo{
+    margin-right: 0;
+    margin-left: 25px;
+}
+.main-menu .navbar-collapse li.dropdown .dropdown-btn{
+    margin-left: 0;
+    margin-right: 5px;
+}
+.main-menu .navbar-collapse li ul li ul{
+    left: auto;
+    right: 100%;
+}
+.nav-search {
+    margin-right: 15px;
+    margin-left: auto;
+}
+.nav-search form input {
+    border: none;
+    padding: 15px 25px 15px 5px;
+}
+.nav-search form button {
+    padding: 15px 0 15px 20px;
+}
+.theme-btn i, a.theme-btn i{
+    margin-left: 0;
+    margin-right: 10px;
+}
+.theme-btn:hover i, a.theme-btn:hover i {
+    margin-left: -3px;
+    margin-right: 13px;
+}
+.slider-video{
+    right: auto;
+    left: 70px;
+}
+.slider-shapes .dots.one {
+    right: auto;
+    left: -30px;
+}
+.slider-shapes .dots.two {
+    left: auto;
+    right: 42%;
+}
+.slider-shapes .wave-line{
+    left: auto;
+    right: 0;
+}
+.slider-shapes .circle{
+    left: auto;
+    right: 5%;
+}
+.bgc-black-with-lighting::after{
+    right: auto;
+    left: -8%;
+}
+.bgc-black-with-lighting:before{
+    left: auto;
+    right: -10%;
+}
+.section-title .sub-title::after, .section-title .sub-title::before{
+    float: right;
+}
+.section-title .sub-title:after {
+    margin-left: 0px;
+    margin-right: 20px;
+}
+.section-title .sub-title:before {
+    margin-right: 0;
+    margin-left: 20px;
+}
+.about-content-one .list-style-one li:before{
+    margin-right: 0;
+    margin-left: 40px;
+}
+.about-content-one .list-style-one li:after{
+    left: auto;
+    right: 10px;
+}
+.about-image-one .image-left{
+    right: auto;
+    left: 100%;
+}
+.bg-squire-shape::before{
+    left: auto;
+    right: 0;
+}
+.statistics-three-image .image-right{
+    left: auto;
+    right: 110%;
+}
+.project-item.style-two .project-content .category:before {
+    margin-right: 0px;
+    margin-left: 20px;
+}
+.project-item.style-two .project-content .category:after {
+    margin-left: 0px;
+    margin-right: 20px;
+}
+.work-process-shape{
+    left: auto;
+    right: -5%;
+}
+.list-style-two li:before{
+    margin-right: 0;
+    margin-left: 15px;
+}
+.slider-arrow-btns button:first-child {
+    margin-right: 0px;
+    margin-left: 5px;
+}
+.testimonial-item-two .testimonial-author{
+    margin-right: 0;
+    margin-left: 30px;
+}
+.testimonial-item-two .testimonial-author:before{
+    right: auto;
+    left: 0;
+}
+.testimonial-item-two .author-description:before{
+    left: auto;
+    right: 0;
+}
+.testimonial-item-two .author-description{
+    padding-left: 0;
+    padding-right: 70px;
+}
+.contact-info-item .icon{
+    margin-right: 0;
+    margin-left: 20px;
+}
+.contact-shapes .circle{
+    right: auto;
+    left: 10%;
+}
+.contact-shapes .wave-line{
+    right: auto;
+    left: 0;
+}
+.contact-shapes .dots{
+    left: auto;
+    right: 15%;
+}
+.blog-item .image{
+    margin-right: 0;
+    margin-left: 40px;
+}
+.blog-item .content .date i {
+    margin-right: 0px;
+    margin-left: 8px;
+}
+.blog-item .content .author img{
+    margin-right: 0;
+    margin-left: 15px;
+}
+.cta-item .details-btn{
+    margin-left: 0;
+    margin-right: auto;
+}
+.header-top .top-left > ul li:not(:last-child) {
+    margin-right: 0px;
+    margin-left: 33px;
+}
+.header-top .top-right > ul > li > i {
+    margin-right: 0px;
+    margin-left: 5px;
+}
+.nav-outer {
+    margin-left: 0;
+    margin-right: auto;
+}
+.hero-btns .theme-btn:not(:last-child) {
+    margin-right: 0px;
+    margin-left: 15px;
+}
+.video-play-text i{
+    margin-right: 0;
+    margin-left: 15px;
+}
+.hero-content p{
+    border-left: none;
+    border-right: 3px solid rgb(1, 201, 245);
+    padding-left: 0;
+    padding-right: 30px;
+}
+.align-self-end {
+    align-self: flex-end!important;
+}
+.hero-content::before{
+    left: auto;
+    right: -110px;
+}
+.hero-images:after{
+    right: auto;
+    left: -8%;
+}
+.about-image .years-fo-experience{
+    right: auto;
+    left: 0;
+}
+.about-image{
+    padding-right: 0;
+    padding-left: 11%;
+}
+.client-satisfactions img{
+    margin-right: 0;
+    margin-left: 25px;
+}
+.client-satisfactions .count-text {
+    margin-right: 0px;
+    margin-left: 20px;
+}
+.list-style-one li:before{
+    margin-right: 0;
+    margin-left: 25px;
+}
+.pricing-plan-item .price-features .badge{
+    left: auto;
+    right: 65%;
+    transform: translate(50%, -100%) rotate(180deg);
+}
+.pricing-plan-item:hover .badge {
+    transform: translate(50%, 0) rotate(180deg);
+}
+.feedback-item .feedback-author img{
+    margin-right: 0;
+    margin-left: 20px;
+}
+.footer-top-newsletter form{
+    padding: 10px;
+    padding-left: 10px;
+    padding-right: 30px;
+}
+.footer-top-newsletter form input{
+    padding: 0px 30px 0px 0px;
+}
+.footer-top-newsletter form label{
+    left: auto;
+    right: 0;
+}
+.main-header.header-three .nav-outer {
+    margin-right: 0;
+    margin-left: auto;
+}
+.main-header.header-three .menu-btns .theme-btn {
+    margin-right: 30px;
+    margin-left: 0px;
+}
+.feature-item-three > i{
+    margin-right: 0;
+    margin-left: 25px;
+}
+.ww-do-images .image-three{
+    right: auto;
+    left: -11%;
+}
+.list-style-three li:before{
+    margin-right: 0;
+    margin-left: 11px;
+}
+.read-more i{
+    margin-left: 0;
+    margin-right: 7px;
+}
+.read-more:hover i {
+    margin-left: 0px;
+    margin-right: 10px;
+}
+.feature-item-four h4 i{
+    margin-right: 0;
+    margin-left: 20px;
+}
+.list-style-four li:before{
+    margin-right: 0;
+    margin-left: 15px;
+}
+.accordion-button::after{
+    margin-left: 0;
+    margin-right: auto;
+}
+.faq-images .image-one{
+    margin-left: 0;
+    margin-right: 30px;
+}
+.faq-images .image-two{
+    margin-left: 0;
+    margin-right: -30px;
+}
+.faq-images .year-of-experience{
+    text-align: right;
+    margin-right: 0px;
+    margin-left: 30px;
+}
+.project-creative-item .image:not(:last-child) {
+    margin-right: 0px;
+    margin-left: 50px;
+}
+.product-item .content .price-details-btn .price{
+    margin-right: 0;
+    margin-left: 20px;
+}
+.product-details-content .ratting-price .price{
+    margin-left: 0;
+    margin-right: 10px;
+}
+.product-details-content .add-to-cart .theme-btn{
+    margin: 10px 0 0 10px;
+}
+.product-information-tab li:not(:last-child) {
+    margin-right: 0px;
+    margin-left: 15px;
+}
+.review-form .ratting b{
+    margin-right: 0;
+    margin-left: 20px;
+}
+.blog-meta li img{
+    margin-right: 0;
+    margin-left: 8px;
+}
+.blog-meta li:not(:first-child) {
+    padding-left: 0px;
+    padding-right: 22px;
+    border-left: none;
+    border-right: 2px solid #0066ff;
+}
+.blog-meta li:not(:last-child) {
+    margin-right: 0px;
+    margin-left: 22px;
+}
+.blog-meta li i {
+    margin-right: 0px;
+    margin-left: 6px;
+}
+blockquote::before{
+    margin-left: 0px;
+    margin-right: -75px;
+}
+blockquote .blockquote-footer:before{
+    margin-right: 0;
+    margin-left: 20px;
+}
+blockquote{
+    padding: 30px 160px 20px 70px;
+}
+.tag-share .item h5 {
+    margin: 0 0 0 20px;
+}
+.comment-body .author-thumb{
+    margin-right: 0;
+    margin-left: 30px;
+}
+.comment-form .form-group label{
+    right: auto;
+    left: 0;
+}
+.form-check{
+    padding-left: 0;
+    padding-right: 1.5em;
+}
+.comment-form .form-check .form-check-input[type=radio]{
+    margin-right: 0;
+    margin-left: 20px;
+}
+.widget-category ul li a{
+    margin-left: auto;
+    margin-right: 0;
+}
+.widget-category ul li:before{
+    margin-right: 0;
+    margin-left: 10px;
+}
+.widget-recent-news ul li .image{
+    margin-right: 0;
+    margin-left: 30px;
+}
+.main-menu .navbar-header {
+    margin-right: 0px;
+    margin-left: 30px;
+}
+.main-menu .mobile-logo {
+    margin-right: 0;
+    margin-left: auto;
+}
+.main-header.header-three .navbar-header{
+    margin-left: 0;
+}
+.ww-do-btns .theme-btn:not(:last-child) {
+    margin-right: 0;
+    margin-left: 15px;
+}
+.ww-do-two-images .image-three {
+    margin: 40px 0 50px -55px;
+}
+.year-of-experience{
+    left: auto;
+    right: 0;
+    transform: translate(20%, -20%);
+}
+.offset-1 {
+    margin-left: 0;
+    margin-right: 8.33333333%;
+}
+.experience-item .image{
+    margin: 5px 0 15px 25px;
+}
+.pricing-plan-three .badge{
+    right: auto;
+    left: 0;
+    clip-path: polygon(0% 0%, 100% 0, 85% 50%, 100% 100%, 0% 100%);
+    transform: translate(-100%);
+}
+.pricing-tab li:first-child button:before{
+    right:auto;
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+.pricing-tab li:last-child button:before {
+    margin-right: 0px;
+    margin-left: 10px;
+}
+.pricing-tab li:first-child button:after {
+    margin-left: 0px;
+    margin-right: 10px;
+}
+.error-content .follow-us{
+    text-align: right;
+}
+
+.error-page-area,
+.pricing-area-three,
+.team-profile-area,
+.ww-do-two-area,
+.blog-details-area,
+.blog-grid-area,
+.shopping-cart-area,
+.product-details,
+.shop-page-area,
+.project-details-area,
+.project-creative-area,
+.faqs-area,
+.responsive-design-area,
+.what-we-offer-two,
+.what-we-offer,
+.statistics-area-five,
+.why-choose-two-area,
+.statistics-area-two,
+.feature-area-four,
+.feature-with-image-area,
+.ww-do-area,
+.features-area-two,
+.feedback-area,
+.pricing-area,
+.why-choose-area,
+.mission-visson-area,
+.about-area,
+.main-footer,
+.news-blog-area,
+.contact-area,
+.testimonial-area-two,
+.pricing-area-two,
+.call-to-action-area,
+.statistics-area-three,
+.about-area-one,
+.main-slider-area,
+.main-header {
+    text-align: right;
+}
+
+@media only screen and (min-width: 1400px){
+    .main-header.header-three .nav-outer {
+        margin-left: auto;
+        margin-right: 100px;
+    }
+}
+@media only screen and (max-width: 1399px){
+    .ww-do-images .image-three {
+        left: -15px;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 1199px){
+    .menu-sidebar {
+        margin-left: 0;
+        margin-right: 30px;
+    }
+}
+
+@media (min-width: 992px){
+    .text-lg-start {
+        text-align: right!important;
+    }
+    .text-lg-end {
+        text-align: left!important;
+    }
+    .footer-top-newsletter .footer-newsletter-image {
+        margin-left: 0;
+        margin-right: auto;
+    }
+    
+}
+
+@media only screen and (min-width: 992px){
+    .main-header.header-two .nav-outer {
+        margin-left: 0px;
+        margin-right: 75px;
+    }
+    .feature-right > .row > div:first-child .service-item {
+        margin-right: 0px;
+        margin-left: 30px;
+    }
+    .feature-left > .row > div:first-child .service-item {
+        margin-left: 0px;
+        margin-right: 30px;
+    }
+    .feature-right > .row > div:last-child .service-item {
+        margin-left: 0;
+        margin-right: 30px;
+    }
+    .feature-left > .row > div:last-child .service-item {
+        margin-right: 0px;
+        margin-left: 30px;
+    }
+    .price-and-btn {
+        border-left: none;
+        border-right: 1px solid rgba(0, 102, 255, 0.1);
+    }
+}
+
+@media only screen and (max-width: 991px){
+    .slider-video{
+        left: 0;
+    }
+    .pricing-plan-item .price-features .badge {
+        right: 100%;
+        transform: translate(100%, -100%) rotate(180deg);
+    }
+    .pricing-plan-item:hover .badge {
+        transform: translate(100%, 0) rotate(180deg);
+    }
+}
+
+@media only screen and (max-width: 767px){
+    blockquote {
+        padding-right: 75px;
+        padding-left: 0;
+    }
+}
+
+
+@media only screen and (min-width: 576px){
+    .border-right {
+        border-right: none;
+        border-left: 1px solid rgba(0, 102, 255, 0.1);
+    }
+    .pe-sm-3 {
+        padding-right: 0!important;
+        padding-left: 1rem!important;
+    }
+}
+
+
+
+@media only screen and (max-width: 575px){
+    .cta-item .details-btn{
+        margin-right: 0;
+    }
+    .year-of-experience{
+        transform: translate(0, -30%);
+    }
+    .ww-do-two-images .image-two{
+        margin-right: 0;
+        margin-left: 30px;
+    }
+}
+
+@media only screen and (max-width: 375px){
+    .year-of-experience{
+        transform: translate(0, -30%);
+    }
+}

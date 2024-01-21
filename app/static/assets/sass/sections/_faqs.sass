@@ -1,0 +1,98 @@
+/*******************************************************/
+/******************* 23. FAQs Area *********************/
+/*******************************************************/
+.faq-images
+    img
+        &:not(:last-child)
+            margin-bottom: 30px
+    .image-one
+        margin-left: 30px
+        width: calc(100% - 30px)
+        max-width: calc(100% - 30px)
+    .image-two
+        margin-left: -30px
+        width: calc(100% + 30px)
+        max-width: calc(100% + 30px)
+    .image-three
+        +res-bl(sm)
+            margin-top: 50px
+    .year-of-experience
+        position: relative
+        +size(auto)
+        top: 0
+        border-radius: 0
+        text-align: left
+        padding: 20px 25px
+        margin-right: 30px
+        transform: translate(0)
+        +res-bl(ms)
+            margin-right: 0
+            +gapLR(padding, 20px)
+        .number
+            font-size: 45px
+            &:after
+                content: '+'
+            
+.accordion-item
+    z-index: 1
+    border: none
+    padding: 16px 30px
+    position: relative
+    border-radius: 0 !important
+    +res-bl(xs)
+        +gapLR(padding, 20px)
+    &:not(:last-child)
+        margin-bottom: 20px
+    .accordion-button
+        padding: 0
+        position: inherit
+        background: transparent
+        +res-ab(xs)
+            font-size: 18px
+        &:focus
+            box-shadow: none
+        &:before
+            position: absolute
+            content: ''
+            +size(100%)
+            left: 0
+            top: 0
+            z-index: -1
+            transition: 0.5s
+            background: $lighter-color
+        &:not(.collapsed)
+            box-shadow: none
+            color: $heading-color
+            &:before
+                background: white
+                box-shadow: 10px 0 40px rgba(204, 204, 204, 0.3)
+    .accordion-body
+        padding: 0
+        p
+            margin: 10px 0 0
+            
+.style-two
+    .accordion-button
+        &:before
+            background: white
+            box-shadow: 10px 0 40px rgba(204, 204, 204, 0.3)
+            
+/* FAQ Page */
+.faq-search-form
+    display: flex
+    padding: 10px
+    background: white
+    border-radius: 5px
+    align-items: center
+    box-shadow: 10px 0 30px rgba(153, 153, 153, 0.2)
+    label
+        margin: 0 20px
+    input
+        padding: 0
+        border: none
+    button
+        +size(45px)
+        flex: none
+        color: white
+        border-radius: 5px
+        background: $primary-color

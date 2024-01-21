@@ -1,0 +1,339 @@
+/*******************************************************/
+/****************** 14. Projects Area ******************/
+/*******************************************************/
+.project-area
+    &:after
+        content: ''
+        left: 0
+        bottom: 0
+        z-index: -1
+        position: absolute
+        background: $dark-blue-color
+        +size(100%, calc(100% - 165px))
+
+.project-item
+    text-align: center
+    margin-bottom: 30px
+    .project-iamge
+        overflow: hidden
+        position: relative
+        img
+            width: 100%
+    .project-over
+        position: absolute
+        +size(100%)
+        left: 0
+        bottom: 100%
+        transition: 0.75s
+        +flexcenter(center)
+        flex-direction: column
+        &:after
+            position: absolute
+            content: ''
+            +size(100%)
+            left: 0
+            top: 0
+            mix-blend-mode: multiply
+            background: $primary-color
+        h3,
+        .details-btn
+            z-index: 1
+            opacity: 0
+            transition: 0.35s
+            margin-left: -25px
+            position: relative
+        .details-btn
+            margin-bottom: 20px
+        h3
+            color: white
+            margin-bottom: 0
+            +res-bl(ms)
+                font-size: 25px
+    .project-content
+        padding: 22px
+        box-shadow: 10px 0 60px rgba(195, 195, 195, 0.3)
+        h5
+            margin-bottom: 0
+            +res-ab(xs)
+                font-size: 20px
+    &:hover
+        .project-over
+            bottom: 0
+            transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66)
+            h3,
+            .details-btn
+                opacity: 1
+                margin-left: 0
+            .details-btn
+                transition-delay: 0.7s
+            h3
+                transition-delay: 0.9s
+    &.style-two
+        .project-over
+            .details-btn
+                margin-bottom: 0
+            &:after
+                opacity: 0.5
+                background: #1e1e22
+        .project-content
+            h4
+                margin-bottom: 0
+                +res-bl(xs)
+                    font-size: 20px
+                    line-height: 1.5
+            .category
+                +flexcenter(center)
+                color: $orange-color
+                +res-ab(xs)
+                    font-size: 18px
+                &:after,
+                &:before
+                    content: ''
+                    +size(30px, 2px)
+                    background: $orange-color
+                &:after
+                    margin-left: 20px
+                &:before
+                    margin-right: 20px
+    &.style-three
+        position: relative
+        margin-bottom: 60px
+        .project-over
+            &:after
+                opacity: 0.5
+                background: #070c13
+        .project-content
+            position: absolute
+            left: 50%
+            opacity: 0
+            bottom: 30px
+            min-width: 70%
+            max-width: 95%
+            transition: 0.75s
+            background: white
+            width: max-content
+            border-radius: 7px
+            transform: translate(-50%)
+            box-shadow: 10px 0 30px rgba(49, 128, 252, 0.15)
+        &:hover
+            .project-content
+                opacity: 1
+                bottom: -30px
+                transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66)
+            
+/*Project Three*/
+.project-three-active
+    +res-ab(xxl)
+        +gapLR(padding, 55px)
+    .project-item
+        +gapLR(margin, 15px)
+        .project-content
+            box-shadow: 5px 0 15px rgba(195, 195, 195, 0.35)
+            
+/* Project Page */
+.project-page-area
+    .section-title
+        .sub-title
+            &:before
+                display: none
+            
+.project-creative-item
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    &:not(:last-child)
+        margin-bottom: 100px
+    .image
+        flex: none
+        width: calc(50% - 15px)
+        +res-bl(lg)
+            order: 2
+            width: 100%
+        &:not(:last-child)
+            margin-right: 50px
+            +res-bl(lg)
+                margin-right: 0
+    .content
+        width: 40%
+        padding-left: 60px
+        +res-bl(xl)
+            width: calc(50% - 35px)
+        +res-bl(lg)
+            width: 100%
+            margin-bottom: 55px
+        +res-bl(ms)
+            padding-left: 25px
+        &:not(:last-child)
+            margin-left: auto
+            margin-right: 50px
+            +res-bl(lg)
+                margin-right: 0
+        .section-title
+            margin-bottom: 40px
+            .sub-title
+                font-family: $heading-font
+                +res-ab(ms)
+                    font-size: 30px
+                    margin-left: -30px
+        hr
+            margin: 0 0 30px -55px
+            +res-bl(ms)
+                margin-left: -20px
+        p
+            max-width: 340px
+        .theme-btn
+            margin-top: 18px
+            
+/*Project Tab*/
+.project-tab
+    display: flex
+    flex-wrap: wrap
+    +gapLR(margin, -5px)
+    li
+        button
+            cursor: pointer
+            transition: 0.5s
+            font-weight: 500
+            padding: 4px 20px
+            border-radius: 5px
+            margin: 0 5px 10px
+            color: $heading-color
+            background: transparent
+            +res-bl(xs)
+                +gapLR(padding, 15px)
+            &.active
+                background: white
+                color: $secondary-color
+                text-decoration: underline
+                box-shadow: 10px 0 60px rgba(195, 195, 195, 0.5)
+                
+                
+/* Project Details */
+.project-details-area
+    .section-title
+        h2
+            margin-bottom: 10px
+    h5
+        +res-ab(xs)
+            font-size: 22px
+.sub-title-two
+    display: inline-block
+    +res-ab(xs)
+        font-size: 18px
+    
+/* Next Prev Project */
+.next-prev-project
+    +flexcenter(space-between)
+    +res-bl(lg)
+        flex-direction: column
+    .prev-project,
+    .next-project
+        display: flex
+        align-items: center
+        +gapLR(margin, -15px)
+        +res-bl(ms)
+            +gapLR(margin, -10px)
+        .image,
+        .content
+            +gapLR(padding, 15px)
+            +res-bl(ms)
+                +gapLR(padding, 10px)
+        h5
+            margin-bottom: 0
+        .image
+            +res-bl(xs)
+                max-width: 45%
+        .category
+            display: block
+            margin-bottom: 8px
+    .show-all
+        display: flex
+        font-size: 30px
+        +gapTB(margin, 35px)
+        flex-direction: column
+        i
+            margin: -10px 0
+    .read-more
+        color: $primary-color
+        
+/* Tab Btn style one */
+.tab-btns-one
+    max-width: 520px
+    .nav-link
+        +flexcenter(space-between)
+        border-radius: 0
+        text-align: left
+        padding: 0 0 20px
+        margin-bottom: 30px
+        background: transparent
+        border-bottom: 1px solid #0c0c0c
+        .title
+            font-size: 30px
+            @extend %heading
+            margin-bottom: 0
+            color: #0c0c0c
+            transition: 0.5s
+            +res-bl(md)
+                font-size: 25px
+            +res-bl(ms)
+                font-size: 20px
+            i
+                margin-right: 16px
+        .right-btn
+            color: white
+            font-size: 25px
+            +circle($yellow-color, 50px)
+            box-shadow: 5px 5px #131313
+            i
+                transform: rotate(-45deg)
+        &.active
+            background: transparent
+            border-width: 2px
+            border-bottom-color: $yellow-color
+            .right-btn
+                background: $green-color
+        
+// Project Gallery Item
+.project-gallery-item
+    position: relative
+    max-width: max-content
+    &:after
+        position: absolute
+        content: ''
+        left: 0
+        top: 0
+        +size(100%)
+        background: $yellow-color
+        transform: rotate(4deg)
+        z-index: -1
+    img
+        width: 100%
+    .content
+        position: absolute
+        width: 76%
+        left: 12%
+        bottom: 40px
+        background: white
+        padding: 20px 30px
+        border-radius: 12px
+        +flexcenter(space-between)
+        +res-bl(ms)
+            width: 90%
+            left: 5%
+            bottom: 20px
+            padding: 15px 20px
+        .text
+            h4
+                font-size: 27px
+                margin-bottom: 0
+                +res-bl(xs)
+                    font-size: 20px
+                a:not(:hover)
+                    color: #0c0c0c
+        .project-details-btn
+            color: #0c0c0c
+            font-size: 25px
+            +circle(#febc13, 50px)
+            box-shadow: 5px 5px #131313
+            i
+                transform: rotate(-45deg)

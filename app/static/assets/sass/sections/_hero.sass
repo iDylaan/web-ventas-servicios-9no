@@ -1,0 +1,260 @@
+/*******************************************************/
+/******************** 07. Hero Area ********************/
+/*******************************************************/
+.hero-content
+    z-index: 2
+    max-width: 640px
+    position: relative
+    .sub-title
+        font-weight: 500
+        line-height: 1.5
+        padding: 8px 20px
+        display: inline-block
+        border-radius: 0 5px 5px 0
+        background: $primary-color
+        border-left: 3px solid white
+        +res-ab(md)
+            font-size: 18px
+    h1
+        +res-bl(xxl)
+            font-size: 60px
+        +res-bl(xl)
+            font-size: 55px
+        +res-bl(md)
+            font-size: 45px
+        +res-bl(sm)
+            font-size: 40px
+        +res-bl(xs)
+            font-size: 33px
+            line-height: 1.3
+    p
+        margin-top: 25px
+        padding-left: 30px
+        border-left: 3px solid $secondary-color
+        +res-bl(xl)
+            padding-left: 15px
+        +res-bl(xs)
+            line-height: 1.5
+    &:before
+        position: absolute
+        content: ''
+        top: -65px
+        +size(220px)
+        left: -110px
+        z-index: -1
+        opacity: 0.1
+        border-radius: 50%
+        border: 2px dashed white
+        animation: rotated_circle 30s infinite
+        
+.hero-btns
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    .theme-btn
+        &:not(:last-child)
+            margin-right: 15px
+        
+.hero-images
+    z-index: 1
+    position: relative
+    margin-left: -38%
+    +res-ab(xxl)
+        margin-right: -28%
+    +res-bl(lg)
+        margin-left: -15%
+    &:after
+        position: absolute
+        +size(210px)
+        z-index: -1
+        content: ''
+        right: -8%
+        top: 15%
+        border-radius: 50%
+        filter: blur(110px)
+        background: $secondary-color
+        animation: zoomInOut 5s infinite
+        +res-bl(xl)
+            top: -15%
+
+/* Hero Three */
+.hero-three-shapes
+    .angle
+        position: absolute
+        +size(100%, 70%)
+        content: ''
+        left: 0
+        top: 0
+        z-index: -2
+        background: $lighter-color
+        clip-path: polygon(100% 0, 100% 80%, 50% 100%, 0 80%, 0 0)
+    .circle
+        +size(770px)
+        z-index: -1
+        top: -200px
+        left: -100px
+        background: white
+        border-radius: 50%
+        position: absolute
+        +res-bl(lg)
+            +size(400px)
+    .shape-one,
+    .shape-two
+        z-index: -1
+        max-width: 10%
+        position: absolute
+    .shape-one
+        left: 6%
+        top: 15%
+        animation: down-up-two 15s infinite
+    .shape-two
+        right: 6%
+        top: 25%
+        animation: upDownLeft 20s infinite
+    &:after,
+    &:before
+        position: absolute
+        border: 2px solid
+        content: ''
+        +size(15px)
+        z-index: -1
+        border-radius: 50%
+    &:before
+        left: 7%
+        top: 40%
+        border-color: $secondary-color
+        animation: shapeAnimationOne 30s infinite
+    &:after
+        right: 15%
+        top: 12%
+        border-color: $yellow-color
+        animation: shapeAnimationTwo 30s infinite
+        
+.hero-content-three
+    h1
+        font-size: 75px
+        margin-bottom: 25px
+        +res-bl(xxl)
+            font-size: 60px
+        +res-bl(xl)
+            font-size: 53px
+        +res-bl(md)
+            font-size: 45px
+        +res-bl(sm)
+            font-size: 40px
+        +res-bl(xs)
+            font-size: 32px
+            line-height: 1.3
+        span
+            position: relative
+            color: $secondary-color
+            &:after
+                position: absolute
+                content: ''
+                left: 4%
+                z-index: -1
+                bottom: -13%
+                +size(96%, 28%)
+                background: url(../images/shapes/hero-title-bg-line.png) no-repeat center/cover
+    p
+        +res-ab(md)
+            font-size: 20px
+            +container(850px)
+    .hero-btns
+        justify-content: center
+        .theme-btn
+            &:not(:last-child)
+                +res-bl(xs)
+                    margin-right: 0
+    .video-play-text
+        i
+            background: $yellow-color
+        span
+            &:not(:hover)
+                color: $heading-color
+            
+/* Hero Four */
+.hero-content-four
+    +container(700px)
+    h1
+        font-size: 65px
+        +res-bl(lb)
+            font-size: 50px
+        +res-bl(xxl)
+            font-size: 45px
+            line-height: 1.3
+        +res-bl(sm)
+            font-size: 40px
+        +res-bl(ms)
+            font-size: 36px
+        +res-bl(xs)
+            font-size: 33px
+    .hero-btns
+        .video-play-text
+            i
+                margin-right: 20px
+                background: #f07c3b
+                margin-bottom: 10px
+                box-shadow: 5px 5px 0 0 $black-color
+            span
+                color: $black-color
+        
+.hero-left-images,
+.hero-right-images
+    position: relative
+    text-align: center
+    padding: 5% 10% 10%
+    .shape
+        max-width: 50%
+        position: absolute
+        &.two
+            left: 0
+            bottom: 0
+        &.three
+            top: 20%
+            right: 0
+            animation: 10s down-up-one infinite
+        &.four
+            right: 5%
+            bottom: 6%
+            animation: 30s upDownLeft infinite
+    .image
+        z-index: 1
+        position: relative
+        display: inline-block
+        img
+            margin-bottom: 3px
+        &:before
+            left: 0
+            bottom: 0
+            content: ''
+            z-index: -1
+            +size(100%, 90%)
+            position: absolute
+            border-radius: 17px
+            border: 3px solid $black-color
+.hero-left-images
+    .image
+        +gapLR(padding, 8%)
+        &:before
+            background: $green-color
+    .shape
+        &.one
+            top: 8%
+            left: 0
+            animation: 10s down-up-two infinite
+        &.two
+            animation: 10s down-up-two infinite
+.hero-right-images
+    .image
+        +gapLR(padding, 10%)
+        &:before
+            background: $yellow-color
+    .shape
+        &.one
+            top: 0
+            left: -5%
+            animation: 10s down-up-one infinite
+        &.two
+            animation: 5s zoomInOut infinite
+            

@@ -1,0 +1,220 @@
+/*******************************************************/
+/******************** 24. Shop Area ********************/
+/*******************************************************/
+.product-item
+    margin-bottom: 50px
+    .image
+        img
+            width: 100%
+    .content
+        padding: 35px 40px 40px
+        box-shadow: 10px 0 60px rgba(195, 195, 195, 0.3)
+        +res-bl(ms)
+            +gapLR(padding, 25px)
+        h5
+            margin-bottom: 4px
+            +res-ab(xs)
+                font-size: 20px
+        .admin-ratting
+            flex-wrap: wrap
+            margin-bottom: 10px
+            +flexcenter(space-between)
+            a
+                color: $primary-color
+                text-decoration: underline
+        .price-details-btn
+            .price
+                font-size: 18px
+                margin-right: 20px
+                @extend %heading
+                &:before
+                    content: '$'
+            .theme-btn
+                padding: 2px 15px
+                
+/* Product Details */
+.preview-images
+    margin-bottom: 30px
+    img
+        width: 100%
+.thumb-images
+    justify-content: space-between
+    .thumb-item
+        width: calc(33.3333% - 20px)
+        img
+            width: 100%
+        
+.product-details-content
+    .section-title
+        h2
+            margin-bottom: 15px
+    .ratting-price
+        display: flex
+        align-items: center
+        .price
+            font-size: 24px
+            font-weight: 500
+            color: $heading-color
+            margin-left: 10px
+            &:before
+                content: '$'
+    .category-tags
+        li
+            &:not(:last-child)
+                margin-bottom: 8px
+            b
+                font-size: 18px
+                color: $heading-color
+            span
+                +gapLR(margin, 20px)
+            a
+                &:not(:last-child)
+                    &:after
+                        content: ','
+                        margin-right: 3px
+    .add-to-cart
+        display: flex
+        flex-wrap: wrap
+        align-items: center
+        input
+            width: 88px
+            padding: 8px 20px
+            margin: 10px 10px 0 0
+        .theme-btn
+            +gapTB(padding, 9px)
+            margin: 10px 10px 0 0
+        .wishlist
+            margin-top: 10px
+            padding: 8px 20px
+            border-radius: 5px
+            background: transparent
+            border: 1px solid $border-color
+            
+.product-information-tab
+    li
+        &:not(:last-child)
+            margin-right: 15px
+        a
+            font-size: 18px
+            font-weight: 700
+            padding: 11px 65px
+            border-radius: 5px
+            display: inline-block
+            color: $heading-color
+            border: 1px solid $border-color
+            +res-bl(sm)
+                padding: 6px 30px
+            +res-bl(xs)
+                font-size: 16px
+                padding: 5px 20px
+            &.active
+                color: white
+                background: $primary-color
+                
+.review-form
+    .ratting
+        b
+            font-size: 20px
+            font-weight: 400
+            margin-right: 20px
+    .form-group
+        margin-bottom: 30px
+        .nice-select,
+        .form-control
+            line-height: 1.4
+            background: $lighter-color
+            border-color: $lighter-color
+            +res-ab(ms)
+                font-size: 20px
+            &::placeholder
+                color: $heading-color
+            &:focus
+                background: transparent
+                border-color: $heading-color
+            .current
+                font-weight: 400
+    .theme-btn
+        +res-ab(md)
+            padding: 14px 55px
+            
+/* Cart Page */
+.shoping-table,
+.shoping-cart-total
+    table
+        width: 100%
+    td, th
+        padding: 15px 10px
+        text-align: center
+        border: 1px solid $border-color
+    th
+        text-transform: capitalize
+    td
+        img
+            max-height: 60px
+        .title
+            font-size: 18px
+            color: $heading-color
+        .price
+            &:before
+                content: '$'
+        button
+            background: transparent
+            
+.shoping-table
+    +res-bl(md)
+        thead
+            display: none
+        tr
+            display: grid
+            &:not(:last-child)
+                margin-bottom: 50px
+        td
+            &:not(:last-child)
+                border-bottom: none
+        
+.quantity-input
+    display: inline-flex
+    button
+        width: 45px
+        background: transparent
+        border: 1px solid $border-color
+    input
+        width: 55px
+        padding: 5px 15px
+        text-align: center
+        background: transparent
+        
+.discount-wrapper
+    input
+        width: 200px
+        
+/* Checkout Page */
+.checkout-faqs
+    .alert
+        padding: 20px 30px
+        margin-bottom: 25px
+        +res-bl(xs)
+            +gapLR(padding, 20px)
+        h6
+            margin-bottom: 0
+            a
+                padding: 0
+                color: $secondary-color
+                background: transparent
+        form
+            padding: 20px 0 10px
+            .form-footer
+                display: flex
+                align-items: center
+                margin-bottom: 15px
+                button
+                    margin-right: 15px
+                    +res-bl(xs)
+                        margin-right: 8px
+                        +gapLR(padding, 20px)
+                label
+                    line-height: 1.4
+                    margin: 0 0 0 5px
+    .checkout-form
+        h5
+            margin-bottom: 20px

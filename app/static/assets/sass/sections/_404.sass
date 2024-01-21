@@ -1,0 +1,41 @@
+/*******************************************************/
+/***************** 26. 404 Error Area ******************/
+/*******************************************************/
+.error-content
+    max-width: 475px
+    h1
+        +res-ab(md)
+            font-size: 85px
+        +res-bl(xs)
+            font-size: 55px
+    h3
+        font-weight: 400
+        margin-bottom: 15px
+        font-family: $base-font
+        +res-ab(sm)
+            font-size: 35px
+        +res-bl(xs)
+            font-size: 25px
+    .follow-us
+        padding: 0
+        border: none
+        text-align: left
+        h4
+            margin-bottom: 15px
+            padding-bottom: 15px
+            
+.error-page-area
+    &:after
+        content: ''
+        width: 111%
+        opacity: 0.05
+        padding-top: 80%
+        border-radius: 50%
+        background: $primary-color
+        position: absolute
+        left: 20%
+        top: -50%
+        z-index: -1
+        animation: slideInDown 2s
+        +res-bl(lg)
+            top: -100px

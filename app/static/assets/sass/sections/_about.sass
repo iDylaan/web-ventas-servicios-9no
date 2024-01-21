@@ -1,0 +1,322 @@
+/*******************************************************/
+/****************** 10. About Section ******************/
+/*******************************************************/
+.about-image
+    max-width: 100%
+    padding-top: 18%
+    padding-right: 11%
+    position: relative
+    width: max-content
+    .years-fo-experience
+        position: absolute
+        right: 0
+        top: 0
+        width: 90%
+        max-width: 400px
+        padding: 40px 60px
+        +res-bl(ms)
+            max-width: 290px
+            padding: 20px 30px
+        .count-text
+            color: white
+            margin-bottom: 20px
+            display: inline-block
+            +res-ab(ms)
+                font-size: 65px
+        h4
+            color: white
+            +res-bl(ms)
+                font-size: 20px
+            +res-bl(xs)
+                font-size: 16px
+.client-satisfactions
+    display: flex
+    max-width: 444px
+    align-items: center
+    +res-bl(ms)
+        flex-wrap: wrap
+    img,
+    .heading,
+    .count-text
+        margin-bottom: 15px
+    img
+        margin-right: 25px
+    .count-text
+        margin-right: 20px
+        +res-ab(xs)
+            font-size: 55px
+    .heading
+        font-size: $h4-size - 2
+        
+/* About Home One */
+.about-image-one
+    .image-left
+        position: absolute
+        right: 100%
+        top: 5%
+        width: 35%
+        animation: down-up-one 10s infinite
+.about-content-one
+    .list-style-one
+        li
+            position: relative
+            &:not(:last-child)
+                margin-bottom: 30px
+                padding-bottom: 30px
+                border-bottom: 1px solid $border-color
+            p
+                +res-ab(xs)
+                    font-size: 18px
+            &:before
+                content: ''
+                +size(40px)
+                margin-right: 40px
+                +res-bl(xs)
+                    margin-right: 25px
+            &:after
+                content: ''
+                +size(40px)
+                left: 10px
+                top: 15px
+                position: absolute
+                border-radius: 50%
+                border: 1px solid $heading-color
+.bg-squire-shape
+    width: max-content
+    +gapLR(margin, 50px)
+    +overlay($orange-color, 1)
+    max-width: calc(100% - 100px)
+    &:before
+        transform: rotate(-11deg)
+        animation: semi_rotated_two 20s infinite
+        
+/* Why Choose Us */
+.circle-shapes
+    z-index: -1
+    top: 0
+    width: 55%
+    right: 33px
+    padding-top: 55%
+    position: absolute
+    transform: translateY(-55%)
+    .shape
+        opacity: 0.04
+        position: absolute
+        border-radius: 50%
+        animation-duration: 2s
+        background: $dark-blue-color
+        &.one
+            +size(100%)
+            left: 0
+            top: 0
+        &.two
+            +size(82%)
+            left: 9%
+            top: 9%
+        &.three
+            +size(64%)
+            left: 18%
+            top: 18%
+        &.four
+            +size(46%)
+            left: 27%
+            top: 27%
+            
+/* Why Choose Us Two */
+.support-marketing-list,
+.why-choose-two-content
+    .list-style-one
+        li
+            padding: 25px 30px
+            box-shadow: 10px 0 60px rgba(219, 219, 219, 0.5)
+            +res-bl(xs)
+                +gapLR(padding, 25px)
+            &:not(:last-child)
+                margin-bottom: 15px
+            &:nth-child(odd)
+                +res-ab(xl)
+                    margin-right: 50px
+                +res-bt(ms, lg)
+                    margin-right: 50px
+            &:nth-child(even)
+                +res-ab(xl)
+                    margin-left: 50px
+                +res-bt(ms, lg)
+                    margin-left: 50px
+            &:before
+                +size(35px)
+                font-size: 16px
+                line-height: 35px
+            
+/* What We Do */
+.ww-do-images
+    display: flex
+    position: relative
+    flex-direction: column
+    .image-one
+        margin-right: -5%
+        box-shadow: 10px 0 60px rgba(156, 156, 156, 0.4)
+    .image-two
+        z-index: 2
+        max-width: 90%
+        position: relative
+        margin: -10% auto 0 auto
+    .image-three
+        bottom: 10%
+        right: -11%
+        max-width: 40%
+        position: absolute
+        +res-bl(xxl)
+            right: -15px
+            
+/* What We Do Two */
+.ww-do-two-content
+    .feature-item-two
+        padding: 0
+        border-radius: 0
+        .icon
+            +size(30px)
+            font-size: 12px
+            line-height: 30px
+    .feature-item-two,
+    .feature-item-two.color-two
+        background: transparent
+.ww-do-btns
+    display: flex
+    flex-wrap: wrap
+    align-items: center
+    .theme-btn
+        &:not(:last-child)
+            margin-right: 15px
+    .video-play-text
+        i
+            background: $yellow-color
+        span
+            color: $heading-color
+            
+.border-right
+    +res-ab(sm)
+        border-right: 1px solid $border-color
+        
+.ww-do-two-images
+    .image-one
+        margin-top: 60px
+        +res-bl(sm)
+            margin-top: 0
+    .image-two
+        +res-bl(sm)
+            margin-right: 30px
+            width: calc(40% - 18px)
+    .image-three
+        margin: 40px -55px 50px 0
+        max-width: calc(100% + 55px)
+        +res-bl(sm)
+            margin-right: 0
+            margin-bottom: 0
+            width: calc(60% - 18px)
+        
+.year-of-experience
+    position: absolute
+    color: white
+    left: 0
+    top: 50%
+    +size(200px)
+    padding: 30px
+    font-size: 18px
+    line-height: 1.4
+    text-align: center
+    border-radius: 50%
+    background: $primary-color
+    transform: translate(-20%, -20%)
+    +res-bl(sm)
+        transform: translate(0, -40%)
+    +res-bl(xs)
+        +size(165px)
+        font-size: 16px
+        transform: translate(0, -30%)
+    .number
+        display: block
+        line-height: 1
+        font-size: 65px
+        margin-bottom: 15px
+        font-family: $heading-font
+        +res-bl(xs)
+            font-size: 45px
+            
+/* What We Offer */
+.what-we-offer
+    +res-ab(lg)
+        &:after
+            position: absolute
+            content: ''
+            height: 100%
+            width: 1px
+            left: 50%
+            top: 0
+            background: $border-color
+        
+/* Responsive Design */
+.responsive-design-image
+    +res-ab(lg)
+        margin-right: -55px
+        
+/* Support & Marketing */
+.support-marketing-progress
+    max-width: 555px
+.circle-counter
+    display: flex
+    flex-wrap: wrap
+    +gapLR(margin, -8px)
+    justify-content: space-between
+.circle-progress-item
+    text-align: center
+    margin: 30px 8px 0
+    h5
+        margin: 5px 0 0
+.progress-content
+    position: relative
+    h3
+        +abs-middle()
+        margin-bottom: 0
+        padding-bottom: 10px
+    
+.support-marketing-list
+    z-index: 1
+    position: relative
+    padding: 30px 30px 30px 0
+    +res-bl(sm)
+        padding-right: 15px
+    &:before
+        position: absolute
+        +size(80%, 100%)
+        content: ''
+        top: 0
+        right: 0
+        z-index: -1
+        background: $lighter-color
+    .list-style-one
+        li
+            background: white
+            &:before
+                +size(30px)
+                font-size: 14px
+                line-height: 30px
+            &:not(:last-child)
+                margin-bottom: 30px
+            &:nth-child(1)
+                margin-right: 0
+                margin-left: 60px
+                +res-bl(ms)
+                    margin-left: 0px
+            &:nth-child(2)
+                +gapLR(margin, 30px)
+                +res-bl(ms)
+                    +gapLR(margin, 0px)
+                &:before
+                    background: $yellow-color
+            &:nth-child(3)
+                margin-right: 60px
+                +res-bl(ms)
+                    margin-right: 0px
+                &:before
+                    background: $secondary-color
