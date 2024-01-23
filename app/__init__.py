@@ -22,8 +22,12 @@ def page_not_found(e):
 from .modules import (
     mod_auth,
     mod_services,
+    mod_projects,
+    mod_pages,
 )
 
 ### BP ###
 app.register_blueprint(mod_auth, url_prefix='/auth')
 app.register_blueprint(mod_services, url_prefix='/services')
+app.register_blueprint(mod_projects, url_prefix='/projects')
+app.register_blueprint(mod_pages, url_prefix='/pages')

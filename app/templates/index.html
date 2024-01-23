@@ -191,33 +191,45 @@
                             >
                           </li>
                           <li>
-                            <a href="/service-details.html">service details</a>
+                            <a href="{{ url_for('services.details') }}"
+                              >service details</a
+                            >
                           </li>
                         </ul>
                       </li>
                       <li class="dropdown">
                         <a href="#">Project</a>
                         <ul>
-                          <li><a href="/projects.html">Project Grid</a></li>
                           <li>
-                            <a href="/project-creative.html"
+                            <a href="{{ url_for('projects.index_grid') }}"
+                              >Project Grid</a
+                            >
+                          </li>
+                          <li>
+                            <a href="{{ url_for('projects.index_creative') }}"
                               >Project Creative</a
                             >
                           </li>
                           <li>
-                            <a href="/project-carousel.html"
+                            <a href="{{ url_for('projects.index_carousel') }}"
                               >Project Carousel</a
                             >
                           </li>
                           <li>
-                            <a href="/project-details.html">Project Details</a>
+                            <a href="{{ url_for('projects.index_details') }}"
+                              >Project Details</a
+                            >
                           </li>
                         </ul>
                       </li>
                       <li class="dropdown">
                         <a href="#">pages</a>
                         <ul>
-                          <li><a href="/about.html">About us</a></li>
+                          <li>
+                            <a href="{{ url_for('pages.about_us') }}"
+                              >About us</a
+                            >
+                          </li>
                           <li class="dropdown">
                             <a href="#">Team</a>
                             <ul>
@@ -227,7 +239,11 @@
                               </li>
                             </ul>
                           </li>
-                          <li><a href="/pricing.html">pricing plan</a></li>
+                          <li>
+                            <a href="{{ url_for('pages.pricing') }}"
+                              >pricing plan</a
+                            >
+                          </li>
                           <li><a href="/faqs.html">faqs & helf</a></li>
                           <li><a href="/404.html">404 error</a></li>
                         </ul>
@@ -501,14 +517,20 @@
             <div class="col wow fadeInUp delay-0-2s">
               <div class="feature-item-five">
                 <i class="flaticon-responsive"></i>
-                <h5><a href="/service-details.html">Responsive design</a></h5>
+                <h5>
+                  <a href="{{ url_for('services.details') }}"
+                    >Responsive design</a
+                  >
+                </h5>
               </div>
             </div>
             <div class="col wow fadeInUp delay-0-3s">
               <div class="feature-item-five">
                 <i class="flaticon-feature"></i>
                 <h5>
-                  <a href="/service-details.html">Powerful Customization</a>
+                  <a href="{{ url_for('services.details') }}"
+                    >Powerful Customization</a
+                  >
                 </h5>
               </div>
             </div>
@@ -516,7 +538,9 @@
               <div class="feature-item-five">
                 <i class="flaticon-aim"></i>
                 <h5>
-                  <a href="/service-details.html">Cool & modern animations</a>
+                  <a href="{{ url_for('services.details') }}"
+                    >Cool & modern animations</a
+                  >
                 </h5>
               </div>
             </div>
@@ -524,7 +548,9 @@
               <div class="feature-item-five">
                 <i class="flaticon-seo"></i>
                 <h5>
-                  <a href="/service-details.html">SEO Friendly Coding</a>
+                  <a href="{{ url_for('services.details') }}"
+                    >SEO Friendly Coding</a
+                  >
                 </h5>
               </div>
             </div>
@@ -532,7 +558,9 @@
               <div class="feature-item-five">
                 <i class="flaticon-search-location"></i>
                 <h5>
-                  <a href="/service-details.html">Best Technical supports</a>
+                  <a href="{{ url_for('services.details') }}"
+                    >Best Technical supports</a
+                  >
                 </h5>
               </div>
             </div>
@@ -540,7 +568,9 @@
               <div class="feature-item-five">
                 <i class="flaticon-settings"></i>
                 <h5>
-                  <a href="/service-details.html">Varied Layouts & parallax</a>
+                  <a href="{{ url_for('services.details') }}"
+                    >Varied Layouts & parallax</a
+                  >
                 </h5>
               </div>
             </div>
@@ -718,11 +748,13 @@
                       <div class="icon"><i class="flaticon-design"></i></div>
                       <div class="content">
                         <h4>
-                          <a href="/service-details.html"
+                          <a href="{{ url_for('services.details') }}"
                             >Website Creation from Scratch</a
                           >
                         </h4>
-                        <a class="more-btn" href="/service-details.html"
+                        <a
+                          class="more-btn"
+                          href="{{ url_for('services.details') }}"
                           ><i class="fal fa-long-arrow-right"></i
                         ></a>
                       </div>
@@ -735,11 +767,13 @@
                       <div class="icon"><i class="flaticon-web-page"></i></div>
                       <div class="content">
                         <h4>
-                          <a href="/service-details.html"
+                          <a href="{{ url_for('services.details') }}"
                             >Website maintenance Services</a
                           >
                         </h4>
-                        <a class="more-btn" href="/service-details.html"
+                        <a
+                          class="more-btn"
+                          href="{{ url_for('services.details') }}"
                           ><i class="fal fa-long-arrow-right"></i
                         ></a>
                       </div>
@@ -770,11 +804,13 @@
                       <div class="icon"><i class="flaticon-online"></i></div>
                       <div class="content">
                         <h4>
-                          <a href="/service-details.html"
+                          <a href="{{ url_for('services.details') }}"
                             >eCommerce and product selling</a
                           >
                         </h4>
-                        <a class="more-btn" href="/service-details.html"
+                        <a
+                          class="more-btn"
+                          href="{{ url_for('services.details') }}"
                           ><i class="fal fa-long-arrow-right"></i
                         ></a>
                       </div>
@@ -789,11 +825,13 @@
                       </div>
                       <div class="content">
                         <h4>
-                          <a href="/service-details.html"
+                          <a href="{{ url_for('services.details') }}"
                             >Responsive websites (UI/UX) design</a
                           >
                         </h4>
-                        <a class="more-btn" href="/service-details.html"
+                        <a
+                          class="more-btn"
+                          href="{{ url_for('services.details') }}"
                           ><i class="fal fa-long-arrow-right"></i
                         ></a>
                       </div>
@@ -814,11 +852,13 @@
                       </div>
                       <div class="content">
                         <h4>
-                          <a href="/service-details.html"
+                          <a href="{{ url_for('services.details') }}"
                             >Search Engine Optimization</a
                           >
                         </h4>
-                        <a class="more-btn" href="/service-details.html"
+                        <a
+                          class="more-btn"
+                          href="{{ url_for('services.details') }}"
                           ><i class="fal fa-long-arrow-right"></i
                         ></a>
                       </div>
@@ -833,11 +873,13 @@
                       </div>
                       <div class="content">
                         <h4>
-                          <a href="/service-details.html"
+                          <a href="{{ url_for('services.details') }}"
                             >User Experience and Design</a
                           >
                         </h4>
-                        <a class="more-btn" href="/service-details.html"
+                        <a
+                          class="more-btn"
+                          href="{{ url_for('services.details') }}"
                           ><i class="fal fa-long-arrow-right"></i
                         ></a>
                       </div>
@@ -1087,7 +1129,9 @@
                     <div class="content">
                       <span class="price">248</span>
                       <span class="save">Save<span> 25%</span></span>
-                      <a href="/pricing.html" class="theme-btn style-three"
+                      <a
+                        href="{{ url_for('pages.pricing') }}"
+                        class="theme-btn style-three"
                         >Choose Package <i class="fas fa-angle-double-right"></i
                       ></a>
                     </div>
@@ -1111,7 +1155,9 @@
                     <div class="content">
                       <span class="price">352</span>
                       <span class="save">Save<span> 25%</span></span>
-                      <a href="/pricing.html" class="theme-btn style-three"
+                      <a
+                        href="{{ url_for('pages.pricing') }}"
+                        class="theme-btn style-three"
                         >Choose Package <i class="fas fa-angle-double-right"></i
                       ></a>
                     </div>
@@ -1135,7 +1181,9 @@
                     <div class="content">
                       <span class="price">583</span>
                       <span class="save">Save<span> 25%</span></span>
-                      <a href="/pricing.html" class="theme-btn style-three"
+                      <a
+                        href="{{ url_for('pages.pricing') }}"
+                        class="theme-btn style-three"
                         >Choose Package <i class="fas fa-angle-double-right"></i
                       ></a>
                     </div>
@@ -1159,7 +1207,9 @@
                     <div class="content">
                       <span class="price">834</span>
                       <span class="save">Save<span> 25%</span></span>
-                      <a href="/pricing.html" class="theme-btn style-three"
+                      <a
+                        href="{{ url_for('pages.pricing') }}"
+                        class="theme-btn style-three"
                         >Choose Package <i class="fas fa-angle-double-right"></i
                       ></a>
                     </div>
@@ -1585,23 +1635,43 @@
                 <h4 class="footer-title">Quick Links</h4>
                 <ul class="list-style-two">
                   <li>
-                    <a href="/service-details.html">Wed Design (UI/UX)</a>
+                    <a href="{{ url_for('services.details') }}"
+                      >Wed Design (UI/UX)</a
+                    >
                   </li>
-                  <li><a href="/about.html">About company</a></li>
-                  <li><a href="/service-details.html">Web development</a></li>
-                  <li><a href="/team.html">Meet our teams</a></li>
-                  <li><a href="/service-details.html">SEO Optimization</a></li>
-                  <li><a href="/service-details.html">Case Stories</a></li>
                   <li>
-                    <a href="/service-details.html">Product Engineering</a>
+                    <a href="{{ url_for('pages.about_us') }}">About company</a>
+                  </li>
+                  <li>
+                    <a href="{{ url_for('services.details') }}"
+                      >Web development</a
+                    >
+                  </li>
+                  <li><a href="/team.html">Meet our teams</a></li>
+                  <li>
+                    <a href="{{ url_for('services.details') }}"
+                      >SEO Optimization</a
+                    >
+                  </li>
+                  <li>
+                    <a href="{{ url_for('services.details') }}">Case Stories</a>
+                  </li>
+                  <li>
+                    <a href="{{ url_for('services.details') }}"
+                      >Product Engineering</a
+                    >
                   </li>
                   <li><a href="/blog.html">Latest News</a></li>
                   <li>
-                    <a href="/service-details.html">Technical Support</a>
+                    <a href="{{ url_for('services.details') }}"
+                      >Technical Support</a
+                    >
                   </li>
                   <li><a href="/contact.html">Contact</a></li>
                   <li>
-                    <a href="/service-details.html">Landing Pages Design</a>
+                    <a href="{{ url_for('services.details') }}"
+                      >Landing Pages Design</a
+                    >
                   </li>
                 </ul>
               </div>
