@@ -13236,3 +13236,11 @@ h4.comment-title {
 .logo > a {
   font-weight: 600;
 }
+
+.logo.anchor {
+  
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

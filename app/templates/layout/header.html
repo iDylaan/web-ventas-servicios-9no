@@ -99,9 +99,9 @@
 
                 <!-- Menu Button -->
                 <div class="menu-btns">
-                    <a href="contact.html" class="login">Iniciar sesión</a>
+                    <a href="{{ url_for('auth.signin_template') }}" class="login">Iniciar sesión</a>
 
-                    <a href="contact.html" class="theme-btn">Registrarse gratis<i
+                    <a href="{{ url_for('auth.signup_template') }}" class="theme-btn">Registrarse gratis<i
                             class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
