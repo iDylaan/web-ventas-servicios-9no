@@ -15,7 +15,7 @@
             <div class="col-lg-7">
                 <div class="contact-content rmb-65 wow fadeInRight delay-0-2s">
                     <div class="section-title mb-25">
-                        <span class="sub-title style-two mb-15">Autentifícate</span>
+                        <span class="sub-title style-two mb-15">Bienvenido</span>
                         <h2>Iniciar Sesión</h2>
                     </div>
                     <p>¡Adentrate y continua expandiendo tu negocio con tus futuros exitos webs!</p>
@@ -38,7 +38,7 @@
                                             d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251">
                                         </path>
                                     </svg>
-                                    Continuar con Google
+                                    <span>Continuar con Google</span>
                                 </button>
                             </div>
                         </div>
@@ -75,7 +75,8 @@
 
                             <div class="col-md-12" style="margin-top: 20px">
                                 <div class="form-group">
-                                    <span class="">¿No tienes cuenta? <a class="logo anchor">Crear una</a></span>
+                                    <span class="">¿No tienes cuenta? <a href="{{ url_for('auth.signup_template') }}"
+                                            class="logo anchor">Crear una</a></span>
                                 </div>
                             </div>
                         </div>
