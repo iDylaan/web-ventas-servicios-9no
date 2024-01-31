@@ -12,6 +12,10 @@ app.config.from_object(Config)
 def index():
     return render_template('index.html')
 
+@app.route('/admin', methods=['GET'])
+def admin():
+     return render_template('index-admin.html')
+
 
 ### Carga de respuesta de un 404 (recurso no encontrado) ###
 @app.errorhandler(404)

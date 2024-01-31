@@ -1,0 +1,31 @@
+{% extends 'layout/base.html' %} {% block title %} Tech Consulting | Admin Home
+{% endblock %} {% block content %}
+
+<!-- Page Banner Start -->
+<section
+  class="page-banner-area pt-245 rpt-150 pb-170 rpb-100 rel z-1 bgc-lighter text-center"
+>
+  <div class="container">
+    <div class="banner-inner rpt-10">
+      <h1 class="page-title wow fadeInUp delay-0-2s">!Bienvenido <span>{{ 'Admin' }}!</span></h1>
+    </div>
+  </div>
+  <div class="banner-shapes">
+    <div class="circle wow zoomInLeft delay-0-2s" data-wow-duration="2s"></div>
+    <img
+      class="shape-one"
+      src="{{ url_for('static', filename='assets/images/shapes/hero-shape1.png') }}"
+      alt="Shape"
+    />
+    <img
+      class="shape-two"
+      src="{{ url_for('static', filename='assets/images/shapes/hero-shape2.png') }}"
+      alt="Shape"
+    />
+  </div>
+</section>
+<!-- Page Banner End -->
+
+<h1>Bienvenido!</h1>
+
+{% endblock content %}
