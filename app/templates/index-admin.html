@@ -1,31 +1,96 @@
-{% extends 'layout/base.html' %} {% block title %} Tech Consulting | Admin Home
-{% endblock %} {% block content %}
+{% extends 'layout/base-admin.html' %}
+{% block title %} Tech Consulting | Admin Home {% endblock %}
 
-<!-- Page Banner Start -->
-<section
-  class="page-banner-area pt-245 rpt-150 pb-170 rpb-100 rel z-1 bgc-lighter text-center"
->
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='modules/admin/index/style.css') }}" />
+{% endblock styles %}
+
+{% block content %}
+
+{% block page_banner %}
+{% set pre_page_title = '!Bienvenido' %}
+{% set page_title_underline = 'Admin' %}
+{% set pos_page_title = '!' %}
+
+{% include 'layout/page-banner.html' %}
+{% endblock page_banner %}
+
+<!-- Project Area start -->
+<section class="project-page-area pt-50 pb-100 rel z-1 w-75 page-cards">
   <div class="container">
-    <div class="banner-inner rpt-10">
-      <h1 class="page-title wow fadeInUp delay-0-2s">!Bienvenido <span>{{ 'Admin' }}!</span></h1>
+    <div class="row justify-content-between align-items-end pb-30">
+      <div class="col-xl-6">
+        <div class="section-title mb-30 wow fadeInUp delay-0-2s">
+          <span class="sub-title style-two mb-15">¡Nos alegra tenerte de nuevo con nosotros!</span>
+          <h2>¿Qué vas a hacer hoy?</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="row project-active justify-content-center">
+
+      <!-- Comienza card de Servicios -->
+      <div class="col-xl-4 col-md-6 item saas construction">
+        <div class="project-item style-two wow fadeInUp delay-0-2s">
+          <div class="project-iamge">
+            <img src="{{ url_for('static', filename='modules/admin/images/ServicesMiniatura.png') }}" alt="Project" />
+            <div class="project-over">
+              <a class="details-btn" href="{{ url_for('projects.index_details') }}"><i
+                  class="far fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="project-content">
+            <h5>
+              <a href="{{ url_for('projects.index_details') }}">Servicios <br /></a>
+            </h5>
+          </div>
+        </div>
+      </div> <!-- Termina card de Servicios -->
+
+
+      <!-- Comienza card de Usuarios -->
+      <div class="col-xl-4 col-md-6 item saas construction">
+        <div class="project-item style-two wow fadeInUp delay-0-2s">
+          <div class="project-iamge">
+            <img src="{{ url_for('static', filename='modules/admin/images/UsuariosMiniatura.png') }}" alt="Project" />
+            <div class="project-over">
+              <a class="details-btn" href="{{ url_for('projects.index_details') }}"><i
+                  class="far fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="project-content">
+            <h5>
+              <a href="{{ url_for('projects.index_details') }}">Usuarios <br /></a>
+            </h5>
+          </div>
+        </div>
+      </div> <!-- Termina card de Usuarios -->
+
+
+      <!-- Comienza card de Dashboard -->
+      <div class="col-xl-4 col-md-6 item saas construction">
+        <div class="project-item style-two wow fadeInUp delay-0-2s">
+          <div class="project-iamge">
+            <img src="{{ url_for('static', filename='modules/admin/images/DashboardMiniatura.png') }}" alt="Project" />
+            <div class="project-over">
+              <a class="details-btn" href="{{ url_for('projects.index_details') }}"><i
+                  class="far fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="project-content">
+            <h5>
+              <a href="{{ url_for('projects.index_details') }}">Dashboard <br /></a>
+            </h5>
+          </div>
+        </div>
+      </div> <!-- Termina card de Dashboard -->
+
+
+
     </div>
   </div>
-  <div class="banner-shapes">
-    <div class="circle wow zoomInLeft delay-0-2s" data-wow-duration="2s"></div>
-    <img
-      class="shape-one"
-      src="{{ url_for('static', filename='assets/images/shapes/hero-shape1.png') }}"
-      alt="Shape"
-    />
-    <img
-      class="shape-two"
-      src="{{ url_for('static', filename='assets/images/shapes/hero-shape2.png') }}"
-      alt="Shape"
-    />
-  </div>
 </section>
-<!-- Page Banner End -->
-
-<h1>Bienvenido!</h1>
+<!-- Project Area end -->
 
 {% endblock content %}
