@@ -1,0 +1,111 @@
+<!-- main header -->
+<header class="main-header header-three menu-absolute">
+    <!--Header-Upper-->
+    <div class="header-upper">
+        <div class="container-fluid clearfix">
+            <div class="header-inner rel d-flex align-items-center">
+                <div class="logo-outer">
+                    <div class="logo">
+                        <a href="{{ url_for('index') }}">
+                            <img src="{{ url_for('static', filename='assets/images/logos/logo-techconsulting.svg') }}"
+                                alt="Logo" title="Logo" />
+                                TECH CONSULTING
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-outer clearfix">
+                    <!-- Main Menu -->
+                    <nav class="main-menu navbar-expand-lg">
+                        <div class="navbar-header">
+                            <div class="mobile-logo my-15">
+                                <a href="{{ url_for('index') }}">
+                                    <img src="{{ url_for('static', filename='assets/images/logos/logo-techconsulting.svg') }}"
+                                        alt="Logo" title="Logo" style="width: 50px" /> <br />
+                                        <span style="font-size: 0.7rem">TECH CONSULTING</span>
+                                    </a>
+                            </div>
+
+                            <!-- Toggle Button -->
+                            <button type="button" class="navbar-toggle" data-bs-toggle="collapse"
+                                data-bs-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <div class="navbar-collapse collapse clearfix">
+                            <ul class="navigation clearfix">
+                                <li class="">
+                                    <a href="{{ url_for('index') }}">Inicio</a>
+                                </li>
+                                <li class="">
+                                    <a href="{{ url_for('services.index') }}">Servicios</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#">Proyectos</a>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ url_for('projects.index_grid') }}">Project Grid</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ url_for('projects.index_creative') }}">Project Creative</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ url_for('projects.index_carousel') }}">Project Carousel</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ url_for('projects.index_details') }}">Project Details</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#">Nosotros</a>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ url_for('pages.about_us') }}">Sobre nosotros</a>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#">Equipo</a>
+                                            <ul>
+                                                <li><a href="team.html">Equipo de expertos</a></li>
+                                                <li>
+                                                    <a href="team-profile.html">Perfil del equipo</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="pricing.html">Planes y precios</a></li>
+                                        <li><a href="faqs.html">Preguntas frecuentes y ayuda</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#">Tienda</a>
+                                    <ul>
+                                        <li><a href="shop.html">shop Grid</a></li>
+                                        <li>
+                                            <a href="product-details.html">Product details</a>
+                                        </li>
+                                        <li><a href="cart.html">Carrito de compras</a></li>
+                                        <li><a href="checkout.html">Checkout</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="contact.html">Contacto</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <!-- Main Menu End-->
+                </div>
+
+                <!-- Menu Button -->
+                <div class="menu-btns">
+                    <a href="{{ url_for('auth.signin_template') }}" class="login">Iniciar sesión</a>
+
+                    <a href="{{ url_for('auth.signup_template') }}" class="theme-btn">Registrarse gratis<i
+                            class="fas fa-angle-double-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End Header Upper-->
+</header>

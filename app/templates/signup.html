@@ -1,0 +1,154 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Tech Consulting | Inicio de sesión {% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='modules/auth/login.css') }}" />
+{% endblock %}
+
+{% block content %}
+<!-- Contact Us Page Area start -->
+<section class="contact-us-page-area py-130">
+    <div class="container">
+        <div class="row align-items-end justify-content-between">
+            <div class="col-lg-7">
+                <div class="contact-content rmb-65 wow fadeInRight delay-0-2s">
+                    <div class="section-title mb-25">
+                        <span class="sub-title style-two mb-15">Únete y crece</span>
+                        <h2>Registrarse</h2>
+                    </div>
+                    <p>¡Deseas crear o expandir una pagina web, regístrate para poder obtener todo lo que necesitas para lograrlo!</p>
+                    <form id="contactForm" class="contactForm z-1 rel" name="contactForm">
+                        <div class="col-md-12" style="margin-top: 20px">
+                            <div class="form-group">
+                                <button class="google-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid"
+                                        viewBox="0 0 256 262">
+                                        <path fill="#4285F4"
+                                            d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027">
+                                        </path>
+                                        <path fill="#34A853"
+                                            d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1">
+                                        </path>
+                                        <path fill="#FBBC05"
+                                            d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782">
+                                        </path>
+                                        <path fill="#EB4335"
+                                            d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251">
+                                        </path>
+                                    </svg>
+                                    Continuar con Google
+                                </button>
+                            </div>
+                        </div>
+                        <div class="divider">o</div>
+
+                        <div class="row pt-15">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="username">Nombre de usuario</label>
+                                    <input type="text" id="username" name="username" class="form-control" value=""
+                                        placeholder="Ej. MichaelC" required
+                                        data-error="Por favor introduce tu nombre de usuario">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="emails">Correo electrónico</label>
+                                    <input type="email" id="emails" name="emails" class="form-control" value=""
+                                        placeholder="somthign@domain.com" required
+                                        data-error="Por favor introduce el correo electrónico">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="password">Contraseña</label>
+                                    <input type="password" id="password" name="password" class="form-control" value=""
+                                        placeholder="Ingresa tu contraseña" required
+                                        data-error="Por favor introduce tu contraseña">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="confirm_password">Repetir la contreaseña</label>
+                                    <input type="password" id="confirm_password" name="confirm_password" class="form-control" value=""
+                                        placeholder="Ingresa nuevamente la contraseña" required
+                                        data-error="Por favor introduce la repitición de tu contraseña">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group pt-5 mb-0">
+                                    <button type="submit" class="theme-btn w-100">Registrarse <i
+                                            class="fas fa-angle-double-right"></i></button>
+                                    <div id="btnLogin" class="hidden"></div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12" style="margin-top: 20px"> 
+                                <div class="form-group">
+                                    <span class="">¿Ya tienes cuenta? <a href="{{ url_for('auth.signin_template') }}" class="logo anchor">Iniciar sesión</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-5">
+                <div class="contact-info wow fadeInLeft delay-0-2s">
+                    <div class="contact-info-item style-two">
+                        <div class="icon">
+                            <i class="fal fa-map-marker-alt"></i>
+                        </div>
+                        <div class="content">
+                            <span class="title">Ubicación</span>
+                            <span class="text">55 Main Street, 2nd Floor, E-Block, New York</span>
+                        </div>
+                    </div>
+                    <div class="contact-info-item style-two">
+                        <div class="icon">
+                            <i class="far fa-envelope-open-text"></i>
+                        </div>
+                        <div class="content">
+                            <span class="title">Correo electrónico</span>
+                            <span class="text">
+                                <a href="mailto:support@gmail.com">supportweb@gmail.com</a><br>
+                                <a href="mailto:websitebuilding.net">websitebuilding.net</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="contact-info-item style-two">
+                        <div class="icon">
+                            <i class="far fa-phone"></i>
+                        </div>
+                        <div class="content">
+                            <span class="title">Números telefónicos</span>
+                            <span class="text">
+                                Llama al <a href="calto:+000(123)45688">+000 (123) 456 88</a><br>
+                                Whatsapp : +9632145789
+                            </span>
+                        </div>
+                    </div>
+                    <div class="follow-us">
+                        <h4>Redes Sociales</h4>
+                        <div class="social-style-two">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-behance"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Us Page Area end -->
+{% endblock %}

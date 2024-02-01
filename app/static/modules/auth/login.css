@@ -1,0 +1,47 @@
+.google-button {
+  width: 100%;
+  padding: 0.5rem 1.4rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  color: rgb(65, 63, 63);
+  background-color: #fff;
+  cursor: pointer;
+  transition: all .6s ease;
+}
+
+.button-content {
+  width: 100%;
+  display: flex;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  align-items: center;
+  gap: 5rem;
+}
+
+.google-button svg {
+  height: 24px;
+}
+
+.google-button:hover {
+  transform: scale(1.02);
+}
+
+.divider {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  color: rgba(128, 128, 128, 0.47);
+}
+
+.divider::before,
+.divider::after {
+  flex: 1;
+  content: '';
+  padding: 1px;
+  background-color: rgba(128, 128, 128, 0.224);
+  margin: 5px;
+}
