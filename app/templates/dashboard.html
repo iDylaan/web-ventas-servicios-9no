@@ -9,6 +9,7 @@
 
 {% block scripts %}
     {{super()}}
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
     <script src="{{ url_for('static', filename='modules/admin/dashboard/js/grafica.js') }}" defer></script>
 {% endblock scripts %}
 
@@ -22,8 +23,8 @@
 
         <!-- Review Form Start -->
         <section class="review-form-area mb-130 wow fadeInUp delay-0-2s w-75 m-auto">
-            <div class="grafica" id="graph-1">
-                <h1>Grafica 1</h1>
+            <div class="grafica pt-3" id="graph-1">
+                <label>Gráfica 1</label>
             </div>
         </section>
         <!-- Review Form End -->
