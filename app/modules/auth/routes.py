@@ -18,7 +18,7 @@ mod = Blueprint('auth', __name__)
 def signin_template():
     return render_template('signin.html')
 
-@mod.route('/signin', methods=['GET'])
+@mod.route('/signup', methods=['GET'])
 def signup_template():
     return render_template('signup.html')
 
