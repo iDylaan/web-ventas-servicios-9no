@@ -31,7 +31,7 @@ def qry(query, params=None, fetchone=False):
         conn.close()
         return result
     except Exception as e:
-        return f'Error al ejecutar consulta en qry/{e} en la linea {sys.exc_info()[-1].tb_lineno}'
+        raise Exception(f'Error al ejecutar consulta en @qry/{e} en la linea {sys.exc_info()[-1].tb_lineno}')
     
 def sql(sql, params=None):
     try:
@@ -55,7 +55,7 @@ def sql(sql, params=None):
         conn.close()
         return int(rows_affected)
     except Exception as e:
-        raise Exception(f"Error al ejecutar la consulta en sql/{e} en la linea {sys.exc_info()[-1].tb_lineno}")
+        raise Exception(f"Error al ejecutar la consulta en @sql/{e} en la linea {sys.exc_info()[-1].tb_lineno}")
     
 def sqlv2(sql, params=None, return_id=False):
     try:
@@ -88,5 +88,5 @@ def sqlv2(sql, params=None, return_id=False):
         return rows_affected, id_of_new_row
 
     except Exception as e:
-        raise Exception(f"Error al ejecutar la consulta en sql/{e} en la linea {sys.exc_info()[-1].tb_lineno}")
+        raise Exception(f"Error al ejecutar la consulta en @sqlv2/{e} en la linea {sys.exc_info()[-1].tb_lineno}")
 

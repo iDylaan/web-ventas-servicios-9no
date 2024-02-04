@@ -4,13 +4,13 @@
 
 {% block styles %}
     {{super()}}
-    <link rel="stylesheet" href="{{ url_for('static', filename='modules/admin/dashboard/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='modules/styles/dashboard/styles.css') }}">
 {% endblock styles %}
 
 {% block scripts %}
     {{super()}}
     <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
-    <script src="{{ url_for('static', filename='modules/admin/dashboard/js/grafica.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='modules/js/dashboard/grafica.js') }}" defer></script>
 {% endblock scripts %}
 
 {% block content %}

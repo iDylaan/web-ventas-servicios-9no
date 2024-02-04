@@ -8,10 +8,8 @@ from app.utils.misc import (
     hash_password,
     verify_password
 )
-from app.static.modules.signup.SQL.sql_strings import Sql_Strings as SQL_SNGUP
-from app.static.modules.signin.SQL.sql_strings import Sql_Strings as SQL_SNGIN
-from app.static.modules.signup.schema import signup_schema
-from app.static.modules.signin.schema import signin_schema
+from .sql_strings import Sql_Strings as SQL_STRINGS
+from .schemas import signup_schema, signin_schema
 
 mod = Blueprint('auth', __name__)
 
@@ -63,7 +61,7 @@ def registro_usuario():
         
 
         # Comprobar que el usuario que se intenta registrar no exista en la db
-        result = qry(SQL_SNGUP.GET_USER_BY_EMAIL, {'email': email}, True)
+        result = qry(SQL_STRINGS.GET_USER_BY_EMAIL, {'email': email}, True)
         if result['count'] > 0:
             return handleResponseError('Ese correo no es valido', 400)
         
@@ -71,7 +69,7 @@ def registro_usuario():
         req_data['password'] = hash_password(password)
 
         # Empezar a registrar al usuario
-        rows_affected = sql(SQL_SNGUP.INSERT_USER, req_data)
+        rows_affected = sql(SQL_STRINGS.INSERT_USER, req_data)
         
         if rows_affected > 0:
             return handleResponse({
@@ -110,7 +108,7 @@ def signin():
             return handleResponseError(errors, 400)
         
         # Consultar que el usuario exista
-        user = qry(SQL_SNGIN.GET_USER_BY_EMAIL, {'email': email}, True)
+        user = qry(SQL_STRINGS.GET_USER_BY_EMAIL, {'email': email}, True)
         if not user:
             return handleResponseError('Usuario no válido', 400)
         
