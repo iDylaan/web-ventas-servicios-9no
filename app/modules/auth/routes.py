@@ -1,14 +1,17 @@
 import sys
-from flask import Blueprint, render_template,request
+from flask import Blueprint, render_template, request, session
 from app.modules.conf.conf_postgres import qry, sql
 from app.utils.misc import (
     handleResponseError, 
     handleResponse, 
     val_req_data,
-    hash_password
+    hash_password,
+    verify_password
 )
-from app.static.modules.signup.SQL.sql_strings import Sql_Strings as SQL_S
+from app.static.modules.signup.SQL.sql_strings import Sql_Strings as SQL_SNGUP
+from app.static.modules.signin.SQL.sql_strings import Sql_Strings as SQL_SNGIN
 from app.static.modules.signup.schema import signup_schema
+from app.static.modules.signin.schema import signin_schema
 
 mod = Blueprint('auth', __name__)
 
@@ -17,13 +20,10 @@ mod = Blueprint('auth', __name__)
 def signin_template():
     return render_template('signin.html')
 
-@mod.route('/signup', methods=['GET'])
+@mod.route('/signin', methods=['GET'])
 def signup_template():
     return render_template('signup.html')
 
-@mod.route('/o', methods=['GET'])
-def o():
-    return render_template('index-admin.html')
 
 
 # ENDPOINTS
@@ -63,7 +63,7 @@ def registro_usuario():
         
 
         # Comprobar que el usuario que se intenta registrar no exista en la db
-        result = qry(SQL_S.GET_USER_BY_EMAIL, {'email': email}, True)
+        result = qry(SQL_SNGUP.GET_USER_BY_EMAIL, {'email': email}, True)
         if result['count'] > 0:
             return handleResponseError('Ese correo no es valido', 400)
         
@@ -71,7 +71,7 @@ def registro_usuario():
         req_data['password'] = hash_password(password)
 
         # Empezar a registrar al usuario
-        rows_affected = sql(SQL_S.INSERT_USER, req_data)
+        rows_affected = sql(SQL_SNGUP.INSERT_USER, req_data)
         
         if rows_affected > 0:
             return handleResponse({
@@ -85,3 +85,55 @@ def registro_usuario():
         
         
         
+@mod.route('/signin', methods=['POST'])
+def signin():
+    try:
+        data = request.get_json()
+        
+        # Recibir datos
+        email = data.get('email', None)
+        password = data.get('password', None)
+        
+        # Validar campos faltantes
+        if not email or not password:
+            return handleResponseError('Faltan campos obligatorios', 400)
+        
+        login_data = {
+            'email': email,
+            'password': password
+        }
+        
+        # Validar el formato de la data
+        errors = val_req_data(login_data, signin_schema)
+        if errors:
+            print("Error: ", errors)
+            return handleResponseError(errors, 400)
+        
+        # Consultar que el usuario exista
+        user = qry(SQL_SNGIN.GET_USER_BY_EMAIL, {'email': email}, True)
+        if not user:
+            return handleResponseError('Usuario no válido', 400)
+        
+        valid_password = verify_password(password, user['password'])
+        
+        if valid_password:
+            session['user_id'] = user['id']
+            session['username'] = user['nombre_usuario']
+            session['user_email'] = user['email']
+            session['user_logged'] = True
+            return handleResponse({'username': user['nombre_usuario']})
+        else:
+            session['user_logged'] = False
+            return handleResponseError('El correo o la contraseña no son correctos, valida tu información', 400)
+    except Exception as e:
+        print("Ocurrio un error en @login_usuario/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
+
+
+
+@mod.route('/logout', methods=['POST'])
+def logout():
+    session['user_id'] = ''
+    session['username'] = ''
+    session['email'] = ''
+    session['user_logged'] = False
+    return handleResponse({'message': 'Sesion Cerrada correctamente'})

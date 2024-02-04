@@ -1,9 +1,9 @@
 // Selectors | Selectores
 
-const usernameImput = document.querySelector("#username")
-const emailImput = document.querySelector("#email")
-const passwordImput = document.querySelector("#password")
-const confirmpasswordImput = document.querySelector("#confirm_password")
+const usernameInput = document.querySelector("#username")
+const emailInput = document.querySelector("#email")
+const passwordInput = document.querySelector("#password")
+const confirmpasswordInput = document.querySelector("#confirm_password")
 const btnSingup = document.querySelector("#btnSingup")
 const formsignup = document.querySelector("#form-signup")
 const formErrorsAlert = document.querySelector("#form_error")
@@ -17,10 +17,10 @@ function eventListeners() {
 	formsignup.addEventListener('submit', (e) => e.preventDefault());
 
 	// Receive the values of the form fields / Recibir los valores de los campos del formulario
-	usernameImput.addEventListener("input", (e) => (formModel.username = e.target.value))
-	emailImput.addEventListener("input", (e) => (formModel.email = e.target.value))
-	passwordImput.addEventListener("input", (e) => (formModel.password = e.target.value))
-	confirmpasswordImput.addEventListener("input", (e) => (formModel.confirm_password = e.target.value))
+	usernameInput.addEventListener("input", (e) => (formModel.username = e.target.value))
+	emailInput.addEventListener("input", (e) => (formModel.email = e.target.value))
+	passwordInput.addEventListener("input", (e) => (formModel.password = e.target.value))
+	confirmpasswordInput.addEventListener("input", (e) => (formModel.confirm_password = e.target.value))
 
 	//confirmPasswordErrorAlert.addEventListener('blur', (e) => ())
 
@@ -44,6 +44,7 @@ const formRules = {
 // Funciones
 async function signup() {
 	const validForm = validarFormulario()
+
 
 	if (validForm) {
 		try {

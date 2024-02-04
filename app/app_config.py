@@ -12,3 +12,7 @@ class Config:
     PGL_USER = os.getenv("POSTGRES_USER")
     PGL_PASS = os.getenv("POSTGRES_PASSWORD")
     PGL_PORT = os.getenv("POSTGRES_PORT")
+    
+    ### SESSION ###
+    SECRET_KEY = os.getenv('SECRET_KEY')
+    SESSION_TYPE = os.getenv('SESSION_TYPE')

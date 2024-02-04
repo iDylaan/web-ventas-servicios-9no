@@ -18,6 +18,7 @@ def val_req_data(data, schema):
         return {'message': v.errors}
     return None 
     
+    
 
 def handleResponseError(msg, status = 500):
     return jsonify({
