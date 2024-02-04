@@ -1,3 +1,9 @@
+CREATE DATABASE "TECH_CONSULTING" IF NOT EXISTS;
+
+USE "TECH_CONSULTING";
+
+
+DROP TABLE "usuarios" IF EXISTS;
 CREATE TABLE "usuarios" (
   "id" SERIAL PRIMARY KEY,
   "nombre_usuario" VARCHAR NOT NULL,
@@ -8,6 +14,7 @@ CREATE TABLE "usuarios" (
   "parte_equipo" INT DEFAULT 0
 );
 
+DROP TABLE "servicios" IF EXISTS;
 CREATE TABLE "servicios" (
   "id" SERIAL PRIMARY KEY,
   "srv_nom" VARCHAR NOT NULL,
@@ -16,6 +23,7 @@ CREATE TABLE "servicios" (
   "srv_imagen" BYTEA
 );
 
+DROP TABLE "compras" IF EXISTS;
 CREATE TABLE "compras" (
   "id" SERIAL PRIMARY KEY,
   "dt_compra" datetime DEFAULT 'CURRENT_TIMESTAMP',
@@ -24,6 +32,7 @@ CREATE TABLE "compras" (
   "id_usuario" INT REFERENCES usuarios(id)
 );
 
+DROP TABLE "compras_servicios" IF EXISTS;
 CREATE TABLE "compras_servicios" (
   "compras_id_servicio" INT REFERENCES compras(id_servicio),
   "servicios_id" INT REFERENCES servicios(id),
