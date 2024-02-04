@@ -7,6 +7,11 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='modules/styles/auth/login.css') }}" />
 {% endblock %}
 
+{% block scripts %}
+{{super()}}
+<script src="{{ url_for('static', filename='modules/signup/js/script.js') }}" defer></script>
+{% endblock scripts %}
+
 {% block content %}
 <!-- Contact Us Page Area start -->
 <section class="contact-us-page-area py-130">
@@ -19,7 +24,7 @@
                         <h2>Registrarse</h2>
                     </div>
                     <p>¡Deseas crear o expandir una pagina web, regístrate para poder obtener todo lo que necesitas para lograrlo!</p>
-                    <form id="contactForm" class="contactForm z-1 rel" name="contactForm">
+                    <form id="form-signup" class="Form-signup z-1 rel" name="Form-signup">
                         <div class="col-md-12" style="margin-top: 20px">
                             <div class="form-group">
                                 <button class="google-button">
@@ -44,6 +49,8 @@
                         </div>
                         <div class="divider">o</div>
 
+                        <div class="help-block with-errors alert alert-danger col-md-12 d-none" id="form_error"></div>
+                        <div class="help-block with-errors alert alert-success col-md-12 d-none" id="form_message"></div>
                         <div class="row pt-15">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -56,8 +63,8 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="emails">Correo electrónico</label>
-                                    <input type="email" id="emails" name="emails" class="form-control" value=""
+                                    <label for="email">Correo electrónico</label>
+                                    <input type="email" id="email" name="email" class="form-control" value=""
                                         placeholder="somthign@domain.com" required
                                         data-error="Por favor introduce el correo electrónico">
                                     <div class="help-block with-errors"></div>
@@ -81,13 +88,13 @@
                                         data-error="Por favor introduce la repitición de tu contraseña">
                                     <div class="help-block with-errors"></div>
                                 </div>
+                                <div class="help-block with-errors alert alert-danger col-md-12 d-none" id="confirm_password_error"></div>
                             </div>
 
                             <div class="col-md-12">
-                                <div class="form-group pt-5 mb-0">
+                                <div class="form-group pt-5 mb-0" id="btnSingup">
                                     <button type="submit" class="theme-btn w-100">Registrarse <i
-                                            class="fas fa-angle-double-right"></i></button>
-                                    <div id="btnLogin" class="hidden"></div>
+                                            class="fas fa-angle-double-right" ></i></button>
                                 </div>
                             </div>
 

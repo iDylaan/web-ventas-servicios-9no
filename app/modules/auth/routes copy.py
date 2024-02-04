@@ -1,12 +1,7 @@
 import sys
 from flask import Blueprint, render_template,request
 from app.modules.conf.conf_postgres import qry, sql
-from app.utils.misc import (
-    handleResponseError, 
-    handleResponse, 
-    val_req_data,
-    hash_password
-)
+from app.utils.misc import handleResponseError, handleResponse, val_req_data
 from app.static.modules.signup.SQL.sql_strings import Sql_Strings as SQL_S
 from app.static.modules.signup.schema import signup_schema
 
@@ -48,40 +43,26 @@ def registro_usuario():
         or not email \
         or not password:
             return handleResponseError('Faltan campos obligatorio', 400)
-        
-        req_data = {
-            'username': username,
-            'email': email,
-            'password': password
-        }
-        
-        # Validar con el schema
-        errors = val_req_data(req_data, signup_schema)
-        if errors:
-            print("Error: ", errors)
-            return handleResponseError(errors, 400)
-        
 
         # Comprobar que el usuario que se intenta registrar no exista en la db
         result = qry(SQL_S.GET_USER_BY_EMAIL, {'email': email}, True)
         if result['count'] > 0:
             return handleResponseError('Ese correo no es valido', 400)
-        
-        # HASH de la contraseña
-        req_data['password'] = hash_password(password)
 
         # Empezar a registrar al usuario
-        rows_affected = sql(SQL_S.INSERT_USER, req_data)
-        
+        rows_affected = sql(SQL_S.INSERT_USER, {
+            'username': username,
+            'email': email,
+            'password': password
+        })
+
+
         if rows_affected > 0:
             return handleResponse({
                 'username': username,
                 'email': email
             })
         else:
-            return handleResponseError('No se realizo el registro del usuario intentelo nuevamente', 500)   
+            return handleResponseError('No se realizo el registro del usuario intentelo nuevamente', 500)  
     except Exception as e:
-        print("Ocurrio un error en @registro_usuario/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
-        
-        
-        
+        print("Ha ocurrido un error en la funcion @registro_usuario/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
