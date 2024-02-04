@@ -4,7 +4,7 @@ class Sql_Strings():
         "WHERE email = %(email)s"
     )
     
-    GET_USER_BY_EMAIL = (
+    GET_USER_COUNT_BY_EMAIL = (
         "SELECT COUNT(*) FROM usuarios "
         "WHERE email = %(email)s"
     )

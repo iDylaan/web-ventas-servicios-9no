@@ -61,7 +61,7 @@ def registro_usuario():
         
 
         # Comprobar que el usuario que se intenta registrar no exista en la db
-        result = qry(SQL_STRINGS.GET_USER_BY_EMAIL, {'email': email}, True)
+        result = qry(SQL_STRINGS.GET_USER_COUNT_BY_EMAIL, {'email': email}, True)
         if result['count'] > 0:
             return handleResponseError('Ese correo no es valido', 400)
         
