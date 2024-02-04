@@ -9,6 +9,10 @@
 
 {% block scripts %}
 {{super()}}
+
+<script>
+    const indexURL = '{{ url_for("index") }}';
+</script>
 <script src="{{ url_for('static', filename='modules/js/signin/script.js') }}" defer></script>
 {% endblock scripts %}
 

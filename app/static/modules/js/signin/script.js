@@ -41,20 +41,16 @@ async function signin() {
                 body: JSON.stringify(formModel)
             })
 
-            console.log(response);
             if (!response.ok) {
                 throw new Error('Ocurrio un error inesperado en el servidor');
             }
 
             const result = await response.json();
-            console.log(result);
             if (result.success) {
-				// Mostrar mensaje de éxito
-				mostrarMensaje("success", "¡inicio seción!.");
-				// Redirigir después de un tiempo (opcional)
+				mostrarMensaje("success", "¡Bienvenido!");
 				setTimeout(() => {
-					//window.location.href = indexURL;
-				}, 4000);
+					window.location.href = indexURL;
+				}, 1300);
 			} else {
 				throw new Error(result.error.msg)
 			}

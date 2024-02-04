@@ -9,7 +9,7 @@
                         <a href="{{ url_for('index') }}">
                             <img src="{{ url_for('static', filename='assets/images/logos/logo-techconsulting.svg') }}"
                                 alt="Logo" title="Logo" />
-                                TECH CONSULTING
+                            TECH CONSULTING
                         </a>
                     </div>
                 </div>
@@ -22,8 +22,8 @@
                                 <a href="{{ url_for('index') }}">
                                     <img src="{{ url_for('static', filename='assets/images/logos/logo-techconsulting.svg') }}"
                                         alt="Logo" title="Logo" style="width: 50px" /> <br />
-                                        <span style="font-size: 0.7rem">TECH CONSULTING</span>
-                                    </a>
+                                    <span style="font-size: 0.7rem">TECH CONSULTING</span>
+                                </a>
                             </div>
 
                             <!-- Toggle Button -->
@@ -76,12 +76,18 @@
                 </div>
 
                 <!-- Menu Button -->
+                {% if not user_logged %}
                 <div class="menu-btns">
                     <a href="{{ url_for('auth.signin_template') }}" class="login">Iniciar sesión</a>
 
                     <a href="{{ url_for('auth.signup_template') }}" class="theme-btn">Registrarse gratis<i
                             class="fas fa-angle-double-right"></i></a>
                 </div>
+                {% else %}
+                <div class="menu-btns">
+                    <a href="#" class="login">Cerrar sesión</a>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>

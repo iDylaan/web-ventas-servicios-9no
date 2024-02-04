@@ -118,10 +118,10 @@ def signin():
             session['user_id'] = user['id']
             session['username'] = user['nombre_usuario']
             session['user_email'] = user['email']
+            session['user_admin'] = bool(user['admin'])
             session['user_logged'] = True
             return handleResponse({'username': user['nombre_usuario']})
         else:
-            session['user_logged'] = False
             return handleResponseError('El correo o la contraseña no son correctos, valida tu información', 400)
     except Exception as e:
         print("Ocurrio un error en @login_usuario/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
