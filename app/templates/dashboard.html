@@ -1,0 +1,32 @@
+{% extends 'layout/base-admin.html' %}
+
+{% block title %} Tech Consulting | Admin Dashboard {% endblock %}
+
+{% block styles %}
+    {{super()}}
+    <link rel="stylesheet" href="{{ url_for('static', filename='modules/styles/dashboard/styles.css') }}">
+{% endblock styles %}
+
+{% block scripts %}
+    {{super()}}
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <script src="{{ url_for('static', filename='modules/js/dashboard/grafica.js') }}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+
+    {% block page_banner %}
+      {% set page_title_underline = 'Dashboard' %}
+    
+      {% include 'layout/page-banner.html' %}
+    {% endblock page_banner %}
+
+        <!-- Review Form Start -->
+        <section class="review-form-area mb-130 wow fadeInUp delay-0-2s w-75 m-auto">
+            <div class="grafica pt-3" id="graph-1">
+                <label>Gráfica 1</label>
+            </div>
+        </section>
+        <!-- Review Form End -->
+
+{% endblock content %}

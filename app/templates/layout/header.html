@@ -9,7 +9,7 @@
                         <a href="{{ url_for('index') }}">
                             <img src="{{ url_for('static', filename='assets/images/logos/logo-techconsulting.svg') }}"
                                 alt="Logo" title="Logo" />
-                                TECH CONSULTING
+                            TECH CONSULTING
                         </a>
                     </div>
                 </div>
@@ -22,8 +22,8 @@
                                 <a href="{{ url_for('index') }}">
                                     <img src="{{ url_for('static', filename='assets/images/logos/logo-techconsulting.svg') }}"
                                         alt="Logo" title="Logo" style="width: 50px" /> <br />
-                                        <span style="font-size: 0.7rem">TECH CONSULTING</span>
-                                    </a>
+                                    <span style="font-size: 0.7rem">TECH CONSULTING</span>
+                                </a>
                             </div>
 
                             <!-- Toggle Button -->
@@ -44,23 +44,6 @@
                                     <a href="{{ url_for('services.index') }}">Servicios</a>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#">Proyectos</a>
-                                    <ul>
-                                        <li>
-                                            <a href="{{ url_for('projects.index_grid') }}">Project Grid</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ url_for('projects.index_creative') }}">Project Creative</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ url_for('projects.index_carousel') }}">Project Carousel</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ url_for('projects.index_details') }}">Project Details</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
                                     <a href="#">Nosotros</a>
                                     <ul>
                                         <li>
@@ -75,19 +58,14 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="pricing.html">Planes y precios</a></li>
                                         <li><a href="faqs.html">Preguntas frecuentes y ayuda</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#">Tienda</a>
                                     <ul>
-                                        <li><a href="shop.html">shop Grid</a></li>
-                                        <li>
-                                            <a href="product-details.html">Product details</a>
-                                        </li>
+                                        <li><a href="shop.html">Productos</a></li>
                                         <li><a href="cart.html">Carrito de compras</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="contact.html">Contacto</a></li>
@@ -98,12 +76,18 @@
                 </div>
 
                 <!-- Menu Button -->
+                {% if not user_logged %}
                 <div class="menu-btns">
                     <a href="{{ url_for('auth.signin_template') }}" class="login">Iniciar sesión</a>
 
                     <a href="{{ url_for('auth.signup_template') }}" class="theme-btn">Registrarse gratis<i
                             class="fas fa-angle-double-right"></i></a>
                 </div>
+                {% else %}
+                <div class="menu-btns">
+                    <a href="{{ url_for('auth.logout') }}" class="login">Cerrar sesión</a>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>

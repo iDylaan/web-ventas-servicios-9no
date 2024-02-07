@@ -3,17 +3,17 @@
 
 {% block styles %}
 {{ super() }}
-<link rel="stylesheet" href="{{ url_for('static', filename='modules/admin/index/style.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='modules/styles/admin/home.css') }}" />
 {% endblock styles %}
 
 {% block content %}
 
 {% block page_banner %}
-{% set pre_page_title = '!Bienvenido' %}
-{% set page_title_underline = 'Admin' %}
-{% set pos_page_title = '!' %}
-
-{% include 'layout/page-banner.html' %}
+  {% set pre_page_title = '!Bienvenido' %}
+  {% set page_title_underline = 'Admin' %}
+  {% set pos_page_title = '!' %}
+  
+  {% include 'layout/page-banner.html' %}
 {% endblock page_banner %}
 
 <!-- Project Area start -->
@@ -34,7 +34,7 @@
       <div class="col-xl-4 col-md-6 item saas construction">
         <div class="project-item style-two wow fadeInUp delay-0-2s">
           <div class="project-iamge">
-            <img src="{{ url_for('static', filename='modules/admin/images/ServicesMiniatura.png') }}" alt="Project" />
+            <img src="{{ url_for('static', filename='modules/imgs/admin/ServiciosMiniatura.png') }}" alt="Project" />
             <div class="project-over">
               <a class="details-btn" href="{{ url_for('projects.index_details') }}"><i
                   class="far fa-arrow-right"></i></a>
@@ -53,7 +53,7 @@
       <div class="col-xl-4 col-md-6 item saas construction">
         <div class="project-item style-two wow fadeInUp delay-0-2s">
           <div class="project-iamge">
-            <img src="{{ url_for('static', filename='modules/admin/images/UsuariosMiniatura.png') }}" alt="Project" />
+            <img src="{{ url_for('static', filename='modules/imgs/admin/UsuariosMiniatura.png') }}" alt="Project" />
             <div class="project-over">
               <a class="details-btn" href="{{ url_for('projects.index_details') }}"><i
                   class="far fa-arrow-right"></i></a>
@@ -72,7 +72,7 @@
       <div class="col-xl-4 col-md-6 item saas construction">
         <div class="project-item style-two wow fadeInUp delay-0-2s">
           <div class="project-iamge">
-            <img src="{{ url_for('static', filename='modules/admin/images/DashboardMiniatura.png') }}" alt="Project" />
+            <img src="{{ url_for('static', filename='modules/imgs/admin/DashboardMiniatura.jpg') }}" alt="Project" />
             <div class="project-over">
               <a class="details-btn" href="{{ url_for('projects.index_details') }}"><i
                   class="far fa-arrow-right"></i></a>
