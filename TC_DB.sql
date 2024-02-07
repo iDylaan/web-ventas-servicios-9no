@@ -31,11 +31,3 @@ CREATE TABLE "compras" (
   "id_servicio" INT REFERENCES "servicios"("id"),
   "id_usuario" INT REFERENCES "usuarios"("id")
 );
-
-CREATE TABLE "compras_servicios" (
-  "compras_id_servicio" INT,
-  "servicios_id" INT,
-  PRIMARY KEY ("compras_id_servicio", "servicios_id"),
-  FOREIGN KEY ("compras_id_servicio") REFERENCES "compras"("id"),
-  FOREIGN KEY ("servicios_id") REFERENCES "servicios"("id")
-);

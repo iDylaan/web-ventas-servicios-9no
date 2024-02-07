@@ -85,7 +85,7 @@
                 </div>
                 {% else %}
                 <div class="menu-btns">
-                    <a href="#" class="login">Cerrar sesión</a>
+                    <a href="{{ url_for('auth.logout') }}" class="login">Cerrar sesión</a>
                 </div>
                 {% endif %}
             </div>

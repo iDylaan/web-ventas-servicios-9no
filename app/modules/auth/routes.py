@@ -1,5 +1,5 @@
 import sys
-from flask import Blueprint, render_template, request, session
+from flask import Blueprint, render_template, request, session, redirect, url_for
 from app.modules.conf.conf_postgres import qry, sql
 from app.utils.misc import (
     handleResponseError, 
@@ -128,10 +128,7 @@ def signin():
 
 
 
-@mod.route('/logout', methods=['POST'])
+@mod.route('/logout', methods=['GET'])
 def logout():
-    session['user_id'] = ''
-    session['username'] = ''
-    session['email'] = ''
-    session['user_logged'] = False
-    return handleResponse({'message': 'Sesion Cerrada correctamente'})
+    session.clear()
+    return redirect(url_for('index'))
