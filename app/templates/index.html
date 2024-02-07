@@ -2,6 +2,11 @@
 
 {% block title %} Tech Consulting | Inicio {% endblock %}
 
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{ url_for('static', filename='modules/styles/index.css') }}">
+{% endblock styles %}
+
 {% block content %}
 <!-- Hero Section Start -->
 <section class="hero-area-three pt-210 rpt-150 rel z-1">
@@ -98,8 +103,8 @@
                             <div class="content">
                                 <h4>Personalice su sitio web</h4>
                                 <p>
-                                    Sit amet consectetur adipiscing sed eiusmod tempor
-                                    incididunt labore et dolore magnaes epsums
+                                    Dale un toque único a tu presencia en línea con un sitio web totalmente
+                                    personalizado a tu marca.
                                 </p>
                             </div>
                         </div>
@@ -108,8 +113,8 @@
                             <div class="content">
                                 <h4>Añadir funciones avanzadas</h4>
                                 <p>
-                                    Sit amet consectetur adipiscing sed eiusmod tempor
-                                    incididunt labore et dolore magnaes epsums
+                                    Eleva tu sitio web incorporando funciones avanzadas que respondan a las exigencias
+                                    del mercado actual.
                                 </p>
                             </div>
                         </div>
@@ -118,8 +123,8 @@
                             <div class="content">
                                 <h4>Editar la versión móvil</h4>
                                 <p>
-                                    Sit amet consectetur adipiscing sed eiusmod tempor
-                                    incididunt labore et dolore magnaes epsums
+                                    Asegura que tu sitio web brille también en dispositivos móviles con una edición y
+                                    diseño responsivo.
                                 </p>
                             </div>
                         </div>
@@ -128,8 +133,8 @@
                             <div class="content">
                                 <h4>Optimización para SEO</h4>
                                 <p>
-                                    Sit amet consectetur adipiscing sed eiusmod tempor
-                                    incididunt labore et dolore magnaes epsums
+                                    Alcanza las cimas de Google con estrategias de optimización SEO que mejoran tu
+                                    visibilidad y tráfico.
                                 </p>
                             </div>
                         </div>
@@ -139,11 +144,11 @@
             <div class="col-lg-6">
                 <div class="ww-do-images">
                     <img class="image-one wow fadeInDown delay-0-2s"
-                        src="{{ url_for('static', filename='assets/images/about/ww-do1.png') }}" alt="What We Do" />
+                        src="{{ url_for('static', filename='assets/images/about/ww-do1.png') }}" alt="Que hacemos" />
                     <img class="image-two wow fadeInUp delay-0-4s"
-                        src="{{ url_for('static', filename='assets/images/about/ww-do2.png') }}" alt="What We Do" />
+                        src="{{ url_for('static', filename='assets/images/about/ww-do2.png') }}" alt="Que hacemos" />
                     <img class="image-three wow fadeInRight delay-0-6s"
-                        src="{{ url_for('static', filename='assets/images/about/ww-do3.png') }}" alt="What We Do" />
+                        src="{{ url_for('static', filename='assets/images/about/ww-do3.png') }}" alt="Que hacemos" />
                 </div>
             </div>
         </div>
@@ -159,14 +164,12 @@
                 <img src="{{ url_for('static', filename='assets/images/features/feature1.png') }}" alt="Feature" />
             </div>
             <div class="feature-content wow fadeInRight delay-0-2s">
-                <h3>Advanced design features.</h3>
+                <h3>Características de diseño avanzadas</h3>
                 <p>
-                    Sit amet consectetur adipiscing elit sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliquaes suspendisse
-                    ultrices gravida commodo viverra mae cenas accumsan lacus vel
-                    facilisis.
+                    Explora funcionalidades de vanguardia que llevarán tu diseño web al siguiente nivel de
+                    profesionalismo y creatividad.
                 </p>
-                <a class="read-more" href="{{ url_for('services.details') }}">Learn More <i
+                <a class="read-more" href="{{ url_for('services.details') }}">Leer más <i
                         class="far fa-arrow-right"></i></a>
             </div>
             <div class="feature-shape">
@@ -178,16 +181,15 @@
                 <img src="{{ url_for('static', filename='assets/images/shapes/feature-shape.png') }}" alt="Shape" />
             </div>
             <div class="feature-content wow fadeInRight delay-0-2s">
-                <h3>We’ll instantly create a perfect design</h3>
+                <h3>Crearemos al instante un diseño perfecto</h3>
                 <p>
-                    Labore et do magna aliquaes suspendisse ultrices gravida commodo
-                    maeenas accumsan
+                    Diseño impecable, ejecución instantánea.
                 </p>
                 <ul class="list-style-three">
-                    <li>Is it easy to create a website</li>
-                    <li>Build creative website easily</li>
+                    <li>Fácil crear un sitio web</li>
+                    <li>Sitios web creativos</li>
                 </ul>
-                <a class="read-more" href="{{ url_for('services.details') }}">Learn More <i
+                <a class="read-more" href="{{ url_for('services.details') }}">Leer más <i
                         class="far fa-arrow-right"></i></a>
             </div>
             <div class="feature-image wow fadeInLeft delay-0-2s">
@@ -199,14 +201,12 @@
                 <img src="{{ url_for('static', filename='assets/images/features/feature3.png') }}" alt="Feature" />
             </div>
             <div class="feature-content wow fadeInRight delay-0-2s">
-                <h3>Share your ideas. Grow your brand</h3>
+                <h3>Comparta sus ideas. Haz crecer tu marca</h3>
                 <p>
-                    Sit amet consectetur adipiscing elit sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliquaes suspendisse
-                    ultrices gravida commodo viverra mae cenas accumsan lacus vel
-                    facilisis.
+                    Transforma tus visiones en realidad y amplifica el alcance de tu marca con una colaboración creativa
+                    efectiva.
                 </p>
-                <a class="read-more" href="{{ url_for('services.details') }}">Learn More <i
+                <a class="read-more" href="{{ url_for('services.details') }}">Leer más <i
                         class="far fa-arrow-right"></i></a>
             </div>
             <div class="feature-shape">
@@ -223,18 +223,18 @@
         <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-7">
                 <div class="section-title text-center mb-50 wow fadeInUp delay-0-2s">
-                    <span class="sub-title style-two mb-15">Pre-made Template</span>
-                    <h2>Let’s See Our Popular Website Template</h2>
+                    <span class="sub-title style-two mb-15">Plantillas</span>
+                    <h2>Populares</h2>
                 </div>
             </div>
         </div>
         <ul class="project-filter filter-btns-one justify-content-center mb-30 wow fadeInUp delay-0-4s">
-            <li data-filter="*" class="current">Show All</li>
-            <li data-filter=".business">Business</li>
+            <li data-filter="*" class="current">Todo</li>
+            <li data-filter=".business">Negocios</li>
             <li data-filter=".saas">Saas</li>
-            <li data-filter=".medical">Medical</li>
-            <li data-filter=".construction">Construction</li>
-            <li data-filter=".education">Education</li>
+            <li data-filter=".medical">Médicos</li>
+            <li data-filter=".construction">Construcción</li>
+            <li data-filter=".education">Educación</li>
         </ul>
         <div class="row project-active justify-content-center">
             <div class="col-xl-4 col-md-6 item saas construction">
@@ -353,85 +353,77 @@
 <section class="feature-area-four pb-100 rel z-1">
     <div class="container">
         <div class="section-title text-center mb-50 wow fadeInUp delay-0-2s">
-            <span class="sub-title style-two mb-15">Core Features</span>
-            <h2>Amazing Core Features</h2>
+            <span class="sub-title style-two mb-15">Características Principales</span>
+            <h2>Funciones Básicas Sorprendentes</h2>
         </div>
         <div class="row justify-content-center">
             <div class="col-xl-4 col-md-6">
                 <div class="feature-item-four wow fadeInUp delay-0-3s">
                     <h4>
-                        <i class="flaticon-drag-and-drop"></i><a href="{{ url_for('services.details') }}">Drag &
-                            Drop</a>
+                        <i class="flaticon-drag-and-drop"></i><a href="{{ url_for('services.details') }}">Arrastra y
+                            suelta</a>
                     </h4>
                     <p>
-                        Discover the ultimate creation experien eams. Work the same
-                        site at the same time feedback assign custom roles &
-                        permissions
+                        Simplifica la construcción de tu sitio con una interfaz intuitiva de arrastrar y soltar que
+                        acelera la edición y el diseño.
                     </p>
                 </div>
             </div>
             <div class="col-xl-4 col-md-6">
                 <div class="feature-item-four wow fadeInUp delay-0-5s">
                     <h4>
-                        <i class="flaticon-responsive-1"></i><a href="{{ url_for('services.details') }}">Edit by
-                            Device</a>
+                        <i class="flaticon-responsive-1"></i><a href="{{ url_for('services.details') }}">Edición por
+                            dispositivo</a>
                     </h4>
                     <p>
-                        Discover the ultimate creation experien eams. Work the same
-                        site at the same time feedback assign custom roles &
-                        permissions
+                        Garantiza una navegación fluida en cada dispositivo ajustando tu sitio con edición fácil y
+                        adaptable.
                     </p>
                 </div>
             </div>
             <div class="col-xl-4 col-md-6">
                 <div class="feature-item-four wow fadeInUp delay-0-7s">
                     <h4>
-                        <i class="flaticon-email"></i><a href="{{ url_for('services.details') }}">Email
-                            Campaign</a>
+                        <i class="flaticon-email"></i><a href="{{ url_for('services.details') }}">Campaña por email</a>
                     </h4>
                     <p>
-                        Discover the ultimate creation experien eams. Work the same
-                        site at the same time feedback assign custom roles &
-                        permissions
+                        Crea y gestiona campañas de email efectivas directamente desde nuestra plataforma,
+                        y observa cómo crece tu audiencia.
                     </p>
                 </div>
             </div>
             <div class="col-xl-4 col-md-6">
                 <div class="feature-item-four wow fadeInUp delay-0-3s">
                     <h4>
-                        <i class="flaticon-monitor"></i><a href="{{ url_for('services.details') }}">Simple to
-                            use</a>
+                        <i class="flaticon-monitor"></i><a href="{{ url_for('services.details') }}">Fácil de usar</a>
                     </h4>
                     <p>
-                        Discover the ultimate creation experien eams. Work the same
-                        site at the same time feedback assign custom roles &
-                        permissions
+                        Disfruta de una plataforma sencilla y fácil de usar que te permite lanzar y gestionar tu sitio
+                        web sin complicaciones técnicas.
                     </p>
                 </div>
             </div>
             <div class="col-xl-4 col-md-6">
                 <div class="feature-item-four wow fadeInUp delay-0-5s">
                     <h4>
-                        <i class="flaticon-user-experience"></i><a href="{{ url_for('services.details') }}">Increase
-                            Leads</a>
+                        <i class="flaticon-user-experience"></i><a href="{{ url_for('services.details') }}">Aumentar el
+                            alcance</a>
                     </h4>
                     <p>
-                        Discover the ultimate creation experien eams. Work the same
-                        site at the same time feedback assign custom roles &
-                        permissions
+                        Utiliza nuestras herramientas especializadas para captar más clientes potenciales y convertir
+                        visitas en conversiones.
                     </p>
                 </div>
             </div>
             <div class="col-xl-4 col-md-6">
                 <div class="feature-item-four wow fadeInUp delay-0-7s">
                     <h4>
-                        <i class="flaticon-coding-1"></i><a href="{{ url_for('services.details') }}">Developer
-                            Mode</a>
+                        <i class="flaticon-coding-1"></i><a href="{{ url_for('services.details') }}">Modo de
+                            desarrollo</a>
                     </h4>
                     <p>
-                        Discover the ultimate creation experien eams. Work the same
-                        site at the same time feedback assign custom roles &
-                        permissions
+                        Para los que desean un control técnico, el desarrollador permite una
+                        personalización avanzada y gestión detallada del sitio.
                     </p>
                 </div>
             </div>
@@ -449,17 +441,16 @@
             <div class="col-lg-5">
                 <div class="statistics-two-content mb-30 rmb-35 wow fadeInRight delay-0-2s">
                     <div class="section-title mb-25">
-                        <span class="sub-title style-two mb-15">Company Statistics</span>
+                        <span class="sub-title style-two mb-15">Estadísticas</span>
                         <h2>
-                            We're the best web development agency more achievement
+                            Somos la mejor agencia de desarrollo web
                         </h2>
                     </div>
                     <p>
-                        Start building your first prototype in no time. Ogency
-                        intuitive, drag & drop interface gives you all the building
-                        blocks that you need to get started! No skills required.
+                        Inicia tu proyecto web con la agencia top: interfaces intuitivas y sin complejidades técnicas.
+                        Da el siguiente paso en tu presencia online con nosotros.
                     </p>
-                    <a href="{{ url_for('pages.about_us') }}" class="theme-btn mt-15">Learn More <i
+                    <a href="{{ url_for('pages.about_us') }}" class="theme-btn mt-15">Leer más <i
                             class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
@@ -469,29 +460,29 @@
                         <div class="col-xl-5 col-lg-6 col-md-5 col-sm-6">
                             <div class="counter-item counter-text-wrap wow fadeInLeft delay-0-2s">
                                 <i class="flaticon-startup"></i>
-                                <span class="count-text" data-speed="3000" data-stop="2365">0</span>
-                                <span class="counter-title">Projects complete</span>
+                                <span class="count-text" data-speed="3000" data-stop="10">0</span>
+                                <span class="counter-title">Proyectos desplegados</span>
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-6 col-md-5 col-sm-6">
                             <div class="counter-item for-margin counter-text-wrap wow fadeInLeft delay-0-5s">
                                 <i class="flaticon-global"></i>
-                                <span class="count-text" data-speed="3000" data-stop="9632">0</span>
-                                <span class="counter-title">Trusted Global Clients</span>
+                                <span class="count-text" data-speed="3000" data-stop="10">0</span>
+                                <span class="counter-title">Clientes de confianza</span>
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-6 col-md-5 col-sm-6 offset-xl-1">
                             <div class="counter-item counter-text-wrap wow fadeInLeft delay-0-2s">
                                 <i class="flaticon-rating"></i>
-                                <span class="count-text" data-speed="3000" data-stop="8504">0</span>
-                                <span class="counter-title">Expert Team Member</span>
+                                <span class="count-text" data-speed="3000" data-stop="10">0</span>
+                                <span class="counter-title">Mimebros expertos del equipo</span>
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-6 col-md-5 col-sm-6">
                             <div class="counter-item for-margin counter-text-wrap wow fadeInLeft delay-0-5s">
                                 <i class="flaticon-trophy"></i>
-                                <span class="count-text" data-speed="3000" data-stop="6763">0</span>
-                                <span class="counter-title">Projects complete</span>
+                                <span class="count-text" data-speed="3000" data-stop="10">0</span>
+                                <span class="counter-title">Proyectos completados</span>
                             </div>
                         </div>
                     </div>
@@ -515,34 +506,31 @@
             <div class="col-xl-5 col-lg-6">
                 <div class="why-choose-two-content wow fadeInUp delay-0-2s">
                     <div class="section-title mb-35">
-                        <span class="sub-title style-two mb-15">Why Choose Us</span>
-                        <h2>Great Web solutions that you can trust</h2>
+                        <span class="sub-title style-two mb-15">Por que trabajar con nosotros</span>
+                        <h2>Grandes soluciones Web en las que puede confiar</h2>
                     </div>
                     <ul class="list-style-one">
                         <li>
                             <div class="content">
-                                <h5>Easy Customize</h5>
+                                <h5>Fácil personalización</h5>
                                 <p>
-                                    We use strategic marketing tactics have been ese proven
-                                    programming complex functions.
+                                    Personalización a tu medida: adapta tu sitio web con facilidad y precisión.
                                 </p>
                             </div>
                         </li>
                         <li>
                             <div class="content">
-                                <h5>Chat & Messaging</h5>
+                                <h5>Chats y Mensajerías</h5>
                                 <p>
-                                    We use strategic marketing tactics have been eses proven
-                                    programming complex functions.
+                                    Chats y Mensajerías: comunica de manera efectiva y sin complicaciones.
                                 </p>
                             </div>
                         </li>
                         <li>
                             <div class="content">
-                                <h5>Payment Gatway</h5>
+                                <h5>Formas de pago</h5>
                                 <p>
-                                    We use strategic marketing tactics have been eses proven
-                                    programming complex functions.
+                                    Soluciones de pago: integraciones seguras y versátiles para transacciones fluidas.
                                 </p>
                             </div>
                         </li>
@@ -554,154 +542,23 @@
 </section>
 <!-- Why Choose Us Area end -->
 
-<!-- Feedback Area start -->
-<section class="feedback-area pb-130 rel z-1">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-6 col-lg-8">
-                <div class="section-title text-center mb-40 wow fadeInUp delay-0-2s">
-                    <span class="sub-title style-two mb-20">Clents Feedback</span>
-                    <h2>3,000+ Positive reviews by our satisfied clients</h2>
-                </div>
-            </div>
-        </div>
-        <div class="feedback-active">
-            <div class="feedback-item wow fadeInUp delay-0-2s">
-                <div class="author-logo">
-                    <i class="far fa-quote-right"></i>
-                    <img src="{{ url_for('static', filename='assets/images/feedback/logo1.png') }}" alt="Logo" />
-                </div>
-                <h4>On the other hand denounes with indignwy</h4>
-                <p>
-                    Sed ut perspiciatis unde omnis natus error voluptatem
-                    accusantium dolore laudantuce totam rem aperiam eaque inventore
-                </p>
-                <div class="feedback-author">
-                    <img src="{{ url_for('static', filename='assets/images/feedback/author1.jpg') }}" alt="Author" />
-                    <div class="content">
-                        <h5>Jonathan B. Bohnert</h5>
-                        <span>CEO & Founder</span>
-                    </div>
-                </div>
-            </div>
-            <div class="feedback-item wow fadeInUp delay-0-4s">
-                <div class="author-logo">
-                    <i class="far fa-quote-right"></i>
-                    <img src="{{ url_for('static', filename='assets/images/feedback/logo2.png') }}" alt="Logo" />
-                </div>
-                <h4>Custom programming fores most complex functions</h4>
-                <p>
-                    Sed ut perspiciatis unde omnis natus error voluptatem
-                    accusantium dolore laudantuce totam rem aperiam eaque inventore
-                </p>
-                <div class="feedback-author">
-                    <img src="{{ url_for('static', filename='assets/images/feedback/author2.jpg') }}" alt="Author" />
-                    <div class="content">
-                        <h5>Nicholas R. Gomez</h5>
-                        <span>Medical Officers</span>
-                    </div>
-                </div>
-            </div>
-            <div class="feedback-item wow fadeInUp delay-0-6s">
-                <div class="author-logo">
-                    <i class="far fa-quote-right"></i>
-                    <img src="{{ url_for('static', filename='assets/images/feedback/logo3.png') }}" alt="Logo" />
-                </div>
-                <h4>We use strategic marketing tactics be proven work.</h4>
-                <p>
-                    Sed ut perspiciatis unde omnis natus error voluptatem
-                    accusantium dolore laudantuce totam rem aperiam eaque inventore
-                </p>
-                <div class="feedback-author">
-                    <img src="{{ url_for('static', filename='assets/images/feedback/author3.jpg') }}" alt="Author" />
-                    <div class="content">
-                        <h5>James R. Lawrence</h5>
-                        <span>Junior Manager</span>
-                    </div>
-                </div>
-            </div>
-            <div class="feedback-item wow fadeInUp delay-0-2s">
-                <div class="author-logo">
-                    <i class="far fa-quote-right"></i>
-                    <img src="{{ url_for('static', filename='assets/images/feedback/logo1.png') }}" alt="Logo" />
-                </div>
-                <h4>On the other hand denounes with indignwy</h4>
-                <p>
-                    Sed ut perspiciatis unde omnis natus error voluptatem
-                    accusantium dolore laudantuce totam rem aperiam eaque inventore
-                </p>
-                <div class="feedback-author">
-                    <img src="{{ url_for('static', filename='assets/images/feedback/author1.jpg') }}" alt="Author" />
-                    <div class="content">
-                        <h5>Jonathan B. Bohnert</h5>
-                        <span>CEO & Founder</span>
-                    </div>
-                </div>
-            </div>
-            <div class="feedback-item wow fadeInUp delay-0-2s">
-                <div class="author-logo">
-                    <i class="far fa-quote-right"></i>
-                    <img src="{{ url_for('static', filename='assets/images/feedback/logo2.png') }}" alt="Logo" />
-                </div>
-                <h4>Custom programming fores most complex functions</h4>
-                <p>
-                    Sed ut perspiciatis unde omnis natus error voluptatem
-                    accusantium dolore laudantuce totam rem aperiam eaque inventore
-                </p>
-                <div class="feedback-author">
-                    <img src="{{ url_for('static', filename='assets/images/feedback/author2.jpg') }}" alt="Author" />
-                    <div class="content">
-                        <h5>Nicholas R. Gomez</h5>
-                        <span>Medical Officers</span>
-                    </div>
-                </div>
-            </div>
-            <div class="feedback-item wow fadeInUp delay-0-2s">
-                <div class="author-logo">
-                    <i class="far fa-quote-right"></i>
-                    <img src="{{ url_for('static', filename='assets/images/feedback/logo3.png') }}" alt="Logo" />
-                </div>
-                <h4>We use strategic marketing tactics be proven work.</h4>
-                <p>
-                    Sed ut perspiciatis unde omnis natus error voluptatem
-                    accusantium dolore laudantuce totam rem aperiam eaque inventore
-                </p>
-                <div class="feedback-author">
-                    <img src="{{ url_for('static', filename='assets/images/feedback/author3.jpg') }}" alt="Author" />
-                    <div class="content">
-                        <h5>James R. Lawrence</h5>
-                        <span>Junior Manager</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="feedback-shape one">
-        <img src="{{ url_for('static', filename='assets/images/feedback/man1.jpg') }}" alt="Man Shape" />
-    </div>
-    <div class="feedback-shape two">
-        <img src="{{ url_for('static', filename='assets/images/feedback/man2.jpg') }}" alt="Man Shape" />
-    </div>
-</section>
-<!-- Feedback Area end -->
-
 <!-- Call to Action Area start -->
 <section class="call-to-action-area bgc-black pt-80 pb-50">
     <div class="container">
         <div class="row justify-content-between align-items-center">
             <div class="col-xl-7 col-lg-9">
                 <div class="section-title text-white mb-25 wow fadeInUp delay-0-2s">
-                    <h2>Let’s Design Your New Website</h2>
+                    <h2>Vamos a diseñar tu nueva página web</h2>
                     <p>
-                        Do you want to have a website that stands out and impresses
-                        your clients? Then we are ready to help! Click the button
-                        below to contact us and discuss your ideas.
+                        ¿Quiere tener un sitio web que destaque e impresione a sus clientes? Entonces estamos listos
+                        para ayudarle. Haga clic en el botón "Empezar ahora" para ponerse en contacto con nosotros y discutir
+                        sus ideas.
                     </p>
                 </div>
             </div>
             <div class="col-lg-3 text-lg-end">
-                <a href="contact.html" class="theme-btn style-two mb-30 wow fadeInUp delay-0-4s">Let’s Get
-                    Started <i class="fas fa-angle-double-right"></i></a>
+                <a href="contact.html" class="theme-btn style-two mb-30 wow fadeInUp delay-0-4s">Empezar ahora <i
+                        class="fas fa-angle-double-right"></i></a>
             </div>
         </div>
     </div>
