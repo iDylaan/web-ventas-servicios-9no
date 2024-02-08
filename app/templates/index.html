@@ -542,26 +542,8 @@
 </section>
 <!-- Why Choose Us Area end -->
 
-<!-- Call to Action Area start -->
-<section class="call-to-action-area bgc-black pt-80 pb-50">
-    <div class="container">
-        <div class="row justify-content-between align-items-center">
-            <div class="col-xl-7 col-lg-9">
-                <div class="section-title text-white mb-25 wow fadeInUp delay-0-2s">
-                    <h2>Vamos a diseñar tu nueva página web</h2>
-                    <p>
-                        ¿Quiere tener un sitio web que destaque e impresione a sus clientes? Entonces estamos listos
-                        para ayudarle. Haga clic en el botón "Empezar ahora" para ponerse en contacto con nosotros y discutir
-                        sus ideas.
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-3 text-lg-end">
-                <a href="contact.html" class="theme-btn style-two mb-30 wow fadeInUp delay-0-4s">Empezar ahora <i
-                        class="fas fa-angle-double-right"></i></a>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Call to Action Area End -->
+{% block get_started %}
+{% include 'layout/get_started.html' %}
+{% endblock get_started %}
+
 {% endblock %}
