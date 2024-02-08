@@ -72,6 +72,7 @@ def registro_usuario():
         rows_affected = sql(SQL_STRINGS.INSERT_USER, req_data)
         
         if rows_affected > 0:
+            redirect(url_for('auth.signin_template'))
             return handleResponse({
                 'username': username,
                 'email': email
