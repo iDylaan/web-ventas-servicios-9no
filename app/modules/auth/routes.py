@@ -16,11 +16,19 @@ mod = Blueprint('auth', __name__)
 # TEMPLATES
 @mod.route('/signin', methods=['GET'])
 def signin_template():
-    return render_template('signin.html')
+    user_logged = session.get('user_logged', False)
+    if user_logged:
+        return redirect(url_for('index'))
+    else:
+        return render_template('signin.html')
 
 @mod.route('/signup', methods=['GET'])
 def signup_template():
-    return render_template('signup.html')
+    user_logged = session.get('user_logged', False)
+    if user_logged:
+        return redirect(url_for('index'))
+    else:
+        return render_template('signup.html')
 
 
 
@@ -72,11 +80,7 @@ def registro_usuario():
         rows_affected = sql(SQL_STRINGS.INSERT_USER, req_data)
         
         if rows_affected > 0:
-            redirect(url_for('auth.signin_template'))
-            return handleResponse({
-                'username': username,
-                'email': email
-            })
+            return handleResponse({'created': True}, 201)
         else:
             return handleResponseError('No se realizo el registro del usuario intentelo nuevamente', 500)   
     except Exception as e:

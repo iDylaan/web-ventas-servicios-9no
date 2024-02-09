@@ -28,8 +28,8 @@ def handleResponseError(msg, status = 500):
         }
     }), 200
     
-def handleResponse(data):
+def handleResponse(data, status = 200):
     return jsonify({
         "success": True,
         "data": data
-    }), 200
+    }), status

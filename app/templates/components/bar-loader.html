@@ -1,16 +1,18 @@
+<!-- LOADER STYLES -->
 <style>
-  .loader {
-    display: block;
+  #bar-loader {
+    display: none;
     --height-of-loader: 4px;
     --loader-color: #0071e2;
-    width: 130px;
+    width: 100%;
     height: var(--height-of-loader);
     border-radius: 30px;
     background-color: rgba(0, 0, 0, 0.2);
     position: relative;
+    margin: 20px 0;
   }
 
-  .loader::before {
+  #bar-loader::before {
     content: "";
     position: absolute;
     background: var(--loader-color);
@@ -34,4 +36,6 @@
     }
   }
 </style>
-<div class="loader"></div>
+
+<!-- Loader HTML -->
+<div class="loader" id="bar-loader"></div>

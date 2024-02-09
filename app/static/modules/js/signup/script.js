@@ -7,6 +7,7 @@ const confirmpasswordInput = document.querySelector("#confirm_password")
 const btnSingup = document.querySelector("#btnSingup")
 const formsignup = document.querySelector("#form-signup")
 const formErrorsAlert = document.querySelector("#form_error")
+const formBarLoader = document.querySelector('#bar-loader');
 //const confirmPasswordErrorAlert = document.querySelector("confirm_password_error");
 
 
@@ -47,6 +48,7 @@ async function signup() {
 
 
 	if (validForm) {
+		formBarLoader.style.display = 'block';
 		try {
 			const response = await fetch("/auth/signup", {
 				method: "POST",
@@ -56,25 +58,25 @@ async function signup() {
 				body: JSON.stringify(formModel),
 			})
 
-			console.log(response)
 			if (!response.ok) {
 				throw new Error("Ocurrio un error inesperado en el servidor")
 			}
 
 			const result = await response.json()
-			console.log(result)
 			if (result.success) {
 				// Mostrar mensaje de éxito
 				mostrarMensaje("success", "¡Registro exitoso! Felicidades a horas eres parte de nosotros.");
 				// Redirigir después de un tiempo (opcional)
 				setTimeout(() => {
-					//window.location.href = indexURL;
-				}, 4000);
+					window.location.href = signinURL;
+				}, 1750);
 			} else {
 				throw new Error(result.error.msg)
 			}
 		} catch (error) {
 			gestionarErrores([error])
+		} finally {
+			formBarLoader.style.display = 'none';
 		}
 	}
 }
