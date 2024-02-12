@@ -45,3 +45,7 @@
   background-color: rgba(128, 128, 128, 0.224);
   margin: 5px;
 }
+
+#btn-auth-with-google {
+  width: 100% !important;
+}

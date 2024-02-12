@@ -4,10 +4,17 @@ const passwordInput = document.querySelector("#password")
 const siginpForm = document.querySelector('#form-signin')
 const btnSingin = document.querySelector("#btnSingin")
 const formErrorsAlert = document.querySelector("#form_error")
-
+const formBarLoader = document.querySelector('#bar-loader');
 
 // Event Listeners
 eventListeners();
+window.onload = function () {
+    google.accounts.id.initialize({
+        client_id: '794007100549-ii414p96k9vidkh015i9qs4ofk8pvv80.apps.googleusercontent.com',
+        callback: handleCredentialResponse
+    });
+    google.accounts.id.prompt();
+};
 
 
 function eventListeners() {
@@ -18,7 +25,7 @@ function eventListeners() {
     passwordInput.addEventListener('input', e => formModel.password = e.target.value)
 
     btnSingin.addEventListener("click", signin)
-    
+
 }
 
 // Variables
@@ -32,6 +39,7 @@ async function signin() {
     const validForm = validarFormulario();
 
     if (validForm) {
+        formBarLoader.style.display = 'block';
         try {
             const response = await fetch('/auth/signin', {
                 method: 'POST',
@@ -47,15 +55,17 @@ async function signin() {
 
             const result = await response.json();
             if (result.success) {
-				mostrarMensaje("success", "¡Bienvenido!");
-				setTimeout(() => {
-					window.location.href = indexURL;
-				}, 1300);
-			} else {
-				throw new Error(result.error.msg)
-			}
+                mostrarMensaje("success", "¡Bienvenido!");
+                setTimeout(() => {
+                    window.location.href = indexURL;
+                }, 1300);
+            } else {
+                throw new Error(result.error.msg)
+            }
         } catch (error) {
             gestionarErrores([error])
+        } finally {
+            formBarLoader.style.display = 'none';
         }
     }
 }
@@ -98,7 +108,7 @@ function gestionarErrores(errors) {
         errors.forEach(error => {
             msg += `
             <li>
-                ${error}
+            ${error}
             </li>
             `;
         });
@@ -109,7 +119,7 @@ function gestionarErrores(errors) {
         // Desplazar la vista del usuario hacia el mensaje de error
         scrollToElement(formErrorsAlert);
 
-		// Ocultar los mensajes después de 10 segundos
+        // Ocultar los mensajes después de 10 segundos
         setTimeout(() => {
             formErrorsAlert.classList.add('d-none');
             formErrorsAlert.innerHTML = '';
@@ -117,41 +127,66 @@ function gestionarErrores(errors) {
     }
 }
 function mostrarMensaje(type, message) {
-	const formMessageElement = formErrorsAlert;
+    const formMessageElement = formErrorsAlert;
 
-	// Limpiar clases y contenido previo
-	formMessageElement.classList.remove("d-none", "alert-success", "alert-danger");
-	formMessageElement.innerHTML = "";
+    // Limpiar clases y contenido previo
+    formMessageElement.classList.remove("d-none", "alert-success", "alert-danger");
+    formMessageElement.innerHTML = "";
 
-	// Agregar clases de Bootstrap y mostrar el mensaje
-	formMessageElement.classList.add("alert", `alert-${type}`, "mt-3");
-	formMessageElement.innerHTML = message;
+    // Agregar clases de Bootstrap y mostrar el mensaje
+    formMessageElement.classList.add("alert", `alert-${type}`, "mt-3");
+    formMessageElement.innerHTML = message;
 
-	// Hacer el div enfocable agregando el atributo tabindex
-	formMessageElement.setAttribute("tabindex", "-1");
+    // Hacer el div enfocable agregando el atributo tabindex
+    formMessageElement.setAttribute("tabindex", "-1");
 
-	// Enfocar en el elemento para dirigir automáticamente al usuario al mensaje
-	formMessageElement.focus();
+    // Enfocar en el elemento para dirigir automáticamente al usuario al mensaje
+    formMessageElement.focus();
 
-	// Desplazar la vista del usuario hacia el mensaje
-	scrollToElement(formMessageElement);
+    // Desplazar la vista del usuario hacia el mensaje
+    scrollToElement(formMessageElement);
 
-	// Temporizador para ocultar los mensajes después de un tiempo (opcional)
-	setTimeout(() => {
-		formMessageElement.classList.add("d-none");
-		formMessageElement.classList.remove("alert-success", "alert-danger");
-		formMessageElement.innerHTML = "";
-	}, 3000);
+    // Temporizador para ocultar los mensajes después de un tiempo (opcional)
+    setTimeout(() => {
+        formMessageElement.classList.add("d-none");
+        formMessageElement.classList.remove("alert-success", "alert-danger");
+        formMessageElement.innerHTML = "";
+    }, 3000);
 }
 
 // Función para desplazarse al elemento con JavaScript puro
 function scrollToElement(element) {
-	const offsetTop = element.offsetTop;
-	const scrollPosition = offsetTop - 20; // Ajuste opcional para el espacio del encabezado
+    const offsetTop = element.offsetTop;
+    const scrollPosition = offsetTop - 20; // Ajuste opcional para el espacio del encabezado
 
-	// Desplazar suavemente
-	window.scrollTo({
-		top: scrollPosition,
-		behavior: "smooth"
-	});
+    // Desplazar suavemente
+    window.scrollTo({
+        top: scrollPosition,
+        behavior: "smooth"
+    });
+}
+
+
+// GOOGLE OAuth2.0 API
+const btnGoogle = document.querySelector('#google-auth-btn');
+console.log(google);
+const client = google.accounts.oauth2.initCodeClient({
+    client_id: '794007100549-ii414p96k9vidkh015i9qs4ofk8pvv80.apps.googleusercontent.com',
+    scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
+    ux_mode: 'popup',
+    redirect_uri: "http://localhost:5000/auth/signin",
+    state: "YOUR_BINDING_VALUE",
+    callback: onSignIn
+});
+console.log(client)
+btnGoogle.addEventListener('click', () => {
+    client.requestCode();
+})
+
+function onSignIn(googleUser) {
+    console.log(googleUser)
+}
+
+function handleCredentialResponse(e) {
+    console.log(e)
 }

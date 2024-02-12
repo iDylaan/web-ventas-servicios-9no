@@ -1,767 +1,268 @@
-<!DOCTYPE html>
-<html lang="zxx">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="description" content="" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+{% extends 'layout/base.html' %}
 
-    <!-- Title -->
-    <title>Oxence | Services</title>
-    <!-- Favicon Icon -->
-    <link
-      rel="shortcut icon"
-      href="{{ url_for('static', filename='assets/images/favicon.png') }}"
-      type="image/x-icon"
-    />
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@700&family=Merriweather:wght@700&family=Roboto:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
+{% block title %} Tech Consulting | Servicios {% endblock %}
 
-    <!-- Flaticon -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='assets/css/flaticon.min.css') }}"
-    />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='assets/css/fontawesome-5.14.0.min.css') }}"
-    />
-    <!-- Bootstrap -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}"
-    />
-    <!-- Magnific Popup -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='assets/css/magnific-popup.min.css') }}"
-    />
-    <!-- Nice Select -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='assets/css/nice-select.min.css') }}"
-    />
-    <!-- Type Writer -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='assets/css/jquery.animatedheadline.css') }}"
-    />
-    <!-- Animate -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='assets/css/animate.min.css') }}"
-    />
-    <!-- Slick -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='assets/css/slick.min.css') }}"
-    />
-    <!-- Main Style -->
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='assets/css/style.css') }}"
-    />
-  </head>
-  <body class="home-three">
-    <div class="page-wrapper">
-      <!-- Preloader -->
-      <div class="preloader"></div>
+{% block styles %}
+{{super()}}
+{% endblock styles %}
 
-      <!-- main header -->
-      <header class="main-header header-three menu-absolute">
-        <!--Header-Upper-->
-        <div class="header-upper">
-          <div class="container-fluid clearfix">
-            <div class="header-inner rel d-flex align-items-center">
-              <div class="logo-outer">
-                <div class="logo">
-                  <a href="{{ url_for('index') }}"
-                    ><img
-                      src="{{ url_for('static', filename='assets/images/logos/logo.png') }}"
-                      alt="Logo"
-                      title="Logo"
-                  /></a>
-                </div>
-              </div>
 
-              <div class="nav-outer clearfix">
-                <!-- Main Menu -->
-                <nav class="main-menu navbar-expand-lg">
-                  <div class="navbar-header">
-                    <div class="mobile-logo my-15">
-                      <a href="{{ url_for('index') }}">
-                        <img
-                          src="{{ url_for('static', filename='assets/images/logos/logo.png') }}"
-                          alt="Logo"
-                          title="Logo"
-                        />
-                      </a>
-                    </div>
+{% block content %}
 
-                    <!-- Toggle Button -->
-                    <button
-                      type="button"
-                      class="navbar-toggle"
-                      data-bs-toggle="collapse"
-                      data-bs-target=".navbar-collapse"
-                    >
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>
-                  </div>
+  {% block page_banner %}
+    {% set page_title_underline = 'Servicios' %}
 
-                  <div class="navbar-collapse collapse clearfix">
-                    <ul class="navigation clearfix">
-                      <li class="dropdown">
-                        <a href="#">Home</a>
-                        <ul>
-                          <li class="dropdown">
-                            <a href="#">MultiPage</a>
-                            <ul>
-                              <li>
-                                <a href="{{ url_for('index') }}">Web Design</a>
-                              </li>
-                              <li>
-                                <a href="index1dark.html">Web Design Dark</a>
-                              </li>
-                              <li>
-                                <a href="index2.html">Front End Services</a>
-                              </li>
-                              <li>
-                                <a href="index2dark.html">Front End Dark</a>
-                              </li>
-                              <li><a href="index3.html">Website Builder</a></li>
-                              <li><a href="index4.html">Digital Studio</a></li>
-                            </ul>
-                          </li>
-                          <li class="dropdown">
-                            <a href="#">OnePage</a>
-                            <ul>
-                              <li>
-                                <a href="index1-onepage.html">Web Design</a>
-                              </li>
-                              <li>
-                                <a href="index1dark-onepage.html"
-                                  >Web Design Dark</a
-                                >
-                              </li>
-                              <li>
-                                <a href="index2-onepage.html"
-                                  >Front End Services</a
-                                >
-                              </li>
-                              <li>
-                                <a href="index2dark-onepage.html"
-                                  >Front End Dark</a
-                                >
-                              </li>
-                              <li>
-                                <a href="index3-onepage.html"
-                                  >Website Builder</a
-                                >
-                              </li>
-                              <li>
-                                <a href="index4-onepage.html">Digital Studio</a>
-                              </li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#">services</a>
-                        <ul>
-                          <li>
-                            <a href="{{ url_for('services.index') }}"
-                              >Popular Services</a
-                            >
-                          </li>
-                          <li>
-                            <a href="service-details.html">service details</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#">Project</a>
-                        <ul>
-                          <li><a href="projects.html">Project Grid</a></li>
-                          <li>
-                            <a href="project-creative.html">Project Creative</a>
-                          </li>
-                          <li>
-                            <a href="project-carousel.html">Project Carousel</a>
-                          </li>
-                          <li>
-                            <a href="project-details.html">Project Details</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#">pages</a>
-                        <ul>
-                          <li><a href="about.html">About us</a></li>
-                          <li class="dropdown">
-                            <a href="#">Team</a>
-                            <ul>
-                              <li><a href="team.html">Expert Team</a></li>
-                              <li>
-                                <a href="team-profile.html">Team Profile</a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li><a href="pricing.html">pricing plan</a></li>
-                          <li><a href="faqs.html">faqs & helf</a></li>
-                          <li>
-                            <a href="404.html">404 error</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#">shop</a>
-                        <ul>
-                          <li><a href="shop.html">shop Grid</a></li>
-                          <li>
-                            <a href="product-details.html">Product details</a>
-                          </li>
-                          <li><a href="cart.html">cart page</a></li>
-                          <li><a href="checkout.html">checkout</a></li>
-                        </ul>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#">blog</a>
-                        <ul>
-                          <li><a href="blog.html">blog Grid</a></li>
-                          <li><a href="blog-list.html">blog list</a></li>
-                          <li><a href="blog-details.html">blog details</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                  </div>
-                </nav>
-                <!-- Main Menu End-->
-              </div>
+    {% include 'components/page-banner.html' %}
+  {% endblock page_banner %}
 
-              <!-- Menu Button -->
-              <div class="menu-btns">
-                <a href="contact.html" class="login">Log in</a>
-
-                <a href="contact.html" class="theme-btn"
-                  >Sign up Free <i class="fas fa-angle-double-right"></i
-                ></a>
-              </div>
-            </div>
+<!-- Statistics Five Area start -->
+<section class="statistics-area-five py-130">
+  <div class="container">
+    <div class="row justify-content-between align-items-center">
+      <div class="col-lg-6">
+        <div class="statistics-five-content mb-30 rmb-65 wow fadeInRight delay-0-2s">
+          <div class="section-title mb-25">
+            <span class="sub-title style-two mb-15">Estadísticas de la empresa</span>
+            <h3>
+              Descubra proyectos extraordinarios que cobran vida en Tech Consulting
+            </h3>
           </div>
+          <p>
+            Comience a construir su primer prototipo en poco tiempo. Comunícate con nosotros para darle forma a tus sueños 
+          </p>
+          <a href="about.html" class="theme-btn mt-15">Contáctanos <i class="fas fa-angle-double-right"></i></a>
         </div>
-        <!--End Header Upper-->
-      </header>
-
-      <!-- Page Banner Start -->
-      <section
-        class="page-banner-area pt-245 rpt-150 pb-170 rpb-100 rel z-1 bgc-lighter text-center"
-      >
-        <div class="container">
-          <div class="banner-inner rpt-10">
-            <h1 class="page-title wow fadeInUp delay-0-2s">
-              Popular Se<span>rvices</span>
-            </h1>
-            <nav aria-label="breadcrumb">
-              <ol
-                class="breadcrumb justify-content-center wow fadeInUp delay-0-4s"
-              >
-                <li class="breadcrumb-item">
-                  <a href="{{ url_for('index') }}">home</a>
-                </li>
-                <li class="breadcrumb-item active">Servicios Populares</li>
-              </ol>
-            </nav>
-          </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="statistics-five-image wow fadeInLeft delay-0-2s">
+          <img src="{{ url_for('static', filename='assets/images/about/creative.jpg') }}" alt="Statistics" />
         </div>
-        <div class="banner-shapes">
-          <div
-            class="circle wow zoomInLeft delay-0-2s"
-            data-wow-duration="2s"
-          ></div>
-          <img
-            class="shape-one"
-            src="{{ url_for('static', filename='assets/images/shapes/hero-shape1.png') }}"
-            alt="Shape"
-          />
-          <img
-            class="shape-two"
-            src="{{ url_for('static', filename='assets/images/shapes/hero-shape2.png') }}"
-            alt="Shape"
-          />
-        </div>
-      </section>
-      <!-- Page Banner End -->
-
-      <!-- Statistics Five Area start -->
-      <section class="statistics-area-five py-130">
-        <div class="container">
-          <div class="row justify-content-between align-items-center">
-            <div class="col-lg-6">
-              <div
-                class="statistics-five-content mb-30 rmb-65 wow fadeInRight delay-0-2s"
-              >
-                <div class="section-title mb-25">
-                  <span class="sub-title style-two mb-15"
-                    >Company Statistics</span
-                  >
-                  <h2>
-                    Discover Extraordinary projects brought to life on Oxence.
-                  </h2>
-                </div>
-                <p>
-                  Start building your first prototype in no time. Ogency
-                  intuitive, drag & drop interface gives you all the building
-                  blocks that you need to get started! No skills required.
-                </p>
-                <a href="about.html" class="theme-btn mt-15"
-                  >Learn More <i class="fas fa-angle-double-right"></i
-                ></a>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="statistics-five-image wow fadeInLeft delay-0-2s">
-                <img
-                  src="{{ url_for('static', filename='assets/images/about/statistics-five.png') }}"
-                  alt="Statistics"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Statistics Five Area end -->
-
-      <!-- Working Process Area start -->
-      <section class="work-process-area pb-95 rel z-1">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-10">
-              <div
-                class="section-title text-center mb-55 wow fadeInUp delay-0-2s"
-              >
-                <span class="sub-title style-two mb-15">Working Process</span>
-                <h2>How does we works</h2>
-              </div>
-            </div>
-          </div>
-          <div class="work-process-wrap rel z-1">
-            <div class="row justify-content-between">
-              <div class="col-xl-3 col-lg-5 col-sm-6">
-                <div class="work-process-item mt-30 wow fadeInUp delay-0-2s">
-                  <div class="icon">
-                    <span class="number">01</span>
-                    <i class="flaticon-optimization"></i>
-                  </div>
-                  <h4>Info Gathering</h4>
-                  <p>Sit amet consectetur adipiscing elit sed eiusmod tempor</p>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-5 col-sm-6">
-                <div class="work-process-item wow fadeInUp delay-0-4s">
-                  <div class="icon">
-                    <span class="number">02</span>
-                    <i class="flaticon-link"></i>
-                  </div>
-                  <h4>Idea Planning</h4>
-                  <p>Sit amet consectetur adipiscing elit sed eiusmod tempor</p>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-5 col-sm-6">
-                <div class="work-process-item mt-55 wow fadeInUp delay-0-6s">
-                  <div class="icon">
-                    <span class="number">03</span>
-                    <i class="flaticon-data"></i>
-                  </div>
-                  <h4>Design Analysis</h4>
-                  <p>Sit amet consectetur adipiscing elit sed eiusmod tempor</p>
-                </div>
-              </div>
-              <div class="col-xl-3 col-lg-5 col-sm-6">
-                <div class="work-process-item mt-45 wow fadeInUp delay-0-8s">
-                  <div class="icon">
-                    <span class="number">04</span>
-                    <i class="flaticon-star"></i>
-                  </div>
-                  <h4>Testing & Lunch</h4>
-                  <p>Sit amet consectetur adipiscing elit sed eiusmod tempor</p>
-                </div>
-              </div>
-            </div>
-            <div class="work-process-shape">
-              <img
-                src="{{ url_for('static', filename='assets/images/shapes/worp-process-step.png') }}"
-                alt="Shape"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Working Process Area end -->
-
-      <!-- Services Area start -->
-      <section class="services-area-four bgc-black pt-130 pb-100">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-xl-8 col-lg-10">
-              <div
-                class="section-title text-center text-white mb-60 wow fadeInUp delay-0-2s"
-              >
-                <span class="sub-title style-two mb-20"
-                  >Services We Provide</span
-                >
-                <h2>Popular Web Services</h2>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xl-4 col-md-6">
-              <div class="service-item-four wow fadeInUp delay-0-2s">
-                <div class="image">
-                  <img
-                    src="{{ url_for('static', filename='assets/images/services/service-four1.png') }}"
-                    alt="Service"
-                  />
-                </div>
-                <h5>Website Creation from Figma, XD or Photoshop</h5>
-                <a href="service-details.html" class="theme-btn style-three"
-                  >Service Details <i class="fas fa-angle-double-right"></i
-                ></a>
-              </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-              <div class="service-item-four wow fadeInUp delay-0-4s">
-                <div class="image">
-                  <img
-                    src="{{ url_for('static', filename='assets/images/services/service-four2.png') }}"
-                    alt="Service"
-                  />
-                </div>
-                <h5>Mobile App Development and Website Design</h5>
-                <a href="service-details.html" class="theme-btn style-three"
-                  >Service Details <i class="fas fa-angle-double-right"></i
-                ></a>
-              </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-              <div class="service-item-four wow fadeInUp delay-0-6s">
-                <div class="image">
-                  <img
-                    src="{{ url_for('static', filename='assets/images/services/service-four3.png') }}"
-                    alt="Service"
-                  />
-                </div>
-                <h5>eCommerce and Product Selling Development</h5>
-                <a href="service-details.html" class="theme-btn style-three"
-                  >Service Details <i class="fas fa-angle-double-right"></i
-                ></a>
-              </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-              <div class="service-item-four wow fadeInUp delay-0-2s">
-                <div class="image">
-                  <img
-                    src="{{ url_for('static', filename='assets/images/services/service-four4.png') }}"
-                    alt="Service"
-                  />
-                </div>
-                <h5>Responsive Websites (UI/UX) Design</h5>
-                <a href="service-details.html" class="theme-btn style-three"
-                  >Service Details <i class="fas fa-angle-double-right"></i
-                ></a>
-              </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-              <div class="service-item-four wow fadeInUp delay-0-4s">
-                <div class="image">
-                  <img
-                    src="{{ url_for('static', filename='assets/images/services/service-four5.png') }}"
-                    alt="Service"
-                  />
-                </div>
-                <h5>SEO (Search Engine Optimization)</h5>
-                <a href="service-details.html" class="theme-btn style-three"
-                  >Service Details <i class="fas fa-angle-double-right"></i
-                ></a>
-              </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-              <div class="service-item-four wow fadeInUp delay-0-6s">
-                <div class="image">
-                  <img
-                    src="{{ url_for('static', filename='assets/images/services/service-four6.png') }}"
-                    alt="Service"
-                  />
-                </div>
-                <h5>Digital Product Design and Development</h5>
-                <a href="service-details.html" class="theme-btn style-three"
-                  >Service Details <i class="fas fa-angle-double-right"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Services Area end -->
-
-      <!-- Pricing Area start -->
-      <section class="pricing-area py-130 rel z-1">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-xl-8 col-lg-10">
-              <div
-                class="section-title text-center mb-55 wow fadeInUp delay-0-2s"
-              >
-                <span class="sub-title style-two mb-20">Pricing Plan</span>
-                <h2>Best Pricing Package</h2>
-              </div>
-            </div>
-          </div>
-          <div class="pricing-plan-item wow fadeInUp delay-0-2s">
-            <div class="price-features">
-              <h4>Basic Plan</h4>
-              <ul class="list-style-two">
-                <li>Landing page design (10 pages)</li>
-                <li>Domin hosting provider</li>
-                <li>HTML+CSS design (12 pages)</li>
-                <li>Online support (24/7)</li>
-                <li>Social Media Marketing</li>
-                <li>WordPres development</li>
-              </ul>
-              <span class="badge">popular</span>
-            </div>
-            <div class="price-and-btn">
-              <div class="content">
-                <span class="price">248</span>
-                <span class="save">Save<span> 25%</span></span>
-                <a href="pricing.html" class="theme-btn style-three"
-                  >Choose Package <i class="fas fa-angle-double-right"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-          <div class="pricing-plan-item wow fadeInUp delay-0-2s">
-            <div class="price-features">
-              <h4>Standard Plan</h4>
-              <ul class="list-style-two">
-                <li>Landing page design (10 pages)</li>
-                <li>Domin hosting provider</li>
-                <li>HTML+CSS design (12 pages)</li>
-                <li>Online support (24/7)</li>
-                <li>Social Media Marketing</li>
-                <li>WordPres development</li>
-              </ul>
-              <span class="badge">popular</span>
-            </div>
-            <div class="price-and-btn">
-              <div class="content">
-                <span class="price">452</span>
-                <span class="save">Save<span> 43%</span></span>
-                <a href="pricing.html" class="theme-btn style-three"
-                  >Choose Package <i class="fas fa-angle-double-right"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-          <div class="pricing-plan-item wow fadeInUp delay-0-2s">
-            <div class="price-features">
-              <h4>Premium Plan</h4>
-              <ul class="list-style-two">
-                <li>Landing page design (10 pages)</li>
-                <li>Domin hosting provider</li>
-                <li>HTML+CSS design (12 pages)</li>
-                <li>Online support (24/7)</li>
-                <li>Social Media Marketing</li>
-                <li>WordPres development</li>
-              </ul>
-              <span class="badge">popular</span>
-            </div>
-            <div class="price-and-btn">
-              <div class="content">
-                <span class="price">683</span>
-                <span class="save">Save<span> 66%</span></span>
-                <a href="pricing.html" class="theme-btn style-three"
-                  >Choose Package <i class="fas fa-angle-double-right"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="wave-shapes">
-          <img
-            class="shape one"
-            src="{{ url_for('static', filename='assets/images/shapes/pricing-light1.png') }}"
-            alt="Wave Shape"
-          />
-          <img
-            class="shape two"
-            src="{{ url_for('static', filename='assets/images/shapes/pricing-light2.png') }}"
-            alt="Wave Shape"
-          />
-        </div>
-      </section>
-      <!-- Pricing Area end -->
-
-      <!-- Call to Action Area start -->
-      <section class="call-to-action-area bgc-black pt-80 pb-50">
-        <div class="container">
-          <div class="row justify-content-between align-items-center">
-            <div class="col-xl-7 col-lg-9">
-              <div
-                class="section-title text-white mb-25 wow fadeInUp delay-0-2s"
-              >
-                <h2>Let’s Design Your New Website</h2>
-                <p>
-                  Do you want to have a website that stands out and impresses
-                  your clients? Then we are ready to help! Click the button
-                  below to contact us and discuss your ideas.
-                </p>
-              </div>
-            </div>
-            <div class="col-lg-3 text-lg-end">
-              <a
-                href="contact.html"
-                class="theme-btn style-two mb-30 wow fadeInUp delay-0-4s"
-                >Let’s Get Started <i class="fas fa-angle-double-right"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Call to Action Area End -->
-
-      <!-- footer area start -->
-      <footer class="main-footer pt-80">
-        <div class="container">
-          <div class="row justify-content-xl-between justify-content-center">
-            <div class="col-xl-4 col-lg-5 col-md-6">
-              <div
-                class="footer-widget widget_about me-md-5 wow fadeInUp delay-0-2s"
-              >
-                <div class="footer-logo mb-25">
-                  <a href="{{ url_for('index') }}"
-                    ><img
-                      src="{{ url_for('static', filename='assets/images/logos/logo-three.png') }}"
-                      alt="Logo"
-                  /></a>
-                </div>
-                <p>
-                  Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                  accusantium doloremq dantium, totam rem aperiam eaqu quae ab
-                  illo inventore veritatis et quasi architecto beatae
-                </p>
-                <div class="social-style-two pt-5">
-                  <a href="#"><i class="fab fa-facebook-f"></i></a>
-                  <a href="#"><i class="fab fa-twitter"></i></a>
-                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#"><i class="fab fa-behance"></i></a>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-              <div
-                class="footer-widget widget_nav_menu wow fadeInUp delay-0-4s"
-              >
-                <h4 class="footer-title">Quick Links</h4>
-                <ul class="list-style-two">
-                  <li><a href="service-details.html">Wed Design (UI/UX)</a></li>
-                  <li><a href="about.html">About company</a></li>
-                  <li><a href="service-details.html">Web development</a></li>
-                  <li><a href="team.html">Meet our teams</a></li>
-                  <li><a href="service-details.html">SEO Optimization</a></li>
-                  <li><a href="service-details.html">Case Stories</a></li>
-                  <li>
-                    <a href="service-details.html">Product Engineering</a>
-                  </li>
-                  <li><a href="blog.html">Latest News</a></li>
-                  <li><a href="service-details.html">Technical Support</a></li>
-                  <li><a href="contact.html">Contact</a></li>
-                  <li>
-                    <a href="service-details.html">Landing Pages Design</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-xl-4 col-lg-6 col-md-8">
-              <div
-                class="footer-widget widget_newsletter wow fadeInUp delay-0-6s"
-              >
-                <h4 class="footer-title">Newsletter</h4>
-                <p>Sing up to get more every updates</p>
-                <form action="#">
-                  <input type="email" placeholder="Enter email" required />
-                  <button class="theme-btn">
-                    Subscribe Now <i class="fas fa-angle-double-right"></i>
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom mt-30 pt-25 pb-10">
-          <div class="container">
-            <div class="row align-items-center">
-              <div class="col-lg-6">
-                <div class="copyright-text text-center text-lg-start">
-                  <p>© Copyright 2022 Oxence. All right reserved</p>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="footer-bottom-menu mb-10 text-center text-lg-end">
-                  <ul>
-                    <li><a href="#">Setting & Privacy</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Faqs</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <!-- Scroll Top Button -->
-            <button class="scroll-top scroll-to-target" data-target="html">
-              <span class="fas fa-angle-double-up"></span>
-            </button>
-          </div>
-        </div>
-      </footer>
-      <!-- footer area end -->
+      </div>
     </div>
-    <!--End pagewrapper-->
+  </div>
+</section>
+<!-- Statistics Five Area end -->
 
-    <!-- Jquery -->
-    <script src="{{ url_for('static', filename='assets/js/jquery-3.6.0.min.js') }}"></script>
-    <!-- Bootstrap -->
-    <script src="{{ url_for('static', filename='assets/js/bootstrap.min.js') }}"></script>
-    <!-- Appear Js -->
-    <script src="{{ url_for('static', filename='assets/js/appear.min.js') }}"></script>
-    <!-- Slick -->
-    <script src="{{ url_for('static', filename='assets/js/slick.min.js') }}"></script>
-    <!-- Magnific Popup -->
-    <script src="{{ url_for('static', filename='assets/js/jquery.magnific-popup.min.js') }}"></script>
-    <!-- Nice Select -->
-    <script src="{{ url_for('static', filename='assets/js/jquery.nice-select.min.js') }}"></script>
-    <!-- Image Loader -->
-    <script src="{{ url_for('static', filename='assets/js/imagesloaded.pkgd.min.js') }}"></script>
-    <!-- Type Writer -->
-    <script src="{{ url_for('static', filename='assets/js/jquery.animatedheadline.min.js') }}"></script>
-    <!-- Circle Progress -->
-    <script src="{{ url_for('static', filename='assets/js/circle-progress.min.js') }}"></script>
-    <!-- Isotope -->
-    <script src="{{ url_for('static', filename='assets/js/isotope.pkgd.min.js') }}"></script>
-    <!--  WOW Animation -->
-    <script src="{{ url_for('static', filename='assets/js/wow.min.js') }}"></script>
-    <!-- Custom script -->
-    <script src="{{ url_for('static', filename='assets/js/script.js') }}"></script>
-  </body>
-</html>
+<!-- Working Process Area start -->
+<section class="work-process-area pb-95 rel z-1">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="section-title text-center mb-55 wow fadeInUp delay-0-2s">
+          <span class="sub-title style-two mb-15">Proceso de trabajo</span>
+          <h2>¿Cómo trabajamos?</h2>
+        </div>
+      </div>
+    </div>
+    <div class="work-process-wrap rel z-1">
+      <div class="row justify-content-between">
+        <div class="col-xl-3 col-lg-5 col-sm-6">
+          <div class="work-process-item mt-30 wow fadeInUp delay-0-2s">
+            <div class="icon">
+              <span class="number">01</span>
+              <i class="flaticon-optimization"></i>
+            </div>
+            <h4>Recopilación de información</h4>
+            <p>Obtener datos relevantes sobre las necesidades del cliente y los requisitos del proyecto.</p>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-5 col-sm-6">
+          <div class="work-process-item wow fadeInUp delay-0-4s">
+            <div class="icon">
+              <span class="number">02</span>
+              <i class="flaticon-link"></i>
+            </div>
+            <h4>Planificación de ideas</h4>
+            <p>Desarrollar un plan detallado para el proyecto, incluyendo objetivos, alcance y recursos necesarios.</p>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-5 col-sm-6">
+          <div class="work-process-item mt-55 wow fadeInUp delay-0-6s">
+            <div class="icon">
+              <span class="number">03</span>
+              <i class="flaticon-data"></i>
+            </div>
+            <h4>Análisis de diseño</h4>
+            <p>Crear prototipos y mockups para visualizar el software y recopilar feedback del cliente.            </p>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-5 col-sm-6">
+          <div class="work-process-item mt-45 wow fadeInUp delay-0-8s">
+            <div class="icon">
+              <span class="number">04</span>
+              <i class="flaticon-star"></i>
+            </div>
+            <h4>Pruebas y almuerzo</h4>
+            <p>Realizar pruebas exhaustivas y corregir errores antes de lanzar el software al mercado.</p>
+          </div>
+        </div>
+      </div>
+      <div class="work-process-shape">
+        <img src="{{ url_for('static', filename='assets/images/shapes/worp-process-step.png') }}" alt="Shape" />
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Working Process Area end -->
+
+<!-- Services Area start -->
+<section class="services-area-four bgc-black pt-130 pb-100">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 col-lg-10">
+        <div class="section-title text-center text-white mb-60 wow fadeInUp delay-0-2s">
+          <span class="sub-title style-two mb-20">Servicios que brindamos</span>
+          <h2>Servicios web populares
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-4 col-md-6">
+        <div class="service-item-four wow fadeInUp delay-0-2s">
+          <div class="image">
+            <img src="{{ url_for('static', filename='assets/images/services/service-four1.png') }}" alt="Service" />
+          </div>
+          <h5>Creación de sitios web desde Figma, XD o Photoshop</h5>
+          <a href="service-details.html" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6">
+        <div class="service-item-four wow fadeInUp delay-0-4s">
+          <div class="image">
+            <img src="{{ url_for('static', filename='assets/images/services/service-four2.png') }}" alt="Service" />
+          </div>
+          <h5>Desarrollo de aplicaciones móviles y diseño de sitios web.</h5>
+          <a href="service-details.html" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6">
+        <div class="service-item-four wow fadeInUp delay-0-6s">
+          <div class="image">
+            <img src="{{ url_for('static', filename='assets/images/services/service-four3.png') }}" alt="Service" />
+          </div>
+          <h5>Desarrollo de comercio electrónico.</h5>
+          <a href="service-details.html" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6">
+        <div class="service-item-four wow fadeInUp delay-0-2s">
+          <div class="image">
+            <img src="{{ url_for('static', filename='assets/images/services/service-four4.png') }}" alt="Service" />
+          </div>
+          <h5>Diseño de sitios web responsivos (UI/UX)</h5>
+          <a href="service-details.html" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6">
+        <div class="service-item-four wow fadeInUp delay-0-4s">
+          <div class="image">
+            <img src="{{ url_for('static', filename='assets/images/services/service-four5.png') }}" alt="Service" />
+          </div>
+          <h5>SEO (optimización de motores de búsqueda)</h5>
+          <a href="service-details.html" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
+        </div>
+      </div>
+      <div class="col-xl-4 col-md-6">
+        <div class="service-item-four wow fadeInUp delay-0-6s">
+          <div class="image">
+            <img src="{{ url_for('static', filename='assets/images/services/service-four6.png') }}" alt="Service" />
+          </div>
+          <h5>Diseño y desarrollo de productos digitales</h5>
+          <a href="service-details.html" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Services Area end -->
+
+<!-- Pricing Area start -->
+<section class="pricing-area py-130 rel z-1">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 col-lg-10">
+        <div class="section-title text-center mb-55 wow fadeInUp delay-0-2s">
+          <span class="sub-title style-two mb-20">Plan de precios</span>
+          <h2>Paquete con el mejor precio</h2>
+        </div>
+      </div>
+    </div>
+    <div class="pricing-plan-item wow fadeInUp delay-0-2s">
+      <div class="price-features">
+        <h4>Plan Básico</h4>
+        <ul class="list-style-two">
+          <li>Diseño de página de destino (10 páginas)</li>
+          <li>Proveedor de hosting dominio</li>
+          <li>Diseño HTML+CSS (12 páginas)</li>
+          <li>Soporte en línea (24 horas al día, 7 días a la semana)</li>
+          <li>Marketing de medios sociales</li>
+          <li>Desarrollo WordPres</li>
+        </ul>
+        <span class="badge">POPULAR</span>
+      </div>
+      <div class="price-and-btn">
+        <div class="content">
+          <span class="price">248 MXN</span>
+          <span class="save">Ahorra <span> 25%</span></span>
+          <a href="pricing.html" class="theme-btn style-three">Elija el paquete <i class="fas fa-angle-double-right"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="pricing-plan-item wow fadeInUp delay-0-2s">
+      <div class="price-features">
+        <h4>Plan Básico</h4>
+        <ul class="list-style-two">
+          <li>Diseño de página de destino (10 páginas)</li>
+          <li>Proveedor de hosting dominio</li>
+          <li>Diseño HTML+CSS (12 páginas)</li>
+          <li>Soporte en línea (24 horas al día, 7 días a la semana)</li>
+          <li>Marketing de medios sociales</li>
+          <li>Desarrollo WordPres</li>
+        </ul>
+        <span class="badge">POPULAR</span>
+      </div>
+      <div class="price-and-btn">
+        <div class="content">
+          <span class="price">452 MXN</span>
+          <span class="save">Ahorra<span> 43%</span></span>
+          <a href="pricing.html" class="theme-btn style-three">Elija el paquete <i class="fas fa-angle-double-right"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="pricing-plan-item wow fadeInUp delay-0-2s">
+      <div class="price-features">
+        <h4>Plan Básico</h4>
+        <ul class="list-style-two">
+          <li>Diseño de página de destino (10 páginas)</li>
+          <li>Proveedor de hosting dominio</li>
+          <li>Diseño HTML+CSS (12 páginas)</li>
+          <li>Soporte en línea (24 horas al día, 7 días a la semana)</li>
+          <li>Marketing de medios sociales</li>
+          <li>Desarrollo WordPres</li>
+        </ul>
+        <span class="badge">POPULAR</span>
+      </div>
+      <div class="price-and-btn">
+        <div class="content">
+          <span class="price">683 MXN</span>
+          <span class="save">Ahorra<span> 66%</span></span>
+          <a href="pricing.html" class="theme-btn style-three">Elija el paquete <i class="fas fa-angle-double-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wave-shapes">
+    <img class="shape one" src="{{ url_for('static', filename='assets/images/shapes/pricing-light1.png') }}"
+      alt="Wave Shape" />
+    <img class="shape two" src="{{ url_for('static', filename='assets/images/shapes/pricing-light2.png') }}"
+      alt="Wave Shape" />
+  </div>
+</section>
+<!-- Pricing Area end -->
+
+{% block get_started %}
+{% include 'components/get_started.html' %}
+{% endblock get_started %}
+
+{% endblock content %}
