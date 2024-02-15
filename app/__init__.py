@@ -41,6 +41,7 @@ from .modules import (
     mod_projects,
     mod_pages,
     mod_dashboard,
+    mod_user_crud,
 )
 
 ### BP ###
@@ -49,3 +50,4 @@ app.register_blueprint(mod_services, url_prefix='/services')
 app.register_blueprint(mod_projects, url_prefix='/projects')
 app.register_blueprint(mod_pages, url_prefix='/pages')
 app.register_blueprint(mod_dashboard, url_prefix='/dashboard')
+app.register_blueprint(mod_user_crud, url_prefix='/user_crud')
