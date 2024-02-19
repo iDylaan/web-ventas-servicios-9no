@@ -2,27 +2,12 @@
 
 {% block content %}
 
-
-<!-- Page Banner Start -->
-<section class="page-banner-area pt-245 rpt-150 pb-170 rpb-100 rel z-1 bgc-lighter text-center">
-    <div class="container">
-        <div class="banner-inner rpt-10">
-            <h1 class="page-title wow fadeInUp delay-0-2s">Team D<span>etails</span></h1>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb justify-content-center wow fadeInUp delay-0-4s">
-                    <li class="breadcrumb-item"><a href="index.html">home</a></li>
-                    <li class="breadcrumb-item active">Team Details</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
-    <div class="banner-shapes">
-        <div class="circle wow zoomInLeft delay-0-2s" data-wow-duration="2s"></div>
-        <img class="shape-one" src="assets/images/shapes/hero-shape1.png" alt="Shape">
-        <img class="shape-two" src="assets/images/shapes/hero-shape2.png" alt="Shape">
-    </div>
-</section>
-<!-- Page Banner End -->
+{% block page_banner %}
+  {% set pre_page_title = 'Detalles del' %}
+  {% set page_title_underline = 'Equipo' %}
+  
+  {% include 'components/page-banner.html' %}
+{% endblock page_banner %}
 
 
 <!-- Team Profile Area start -->
@@ -31,7 +16,7 @@
         <div class="row large-gap justify-content-between">
             <div class="col-lg-5">
                 <div class="team-profile-image rmb-65 wow fadeInRight delay-0-2s">
-                    <img src="assets/images/team/team-profile.jpg" alt="Team Member">
+                    <img src="{{url_for('static', filename='assets/images/team/team-profile.jpg')}}" alt="Team Member">
                 </div>
             </div>
             <div class="col-lg-7">
@@ -54,71 +39,6 @@
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                    <h4 class="title pt-25">Best Skills</h4>
-                    <hr>
-                    <div class="circle-counter wow fadeInUp delay-0-2s">
-                        <div class="circle-progress-item">
-                            <div class="progress-content one">
-                                <h3>0</h3>
-                            </div>
-                            <h5>SEO Service</h5>
-                        </div>
-                        <div class="circle-progress-item">
-                            <div class="progress-content two">
-                                <h3>0</h3>
-                            </div>
-                            <h5>Development</h5>
-                        </div>
-                        <div class="circle-progress-item">
-                            <div class="progress-content three">
-                                <h3>0</h3>
-                            </div>
-                            <h5>SEO</h5>
-                        </div>
-                        <div class="circle-progress-item">
-                            <div class="progress-content four">
-                                <h3>0</h3>
-                            </div>
-                            <h5>Support</h5>
-                        </div>
-                    </div>
-                    <h4 class="title pt-50">Experience</h4>
-                    <hr>
-                    <div class="experience-wrap pt-20">
-                        <div class="experience-item wow fadeInUp delay-0-2s">
-                            <div class="image">
-                                <img src="assets/images/team/logo1.png" alt="Logo">
-                            </div>
-                            <div class="content">
-                                <h5>Senior Product Designer</h5>
-                                <span class="duration">Twitter (2000-2005)</span>
-                                <p>Sed ut persiciatis unde omnis natus error voluptatem accusanti oloremque laudantium
-                                    totam rem aperiam eaquenumquam tempora</p>
-                            </div>
-                        </div>
-                        <div class="experience-item wow fadeInUp delay-0-2s">
-                            <div class="image">
-                                <img src="assets/images/team/logo2.png" alt="Logo">
-                            </div>
-                            <div class="content">
-                                <h5>Junior Product Designer</h5>
-                                <span class="duration">Netflix (1995-1999)</span>
-                                <p>Sed ut persiciatis unde omnis natus error voluptatem accusanti oloremque laudantium
-                                    totam rem aperiam eaquenumquam tempora</p>
-                            </div>
-                        </div>
-                        <div class="experience-item wow fadeInUp delay-0-2s">
-                            <div class="image">
-                                <img src="assets/images/team/logo3.png" alt="Logo">
-                            </div>
-                            <div class="content">
-                                <h5>Junior Product Designer</h5>
-                                <span class="duration">Spotify (1990-1994)</span>
-                                <p>Sed ut persiciatis unde omnis natus error voluptatem accusanti oloremque laudantium
-                                    totam rem aperiam eaquenumquam tempora</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
