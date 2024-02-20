@@ -25,3 +25,7 @@ def team_template():
 @mod.route('/faqs', methods=['GET'])
 def faqs_template():
     return render_template('faqs.html')
+
+@mod.route('/contacto', methods=['GET'])
+def contacto_template():
+    return render_template('contact.html')

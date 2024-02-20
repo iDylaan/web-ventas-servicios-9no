@@ -30,8 +30,6 @@ def signup_template():
     else:
         return render_template('signup.html')
 
-
-
 # ENDPOINTS
 
 """
