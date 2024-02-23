@@ -12,7 +12,13 @@ def product_details_template():
     return render_template('product-details.html')
 
 
-@mod.route('checkout', methods=['GET'])
+@mod.route('/checkout', methods=['GET'])
 def checkout_template():
     return render_template('checkout.html')
+
+
+
+@mod.route('/carrito', methods=['GET'])
+def cart_template():
+    return render_template('cart.html')
 

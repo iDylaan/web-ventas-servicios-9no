@@ -1,5 +1,7 @@
 {% extends 'layout/base.html' %}
 
+{% block title %} Tech Consulting | Checkout {% endblock %}
+
 {% block content %}
 
 <!-- Checkout Form Area Start -->
@@ -7,200 +9,16 @@
     <div class="container">
         <div class="checkout-faqs" id="checkout-faqs">
             <div class="alert bgc-lighter wow fadeInUp delay-0-2s">
-                <h6>Returning customer? <a href="#" class="collapsed card-header" data-bs-toggle="collapse"
-                        data-bs-target="#collapse0" aria-expanded="false" aria-controls="collapse0">Click here to
-                        login</a></h6>
-                <div id="collapse0" class="collapse content">
-                    <form action="#">
-                        <p>Please login your accont.</p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="email" id="email-address" name="email-address" class="form-control"
-                                        value="" placeholder="Your Email Address" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="password" id="password" name="password" class="form-control" value=""
-                                        placeholder="Your Password" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-footer">
-                            <button type="submit" class="theme-btn style-two">login <i
-                                    class="fas fa-angle-double-right"></i></button>
-                            <input type="checkbox" name="loss-passowrd" id="loss-passowrd" required>
-                            <label for="loss-passowrd">Remember me</label>
-                        </div>
-                        <a href="#">Lost your password?</a>
-                    </form>
-                </div>
-            </div>
-            <div class="alert bgc-lighter wow fadeInUp delay-0-3s">
-                <h6>Have a coupon? <a href="#" class="collapsed card-header" data-bs-toggle="collapse"
-                        data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">Click here to enter
-                        your code</a></h6>
-                <div id="collapse3" class="collapse content">
-                    <form action="#">
-                        <p>If you have a coupon code, please apply it below.</p>
-                        <div class="form-group">
-                            <input type="text" id="coupon-code" name="coupon-code" class="form-control" value=""
-                                placeholder="Coupon Code" required>
-                        </div>
-                        <button type="submit" class="theme-btn style-two">apply coupon <i
-                                class="fas fa-angle-double-right"></i></button>
-                    </form>
-                </div>
-            </div>
-            <div class="alert bgc-lighter wow fadeInUp delay-0-4s">
-                <h6>Billing Address <a href="#" class="card-header" data-bs-toggle="collapse"
-                        data-bs-target="#collapse4" aria-expanded="true" aria-controls="collapse4"> Enter here</a></h6>
-                <div id="collapse4" class="collapse content show">
-                    <form id="checkout-form" class="checkout-form" name="checkout-form" action="#" method="post">
-                        <div class="row">
-                            <div class="col-lg-12 pt-15">
-                                <h5>Personal Information</h5>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" id="first-name" name="first-name" class="form-control" value=""
-                                        placeholder="First Name" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" id="last-name" name="last-name" class="form-control" value=""
-                                        placeholder="Last Name" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" id="number" name="number" class="form-control" value=""
-                                        placeholder="Phone Number" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="email" id="email" name="email" class="form-control" value=""
-                                        placeholder="Email Address" required="">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" id="company-name" name="company-name" class="form-control"
-                                        value="" placeholder="Company name (optional)">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" id="company-address" name="company-address" class="form-control"
-                                        value="" placeholder="Company Address (optional)">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <h5>Your Address</h5>
-                            </div>
-                            <div class="col-md-6 mb-30">
-                                <div class="form-group">
-                                    <select name="country" id="country">
-                                        <option value="value1">Select Country</option>
-                                        <option value="value2">Australia</option>
-                                        <option value="value3">Canada</option>
-                                        <option value="value4">China</option>
-                                        <option value="value5">Morocco</option>
-                                        <option value="value6">Saudi Arabia</option>
-                                        <option value="value7">United Kingdom (UK)</option>
-                                        <option value="value8">United States (US)</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" id="city" name="city" class="form-control" value=""
-                                        placeholder="City" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" id="state" name="state" class="form-control" value=""
-                                        placeholder="State" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" id="zip" name="zip" class="form-control" value=""
-                                        placeholder="Zip" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" id="street-name" name="street-name" class="form-control" value=""
-                                        placeholder="House, street name" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" id="apartment-name" name="apartment-name" class="form-control"
-                                        value="" placeholder="Apartment, suite, unit etc. (optional)">
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <h5>Order Notes (optional)</h5>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group mb-0">
-                                    <textarea name="order-note" id="order-note" class="form-control" rows="5"
-                                        placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="alert bgc-lighter wow fadeInUp delay-0-2s">
                 <h6>Select Your <a href="#" class="collapsed card-header" data-bs-toggle="collapse"
                         data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5"> Payment Method</a>
                 </h6>
-                <div id="collapse5" class="collapse content">
+                <div id="collapse5" class="collapse content show">
                     <div class="payment-cart-total pt-25">
                         <div class="row justify-content-between">
                             <div class="col-lg-6">
                                 <div class="payment-method rmb-30">
                                     <h5 class="mb-20">Payment Method</h5>
                                     <ul id="paymentMethod" class="mb-30">
-                                        <!-- Default unchecked -->
-                                        <li class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="methodone"
-                                                name="defaultExampleRadios" checked>
-                                            <label class="custom-control-label" for="methodone"
-                                                data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                                                aria-controls="collapseOne">Direct Bank Transfer <i
-                                                    class="fas fa-money-check"></i></label>
-
-                                            <div id="collapseOne" class="collapse show" data-bs-parent="#paymentMethod"
-                                                style="">
-                                                <p>Make your payment directly into our bank account. Please use your
-                                                    Order ID as the payment reference. Your order will not be shipped
-                                                    our account.</p>
-                                            </div>
-                                        </li>
-
-                                        <!-- Default unchecked -->
-                                        <li class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="methodtwo"
-                                                name="defaultExampleRadios">
-                                            <label class="custom-control-label collapsed" for="methodtwo"
-                                                data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                                aria-controls="collapseTwo">Cash On Delivery <i
-                                                    class="fas fa-truck"></i></label>
-
-                                            <div id="collapseTwo" class="collapse" data-bs-parent="#paymentMethod"
-                                                style="">
-                                                <p>Pay with cash upon delivery.</p>
-                                            </div>
-                                        </li>
-
                                         <!-- Default unchecked -->
                                         <li class="custom-control custom-radio">
                                             <input type="radio" class="custom-control-input" id="methodthree"
@@ -212,8 +30,7 @@
 
                                             <div id="collapsethree" class="collapse" data-bs-parent="#paymentMethod"
                                                 style="">
-                                                <p>Pay via PayPal; you can pay with your credit card if you don’t have a
-                                                    PayPal account.</p>
+                                                <p>Paga via Payapal.</p>
                                             </div>
 
                                         </li>
