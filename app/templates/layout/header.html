@@ -49,26 +49,22 @@
                                         <li>
                                             <a href="{{ url_for('pages.about_us') }}">Sobre nosotros</a>
                                         </li>
-                                        <li class="dropdown">
-                                            <a href="#">Equipo</a>
-                                            <ul>
-                                                <li><a href="team.html">Equipo de expertos</a></li>
-                                                <li>
-                                                    <a href="team-profile.html">Perfil del equipo</a>
-                                                </li>
-                                            </ul>
+                                        <li>
+                                            <a href="{{ url_for('pages.team_template') }}">Equipo</a>
                                         </li>
-                                        <li><a href="faqs.html">Preguntas frecuentes y ayuda</a></li>
+                                        <li><a href="{{ url_for('pages.faqs_template') }}">Preguntas frecuentes y ayuda</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#">Tienda</a>
                                     <ul>
-                                        <li><a href="shop.html">Productos</a></li>
+                                        <li><a href="{{ url_for('shop.shop_template') }}">Productos</a></li>
                                         <li><a href="cart.html">Carrito de compras</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="contact.html">Contacto</a></li>
+                                <li>
+                                    <a href="{{ url_for('pages.contacto_template') }}">Contacto</a>
+                                </li>
                             </ul>
                         </div>
                     </nav>

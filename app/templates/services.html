@@ -1,6 +1,6 @@
 {% extends 'layout/base.html' %}
 
-{% block title %} Tech Consulting | Sobre Nosotros {% endblock %}
+{% block title %} Tech Consulting | Servicios {% endblock %}
 
 {% block styles %}
 {{super()}}
@@ -12,7 +12,7 @@
   {% block page_banner %}
     {% set page_title_underline = 'Servicios' %}
 
-    {% include 'layout/page-banner.html' %}
+    {% include 'components/page-banner.html' %}
   {% endblock page_banner %}
 
 <!-- Statistics Five Area start -->
@@ -262,7 +262,7 @@
 <!-- Pricing Area end -->
 
 {% block get_started %}
-{% include 'layout/get_started.html' %}
+{% include 'components/get_started.html' %}
 {% endblock get_started %}
 
 {% endblock content %}

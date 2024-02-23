@@ -1,6 +1,6 @@
 {% extends 'layout/base.html' %}
 
-{% block title %} Tech Consulting | Inicio de sesión {% endblock %}
+{% block title %} Tech Consulting | Registro {% endblock %}
 
 {% block styles %}
 {{ super() }}
@@ -10,6 +10,9 @@
 {% block scripts %}
 {{super()}}
 <script src="{{ url_for('static', filename='modules/js/signup/script.js') }}" defer></script>
+<script>
+    const signinURL = '{{ url_for("auth.signin_template") }}';
+</script>
 {% endblock scripts %}
 
 {% block content %}
@@ -94,6 +97,9 @@
                                 <div class="form-group pt-5 mb-0" id="btnSingup">
                                     <button type="submit" class="theme-btn w-100">Registrarse <i
                                             class="fas fa-angle-double-right" ></i></button>
+                                    {% block loader %}
+                                        {% include 'components/bar-loader.html' %}
+                                    {% endblock loader %}
                                 </div>
                             </div>
 

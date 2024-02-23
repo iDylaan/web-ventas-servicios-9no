@@ -10,3 +10,22 @@ def about_us():
 @mod.route('/pricing', methods=['GET'])
 def pricing():
     return render_template('pricing.html')
+
+
+@mod.route('/team_profile', methods=['GET'])
+def team_profile_template():
+    return render_template('team-profile.html')
+
+
+@mod.route('/team', methods=['GET'])
+def team_template():
+    return render_template('team.html')
+
+
+@mod.route('/faqs', methods=['GET'])
+def faqs_template():
+    return render_template('faqs.html')
+
+@mod.route('/contacto', methods=['GET'])
+def contacto_template():
+    return render_template('contact.html')

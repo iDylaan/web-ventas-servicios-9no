@@ -12,7 +12,7 @@
     {% set pre_page_title = 'Sobre' %}
     {% set page_title_underline = 'Nosotros' %}
 
-    {% include 'layout/page-banner.html' %}
+    {% include 'components/page-banner.html' %}
   {% endblock page_banner %}
 
 
@@ -85,79 +85,45 @@
 <!-- What We Do Two Area end -->
 
 <!-- Statistics Four Area start -->
-<!-- <div class="statistics-area-four rel z-1">
+<div class="statistics-area-four rel z-1">
   <div class="container">
     <div class="statistics-four-counters bgs-cover bgc-lighter" style="
-              background-image: url(assets/images/background/counter-bg.png);
+              background-image: url({{ url_for('static', filename='assets/images/background/counter-bg.png') }});
             ">
       <div class="row medium-gap">
         <div class="col-xl-3 col-sm-6">
           <div class="counter-item mt-30 counter-text-wrap wow fadeInLeft delay-0-2s">
             <i class="flaticon-startup"></i>
             <span class="count-text" data-speed="3000" data-stop="2365">0</span>
-            <span class="counter-title">Projects complete</span>
+            <span class="counter-title">Proyectos</span>
           </div>
         </div>
         <div class="col-xl-3 col-sm-6">
           <div class="counter-item for-margin counter-text-wrap wow fadeInLeft delay-0-4s">
             <i class="flaticon-global"></i>
             <span class="count-text" data-speed="3000" data-stop="9632">0</span>
-            <span class="counter-title">Trusted Global Clients</span>
+            <span class="counter-title">Clientes de Confianza</span>
           </div>
         </div>
         <div class="col-xl-3 col-sm-6">
           <div class="counter-item mt-20 counter-text-wrap wow fadeInLeft delay-0-6s">
             <i class="flaticon-rating"></i>
             <span class="count-text" data-speed="3000" data-stop="8504">0</span>
-            <span class="counter-title">Expert Team Member</span>
+            <span class="counter-title">Miembros del equipo</span>
           </div>
         </div>
         <div class="col-xl-3 col-sm-6">
           <div class="counter-item for-margin counter-text-wrap wow fadeInLeft delay-0-8s">
             <i class="flaticon-trophy"></i>
             <span class="count-text" data-speed="3000" data-stop="6763">0</span>
-            <span class="counter-title">Projects complete</span>
+            <span class="counter-title">P. Completados</span>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div> -->
+</div>
 <!-- Statistics Four Area end -->
-
-<!-- Video Area start -->
-<!-- <section class="video-area bgc-black pt-250">
-  <div class="container">
-    <div class="row medium-gap align-items-end pt-80">
-      <div class="col-lg-6">
-        <div class="video-part rmb-65 wow fadeInRight delay-0-2s">
-          <img src="{{ url_for('static', filename='assets/images/background/video-bg.jpg') }}" alt="Video" />
-          <a href="https://www.youtube.com/watch?v=9Y7ma241N8k" class="mfp-iframe video-play" tabindex="-1"><i
-              class="fas fa-play"></i></a>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="video-content text-white pb-95 rpb-115 wow fadeInLeft delay-0-2s">
-          <div class="section-title mb-30">
-            <h2>
-              25 years of experience in this world, being the first and
-              foremost choice of business people.
-            </h2>
-          </div>
-          <ul class="list-style-three">
-            <li>An abundance of resources</li>
-            <li>Add advanced features</li>
-            <li>Support that Helps</li>
-            <li>Edit your mobile view</li>
-            <li>State of the art security</li>
-            <li>Optimize search engines</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-<!-- Video Area End -->
 
 <!-- Team Area start -->
 <section class="team-slider-area pt-210 pb-130 rel z-1">
@@ -233,75 +199,13 @@
           </div>
         </div>
       </div>
-      <!-- 
-        <div class="team-member wow fadeInUp delay-0-2s">
-        <div class="image">
-          <img src="{{ url_for('static', filename='assets/images/team/member1.jpg') }}" alt="Member" />
-        </div>
-        <div class="content">
-          <h5><a href="team-profile.html">Richard C. Harrison</a></h5>
-          <span class="designation">Senior Manager</span>
-          <div class="social-style-one">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="team-member wow fadeInUp delay-0-4s">
-        <div class="image">
-          <img src="{{ url_for('static', filename='assets/images/team/member2.jpg') }}" alt="Member" />
-        </div>
-        <div class="content">
-          <h5><a href="team-profile.html">Richard C. Harrison</a></h5>
-          <span class="designation">Web Developer</span>
-          <div class="social-style-one">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="team-member wow fadeInUp delay-0-6s">
-        <div class="image">
-          <img src="{{ url_for('static', filename='assets/images/team/member3.jpg') }}" alt="Member" />
-        </div>
-        <div class="content">
-          <h5><a href="team-profile.html">Michael D. Jackson</a></h5>
-          <span class="designation">Business Developer</span>
-          <div class="social-style-one">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="team-member wow fadeInUp delay-0-8s">
-        <div class="image">
-          <img src="a{{ url_for('static', filename='ssets/images/team/member4.jpg') }}" alt="Member" />
-        </div>
-        <div class="content">
-          <h5><a href="team-profile.html">Damian S. Madison</a></h5>
-          <span class="designation">Product Designer</span>
-          <div class="social-style-one">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-          </div>
-        </div>
-      </div> 
-    -->
     </div>
   </div>
 </section>
 <!-- Team Area end -->
 
 <!-- Feature Six Area start -->
-<!-- 
+
 <section class="freature-area-six rel z-2">
   <div class="container">
     <div class="feature-six-inner bgs-cover bgc-primary" style="
@@ -312,7 +216,7 @@
           <div class="feature-item-three wow fadeInRight delay-0-3s">
             <i class="flaticon-technical-support"></i>
             <div class="content">
-              <h4>Customize your site</h4>
+              <h4>Personaliza tu Web</h4>
               <p>
                 Sit amet consectetur adipiscing sed eiusmod tempor
                 incididunt labore et dolore magnaes epsums
@@ -324,7 +228,7 @@
           <div class="feature-item-three color-two wow fadeInRight delay-0-5s">
             <i class="flaticon-app-development"></i>
             <div class="content">
-              <h4>Edit your mobile view</h4>
+              <h4>Edita la Vista Móvil</h4>
               <p>
                 Sit amet consectetur adipiscing sed eiusmod tempor
                 incididunt labore et dolore magnaes epsums
@@ -336,7 +240,7 @@
           <div class="feature-item-three color-three wow fadeInRight delay-0-4s">
             <i class="flaticon-settings"></i>
             <div class="content">
-              <h4>Add advanced features</h4>
+              <h4>Funcionalidades Avanzadas</h4>
               <p>
                 Sit amet consectetur adipiscing sed eiusmod tempor
                 incididunt labore et dolore magnaes epsums
@@ -348,7 +252,7 @@
           <div class="feature-item-three color-four wow fadeInRight delay-0-6s">
             <i class="flaticon-optimization"></i>
             <div class="content">
-              <h4>Optimize for search engines</h4>
+              <h4>Optimiza tu Web</h4>
               <p>
                 Sit amet consectetur adipiscing sed eiusmod tempor
                 incididunt labore et dolore magnaes epsums
@@ -360,17 +264,16 @@
     </div>
   </div>
 </section>
--->
 <!-- Feature Six Area end -->
 
 <!-- Feedback Area start -->
-<!-- <section class="feedback-area bgc-lighter pt-250 pb-130 rel z-1">
+<section class="feedback-area bgc-lighter pt-250 pb-130 rel z-1">
   <div class="container pt-130">
     <div class="row justify-content-center">
       <div class="col-xl-6 col-lg-8">
         <div class="section-title text-center mb-40 wow fadeInUp delay-0-2s">
-          <span class="sub-title style-two mb-20">Clents Feedback</span>
-          <h2>3,000+ Positive reviews by our satisfied clients</h2>
+          <span class="sub-title style-two mb-20">Retroalimentación</span>
+          <h2>Reseñas positivas por clientes satisfechos</h2>
         </div>
       </div>
     </div>
@@ -491,30 +394,11 @@
   <div class="feedback-shape two">
     <img src="{{ url_for('static', filename='assets/images/feedback/man2.jpg') }}" alt="Man Shape" />
   </div>
-</section> -->
+</section>
 <!-- Feedback Area end -->
 
-<!-- Call to Action Area start -->
-<!-- <section class="call-to-action-area bgc-black pt-80 pb-50">
-  <div class="container">
-    <div class="row justify-content-between align-items-center">
-      <div class="col-xl-7 col-lg-9">
-        <div class="section-title text-white mb-25 wow fadeInUp delay-0-2s">
-          <h2>Let’s Design Your New Website</h2>
-          <p>
-            Do you want to have a website that stands out and impresses
-            your clients? Then we are ready to help! Click the button
-            below to contact us and discuss your ideas.
-          </p>
-        </div>
-      </div>
-      <div class="col-lg-3 text-lg-end">
-        <a href="contact.html" class="theme-btn style-two mb-30 wow fadeInUp delay-0-4s">Let’s Get Started <i
-            class="fas fa-angle-double-right"></i></a>
-      </div>
-    </div>
-  </div>
-</section> -->
-<!-- Call to Action Area End -->
+{% block get_started %}
+{% include 'components/get_started.html' %}
+{% endblock get_started %}
 
 {% endblock content %}
