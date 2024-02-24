@@ -1,18 +1,18 @@
 {% extends 'layout/base-admin.html' %}
 
-{% block title %} Tech Consulting | Usuarios {% endblock %}
+{% block title %} Tech Consulting | Productos {% endblock %}
 
 {% block scripts %}
 
 {{super()}}
-<script src="{{url_for('static',filename='modules/js/userCrud/app.js')}}" defer></script>
+<script src="{{url_for('static',filename='modules/js/productosCrud/app.js')}}" defer></script>
 
 {% endblock scripts %}
 
 {% block styles %}
 
 {{super()}}
-<script src="{{url_for('static',filename='modules/styles/userCrud/style.css')}}" defer></script>
+<script src="{{url_for('static',filename='modules/styles/productosCrud/style.css')}}" defer></script>
 
 {% endblock styles %}
 
