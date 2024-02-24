@@ -12,33 +12,33 @@
 {% block styles %}
 
 {{super()}}
-<script src="{{url_for('static',filename='modules/styles/productosCrud/style.css')}}" defer></script>
+<script src="{{url_for('static',filename='modules/styles/productos
+Crud/style.css')}}" defer></script>
 
 {% endblock styles %}
 
 {% block content %}
 
-
-<section class="ww-do-two-area py-130 rel z-1">
+<section class="p-3">
 
     <div class="row">
         <div class="col-12">
-            <button class="btn btn-primary newUser" data-bs-toggle="modal" data-bs-target="#userForm">Nuevo Usuario <i class="bi bi-people"></i></button>
+            <button class="btn btn-primary newUser" data-bs-toggle="modal" data-bs-target="#userForm">Registrar Producto<i class="bi bi-box-seam-fill"></i></button>
         </div>
     </div>
 
     <div class="row">
         <div class="col-12">
             <table class="table table-striped table-hover mt-3 text-center table-bordered">
+
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Picture</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th>Start Date</th>
-                        <th>Action</th>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                        <th>Accion</th>
                     </tr>
                 </thead>
 
@@ -50,101 +50,92 @@
 
 </section>
 
+ <!--Modal Form-->
+ <div class="modal fade" id="userForm">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
 
-    <!--Modal Form-->
-    <div class="modal fade" id="userForm">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Fill the Form</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-                <div class="modal-header">
-                    <h4 class="modal-title">Fill the Form</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+            <div class="modal-body">
 
-                <div class="modal-body">
+                <form action="#" id="myForm">
 
-                    <form action="#" id="myForm">
+                    <div class="card imgholder">
+                        <label for="imgInput" class="upload">
+                            <input type="file" name="" id="imgInput">
+                            <i class="bi bi-plus-circle-dotted"></i>
+                        </label>
+                        <img src="./image/Profile Icon.webp" alt="" width="200" height="200" class="img">
+                    </div>
 
-                        <div class="card imgholder">
-                            <label for="imgInput" class="upload">
-                                <input type="file" name="" id="imgInput">
-                                <i class="bi bi-plus-circle-dotted"></i>
-                            </label>
-                            <img src="./image/Profile Icon.webp" alt="" width="200" height="200" class="img">
+                    <div class="inputField">
+                        <div>
+                            <label for="name">Nombre:</label>
+                            <input type="text" name="" id="name" required>
                         </div>
-
-                        <div class="inputField">
-                            <div>
-                                <label for="name">Name:</label>
-                                <input type="text" name="" id="name" required>
-                            </div>
-                            <div>
-                                <label for="email">E-mail:</label>
-                                <input type="email" name="" id="email" required>
-                            </div>
-                            <div>
-                                <label for="password">Password:</label>
-                                <input type="password" name="" id="password" required>
-                            </div>
-                            <div>
-                                <label for="sDate">Start Date:</label>
-                                <input type="date" name="" id="sDate" required>
-                            </div>
+                        <div>
+                            <label for="descripcion">Descripcion:</label>
+                            <input type="text" name="" id="descripcion" required>
                         </div>
+                        <div>
+                            <label for="precio">Precio: $</label>
+                            <input type="text" name="" id="precio" minlength="" maxlength="" required>
+                        </div>
+                    </div>
 
-                    </form>
-                </div>
+                </form>
+            </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" form="myForm" class="btn btn-primary submit">Submit</button>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cerrar</button>
+                <button type="submit" form="myForm" class="btn btn-primary submit">Actualizar</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!--Read Data Modal-->
-    <div class="modal fade" id="readData">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
+<!--Read Data Modal-->
+<div class="modal fade" id="readData">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
 
-                <div class="modal-header">
-                    <h4 class="modal-title">Profile</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+            <div class="modal-header">
+                <h4 class="modal-title">Producto</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-                <div class="modal-body">
+            <div class="modal-body">
 
-                    <form action="#" id="myForm">
+                <form action="#" id="myForm">
 
-                        <div class="card imgholder">
-                            <img src="{{url_for('static',filename='modules/imgs/userCrud/image/Profile Icon.webp')}}" alt="" width="200" height="200" class="showImg">
+                    <div class="card imgholder">
+                        <img src="./image/Profile Icon.webp" alt="" width="200" height="200" class="showImg">
+                    </div>
+
+                    <div class="inputField">
+                        <div>
+                            <label for="name">Nombre:</label>
+                            <input type="text" name="" id="showName" disabled>
                         </div>
-
-                        <div class="inputField">
-                            <div>
-                                <label for="name">Name:</label>
-                                <input type="text" name="" id="showName" disabled>
-                            </div>
-                            <div>
-                                <label for="email">E-mail:</label>
-                                <input type="email" name="" id="showEmail" disabled>
-                            </div>
-                            <div>
-                                <label for="password">Password:</label>
-                                <input type="password" name="" id="showPassword" disabled>
-                            </div>
-                            <div>
-                                <label for="sDate">Start Date:</label>
-                                <input type="date" name="" id="showsDate" disabled>
-                            </div>
+                        <div>
+                            <label for="descripcion">Descripcion:</label>
+                            <input type="text" name="" id="showDescripcion" disabled>
                         </div>
+                        <div>
+                            <label for="precio">Precio: $</label>
+                            <input type="text" name="" id="showPrecio" minlength="" maxlength="" disabled>
+                        </div>
+                    </div>
 
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 
 {% endblock content %}
