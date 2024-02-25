@@ -41,7 +41,7 @@ from .modules import (
     mod_projects,
     mod_pages,
     mod_dashboard,
-    productos_crud,
+    mod_user_crud,
     mod_productos_crud,
     mod_shop,
 )
@@ -52,6 +52,6 @@ app.register_blueprint(mod_services, url_prefix='/services')
 app.register_blueprint(mod_projects, url_prefix='/projects')
 app.register_blueprint(mod_pages, url_prefix='/pages')
 app.register_blueprint(mod_dashboard, url_prefix='/dashboard')
-app.register_blueprint(productos_crud, url_prefix='/user_crud')
+app.register_blueprint(mod_user_crud, url_prefix='/user_crud')
 app.register_blueprint(mod_productos_crud, url_prefix='/productos_crud')
 app.register_blueprint(mod_shop, url_prefix='/tienda')
