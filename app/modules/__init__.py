@@ -4,5 +4,5 @@ from .projects.routes import mod as mod_projects
 from .pages.routes import mod as mod_pages   
 from .dashboard.routes import mod as mod_dashboard
 from .user_crud.routes import mod as mod_user_crud
-from .producto_crud.routes import mod as mod_producto_crud
+from .productos_crud.routes import mod as mod_productos_crud
 from .shop.routes import mod as mod_shop
