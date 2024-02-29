@@ -1,0 +1,143 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Tech Consulting | Contacto {% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{ url_for('static', filename='modules/styles/index.css') }}">
+{% endblock styles %}
+
+{% block content %}
+<div class="page-wrapper">
+    <!-- Page Banner Start -->
+    <section class="page-banner-area pt-245 rpt-150 pb-170 rpb-100 rel z-1 bgc-lighter text-center">
+        <div class="container">
+            <div class="banner-inner rpt-10">
+                <h1 class="page-title wow fadeInUp delay-0-2s">Contacto</span></h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center wow fadeInUp delay-0-4s">
+                        <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
+                        <li class="breadcrumb-item active">Contacto</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="banner-shapes">
+            <div class="circle wow zoomInLeft delay-0-2s" data-wow-duration="2s"></div>
+            <img class="shape-one" src="{{ url_for('static', filename='assets/images/shapes/hero-shape1.png') }}"
+                alt="Shape" />
+            <img class="shape-two" src="{{ url_for('static', filename='assets/images/shapes/hero-shape2.png') }}"
+                alt="Shape" />
+        </div>
+    </section>
+    <!-- Page Banner End -->
+
+
+    <!-- Contact Us Page Area start -->
+    <section class="contact-us-page-area py-130">
+        <div class="container">
+            <div class="row align-items-end justify-content-between">
+                <div class="col-lg-7">
+                    <div class="contact-content rmb-65 wow fadeInRight delay-0-2s">
+                        <div class="section-title mb-25">
+                            <span class="sub-title style-two mb-15">Contáctenos</span>
+                            <h2>¡Comencemos un nuevo proyecto o trabajemos juntos! Contacta con nosotros</h2>
+                        </div>
+                        <p>Puedes contactarte con nuestro equipo de trabajo mediante correo electrónico o, si te
+                            apetece, puedes mandarnos un mensaje vía WhatsApp. 
+                        </p>
+                        <form id="contactForm" class="contactForm z-1 rel" action="assets/php/form-process.php"
+                            name="contactForm" method="post">
+                            <div class="row pt-15">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Nombre Completo</label>
+                                        <input type="text" id="name" name="name" class="form-control" value=""
+                                            placeholder="Michael C. Coleman" required
+                                            data-error="Por favor, escriba su nombre">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Dirección de correo electrónico</label>
+                                        <input type="email" id="email" name="email" class="form-control" value=""
+                                            placeholder="support@gmail.com" required
+                                            data-error="Por favor introduzca su correo electrónico">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="phone">Número de teléfono</label>
+                                        <input type="text" id="phone" name="phone" class="form-control" value=""
+                                            placeholder="+52 (123) 456 88">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-30">
+                                    <div class="form-group">
+                                        <label for="select-subject">Seleccionar requisitos</label>
+                                        <select name="select-subject" id="select-subject">
+                                            <option value="default" selected="">Diseño sitio web</option>
+                                            <option value="Design">Proyecto</option>
+                                            <option value="Development">Desarrollo</option>
+                                            <option value="Otro">Otro</option>
+                                        </select>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="message">Escríbenos lo que tienes en mente.</label>
+                                        <textarea name="message" id="message" class="form-control" rows="4"
+                                            placeholder="Escríbenos lo que tienes en mente." required
+                                            data-error="Por favor ingrese su mensaje"></textarea>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group pt-5 mb-0">
+                                        <button type="submit" class="theme-btn w-100">Enviar mensaje <i
+                                                class="fas fa-angle-double-right"></i></button>
+                                        <div id="msgSubmit" class="hidden"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-5">
+                    <div class="contact-info wow fadeInLeft delay-0-2s">
+                        <div class="contact-info-item style-two">
+                            <div class="icon">
+                                <i class="far fa-envelope-open-text"></i>
+                            </div>
+                            <div class="content">
+                                <span class="title">dirección de correo electrónico</span>
+                                <span class="text">
+                                    <a href="mailto:support@gmail.com">supportweb@gmail.com</a><br>
+                                    <a href="mailto:websitebuilding.net">websitebuilding.net</a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="contact-info-item style-two">
+                            <div class="icon">
+                                <i class="far fa-phone"></i>
+                            </div>
+                            <div class="content">
+                                <span class="title">Número de teléfono</span>
+                                <span class="text">
+                                    Call <a href="calto:3347323463"> 33 47323463</a><br>
+                                    Whatsapp : 3347323463
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Us Page Area end -->
+</div>
+
+{% endblock %}
