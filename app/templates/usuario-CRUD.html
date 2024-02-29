@@ -2,19 +2,18 @@
 
 {% block title %}  | Usuarios {% endblock %}
 
+<script> const userIconSrc = "{{url_for('static',filename='modules/imgs/userCrud/image/ProfileIcon.webp')}}" </script>
+
 {% block scripts %}
 
 {{super()}}
 <script src="{{url_for('static',filename='modules/js/userCrud/app.js')}}" defer></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
-
 {% endblock scripts %}
 
 {% block styles %}
 
 {{super()}}
-<script src="{{url_for('static',filename='modules/styles/userCrud/style.css')}}" defer></script>
-
+<link rel="stylesheet" href="{{url_for('static',filename='modules/styles/userCrud/style.css')}}">
 {% endblock styles %}
 
 {% block content %}
@@ -24,7 +23,7 @@
 
     <div class="row">
         <div class="col-12">
-            <button class="btn btn-primary newUser" data-bs-toggle="modal" data-bs-target="#userForm">Nuevo Usuario <i class="bi bi-people"></i></button>
+            <button type="button" id="openModalBtn" class="btn btn-primary" style="display: flex; align-items: center; gap: 5px;">Nuevo Usuario <i class="material-icons">group</i></button>
         </div>
     </div>
 
@@ -50,11 +49,82 @@
     </div>
 
 </section>
+  
+  <div id="customModal" class="custom-modal">
+    <div class="custom-modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title">Fill the Form</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+            <form action="#" id="myForm">
+                <div class="card imgholder">
+                    <label for="imgInput" class="upload">
+                        <input type="file" name="" id="imgInput">
+                        <i class="bi bi-plus-circle-dotted"></i>
+                    </label>
+                    <img src="{{url_for('static',filename='modules/imgs/userCrud/image/ProfileIcon.webp')}}" alt="" width="200" height="200" class="img">
+                </div>
+
+                <div class="inputField">
+                    <div>
+                        <label for="name">Name:</label>
+                        <input type="text" name="" id="name" required>
+                    </div>
+                    <div>
+                        <label for="email">E-mail:</label>
+                        <input type="email" name="" id="email" required>
+                    </div>
+                    <div>
+                        <label for="password">Password:</label>
+                        <input type="password" name="" id="password" required>
+                    </div>
+                    <div>
+                        <label for="sDate">Start Date:</label>
+                        <input type="date" name="" id="sDate" required>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" id="closeModalBtn" class="btn btn-secondary " data-bs-dismiss="modal">Close</button>
+            <button type="submit" form="myForm" class="btn btn-primary submit">Submit</button>
+        </div>
+    </div>
+</div>
+
+  
+  <script>
+    const customModal = document.querySelector('#customModal');
+  var openModalBtn = document.getElementById("openModalBtn");
+  var closeModalBtn = document.querySelector("#closeModalBtn");
+  var xBtnClose = customModal.querySelector(".btn-close");
+  
+  openModalBtn.addEventListener("click", function() {
+    customModal.style.display = "block";
+  });
+  
+  closeModalBtn.addEventListener("click", function() {
+    customModal.style.display = "none";
+  });
+  
+  xBtnClose.addEventListener("click", function() {
+    customModal.style.display = "none";
+  });
+
+  window.addEventListener("click", function(event) {
+    if (event.target == customModal) {
+      customModal.style.display = "none";
+    }
+  });
+  </script>
 
 
     <!--Modal Form-->
     <div class="modal fade" id="userForm">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered modal-lg new-user-container">
             <div class="modal-content">
 
                 <div class="modal-header">
@@ -71,7 +141,8 @@
                                 <input type="file" name="" id="imgInput">
                                 <i class="bi bi-plus-circle-dotted"></i>
                             </label>
-                            <img src="./image/Profile Icon.webp" alt="" width="200" height="200" class="img">
+                            
+                            <img src="{{url_for('static',filename='modules/imgs/userCrud/image/ProfileIcon.webp')}}" alt="" width="200" height="200" class="img">
                         </div>
 
                         <div class="inputField">
@@ -119,7 +190,7 @@
                     <form action="#" id="myForm">
 
                         <div class="card imgholder">
-                            <img src="{{url_for('static',filename='modules/imgs/userCrud/image/Profile Icon.webp')}}" alt="" width="200" height="200" class="showImg">
+                            <img src="{{url_for('static',filename='modules/imgs/userCrud/image/ProfileIcon.webp')}}" alt="" width="200" height="200" class="showImg">
                         </div>
 
                         <div class="inputField">

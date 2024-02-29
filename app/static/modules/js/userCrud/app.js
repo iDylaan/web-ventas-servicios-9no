@@ -1,4 +1,3 @@
-console.log("Hola mundo desde userCrudk");
 var form = document.getElementById("myForm"),
     imgInput = document.querySelector(".img"),
     file = document.getElementById("imgInput"),
@@ -22,7 +21,7 @@ newUserBtn.addEventListener('click', ()=> {
     submitBtn.innerText = 'Submit',
     modalTitle.innerText = "Fill the Form"
     isEdit = false
-    imgInput.src = "./image/Profile Icon.webp"
+    imgInput.src = userIconSrc
     form.reset()
 })
 
@@ -108,7 +107,7 @@ form.addEventListener('submit', (e)=> {
     e.preventDefault()
 
     const information = {
-        picture: imgInput.src == undefined ? "./image/Profile Icon.webp" : imgInput.src,
+        picture: imgInput.src == undefined ? userIconSrc : imgInput.src,
         employeeName: userName.value,
         employeeEmail: email.value,
         employeePassword: password.value,
@@ -132,7 +131,7 @@ form.addEventListener('submit', (e)=> {
 
     form.reset()
 
-    imgInput.src = "./image/Profile Icon.webp"  
+    imgInput.src = userIconSrc  
 
     // modal.style.display = "none"
     // document.querySelector(".modal-backdrop").remove()
