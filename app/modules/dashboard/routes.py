@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 
-mod = Blueprint('bashboard', __name__)
+mod = Blueprint('dashboard', __name__)
 
 @mod.route('/')
-def dashboard():
+def dashboard_template():
     return render_template('dashboard.html')

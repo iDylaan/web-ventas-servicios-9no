@@ -8511,6 +8511,12 @@ h6,
   display: none;
 }
 
+@media only screen and (max-width: 768px) {
+  .project-page-area {
+    width: 95% !important;
+  }
+}
+
 .project-creative-item {
   display: -webkit-box;
   display: -ms-flexbox;
