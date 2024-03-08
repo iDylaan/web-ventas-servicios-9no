@@ -123,6 +123,8 @@ def signin():
             session['user_email'] = user['email']
             session['user_admin'] = bool(user['admin'])
             session['user_logged'] = True
+            session['user_image_url'] = user['image_url']
+            session['without_images'] = not user['image_url'] and not user['image_bin']
             return handleResponse({'username': user['nombre_usuario']})
         else:
             return handleResponseError('El correo o la contraseña no son correctos, valida tu información', 400)

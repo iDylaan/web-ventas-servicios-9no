@@ -14,7 +14,8 @@ CREATE TABLE usuarios (
   "dt_creado" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   "admin" INT DEFAULT 0,
   "image_bin" BYTEA DEFAULT NULL,
-  "image_url" VARCHAR DEFAULT NULL
+  "image_name" VARCHAR DEFAULT NULL,
+  "image_url" VARCHAR DEFAULT NULL,
   "parte_equipo" INT DEFAULT 0 
 );
 
@@ -25,7 +26,8 @@ CREATE TABLE servicios (
   "srv_desc_corta" VARCHAR,
   "srv_info" VARCHAR,
   "srv_precio" NUMERIC NOT NULL,
-  "srv_imagen" BYTEA DEFAULT NULL
+  "srv_imagen" BYTEA DEFAULT NULL,
+  "srv_nombre_imagen" VARCHAR DEFAULT NULL
 );
 
 CREATE TABLE compras (
