@@ -52,7 +52,8 @@
                                         <li>
                                             <a href="{{ url_for('pages.team_template') }}">Equipo</a>
                                         </li>
-                                        <li><a href="{{ url_for('pages.faqs_template') }}">Preguntas frecuentes y ayuda</a></li>
+                                        <li><a href="{{ url_for('pages.faqs_template') }}">Preguntas frecuentes y
+                                                ayuda</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
@@ -65,6 +66,17 @@
                                 <li>
                                     <a href="{{ url_for('pages.contacto_template') }}">Contacto</a>
                                 </li>
+                                {% if not user_logged %}
+                                <li class="dropdown perfil-header-options">
+                                    <a href="#">Perfil</a>
+                                    <ul>
+                                        <li><a href="{{ url_for('auth.signin_template') }}">Iniciar Sesión</a></li>
+                                        <li><a href="{{ url_for('auth.signup_template') }}">Registrarse</a></li>
+                                    </ul>
+                                </li>
+                                {% else %}
+                                <li><a class="btn-toggle-profile-modal">Perfil</a></li>
+                                {% endif %}
                             </ul>
                         </div>
                     </nav>
@@ -81,11 +93,31 @@
                 </div>
                 {% else %}
                 <div class="menu-btns">
-                    <a href="{{ url_for('auth.logout') }}" class="login">Cerrar sesión</a>
+                    <!-- User -->
+                    <div>
+                        <a
+                            class="text-reset d-flex align-items-center hidden-arrow gap-2 login profile-header-btn btn-toggle-profile-modal">
+                            <span>{{ session.get('username', 'Usuario') }}</span>
+
+                            {% if user_without_images %}
+                            <i class="material-icons">person</i>
+                            {% else %}
+                            <div class="header-card__container">
+                                <img alt="Profile Picture"
+                                    src="{{ session['image_url'] if session.get('image_url', False) else url_for('user_crud.obtener_imagen_usuario', id_usuario=session['user_id']) }}">
+                            </div>
+                            {% endif %}
+                        </a>
+                    </div>
+                    <!-- End User -->
                 </div>
                 {% endif %}
             </div>
         </div>
     </div>
     <!--End Header Upper-->
+
+    <!-- Profile Modal -->
+    {% include 'components/profile-modal.html' %}
+    <!-- End Profile Modal -->
 </header>

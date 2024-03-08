@@ -1,0 +1,107 @@
+<section class="vh-100 w-100 profile-modal display-none" id="profile-modal"
+    style="background-color: rgba(63, 63, 63, 0.39);">
+    <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-4">
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-header d-flex justify-content-end">
+                        <a class="btn-close" id="x-btn-profile-model" aria-label="Close"></a>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="text-center text-black">
+                            {% if user_without_images %}
+                            <div class="profile-modal-img__container">
+                                <div class="card imgholder">
+                                    <label for="imgInput" class="upload">
+                                        <input type="file" name="" id="imgInput">
+                                        <i class="material-icons">edit</i>
+                                    </label>
+
+                                    <div class="picture-profile-modal-loade__container display-none"
+                                        id="picture-profile-modal-loader">
+                                        {% include 'components/circular-loader.html' %}
+                                    </div>
+
+                                    <i class="material-icons person-icon-profile-picture-modal" aria-label="Profile picture">person</i>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="profile-modal-img__container">
+                                <div class="card imgholder">
+                                    <label for="imgInput" class="upload">
+                                        <input type="file" name="" id="imgInput">
+                                        <i class="material-icons">edit</i>
+                                    </label>
+
+                                    <div class="picture-profile-modal-loade__container display-none"
+                                        id="picture-profile-modal-loader">
+                                        {% include 'components/circular-loader.html' %}
+                                    </div>
+
+                                    <img alt="Profile Picture" width="200" height="200" class="img"
+                                        id="profile-picture-img"
+                                        src="{{ session['image_url'] if session.get('image_url', False) else url_for('user_crud.obtener_imagen_usuario', id_usuario=session['user_id']) }}">
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    const uploadUrl = "{{ url_for('user_crud.guardar_imagen_usuario', id_usuario=session.get('user_id', 0)) }}";
+                                    const loader = document.querySelector('#picture-profile-modal-loader');
+
+                                    document.getElementById('imgInput').addEventListener('change', function (event) {
+                                        const file = event.target.files[0];
+                                        if (!file) {
+                                            console.error("No se seleccionó ningún archivo.");
+                                            return;
+                                        }
+
+                                        const formData = new FormData();
+                                        formData.append('imagen', file);
+
+                                        loader.style.display = 'grid';
+                                        fetch(uploadUrl, {
+                                            method: 'POST',
+                                            body: formData,
+                                        })
+                                            .then(response => {
+                                                if (!response.ok) {
+                                                    throw new Error('Network response was not ok');
+                                                }
+                                                return response.json();
+                                            })
+                                            .then(data => {
+                                                if ('{{ user_without_images }}' === 'True') {
+                                                    window.location.reload();
+                                                }
+                                                const imageUrl = `data:image/png;base64,${data.image_base64}`;
+                                                document.querySelector('#profile-picture-img').src = imageUrl;
+                                            })
+                                            .catch(error => console.error("Error al actualizar la imagen:", error))
+                                            .finally(() => {
+                                                loader.style.display = 'none';
+                                            });
+                                    });
+                                });
+                            </script>
+
+
+
+                            <h5 class="mb-3 mt-2">{{ session.get('username', 'Usuario') }}</h5>
+                            <div class="bg-light rounded-3 p-2 mb-2">
+                                <p class="small text-muted mb-1">Compras</p>
+                                <p class="mb-0">{{ session.get('user_compras', 0) }}</p>
+                            </div>
+                            <div class="d-flex flex-column flex-md-row pt-1">
+                                <a class="btn btn-outline-primary me-md-2 flex-grow-1 mb-2 mb-md-0">Pedidos</a>
+                                <a href="{{ url_for('auth.logout') }}" class="btn btn-primary flex-grow-1">Cerrar
+                                    Sesión</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

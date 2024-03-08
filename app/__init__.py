@@ -26,7 +26,8 @@ def admin():
 def global_vars():
     return dict(
         user_logged = session.get('user_logged', False),
-        user_admin = session.get('user_admin', False)
+        user_admin = session.get('user_admin', False),
+        user_without_images = session.get('without_images', True)
     )
 
 ### Carga de respuesta de un 404 (recurso no encontrado) ###
@@ -42,6 +43,7 @@ from .modules import (
     mod_pages,
     mod_dashboard,
     mod_user_crud,
+    mod_productos_crud,
     mod_shop,
 )
 
@@ -51,5 +53,6 @@ app.register_blueprint(mod_services, url_prefix='/services')
 app.register_blueprint(mod_projects, url_prefix='/projects')
 app.register_blueprint(mod_pages, url_prefix='/pages')
 app.register_blueprint(mod_dashboard, url_prefix='/dashboard')
-app.register_blueprint(mod_user_crud, url_prefix='/user_crud')
+app.register_blueprint(mod_user_crud, url_prefix='/usuarios_crud')
+app.register_blueprint(mod_productos_crud, url_prefix='/productos_crud')
 app.register_blueprint(mod_shop, url_prefix='/tienda')

@@ -2,9 +2,8 @@ var form = document.getElementById("myForm"),
     imgInput = document.querySelector(".img"),
     file = document.getElementById("imgInput"),
     userName = document.getElementById("name"),
-    email = document.getElementById("email"),
-    password = document.getElementById("password"),
-    sDate = document.getElementById("sDate"),
+    descripcion = document.getElementById("descripcion"),
+    precio = document.getElementById("precio"),
     submitBtn = document.querySelector(".submit"),
     userInfo = document.getElementById("data"),
     modal = document.getElementById("userForm"),
@@ -18,10 +17,10 @@ let isEdit = false, editId
 showInfo()
 
 newUserBtn.addEventListener('click', ()=> {
-    submitBtn.innerText = 'Submit',
-    modalTitle.innerText = "Fill the Form"
+    submitBtn.innerText = 'Registrar',
+    modalTitle.innerText = "Registro de Producto"
     isEdit = false
-    imgInput.src = userIconSrc
+    imgInput.src = "./image/Profile Icon.webp"
     form.reset()
 })
 
@@ -38,7 +37,7 @@ file.onchange = function(){
         fileReader.readAsDataURL(file.files[0])
     }
     else{
-        alert("This file is too large!")
+        alert("El archivo es demasiado grande!")
     }
 }
 
@@ -50,15 +49,14 @@ function showInfo(){
             <td>${index+1}</td>
             <td><img src="${element.picture}" alt="" width="50" height="50"></td>
             <td>${element.employeeName}</td>
-            <td>${element.employeeEmail}</td>
-            <td>${element.employeePassword}</td>
-            <td>${element.startDate}</td>
+            <td>${element.employeeDescripcion}</td>
+            <td> $ ${element.employeePrecio}</td>
 
 
             <td>
-                <button class="btn btn-success" onclick="readInfo('${element.picture}', '${element.employeeName}', '${element.employeeEmail}', '${element.employeePassword}', '${element.startDate}')" data-bs-toggle="modal" data-bs-target="#readData"><i class="bi bi-eye"></i></button>
+                <button class="btn btn-success" onclick="readInfo('${element.picture}', '${element.employeeName}', '${element.employeeDescripcion}', '${element.employeePrecio}')" data-bs-toggle="modal" data-bs-target="#readData"><i class="bi bi-eye"></i></button>
 
-                <button class="btn btn-primary" onclick="editInfo(${index}, '${element.picture}', '${element.employeeName}', '${element.employeeEmail}', '${element.employeePassword}', '${element.startDate}')" data-bs-toggle="modal" data-bs-target="#userForm"><i class="bi bi-pencil-square"></i></button>
+                <button class="btn btn-primary" onclick="editInfo(${index}, '${element.picture}', '${element.employeeName}', '${element.employeeDescripcion}', '${element.employeePrecio}')" data-bs-toggle="modal" data-bs-target="#userForm"><i class="bi bi-pencil-square"></i></button>
 
                 <button class="btn btn-danger" onclick="deleteInfo(${index})"><i class="bi bi-trash"></i></button>
                             
@@ -71,31 +69,29 @@ function showInfo(){
 showInfo()
 
 
-function readInfo(pic, name, email, password, sDate){
+function readInfo(pic, name, descripcion, precio){
     document.querySelector('.showImg').src = pic,
     document.querySelector('#showName').value = name,
-    document.querySelector("#showEmail").value = email,
-    document.querySelector("#showPassword").value = password,
-    document.querySelector("#showsDate").value = sDate
+    document.querySelector("#showDescripcion").value = descripcion,
+    document.querySelector("#showPrecio").value = precio
 }
 
 
-function editInfo(index, pic, name, Email, Password, Sdate){
+function editInfo(index, pic, name, Descripcion, Precio){
     isEdit = true
     editId = index
     imgInput.src = pic
     userName.value = name
-    email.value = Email,
-    password.value = Password,
-    sDate.value = Sdate
+    descripcion.value =Descripcion
+    precio.value = Precio
 
-    submitBtn.innerText = "Update"
-    modalTitle.innerText = "Update The Form"
+    submitBtn.innerText = "Actualizar"
+    modalTitle.innerText = "Actualizar Datos"
 }
 
 
 function deleteInfo(index){
-    if(confirm("Are you sure want to delete?")){
+    if(confirm("¿Desea eliminar este registro?")){
         getData.splice(index, 1)
         localStorage.setItem("userProfile", JSON.stringify(getData))
         showInfo()
@@ -107,11 +103,10 @@ form.addEventListener('submit', (e)=> {
     e.preventDefault()
 
     const information = {
-        picture: imgInput.src == undefined ? userIconSrc : imgInput.src,
+        picture: imgInput.src == undefined ? "./image/Profile Icon.webp" : imgInput.src,
         employeeName: userName.value,
-        employeeEmail: email.value,
-        employeePassword: password.value,
-        startDate: sDate.value
+        employeeDescripcion: descripcion.value,
+        employeePrecio: precio.value
     }
 
     if(!isEdit){
@@ -131,7 +126,7 @@ form.addEventListener('submit', (e)=> {
 
     form.reset()
 
-    imgInput.src = userIconSrc  
+    imgInput.src = "./image/Profile Icon.webp"  
 
     // modal.style.display = "none"
     // document.querySelector(".modal-backdrop").remove()

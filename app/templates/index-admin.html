@@ -20,7 +20,7 @@
 <section class="project-page-area pt-50 pb-100 rel z-1 w-75 page-cards">
   <div class="container">
     <div class="row justify-content-between align-items-end pb-30">
-      <div class="col-xl-6">
+      <div class="col-xl-6 w-100">
         <div class="section-title mb-30 wow fadeInUp delay-0-2s">
           <span class="sub-title style-two mb-15">¡Nos alegra tenerte de nuevo con nosotros!</span>
           <h2>¿Qué vas a hacer hoy?</h2>
@@ -36,13 +36,13 @@
           <div class="project-iamge">
             <img src="{{ url_for('static', filename='modules/imgs/admin/ServiciosMiniatura.png') }}" alt="Project" />
             <div class="project-over">
-              <a class="details-btn" href="{{ url_for('projects.index_details') }}"><i
+              <a class="details-btn" href="{{ url_for('productos_crud.productos_crud_template') }}"><i
                   class="far fa-arrow-right"></i></a>
             </div>
           </div>
           <div class="project-content">
             <h5>
-              <a href="{{ url_for('projects.index_details') }}">Servicios <br /></a>
+              <a href="{{ url_for('productos_crud.productos_crud_template') }}">Productos <br /></a>
             </h5>
           </div>
         </div>
@@ -55,13 +55,13 @@
           <div class="project-iamge">
             <img src="{{ url_for('static', filename='modules/imgs/admin/UsuariosMiniatura.png') }}" alt="Project" />
             <div class="project-over">
-              <a class="details-btn" href="{{ url_for('projects.index_details') }}"><i
+              <a class="details-btn" href="{{ url_for('user_crud.user_crud_template') }}"><i
                   class="far fa-arrow-right"></i></a>
             </div>
           </div>
           <div class="project-content">
             <h5>
-              <a href="{{ url_for('projects.index_details') }}">Usuarios <br /></a>
+              <a href="{{ url_for('user_crud.user_crud_template') }}">Usuarios <br /></a>
             </h5>
           </div>
         </div>
@@ -74,13 +74,13 @@
           <div class="project-iamge">
             <img src="{{ url_for('static', filename='modules/imgs/admin/DashboardMiniatura.jpg') }}" alt="Project" />
             <div class="project-over">
-              <a class="details-btn" href="{{ url_for('projects.index_details') }}"><i
+              <a class="details-btn" href="{{ url_for('dashboard.dashboard_template') }}"><i
                   class="far fa-arrow-right"></i></a>
             </div>
           </div>
           <div class="project-content">
             <h5>
-              <a href="{{ url_for('projects.index_details') }}">Dashboard <br /></a>
+              <a href="{{ url_for('dashboard.dashboard_template') }}">Dashboard <br /></a>
             </h5>
           </div>
         </div>
