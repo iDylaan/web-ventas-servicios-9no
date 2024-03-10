@@ -2,7 +2,7 @@
 
 {% block title %}  | Usuarios {% endblock %}
 
-<script> const userIconSrc = "{{url_for('static',filename='modules/imgs/userCrud/image/ProfileIcon.webp')}}" </script>
+<script> const userIconSrc = "{{url_for('static',filename='modules/imgs/userCrud/image/ProfileIcon.webp')}}"; </script>
 
 {% block scripts %}
 
@@ -23,7 +23,7 @@
 
     <div class="row">
         <div class="col-12">
-            <button type="button" id="openModalBtn" class="btn btn-primary" style="display: flex; align-items: center; gap: 5px;">Nuevo producto<i class="material-icons">group</i></button>
+            <button type="button" id="openModalBtn" class="btn btn-primary" style="display: flex; align-items: center; gap: 5px;">Nuevo producto<i class="material-icons">inventory_2</i></button>
         </div>
     </div>
 
@@ -60,25 +60,25 @@
             <form action="#" id="myForm">
                 <div class="card imgholder">
                     <label for="imgInput" class="upload">
-                        <input type="file" name="" id="imgInput">
+                        <input type="file" name="" id="imgInput" />
                         <i class="bi bi-plus-circle-dotted"></i>
                     </label>
-                    <img src="{{url_for('static',filename='modules/imgs/userCrud/image/ProfileIcon.webp')}}" alt="" width="200" height="200" class="img">
+                    <img src="{{url_for('static',filename='modules/imgs/userCrud/image/ProfileIcon.webp')}}" alt="" width="200" height="200" class="img" />
                 </div>
 
 
                 <div class="inputField">
                     <div>
                         <label for="name">Nombre:</label>
-                        <input type="text" name="" id="name" placeholder="Nombre de producto" required>
+                        <input type="text" name="" id="name" placeholder="Nombre de producto" required />
                     </div>
                     <div>
                         <label for="descripcion">Descripción:</label>
-                        <input type="text" name="" id="descripcion" placeholder="Agrega una descripcion del producto" required>
+                        <input type="text" name="" id="descripcion" placeholder="Agrega una descripcion del producto" required />
                     </div>
                     <div>
                         <label for="precio">Precio: $</label>
-                        <input type="text" name="" id="precio" placeholder="$000.00" required>
+                        <input type="text" name="" id="precio" placeholder="$000.00" required />
                     </div>
                 </div>
             </form>

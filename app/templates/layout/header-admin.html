@@ -6,7 +6,7 @@
             <div class="header-inner rel d-flex align-items-center">
                 <div class="logo-outer">
                     <div class="logo">
-                        <a href="{{ url_for('index') }}">
+                        <a href="{{ url_for('admin') }}">
                             <img src="{{ url_for('static', filename='assets/images/logos/logo-techconsulting.svg') }}"
                                 alt="Logo" title="Logo" />
                                 TECH CONSULTING
@@ -19,7 +19,7 @@
                     <nav class="main-menu navbar-expand-lg">
                         <div class="navbar-header">
                             <div class="mobile-logo my-15">
-                                <a href="{{ url_for('index') }}">
+                                <a href="{{ url_for('admin') }}">
                                     <img src="{{ url_for('static', filename='assets/images/logos/logo-techconsulting.svg') }}"
                                         alt="Logo" title="Logo" style="width: 50px" /> <br />
                                         <span style="font-size: 0.7rem">TECH CONSULTING</span>
@@ -38,12 +38,17 @@
                         <div class="navbar-collapse collapse clearfix">
                             <ul class="navigation clearfix">
                                 <li class="">
-                                    <a href="{{ url_for('index') }}">Inicio</a>
+                                    <a href="{{ url_for('admin') }}">Inicio</a>
                                 </li>
                                 <li class="">
-                                    <a href="{{ url_for('services.index') }}">Servicios</a>
+                                    <a href="{{ url_for('productos_crud.productos_crud_template') }}">Productos</a>
                                 </li>
-                                <li><a href="contact.html">Usuarios</a></li>
+                                <li class="">
+                                    <a href="{{ url_for('user_crud.user_crud_template') }}">Usuarios</a>
+                                </li>
+                                <li class="">
+                                    <a href="{{ url_for('dashboard.dashboard_template') }}">Dashboard</a>
+                                </li>
                             </ul>
                         </div>
                     </nav>
@@ -52,9 +57,7 @@
 
                 <!-- Menu Button -->
                 <div class="menu-btns">
-                    <a href="{{ url_for('auth.signin_template') }}" class="login">Iniciar sesión</a>
-
-                    <a href="{{ url_for('auth.signup_template') }}" class="theme-btn">Registrarse gratis<i
+                    <a href="{{ url_for('auth.signup_template') }}" class="theme-btn">Cerrar Sesión<i
                             class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
