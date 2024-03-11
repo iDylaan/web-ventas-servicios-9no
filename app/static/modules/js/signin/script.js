@@ -169,22 +169,41 @@ function scrollToElement(element) {
 
 // GOOGLE OAuth2.0 API
 const btnGoogle = document.querySelector('#google-auth-btn');
-console.log(google);
+const baseURL = window.location.origin;
+const state = Math.random().toString(36).substring(2, 15);
 const client = google.accounts.oauth2.initCodeClient({
     client_id: '794007100549-ii414p96k9vidkh015i9qs4ofk8pvv80.apps.googleusercontent.com',
     scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
     ux_mode: 'popup',
-    redirect_uri: "http://localhost:5000/auth/signin",
-    state: "YOUR_BINDING_VALUE",
+    redirect_uri: `${baseURL}/auth/signin`,
+    state: state,
     callback: onSignIn
 });
-console.log(client)
-btnGoogle.addEventListener('click', () => {
-    client.requestCode();
+btnGoogle.addEventListener('click', async () => {
+    await client.requestCode();
 })
 
-function onSignIn(googleUser) {
-    console.log(googleUser)
+async function onSignIn(googleUser) {
+    console.log(googleUser);
+    try {
+        const response = await fetch('/auth/sso_google', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(googleUser)
+        })
+
+        
+        if (!response.ok) {
+            throw new Error('No se inicio correctamente el inicio de sesion con Google')
+        }
+
+        const result = await response.json();
+        console.log(result);
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 function handleCredentialResponse(e) {

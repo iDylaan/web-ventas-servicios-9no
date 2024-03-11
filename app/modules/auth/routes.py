@@ -1,4 +1,4 @@
-import sys
+import sys, requests
 from flask import Blueprint, render_template, request, session, redirect, url_for
 from app.modules.conf.conf_postgres import qry, sql
 from app.utils.misc import (
@@ -10,6 +10,9 @@ from app.utils.misc import (
 )
 from .sql_strings import Sql_Strings as SQL_STRINGS
 from .schemas import signup_schema, signin_schema
+from google.oauth2 import id_token
+from google.auth.transport import requests as google_requests
+from app import app
 
 mod = Blueprint('auth', __name__)
 
@@ -42,7 +45,8 @@ Funcion para realizar el registro de los usuarios
 @mod.route('/signup', methods=['POST'])
 def registro_usuario():
     try:
-        data = request.get_json()
+        data = request.get_json()        
+
         # Recoleccion de datos
         username = data.get('username', None)
         email = data.get('email', None)
@@ -89,8 +93,9 @@ def registro_usuario():
 @mod.route('/signin', methods=['POST'])
 def signin():
     try:
-        data = request.get_json()
-        
+        data = request.get_json() 
+            
+        # * ================| Normal Auth |====================== * #
         # Recibir datos
         email = data.get('email', None)
         password = data.get('password', None)
@@ -130,6 +135,78 @@ def signin():
             return handleResponseError('El correo o la contraseña no son correctos, valida tu información', 400)
     except Exception as e:
         print("Ocurrio un error en @login_usuario/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
+
+
+
+@mod.route('/sso_google', methods=['POST'])
+def sso_with_google():
+    try:
+        data = request.get_json() 
+        # * ================| SSO with Google |====================== * #
+        # Si es un inicio de sesión con Google
+        google_code = data.get('code', None)
+        
+        if not google_code:
+            return handleResponseError('No code by Google', 400)
+        
+        # Endpoint de Google para intercambiar el código
+        google_url = "https://oauth2.googleapis.com/token"
+        
+        # Cuerpo de la solicitud
+        google_data = {
+            "client_id": app.config['GOOGLE_CLIENT_ID'],
+            "client_secret": app.config['GOOGLE_CLIENT_SECRET'],
+            "code": google_code,
+            "redirect_uri": url_for('index'),
+            "grant_type": "authorization_code"
+        }
+        
+        # Intercambia el código por el token de acceso
+        google_response = requests.post(google_url, data=google_data)
+        print(google_response)
+        token_info = google_response.json()
+        print(token_info)
+        access_token = token_info['access_token']
+        print(access_token)
+        
+        # Verifica el token de ID de Google
+        idinfo = id_token.verify_oauth2_token(access_token, google_requests.Request(), app.config['GOOGLE_CLIENT_ID'])
+
+        # ID del usuario de Google y correo electrónico
+        userid = idinfo['sub']
+        email = idinfo['email']
+        pic = idinfo['picture']
+        
+        print(userid)
+        print(email)
+        print(pic)
+        return handleResponse({
+            'userid': userid,
+            'email': email,
+            'pic': pic
+        })
+        
+        # Busqueda de la existencia del usuario en la base de datos
+        email = idinfo['email']
+        user = qry(SQL_STRINGS.GET_USER_BY_EMAIL, {'email': email}, True)
+
+        # Si el usuario no existe, registrar con la info de Google
+        if not user:
+            # Aquí deberías ajustar según tus necesidades de registro
+            # Por ejemplo, registrar al usuario con la información proporcionada por Google
+            pass
+        
+        # Establecer la sesión del usuario
+        session['user_id'] = user['id']
+        session['username'] = user['nombre_usuario']
+        session['user_logged'] = True
+
+        return handleResponse({'username': user['nombre_usuario']})
+    
+    except Exception as e:
+        print("Error en @sso_with_google/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
+        # Token inválido
+        return handleResponseError('Error al iniciar sesión con Google', 400)
 
 
 

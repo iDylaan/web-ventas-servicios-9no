@@ -115,6 +115,9 @@ def editar_usuario(id_usuario):
         
         # Hashear la contraseña
         new_user_dict['password'] = hash_password(password)
+
+        # Agregar el id del usuario al diccionario
+        new_user_dict['id_usuario'] = id_usuario
         
         # Guardar al nuevo usuario en la DB
         rows_affected = sql(SQL_STRINGS.UPDATE_USER_BY_ID, new_user_dict)

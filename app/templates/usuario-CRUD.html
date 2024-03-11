@@ -37,7 +37,7 @@
                         <th>Nombre</th>
                         <th>Correo</th>
                         <th>Contraseña</th>
-                        <th>Fecha de inicio</th>
+                        <th>Rol</th>
                         <th>Accion</th>
                     </tr>
                 </thead>
@@ -53,7 +53,7 @@
   <div id="customModal" class="custom-modal">
     <div class="custom-modal-content">
         <div class="modal-header">
-            <h4 class="modal-title">Fill the Form</h4>
+            <h4 class="modal-title">Nuevo Usuario</h4>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
@@ -81,8 +81,17 @@
                         <input type="password" name="" id="password" maxlength="8" minlength="8" placeholder="********" required>
                     </div>
                     <div>
-                        <label for="sDate">Fecha de Inicio:</label>
-                        <input type="date" name="" id="sDate" required>
+                        <legend>Rol:</legend>
+
+                        <div>
+                            <input type="radio" id="admin" name="drone" value="admin" checked />
+                            <label for="admin">Admin</label>
+                        </div>
+
+                        <div>
+                            <input type="radio" id="user" name="drone" value="user" />
+                            <label for="user">User</label>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -128,7 +137,7 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h4 class="modal-title">Fill the Form</h4>
+                    <h4 class="modal-title">Registrar usuario</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
@@ -175,7 +184,7 @@
         </div>
     </div>
 
-    <!--Read Data Modal-->
+    <!-- Read Data Modal -->
     <div class="modal fade" id="readData">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -207,8 +216,17 @@
                                 <input type="password" name="" id="showPassword" disabled>
                             </div>
                             <div>
-                                <label for="sDate">fecha de inicio:</label>
-                                <input type="date" name="" id="showsDate" disabled>
+                                <legend>Rol:</legend>
+        
+                                <div>
+                                    <input type="radio" id="admin" name="drone" value="admin" checked />
+                                    <label for="admin">Admin</label>
+                                </div>
+        
+                                <div>
+                                    <input type="radio" id="user" name="drone" value="user" />
+                                    <label for="user">User</label>
+                                </div>
                             </div>
                         </div>
 
