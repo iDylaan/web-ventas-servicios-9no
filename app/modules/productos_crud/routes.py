@@ -3,7 +3,6 @@ from flask import Blueprint, request, render_template, jsonify, send_file, sessi
 from app.utils.misc import (
     handleResponseError, 
     handleResponse,
-    hash_password,
     val_req_data
 )
 from app.modules.conf.conf_postgres import qry, sql
