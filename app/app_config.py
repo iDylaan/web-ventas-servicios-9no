@@ -18,3 +18,8 @@ class Config:
     SESSION_TYPE = os.getenv('SESSION_TYPE')
     SESSION_PERMANENT = True
     PERMANENT_SESSION_LIFETIME = 60 * 60 * 12 # Segundos x Minutos x Horas x Dias
+    
+    
+    ### GOOGLE TOKENS ###
+    GOOGLE_CLIENT_ID=os.getenv('GOOGLE_CLIENT_ID')
+    GOOGLE_CLIENT_SECRET=os.getenv('GOOGLE_CLIENT_SECRET')
