@@ -10,29 +10,6 @@
 {% block content %}
 
 
-
-<!-- Page Banner Start -->
-<!-- <section class="page-banner-area pt-245 rpt-150 pb-170 rpb-100 rel z-1 bgc-lighter text-center">
-            <div class="container">
-                <div class="banner-inner rpt-10">
-                    <h1 class="page-title wow fadeInUp delay-0-2s">Detalles del <span>Producto</span></h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center wow fadeInUp delay-0-4s">
-                            <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
-                            <li class="breadcrumb-item active">Detalles del Producto</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-            <div class="banner-shapes">
-                <div class="circle wow zoomInLeft delay-0-2s" data-wow-duration="2s"></div>
-                <img class="shape-one" src="{{ url_for('static', filename='assets/images/shapes/hero-shape1.png') }}" alt="Shape">
-                <img class="shape-two" src="{{ url_for('static', filename='assets/images/shapes/hero-shape2.png') }}" alt="Shape">
-            </div>
-        </section> -->
-<!-- Page Banner End -->
-
-
 <!-- Product Details Start -->
 <section class="product-details pt-130 rpt-100">
     <div class="container">
@@ -41,67 +18,22 @@
                 <div class="product-details-images rmb-55 wow fadeInLeft delay-0-2s">
                     <div class="tab-content preview-images">
                         <div class="tab-pane fade preview-item active show" id="preview1">
-                            <img src="{{ url_for('static', filename='assets/images/shop/preview1.jpg') }}"
-                                alt="Perview">
+                            <img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=producto.get('id')) }}" 
+                                alt="{{ producto.get('nombre_imagen', 'Imagen del producto') }}">
                         </div>
-                        <div class="tab-pane fade preview-item" id="preview2">
-                            <img src="{{ url_for('static', filename='assets/images/shop/preview1.jpg') }}"
-                                alt="Perview">
-                        </div>
-                        <div class="tab-pane fade preview-item" id="preview3">
-                            <img src="{{ url_for('static', filename='assets/images/shop/preview1.jpg') }}"
-                                alt="Perview">
-                        </div>
-                    </div>
-                    <div class="nav thumb-images rmb-20">
-                        <a href="#preview1" data-bs-toggle="tab" class="thumb-item active show">
-                            <img src="{{ url_for('static', filename='assets/images/shop/thumb1.jpg') }}" alt="Thumb">
-                        </a>
-                        <a href="#preview2" data-bs-toggle="tab" class="thumb-item">
-                            <img src="{{ url_for('static', filename='assets/images/shop/thumb2.jpg') }}" alt="Thumb">
-                        </a>
-                        <a href="#preview3" data-bs-toggle="tab" class="thumb-item">
-                            <img src="{{ url_for('static', filename='assets/images/shop/thumb3.jpg') }}" alt="Thumb">
-                        </a>
                     </div>
                 </div>
             </div>
             <div class="col-xl-5 col-lg-6">
                 <div class="product-details-content wow fadeInRight delay-0-2s">
                     <div class="section-title">
-                        <h2>Ilustraciones 3D</h2>
+                        <h2>{{ producto.get('titulo', 'Titulo del producto') }}</h2>
                     </div>
                     <div class="ratting-price mb-30">
-                        <!-- <div class="ratting">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div> -->
-                        <span class="price">1100.00</span>
+                        <span class="price">{{ producto.get('precio', 'indefinido') }}</span>
                     </div>
                     <hr class="mb-25">
-                    <p>Servicio de ilustración 3D personalizada para sitios web, enfocado en transformar conceptos de
-                        branding y marketing digital en imágenes impactantes y memorables</p>
-                    <!-- <hr class="mt-65">
-                    <ul class="category-tags pt-10 pb-15">
-                        <li>
-                            <b>Category</b>
-                            <span>:</span>
-                            <a href="#">Software</a>
-                            <a href="#">Website</a>
-                            <a href="#">Development</a>
-                        </li>
-                        <li>
-                            <b>Tags</b>
-                            <span>:</span>
-                            <a href="#">3D</a>
-                            <a href="#">Ilustration</a>
-                            <a href="#">Arts</a>
-                        </li>
-                    </ul>
-                    <hr> -->
+                    <p>{{ producto.get('descripcion_previa', 'Descripción no disponible') }}</p>
                     <div class="add-to-cart pt-15 d-flex" style="flex-direction: column">
                         <div class="auxiliar_btns" style="display: flex; gap: 10px">
                             <input type="number" value="01" min="1" max="20" required
@@ -230,63 +162,19 @@
             </div>
         </div>
         <ul class="nav product-information-tab mt-90 mb-40 wow fadeInUp delay-0-2s">
-            <li><a href="#details" data-bs-toggle="tab" class="active show">Descrptions</a></li>
-            <li><a href="#information" data-bs-toggle="tab">Information</a></li>
+            <li><a href="#details" data-bs-toggle="tab" class="active show">Descripción</a></li>
+            <li><a href="#information" data-bs-toggle="tab">Información</a></li>
         </ul>
         <div class="tab-content pb-30 wow fadeInUp delay-0-2s">
             <div class="tab-pane fade active show" id="details">
                 <p>
-                    Este servicio de ilustración 3D personalizada está diseñado específicamente para empresas y marcas
-                    que buscan destacar en el ámbito digital. Ofrecemos soluciones visuales innovadoras que no solo
-                    capturan la esencia de su marca, sino que también mejoran la experiencia del usuario en su sitio
-                    web. A través de un proceso colaborativo, nuestro equipo de ilustradores 3D expertos trabaja de
-                    cerca con cada cliente para entender sus objetivos de marketing digital y branding, asegurando que
-                    cada ilustración sea única, relevante y totalmente alineada con la visión de su empresa.
+                    {{ producto.get('descripcion', 'Descripción no disponible') }}
                 </p>
             </div>
             <div class="tab-pane fade" id="information">
                 <p>
-                    Características y Beneficios:
+                    {{ producto.get('info', 'Información no disponible') }}
                 </p>
-                <ul class="list-style-two my-15">
-                    <li>Personalización Completa: Adaptamos cada ilustración a las necesidades específicas de tu marca,
-                        asegurando que el resultado final sea tan único como tu negocio.</li>
-                    <li>Calidad Visual de Alta Definición: Utilizamos las últimas tecnologías en modelado 3D para
-                        producir
-                        imágenes de la más alta calidad, capaces de impresionar a tu audiencia y diferenciarte de la
-                        competencia.</li>
-                    <li>Optimización para Web: Todas nuestras ilustraciones están optimizadas para la web, garantizando
-                        tiempos de carga rápidos y una experiencia fluida en todos los dispositivos y plataformas.</li>
-                    <li>Mejora de la Experiencia del Usuario: Las imágenes 3D atractivas pueden mejorar
-                        significativamente
-                        la interacción del usuario, manteniendo a los visitantes comprometidos con tu contenido por más
-                        tiempo.</li>
-                    <li>Soporte y Colaboración: Ofrecemos una comunicación constante durante todo el proceso de diseño,
-                        asegurando que el producto final esté alineado con tus expectativas y objetivos de negocio.</li>
-                </ul>
-                <p>Aplicaciones:</p>
-                <ul class="list-style-two my-15">
-                    <li>Cabeceras de sitios web y banners promocionales</li>
-                    <li>Visualización de productos y servicios</li>
-                    <li>Contenido interactivo para aumentar el engagement</li>
-                    <li>Material de marketing digital y publicidad</li>
-                </ul>
-                <p>Proceso de Trabajo:</p>
-                <ul class="list-style-two my-15">
-                    <li>Consulta Inicial: Entendemos tus necesidades, objetivos y la visión de tu proyecto.
-                        Desarrollo del Concepto: Creamos conceptos preliminares basados en tu feedback y nuestra
-                        experiencia.</li>
-                    <li>Producción de Ilustraciones: Desarrollamos las ilustraciones 3D, asegurando que se ajusten a tus
-                        especificaciones y estándares de calidad.</li>
-                    <li>Revisiones y Ajustes: Realizamos las modificaciones necesarias basadas en tus comentarios para
-                        perfeccionar cada detalle.</li>
-                    <li>Entrega Final: Te proporcionamos las ilustraciones optimizadas para web, listas para ser
-                        implementadas en tu sitio.</li>
-                </ul>
-                <p>Compromiso con la Calidad:</p>
-                <p>Nos enorgullece ofrecer un servicio que no solo cumple, sino que supera las expectativas de nuestros
-                    clientes. Nuestro equipo de profesionales dedicados está comprometido con la excelencia, desde la
-                    conceptualización hasta la entrega final.</p>
             </div>
         </div>
     </div>
@@ -294,7 +182,7 @@
 <!-- Product Details End -->
 
 <!-- Related Products Area start -->
-<section class="related-products-area pb-80 rel z-1">
+<!-- <section class="related-products-area pb-80 rel z-1">
     <div class="container">
         <hr>
         <div class="section-title pt-110 text-center mb-50 wow fadeInUp delay-0-2s">
@@ -311,18 +199,10 @@
                         <h5>Travel Service Templates</h5>
                         <div class="admin-ratting">
                             <span class="admin">By <a href="#">Webtend</a> in CMS</span>
-                            <!-- <div class="ratting">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(8.5k )</span>
-                            </div> -->
                         </div>
                         <div class="price-details-btn">
                             <span class="price">29.55</span>
-                            <a href="{{ url_for('shop.product_details_template') }}" class="theme-btn">Details <i
+                            <a href="" class="theme-btn">Details <i
                                     class="fas fa-angle-double-right"></i></a>
                         </div>
                     </div>
@@ -337,18 +217,10 @@
                         <h5>Fitness UI Kits</h5>
                         <div class="admin-ratting">
                             <span class="admin">By <a href="#">Webtend</a> in CMS</span>
-                            <!-- <div class="ratting">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(8.5k )</span>
-                            </div> -->
                         </div>
                         <div class="price-details-btn">
                             <span class="price">58.55</span>
-                            <a href="{{ url_for('shop.product_details_template') }}" class="theme-btn">Details <i
+                            <a href="" class="theme-btn">Details <i
                                     class="fas fa-angle-double-right"></i></a>
                         </div>
                     </div>
@@ -363,18 +235,10 @@
                         <h5>Dashboard UI Templates</h5>
                         <div class="admin-ratting">
                             <span class="admin">By <a href="#">Webtend</a> in CMS</span>
-                            <!-- <div class="ratting">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(8.5k )</span>
-                            </div> -->
                         </div>
                         <div class="price-details-btn">
                             <span class="price">37.55</span>
-                            <a href="{{ url_for('shop.product_details_template') }}" class="theme-btn">Details <i
+                            <a href="" class="theme-btn">Details <i
                                     class="fas fa-angle-double-right"></i></a>
                         </div>
                     </div>
@@ -382,7 +246,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!-- Related Products Area end -->
 
 
