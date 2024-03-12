@@ -18,7 +18,7 @@
                 <div class="product-details-images rmb-55 wow fadeInLeft delay-0-2s">
                     <div class="tab-content preview-images">
                         <div class="tab-pane fade preview-item active show" id="preview1">
-                            <img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=producto.get('id')) }}" 
+                            <img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=producto.get('id')) }}"
                                 alt="{{ producto.get('nombre_imagen', 'Imagen del producto') }}">
                         </div>
                     </div>
@@ -155,7 +155,8 @@
                             </style>
                         </div>
                         <div class="compra_container w-75">
-                            <a href="{{ url_for('shop.checkout_template') }}" type="submit" class="theme-btn w-100">Comprar</a>
+                            <a href="{{ url_for('shop.checkout_template') }}" type="submit"
+                                class="theme-btn w-100">Comprar</a>
                         </div>
                     </div>
                 </div>
