@@ -13398,3 +13398,17 @@ h4.comment-title {
   justify-content: center;
   margin-left: -12px;
 }
+
+
+
+.product-item .image {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.product-item .image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}

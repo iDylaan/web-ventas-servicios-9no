@@ -50,8 +50,9 @@
             <li data-filter=".dashboard">Dashboard</li>
         </ul>
         <div class="row shop-active">
+
             {% for producto in productos %}
-            <div class="col-xl-4 col-md-6 item plugin ilustration">
+            <div class="col-xl-4 col-md-6 item plugin ilustration card-shop">
                 <div class="product-item wow fadeInUp delay-0-2s">
                     <div class="image">
                         <img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=producto.get('id')) }}"
