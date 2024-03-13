@@ -27,7 +27,9 @@ CREATE TABLE servicios (
   "srv_info" VARCHAR,
   "srv_precio" NUMERIC NOT NULL,
   "srv_imagen" BYTEA DEFAULT NULL,
-  "srv_nombre_imagen" VARCHAR DEFAULT NULL
+  "srv_nombre_imagen" VARCHAR DEFAULT NULL,
+  "activo" INT default 1,
+  "dt_creado" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE compras (

@@ -4,303 +4,109 @@
 
 {% block content %}
 
-        
-        <!-- Page Banner Start -->
-        <section class="page-banner-area pt-245 rpt-150 pb-170 rpb-100 rel z-1 bgc-lighter text-center">
-            <div class="container">
-                <div class="banner-inner rpt-10">
-                    <h1 class="page-title wow fadeInUp delay-0-2s">Nuetra <span>Tienda</span></h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center wow fadeInUp delay-0-4s">
-                            <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
-                            <li class="breadcrumb-item active">Tienda</li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-            <div class="banner-shapes">
-                <div class="circle wow zoomInLeft delay-0-2s" data-wow-duration="2s"></div>
-                <img class="shape-one" src="{{ url_for('static', filename='assets/images/shapes/hero-shape1.png') }}" alt="Shape">
-                <img class="shape-two" src="{{ url_for('static', filename='assets/images/shapes/hero-shape2.png') }}" alt="Shape">
-            </div>
-        </section>
-        <!-- Page Banner End -->
-        
-        
-        <!-- Shop Page Area start -->
-        <section class="shop-page-area py-130 rel z-1">
-            <div class="container">
-                <div class="row justify-content-center pb-20">
-                    <div class="col-xl-6 col-lg-8 col-md-10">
-                        <div class="section-title text-center mb-30 wow fadeInUp delay-0-2s">
-                            <span class="sub-title style-two mb-15">Productos</span>
-                            <h2>Visualiza el catálogo que tenemos para ofrecerte</h2>
-                        </div>
-                    </div>
-                </div>
-                <ul class="shop-filter justify-content-center filter-btns-one mb-30 wow fadeInUp delay-0-4s">
-                    <li data-filter="*" class="current">Show All</li>
-                    <li data-filter=".saas">Saas</li>
-                    <li data-filter=".plugin">Plugin</li>
-                    <li data-filter=".3d-vectors">3D Vectors</li>
-                    <li data-filter=".ilustration">Ilustration</li>
-                    <li data-filter=".ui-kits">UI Kits</li>
-                    <li data-filter=".dashboard">Dashboard</li>
-                </ul>
-                <div class="row shop-active">
-                    <div class="col-xl-4 col-md-6 item plugin ilustration">
-                        <div class="product-item wow fadeInUp delay-0-2s">
-                            <div class="image">
-                                <img src="{{ url_for('static', filename='assets/images/shop/product1.jpg') }}" alt="Product">
-                            </div>
-                            <div class="content">
-                                <h5>CMS - Plugin for WordPress</h5>
-                                <div class="admin-ratting">
-                                    <span class="admin">By <a href="#">Webtend</a> in CMS</span>
-                                    <div class="ratting">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span>(8.5k )</span>
-                                    </div>
-                                </div>
-                                <div class="price-details-btn">
-                                    <span class="price">29.55</span>
-                                    <a href="{{ url_for('shop.product_details_template') }}" class="theme-btn">Details <i class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6 item saas ui-kits">
-                        <div class="product-item wow fadeInUp delay-0-4s">
-                            <div class="image">
-                                <img src="{{ url_for('static', filename='assets/images/shop/product2.jpg') }}" alt="Product">
-                            </div>
-                            <div class="content">
-                                <h5>ISOMetric Illustration</h5>
-                                <div class="admin-ratting">
-                                    <span class="admin">By <a href="#">Webtend</a> in CMS</span>
-                                    <div class="ratting">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span>(8.5k )</span>
-                                    </div>
-                                </div>
-                                <div class="price-details-btn">
-                                    <span class="price">58.55</span>
-                                    <a href="{{ url_for('shop.product_details_template') }}" class="theme-btn">Details <i class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6 item 3d-vectors dashboard">
-                        <div class="product-item wow fadeInUp delay-0-6s">
-                            <div class="image">
-                                <img src="{{ url_for('static', filename='assets/images/shop/product3.jpg') }}" alt="Product">
-                            </div>
-                            <div class="content">
-                                <h5>3D- Illustration For Crypto</h5>
-                                <div class="admin-ratting">
-                                    <span class="admin">By <a href="#">Webtend</a> in CMS</span>
-                                    <div class="ratting">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span>(8.5k )</span>
-                                    </div>
-                                </div>
-                                <div class="price-details-btn">
-                                    <span class="price">37.55</span>
-                                    <a href="{{ url_for('shop.product_details_template') }}" class="theme-btn">Details <i class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6 item saas ilustration">
-                        <div class="product-item wow fadeInUp delay-0-2s">
-                            <div class="image">
-                                <img src="{{ url_for('static', filename='assets/images/shop/product4.jpg') }}" alt="Product">
-                            </div>
-                            <div class="content">
-                                <h5>Online Shopping Plugin</h5>
-                                <div class="admin-ratting">
-                                    <span class="admin">By <a href="#">Webtend</a> in CMS</span>
-                                    <div class="ratting">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span>(8.5k )</span>
-                                    </div>
-                                </div>
-                                <div class="price-details-btn">
-                                    <span class="price">29.55</span>
-                                    <a href="{{ url_for('shop.product_details_template') }}" class="theme-btn">Details <i class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6 item saas 3d-vectors">
-                        <div class="product-item wow fadeInUp delay-0-4s">
-                            <div class="image">
-                                <img src="{{ url_for('static', filename='assets/images/shop/product5.jpg') }}" alt="Product">
-                            </div>
-                            <div class="content">
-                                <h5>Fitness UI Kits</h5>
-                                <div class="admin-ratting">
-                                    <span class="admin">By <a href="#">Webtend</a> in CMS</span>
-                                    <div class="ratting">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span>(8.5k )</span>
-                                    </div>
-                                </div>
-                                <div class="price-details-btn">
-                                    <span class="price">58.55</span>
-                                    <a href="{{ url_for('shop.product_details_template') }}" class="theme-btn">Details <i class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6 item plugin ilustration ui-kits">
-                        <div class="product-item wow fadeInUp delay-0-6s">
-                            <div class="image">
-                                <img src="{{ url_for('static', filename='assets/images/shop/product6.jpg') }}" alt="Product">
-                            </div>
-                            <div class="content">
-                                <h5>Dashboard UI Templates</h5>
-                                <div class="admin-ratting">
-                                    <span class="admin">By <a href="#">Webtend</a> in CMS</span>
-                                    <div class="ratting">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span>(8.5k )</span>
-                                    </div>
-                                </div>
-                                <div class="price-details-btn">
-                                    <span class="price">37.55</span>
-                                    <a href="{{ url_for('shop.product_details_template') }}" class="theme-btn">Details <i class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6 item saas dashboard">
-                        <div class="product-item wow fadeInUp delay-0-2s">
-                            <div class="image">
-                                <img src="{{ url_for('static', filename='assets/images/shop/product7.jpg') }}" alt="Product">
-                            </div>
-                            <div class="content">
-                                <h5>Travel Service Templates</h5>
-                                <div class="admin-ratting">
-                                    <span class="admin">By <a href="#">Webtend</a> in CMS</span>
-                                    <div class="ratting">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span>(8.5k )</span>
-                                    </div>
-                                </div>
-                                <div class="price-details-btn">
-                                    <span class="price">29.55</span>
-                                    <a href="{{ url_for('shop.product_details_template') }}" class="theme-btn">Details <i class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6 item plugin 3d-vectors">
-                        <div class="product-item wow fadeInUp delay-0-4s">
-                            <div class="image">
-                                <img src="{{ url_for('static', filename='assets/images/shop/product8.jpg') }}" alt="Product">
-                            </div>
-                            <div class="content">
-                                <h5>Mountain Retro Illustration</h5>
-                                <div class="admin-ratting">
-                                    <span class="admin">By <a href="#">Webtend</a> in CMS</span>
-                                    <div class="ratting">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span>(8.5k )</span>
-                                    </div>
-                                </div>
-                                <div class="price-details-btn">
-                                    <span class="price">58.55</span>
-                                    <a href="{{ url_for('shop.product_details_template') }}" class="theme-btn">Details <i class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-6 item saas ui-kits dashboard">
-                        <div class="product-item wow fadeInUp delay-0-6s">
-                            <div class="image">
-                                <img src="{{ url_for('static', filename='assets/images/shop/product9.jpg') }}" alt="Product">
-                            </div>
-                            <div class="content">
-                                <h5>African Animal Forest Design</h5>
-                                <div class="admin-ratting">
-                                    <span class="admin">By <a href="#">Webtend</a> in CMS</span>
-                                    <div class="ratting">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span>(8.5k )</span>
-                                    </div>
-                                </div>
-                                <div class="price-details-btn">
-                                    <span class="price">37.55</span>
-                                    <a href="{{ url_for('shop.product_details_template') }}" class="theme-btn">Details <i class="fas fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <ul class="pagination flex-wrap justify-content-center wow fadeInUp delay-0-2s">
-                    <li class="page-item disabled">
-                        <span class="page-link"><i class="fas fa-angle-left"></i></span>
-                    </li>
-                    <li class="page-item active">
-                        <span class="page-link">
-                            01
-                            <span class="sr-only">(current)</span>
-                        </span>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">02</a></li>
-                    <li class="page-item"><a class="page-link" href="#">03</a></li>
-                    <li class="page-item dot"></li>
-                    <li class="page-item dot"></li>
-                    <li class="page-item dot"></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </section>
-        <!-- Shop Page Area end -->
 
-        {% block get_started %}
-        {% include 'components/get_started.html' %}
-        {% endblock get_started %}
-        
+<!-- Page Banner Start -->
+<section class="page-banner-area pt-245 rpt-150 pb-170 rpb-100 rel z-1 bgc-lighter text-center">
+    <div class="container">
+        <div class="banner-inner rpt-10">
+            <h1 class="page-title wow fadeInUp delay-0-2s">Nuetra <span>Tienda</span></h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center wow fadeInUp delay-0-4s">
+                    <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
+                    <li class="breadcrumb-item active">Tienda</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="banner-shapes">
+        <div class="circle wow zoomInLeft delay-0-2s" data-wow-duration="2s"></div>
+        <img class="shape-one" src="{{ url_for('static', filename='assets/images/shapes/hero-shape1.png') }}"
+            alt="Shape">
+        <img class="shape-two" src="{{ url_for('static', filename='assets/images/shapes/hero-shape2.png') }}"
+            alt="Shape">
+    </div>
+</section>
+<!-- Page Banner End -->
+
+
+<!-- Shop Page Area start -->
+<section class="shop-page-area py-130 rel z-1">
+    <div class="container">
+        <div class="row justify-content-center pb-20">
+            <div class="col-xl-6 col-lg-8 col-md-10">
+                <div class="section-title text-center mb-30 wow fadeInUp delay-0-2s">
+                    <span class="sub-title style-two mb-15">Productos</span>
+                    <h2>Visualiza el catálogo que tenemos para ofrecerte</h2>
+                </div>
+            </div>
+        </div>
+        <ul class="shop-filter justify-content-center filter-btns-one mb-30 wow fadeInUp delay-0-4s">
+            <li data-filter="*" class="current">Show All</li>
+            <li data-filter=".saas">Saas</li>
+            <li data-filter=".plugin">Plugin</li>
+            <li data-filter=".3d-vectors">3D Vectors</li>
+            <li data-filter=".ilustration">Ilustration</li>
+            <li data-filter=".ui-kits">UI Kits</li>
+            <li data-filter=".dashboard">Dashboard</li>
+        </ul>
+        <div class="row shop-active">
+            {% for producto in productos %}
+            <div class="col-xl-4 col-md-6 item plugin ilustration">
+                <div class="product-item wow fadeInUp delay-0-2s">
+                    <div class="image">
+                        <img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=producto.get('id')) }}"
+                            alt="{{ producto.get('nombre_imagen', 'Imagen del producto') }}">
+                    </div>
+                    <div class="content">
+                        <h5>{{ producto.get('titulo', 'Titulo del producto') }}</h5>
+                        <div class="admin-ratting">
+                            <span class="admin"><strong>${{ producto.get('precio', 'Indefinido') }}</strong></span>
+                        </div>
+                        <div class="price-details-btn">
+                            <a href="{{ url_for('shop.product_details_template', id_producto=producto.get('id')) }}"
+                                class="theme-btn">Detalles
+                                <i class="fas fa-angle-double-right">
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+
+        </div>
+
+
+
+        <!-- PAGINADO -->
+        <ul class="pagination flex-wrap justify-content-center wow fadeInUp delay-0-2s">
+            <li class="page-item disabled">
+                <span class="page-link"><i class="fas fa-angle-left"></i></span>
+            </li>
+            <li class="page-item active">
+                <span class="page-link">
+                    01
+                    <span class="sr-only">(current)</span>
+                </span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">02</a></li>
+            <li class="page-item"><a class="page-link" href="#">03</a></li>
+            <li class="page-item dot"></li>
+            <li class="page-item dot"></li>
+            <li class="page-item dot"></li>
+            <li class="page-item">
+                <a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
+            </li>
+        </ul>
+    </div>
+</section>
+<!-- Shop Page Area end -->
+
+{% block get_started %}
+{% include 'components/get_started.html' %}
+{% endblock get_started %}
+
 
 
 {% endblock content %}

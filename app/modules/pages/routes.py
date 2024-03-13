@@ -29,3 +29,7 @@ def faqs_template():
 @mod.route('/contacto', methods=['GET'])
 def contacto_template():
     return render_template('contact.html')
+
+@mod.route('/terminos_condiciones', methods=['GET'])
+def terminos_condiciones_template():
+    return render_template('terminos-condiciones.html')
