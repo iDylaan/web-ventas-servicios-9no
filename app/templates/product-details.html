@@ -2,9 +2,13 @@
 
 {% block title %} Tech Consulting | Producto {% endblock %}
 
+{% block scripts %}
+{{super()}}
+<script src="{{ url_for('static', filename='modules/js/product-details/carrito-compras.js') }}" defer></script>
+{% endblock scripts %}
+
 {% block styles %}
 {{super()}}
-<link rel="stylesheet" href="{{ url_for('static', filename='modules/product-details.css') }}">
 {% endblock styles %}
 
 {% block content %}
@@ -37,15 +41,17 @@
                     <div class="add-to-cart pt-15 d-flex" style="flex-direction: column">
                         <div class="auxiliar_btns" style="display: flex; gap: 10px">
                             <input type="number" value="01" min="1" max="20" required
-                                style="margin-right: -1px; margin-top: 0px">
-                            <button type="submit" class="btn btn-outline-secondary btn-lg"
-                                style="height: 50; display: flex; align-items: center">
+                                style="margin-right: -1px; margin-top: 0px" id="cantidad-input">
+                            <button type="submit" class="btn btn-outline-secondary btn-lg btn-agregar-al-carrito"
+                                style="height: 50; display: flex; align-items: center"
+                                data-id="{{ producto.get('id', 0) }}">
                                 <span class="material-icons">shopping_cart</span>
                                 Agregar al carrito
                             </button>
                             <button class="wishlist" style="margin-top: 0px;">
                                 <div class="con-like">
-                                    <input class="like" type="checkbox" title="like">
+                                    <input class="like" type="checkbox" title="like"
+                                        data-id="{{ producto.get('id', 0) }}">
                                     <div class="checkmark">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="outline" viewBox="0 0 24 24">
                                             <path
