@@ -63,7 +63,10 @@
                                     <a href="{{ url_for('pages.contacto_template') }}">Contacto</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url_for('shop.cart_template') }}" id="cart-header">
+                                    <script>
+                                        const carrito_de_compras_url = "{{ url_for('shop.cart_template') }}";
+                                    </script>
+                                    <a href="#" id="cart-header">
                                         <i class="material-icons">shopping_cart</i>
                                     </a>
                                 </li>

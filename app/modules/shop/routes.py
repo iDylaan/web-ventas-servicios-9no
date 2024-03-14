@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, url_for, redirect
+import sys
+from flask import Blueprint, render_template, url_for, redirect, request
 from .sql_strings import Sql_Strings as SQL_STRINGS
 from app.modules.conf.conf_postgres import qry
 
@@ -41,4 +42,16 @@ def checkout_template():
 
 @mod.route('/carrito', methods=['GET'])
 def cart_template():
-    return render_template('cart.html')
+    ids = request.args.get('ids')
+    productos = []
+    try:
+        if ids:
+            ids_list = ids.split(',')
+            productos = qry(SQL_STRINGS.GET_PRODUCTS_BY_ID, (tuple(ids_list),))
+            print(productos)
+    except Exception as e:
+        print("Ocurrio un error en @cart_template/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
+        productos = []
+    finally:
+        return render_template('cart.html', productos=productos)
+        
