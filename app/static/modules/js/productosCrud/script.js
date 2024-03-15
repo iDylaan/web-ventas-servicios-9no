@@ -8,14 +8,10 @@ const formNuevoPro = document.querySelector('#myForm');
 const btnGuerdaNP = document.querySelector('#btnGuerdaNP');
 
 function eventListeners() {
-    formNuevoPro.addEventListener('submit', (e) => e.preventDefault())
-
-    // Recibir la value de los inputs del formulario
-    nameInput.addEventListener('input', e => formModel.name = e.target.value)
-    informacionInput.addEventListener('input', e => formModel.informacion = e.target.value)
-    descripcionInput.addEventListener('input', e => formModel.descripcion = e.target.value)
-    breveDescInput.addEventListener('input', e => formModel.breveDesc = e.target.value)
-    precioInput.addEventListener('input', e => formModel.precio = e.target.value)
+    formNuevoPro.addEventListener('submit', function(e) {
+        // No se llama a e.preventDefault() para permitir la recarga de la página
+        // Se realiza la validación de los campos obligatorios en nuevoProducto()
+    });
 
     btnGuerdaNP.addEventListener("click", nuevoProducto)
 }
@@ -31,6 +27,22 @@ const formModel = {
 
 async function nuevoProducto() {
     try {
+        // Asignar los valores de los campos del formulario al objeto formModel
+        formModel.titulo = nameInput.value;
+        formModel.descripcion = informacionInput.value;
+        formModel.descripcion_corta = descripcionInput.value;
+        formModel.info = breveDescInput.value;
+        // Convertir el valor del precio a número antes de asignarlo a formModel.precio
+        formModel.precio = parseFloat(precioInput.value);
+
+        // Verificar si los campos obligatorios están llenos
+        if (!formModel.titulo || !formModel.descripcion || !formModel.descripcion_corta || !formModel.info || !formModel.precio) {
+            throw new Error('Faltan campos obligatorios');
+        }
+
+        // Mostrar los datos que se van a enviar en la solicitud AJAX
+        console.log('Datos enviados:', formModel);
+
         const response = await fetch('/productos_crud/nuevo', {
             method: 'POST',
             headers: {
@@ -40,23 +52,18 @@ async function nuevoProducto() {
         })
 
         if (!response.ok) {
-            throw new Error('Ocurrio un error inesperado en el servidor');
+            throw new Error('Ocurrió un error inesperado en el servidor');
         }
 
         const result = await response.json();
         if (result.success) {
-            // mostrarMensaje("success", "¡Bienvenido!");
-            // setTimeout(() => {
-                //window.location.href = indexURL;
-            //}, 1300);
+            console.log("success");
         } else {
             throw new Error(result.error.msg)
         }
     } catch (error) {
         console.error(error);
-        // Puedes manejar el error aquí si es necesario
-    }
+    } 
 }
 
-// Llamar a eventListeners para inicializar los listeners
 eventListeners();
