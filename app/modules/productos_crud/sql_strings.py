@@ -1,7 +1,8 @@
 class Sql_Strings():
     INSERT_NEW_PRODUCT = (
         "INSERT INTO servicios (srv_nom, srv_desc, srv_desc_corta, srv_info, srv_precio) VALUES "
-        "(%(titulo)s, %(descripcion)s, %(descripcion_corta)s, %(info)s, %(precio)s)"
+        "(%(titulo)s, %(descripcion)s, %(descripcion_corta)s, %(info)s, %(precio)s) "
+        "RETURNING id "
     )
     
     UPDATE_PRODUCT_BY_ID = (

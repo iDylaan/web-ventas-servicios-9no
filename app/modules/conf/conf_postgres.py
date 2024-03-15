@@ -75,11 +75,8 @@ def sqlv2(sql, params=None, return_id=False):
 
         rows_affected = cursor.rowcount
         id_of_new_row = None
-
         if return_id:
-            result = cursor.fetchone()
-            if result is not None:
-                id_of_new_row = result[0]
+            id_of_new_row = cursor.fetchone()[0]
 
         conn.commit()
         cursor.close()
