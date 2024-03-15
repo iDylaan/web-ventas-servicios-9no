@@ -13412,3 +13412,12 @@ h4.comment-title {
   height: auto;
   object-fit: cover;
 }
+
+.productos-table .td-text {
+  text-wrap: nowrap;
+  text-align: left;
+  max-width: 15dvw;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

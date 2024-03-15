@@ -7,7 +7,7 @@ mod = Blueprint('shop', __name__)
 
 @mod.route('/', methods=['GET'])
 def shop_template():
-    products_arr = None
+    products_arr = None 
     try:
         products_arr = qry(SQL_STRINGS.GET_PRODCTS)
     except Exception as e:
