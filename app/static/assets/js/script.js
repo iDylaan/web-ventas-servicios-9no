@@ -533,7 +533,7 @@
         });
         $('.quantity-up').on('click', function(){
             var numProduct = Number($(this).prev().val());
-            $(this).prev().val(numProduct + 1);
+            if(numProduct < 20) $(this).prev().val(numProduct + 1);
         });
         
 
