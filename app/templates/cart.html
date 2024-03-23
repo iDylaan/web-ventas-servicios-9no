@@ -75,6 +75,11 @@
             <h4 class="form-title mb-25 text-center">No hay productos en el carrito...</h4>
             {% endif %}
         </div>
+        
+        <div id="mensaje-carrito-vacio" class="text-center" style="display: none;">
+            <h4>No hay productos en el carrito...</h4>
+        </div>        
+
         <div class="row text-center text-lg-left align-items-center">
             <div class="col-lg-12">
                 <div class="update-shopping mb-30 text-lg-end wow fadeInRight delay-0-2s">
@@ -83,28 +88,29 @@
                 </div>
             </div>
         </div>
+        
         {% if productos %}
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <div class="shoping-cart-total pt-20 wow fadeInUp delay-0-2s">
-                    <h4 class="form-title mb-25 text-center">Cart Totals</h4>
-                    <table>
+                    <h4 class="form-title mb-25 text-center">Total del Carrito</h4>
+                    <table class="cart-totals">
                         <tbody>
                             <tr>
-                                <td>Cart Subtotal</td>
-                                <td><span class="price">280</span></td>
+                                <td>Subtotal</td>
+                                <td><span id="subtotal" class="price">280</span></td>
                             </tr>
                             <tr>
-                                <td>Vat</td>
-                                <td>$0.00</td>
+                                <td>IVA</td>
+                                <td><span id="iva" class="price">280</span></td>
                             </tr>
                             <tr>
-                                <td><strong>Order Total</strong></td>
-                                <td><b class="price">280</b></td>
+                                <td><strong>Total</strong></td>
+                                <td><b id="total" class="price">280</b></td>
                             </tr>
                         </tbody>
                     </table>
-                    <a href="checkout.html" class="theme-btn style-two mt-25 w-100">Proceder con el Checkout</a>
+                    <a href="{{ url_for('shop.checkout_template') }}" class="theme-btn style-two mt-25 w-100">Proceder con el Checkout</a>
                 </div>
             </div>
         </div>

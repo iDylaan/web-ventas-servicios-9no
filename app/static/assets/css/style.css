@@ -6929,6 +6929,18 @@ h6,
   }
 }
 
+.profile-option-no-mobile {
+  display: none !important;
+}
+
+
+@media (width <= 992px) {
+  .profile-option-no-mobile {
+    display: block !important;
+  }
+}
+
+
 /* Responsive Design */
 @media only screen and (min-width: 992px) {
   .responsive-design-image {

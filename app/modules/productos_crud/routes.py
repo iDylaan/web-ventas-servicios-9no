@@ -5,7 +5,7 @@ from app.utils.misc import (
     handleResponse,
     val_req_data
 )
-from app.modules.conf.conf_postgres import qry, sql
+from app.modules.conf.conf_postgres import qry, sql, sqlv2
 from PIL import Image as PILImage
 from werkzeug.utils import secure_filename
 from .sql_strings import Sql_Strings as SQL_STRINGS
@@ -63,11 +63,11 @@ def nuevo_producto():
             return handleResponseError(errors, 400)
         
         # Guardar el nuevo producto en la DB
-        rows_affected = sql(SQL_STRINGS.INSERT_NEW_PRODUCT, new_product_dict)
+        rows_affected, id_of_new_row = sqlv2(SQL_STRINGS.INSERT_NEW_PRODUCT, new_product_dict, True)
         
-        # Validar filas afectadas
+        # Validar filas afectadas 
         if rows_affected:
-            return handleResponse('Producto registrado exitosamente')
+            return handleResponse({'message': 'Producto registrado exitosamente', 'id_producto': id_of_new_row})
         else:
             raise handleResponseError('No se pudo registrar el producto.')
         
@@ -155,6 +155,7 @@ def guardar_imagen_producto(id_producto):
         
         # Recibir el archivo de imagen
         imagen_file = request.files.get('imagen', None)
+        print(request.files)
         filename = None
         img_byte_arr = None
         
