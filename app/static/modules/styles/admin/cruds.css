@@ -25,7 +25,7 @@
         0px 0px 29.3px rgba(0, 0, 0, 0.054),
         0px 0px 54.7px rgba(0, 0, 0, 0.065),
         0px 0px 131px rgba(0, 0, 0, 0.09);
-    overflow: hidden;
+    
 }
 
 .modal-form__header {
@@ -67,7 +67,12 @@
     height: 100%;
     width: 100%;
     border: 1px solid red;
-    margin: 20px 5px;
+    margin: 5px 5px;
+    overflow: auto; /* Agrega la barra de desplazamiento al cuerpo del modal */
+    height: auto; /* Elimina la altura fija para permitir que la altura se ajuste según el contenido */
+    max-height: calc(95vh - 50px); /* Limita la altura máxima del cuerpo del modal */
+    padding: 20px; /* Agrega un espacio de relleno para evitar que el contenido se solape con la barra de desplazamiento */
+
 }
 
 .modal-form__body .form__container .input-component {
@@ -94,4 +99,10 @@
     justify-content: space-between;
     gap: 5px;
     width: 100%;
+}
+
+@media (width < 800px) {
+    .modal-form__body {
+        flex-direction: column;
+    }
 }

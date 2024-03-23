@@ -176,8 +176,11 @@ async function infoProduct(id_producto) {
             console.log('Respuesta del servidor:', data);
             // Llenar el modal con la información del producto
             //fillModal(data);
-            const readDataModal = new bootstrap.Modal(document.getElementById('readDataModal'));
-            readDataModal.show();
+            /* const readDataModal = new bootstrap.Modal(document.getElementById('readDataModal'));
+            readDataModal.show(); */
+
+            const exampleModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+            exampleModal.show();
 
         } else {
             // Si la respuesta no es exitosa, lanzar un error
