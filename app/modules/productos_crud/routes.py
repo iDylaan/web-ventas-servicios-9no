@@ -26,19 +26,6 @@ def productos_crud_template():
         return render_template('productos-CRUD.html', productos=products_arr)    
     
 
-@mod.route('/obtener-productos', methods=['GET'])
-def obtener_productos():
-    products_arr = None 
-    try:
-        products_arr = qry(SQL_STRINGS.GET_PRODCT_BY_ID)
-        return jsonify(products_arr)
-    except Exception as e:
-        print(e)
-        return handleResponseError('Error al obtener los productos', 500)
-    finally:
-        if not products_arr:
-            products_arr = []
-
 
 @mod.route('/nuevo', methods=['POST'])
 def nuevo_producto():
@@ -224,3 +211,22 @@ def obtener_imagen_producto(id_producto):
     except Exception as e:
         print("Ocurrio un error en @obtener_imagen_producto/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
         return handleResponseError('Error en el servidor: {}'.format(e)) 
+    
+    
+@mod.route('/obtener_productos/<int:id_producto>', methods=['POST'])
+def obtener_productos(id_producto):
+    try:
+        if not id_producto:
+            return handleResponseError('Producto faltante', 400)
+        
+        # Comprobar si el producto existe
+        result = qry(SQL_STRINGS.GET_PRODCT_BY_ID, {'id_producto': id_producto}, True)
+        
+        # Convertir la imagen a Base64
+        imagen_base64 = base64.b64encode(result['imagen']).decode('utf-8')
+        result['imagen'] = imagen_base64
+        
+        return jsonify(result)
+    except Exception as e:
+        print(e)
+        return handleResponseError('Error al obtener los productos', 500)
