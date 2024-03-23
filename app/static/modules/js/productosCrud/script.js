@@ -7,6 +7,11 @@ const breveDescInput = document.querySelector('#breveDescInput');
 const precioInput = document.querySelector('#precioInput');
 const formNuevoPro = document.querySelector('#myForm');
 const btnGuerdaNP = document.querySelector('#btnGuerdaNP');
+const readDataBtns = document.querySelectorAll('.readDataBtn');
+const customCloseBtns = document.querySelectorAll(".custom-close");
+const btnCloseModal = document.querySelector("#readDataModal .btn-close");
+
+
 
 // Event Listeners
 function eventListeners() {
@@ -16,6 +21,33 @@ function eventListeners() {
     });
 
     btnGuerdaNP.addEventListener("click", nuevoProducto)
+    // Asignar evento al botón readDataBtn
+    readDataBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            // Obtener el ID del producto desde el atributo data del botón
+            const id_producto = this.dataset.productId;
+            console.log('Se hizo clic en el botón readDataBtn con ID de producto:', id_producto);
+
+            // Obtener la información del producto y mostrar el modal
+            infoProduct(id_producto);
+        });
+    });
+    // Evento para abrir el modal customModal
+    openModalBtn.addEventListener("click", function () {
+        customModal.style.display = "block";
+    });
+
+    customCloseBtns.forEach(btn => {
+        btn.addEventListener("click", function () {
+            customModal.style.display = "none";
+        });
+    });
+
+    // Evento para cerrar el modal readDataModal
+    btnCloseModal.addEventListener("click", function () {
+        customCloseBtn.click(); // Simular clic en el botón de cierre original
+    });
+
 }
 
 // Variables
@@ -107,5 +139,69 @@ async function nuevoProducto(e) {
         console.error(error);
     }
 }
+
+/* 
+async function infoProduct(id_producto) {
+    try {
+        const response = await fetch('/productos_crud/obtener_productos/' + id_producto, {
+            method: 'POST',
+        });
+
+        // Verificar si la respuesta es exitosa (código de estado 200)
+        if (response.ok) {
+            // Convertir la respuesta a formato JSON
+            const data = await response.json();
+            // Mostrar la información en la consola
+            console.log(data);
+            // Aquí puedes hacer algo más con la respuesta, como procesarla o mostrarla en la interfaz de usuario
+        } else {
+            // Si la respuesta no es exitosa, lanzar un error
+            throw new Error('Error al obtener la información del producto');
+        }
+    } catch (error) {
+        // Manejar errores de red u otros errores
+        console.error(error);
+    }
+} 
+*/
+
+async function infoProduct(id_producto) {
+    try {
+        const response = await fetch('/productos_crud/obtener_productos/' + id_producto, {
+            method: 'POST',
+        });
+
+        // Verificar si la respuesta es exitosa (código de estado 200)
+        if (response.ok) {
+            // Convertir la respuesta a formato JSON
+            const data = await response.json();
+            console.log('Respuesta del servidor:', data);
+            // Llenar el modal con la información del producto
+            //fillModal(data);
+            const readDataModal = new bootstrap.Modal(document.getElementById('readDataModal'));
+            readDataModal.show();
+
+        } else {
+            // Si la respuesta no es exitosa, lanzar un error
+            throw new Error('Error al obtener la información del producto');
+        }
+    } catch (error) {
+        // Manejar errores de red u otros errores
+        console.error(error);
+    }
+}
+async function fillModal(data) {
+    // Llenar los campos del formulario con la información del producto
+    nameInput.value = data.nombre;
+    informacionInput.value = data.informacion;
+    descripcionInput.value = data.descripcion;
+    breveDescInput.value = data.breveDescripcion;
+    precioInput.value = data.precio;
+
+    // Mostrar el modal
+    const readDataModal = new bootstrap.Modal(document.getElementById('readDataModal'));
+    readDataModal.show();
+}
+
 
 eventListeners();

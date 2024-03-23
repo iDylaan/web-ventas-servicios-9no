@@ -48,6 +48,8 @@ class Sql_Strings():
             dt_creado AS "fecha_creado", 
             activo
         FROM servicios
+        ORDER BY id ASC;
+
         """
     )
     GET_PRODCT_BY_ID = (

@@ -72,12 +72,11 @@
                         </td>
                         <!-- Dentro del bloque de iteración -->
                         <td class="col-1">
-                            <button class="btn btn-success readDataBtn" data-product-id="{{ producto.get('id') }}"><i
-                                    class="bi bi-eye"></i></button>
+                            <button class="btn btn-success readDataBtn" data-product-id="{{ producto.get('id') }}"><i class="bi bi-eye"></i> {{ producto.get('id', 'Null') }}</button>
                             <button id="userForm" class="btn btn-primary"><i class="bi bi-pencil-square"></i></button>
                             <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
                         </td>
-
+                            
                     </tr>
                     <div id="productos" data-url="{{ url_for('productos_crud.obtener_productos') }}"></div>
                     {% endfor %}
@@ -93,7 +92,7 @@
         <div class="help-block with-errors alert alert-danger col-md-12 d-none" id="form_error"></div>
         <div class="modal-header">
             <h4 class="modal-title">Nuevo producto</h4> 
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            <button type="button" class="btn-close custom-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
         </div>
         <div class="modal-body card-group">
             <div class="card imgholder col-1">
@@ -306,7 +305,7 @@
         });
     });
 </script> -->
-<script>
+<!-- <script>
     document.addEventListener("DOMContentLoaded", function() {
         const openModalBtn = document.getElementById("openModalBtn");
         const customModal = document.getElementById("customModal");
@@ -320,11 +319,11 @@
             customModal.style.display = "none";
         });
     });
-</script>
+</script> -->
 
 
 
 
 
 
-{% endblock content %}
+    {% endblock content %}
