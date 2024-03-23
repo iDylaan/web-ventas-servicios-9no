@@ -13,7 +13,9 @@
 {% block styles %}
 
 {{super()}}
-<link rel="stylesheet" href="{{url_for('static',filename='modules/styles/userCrud/style.css')}}">
+<!-- <link rel="stylesheet" href="{{url_for('static',filename='modules/styles/userCrud/style.css')}}"> -->
+<link rel="stylesheet" href="{{url_for('static',filename='modules/styles/admin/cruds.css')}}">
+
 {% endblock styles %}
 
 {% block content %}
@@ -23,7 +25,9 @@
 
     <div class="row">
         <div class="col-12">
-            <button type="button" id="openModalBtn" class="btn btn-primary" style="display: flex; align-items: center; gap: 5px;">Nuevo producto<i class="material-icons">inventory_2</i></button>
+            <button type="button" id="openModalBtn" class="btn btn-primary"
+                style="display: flex; align-items: center; gap: 5px;">Nuevo producto<i
+                    class="material-icons">inventory_2</i></button>
 
 
 
@@ -72,13 +76,14 @@
                         </td>
                         <!-- Dentro del bloque de iteración -->
                         <td class="col-1">
-                            <button class="btn btn-success readDataBtn" data-product-id="{{ producto.get('id') }}"><i class="bi bi-eye"></i> {{ producto.get('id', 'Null') }}</button>
+                            <button class="btn btn-success readDataBtn" data-product-id="{{ producto.get('id') }}"><i
+                                    class="bi bi-eye"></i> {{ producto.get('id', 'Null') }}</button>
                             <button id="userForm" class="btn btn-primary"><i class="bi bi-pencil-square"></i></button>
                             <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
                         </td>
-                            
+
                     </tr>
-                    <div id="productos" data-url="{{ url_for('productos_crud.obtener_productos') }}"></div>
+                    <div id="productos"></div>
                     {% endfor %}
                 </tbody>
 
@@ -87,6 +92,79 @@
     </div>
 
 </section>
+
+<!-- Modal a la Dani -->
+<aside class="productos_form_modal ">
+
+
+    <div class="modal-form__container ">
+        <!-- HEADER -->
+        <div class="modal-form__header">
+            <h2>Nuevo Producto</h2>
+            <div class="close-modal__button">
+                <i class="material-icons">close</i>
+            </div>
+        </div>
+
+        <!-- FORM -->
+        <div class="modal-form__body">
+            <!-- Imagen -->
+            <section class="image__container">
+                <div class="profile-modal-img__container">
+                    <div class="card imgholder">
+                        <label for="imgInput" class="upload">
+                            <input type="file" name="" id="imgInput">
+                            <i class="material-icons">edit</i>
+                        </label>
+
+                        <div class="picture-profile-modal-loade__container display-none"
+                            id="picture-profile-modal-loader">
+                            {% include 'components/circular-loader.html' %}
+                        </div>
+
+                        <i class="material-icons person-icon-profile-picture-modal"
+                            aria-label="Profile picture">person</i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Formulario -->
+            <section class="form__container">
+                <div class="input-component">
+                    <label for="nombre">Nombre del producto</label>
+                    <input type="text" name="nombre">
+                </div>
+                <div class="input-component">
+                    <label for="descripcion_breve">Descripción breve</label>
+                    <input type="text" name="nombre">
+                </div>
+                <div class="input-component">
+                    <label for="descripcion">Descripción detallada</label>
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                </div>
+                <div class="input-component">
+                    <label for="info">Información</label>
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                </div>
+                <div class="input-component">
+                    <label for="info">Precio</label>
+                    <div class="precio__container">
+                        <i class="material-icons">attach_money</i>
+                        <input type="tel" name="nombre">
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="modal-form__footer">
+
+        </div>
+
+    </div>
+</aside>
+
+<!-- 
 <div id="customModal" class="custom-modal" style="display: none;">
     <form id="myForm" class="custom-modal-content">
         <div class="help-block with-errors alert alert-danger col-md-12 d-none" id="form_error"></div>
@@ -135,8 +213,9 @@
         </div>
     </form>
 </div>
-
+  -->
 <!-- Modal para mostrar la información -->
+<!-- 
 <div id="readDataModal" class="custom-modal">
     <div class="custom-modal-content">
         <div class="modal-header">
@@ -190,8 +269,9 @@
         </div>
     </div>
 </div>
-
+ -->
 <!-- Modal para editar la información -->
+<!-- 
 <div id="userFormModal" class="custom-modal">
     <div class="custom-modal-content">
         <div class="modal-header">
@@ -245,7 +325,7 @@
         </div>
     </div>
 </div>
-
+ -->
 <!-- <script>
     document.addEventListener("DOMContentLoaded", function () {
         const openModalBtn = document.getElementById("openModalBtn");
@@ -326,4 +406,4 @@
 
 
 
-    {% endblock content %}
+{% endblock content %}

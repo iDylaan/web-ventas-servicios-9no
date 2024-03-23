@@ -140,12 +140,10 @@ async function nuevoProducto(e) {
     }
 }
 
-/* 
-async function infoProduct(id_producto) {
+
+/* async function infoProduct(id_producto) {
     try {
-        const response = await fetch('/productos_crud/obtener_productos/' + id_producto, {
-            method: 'POST',
-        });
+        const response = await fetch('/productos_crud/obtener_producto/' + id_producto);
 
         // Verificar si la respuesta es exitosa (código de estado 200)
         if (response.ok) {
@@ -162,13 +160,13 @@ async function infoProduct(id_producto) {
         // Manejar errores de red u otros errores
         console.error(error);
     }
-} 
-*/
+}  */
+
 
 async function infoProduct(id_producto) {
     try {
         const response = await fetch('/productos_crud/obtener_productos/' + id_producto, {
-            method: 'POST',
+            method: 'GET',
         });
 
         // Verificar si la respuesta es exitosa (código de estado 200)

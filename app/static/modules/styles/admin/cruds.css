@@ -1,0 +1,97 @@
+.productos_form_modal {
+    position: fixed;
+    width: 100dvw;
+    height: 100dvh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    backdrop-filter: blur(10px);
+    display: grid;
+    place-content: center;
+}
+
+.modal-form__container {
+    min-width: 800px;
+    margin: 15px;
+    max-height: 95dvh;
+    width: calc(100% - 3dvw);
+    background-color: white;
+    border-radius: 10px;
+    box-shadow:
+        0px 0px 3.6px rgba(0, 0, 0, 0.025),
+        0px 0px 8.7px rgba(0, 0, 0, 0.036),
+        0px 0px 16.4px rgba(0, 0, 0, 0.045),
+        0px 0px 29.3px rgba(0, 0, 0, 0.054),
+        0px 0px 54.7px rgba(0, 0, 0, 0.065),
+        0px 0px 131px rgba(0, 0, 0, 0.09);
+    overflow: hidden;
+}
+
+.modal-form__header {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    align-items: center;
+    background-color: #0066ff;
+    color: rgba(255, 255, 255, 0.722);
+}
+
+.modal-form__header h2 {
+    font-size: 1.2rem;
+    margin: 0;
+    height: 100%;
+    padding: 8px 5px;
+    color: white;
+}
+
+.close-modal__button {
+    display: grid;
+    place-content: center;
+    transition: 0.1s ease-in-out all;
+    cursor: pointer;
+    padding: 8px 5px;
+    border-radius: 4px;
+    overflow: hidden;
+    &:hover {
+        background-color: #ffffff2f;
+        color: white;
+    }
+}
+
+.modal-form__body {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    border: 1px solid red;
+    margin: 20px 5px;
+}
+
+.modal-form__body .form__container .input-component {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    padding: 5px 0px;
+    width: 100% !important;
+    border: 1px solid red;
+}
+
+.modal-form__body .form__container .input-component textarea {
+    resize: none;
+    overflow-y: auto;
+    width: 100%;
+    height: 50px;
+}
+
+.precio__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    width: 100%;
+}

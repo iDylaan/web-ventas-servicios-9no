@@ -214,8 +214,8 @@ def obtener_imagen_producto(id_producto):
         return handleResponseError('Error en el servidor: {}'.format(e)) 
     
     
-@mod.route('/obtener_productos/<int:id_producto>', methods=['POST'])
-def obtener_productos(id_producto):
+@mod.route('/obtener_productos/<int:id_producto>', methods=['GET'])
+def obtener_producto(id_producto):
     try:
         if not id_producto:
             return handleResponseError('Producto faltante', 400)
