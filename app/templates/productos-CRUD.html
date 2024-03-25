@@ -13,8 +13,7 @@
 {% block styles %}
 
 {{super()}}
-<link rel="stylesheet" href="{{url_for('static',filename='modules/styles/userCrud/style.css')}}">
-<!-- <link rel="stylesheet" href="{{url_for('static',filename='modules/styles/admin/cruds.css')}}"> -->
+<link rel="stylesheet" href="{{url_for('static',filename='modules/styles/admin/cruds.css')}}">
 
 {% endblock styles %}
 
@@ -25,7 +24,7 @@
 
     <div class="row">
         <div class="col-12">
-            <button type="button" id="openModalBtn" class="btn btn-primary"
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newformModal"
                 style="display: flex; align-items: center; gap: 5px;">Nuevo producto<i
                     class="material-icons">inventory_2</i></button>
         </div>
@@ -73,10 +72,12 @@
                         </td>
                         <!-- Dentro del bloque de iteración -->
                         <td class="col-1">
-                            <button class="btn btn-success readDataBtn" data-product-id="{{ producto.get('id') }}"><i
-                                    class="bi bi-eye"></i> {{ producto.get('id', 'Null') }}</button>
-                            <button id="userForm" class="btn btn-primary"><i class="bi bi-pencil-square"></i></button>
-                            <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                            <button class="btn btn-success leerDataBtn" data-product-id="{{ producto.get('id') }}"><i
+                                    class="bi bi-eye"></i></button>
+                            <button class="btn btn-primary editDataBtn" data-product-id="{{ producto.get('id') }}"><i
+                                    class="bi bi-pencil-square"></i></button>
+                            <button class="btn btn-danger eliminaDataBtn" data-product-id="{{ producto.get('id') }}"><i
+                                    class="bi bi-trash"></i></button>
                         </td>
 
                     </tr>
@@ -90,78 +91,10 @@
 
 </section>
 
-<!-- Modal a la Dani -->
-<!-- <aside class="productos_form_modal ">
 
-
-    <div class="modal-form__container ">
-        <div class="modal-form__header">
-            <h2>Nuevo Producto</h2>
-            <div class="close-modal__button">
-                <i class="material-icons">close</i>
-            </div>
-        </div>
-
-        <div class="modal-form__body">
-
-            <section class="image__container">
-                <div class="profile-modal-img__container">
-                    <div class="card imgholder">
-                        <label for="imgInput" class="upload">
-                            <input type="file" name="" id="imgInput">
-                            <i class="material-icons">edit</i>
-                        </label>
-
-                        <div class="picture-profile-modal-loade__container display-none"
-                            id="picture-profile-modal-loader">
-                            {% include 'components/circular-loader.html' %}
-                        </div>
-
-                        <i class="material-icons person-icon-profile-picture-modal"
-                            aria-label="Profile picture">person</i>
-                    </div>
-                </div>
-            </section>
-
-            <section class="form__container">
-                <div class="input-component">
-                    <label for="nombre">Nombre del producto</label>
-                    <input type="text" name="nombre">
-                </div>
-                <div class="input-component">
-                    <label for="descripcion_breve">Descripción breve</label>
-                    <input type="text" name="nombre">
-                </div>
-                <div class="input-component">
-                    <label for="descripcion">Descripción detallada</label>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                </div>
-                <div class="input-component">
-                    <label for="info">Información</label>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                </div>
-                <div class="input-component">
-                    <label for="info">Precio</label>
-                    <div class="precio__container">
-                        <i class="material-icons">attach_money</i>
-                        <input type="tel" name="nombre">
-                    </div>
-                </div>
-                <br>
-            </section>
-        </div>
-
-        <div class="modal-form__footer">
-
-        </div>
-
-    </div>
-</aside> -->
-
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-    data-bs-whatever="@getbootstrap">El que si jala </button>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal para nuevos Productos -->
+<div class="modal fade a productos_form_modal" id="newformModal" tabindex="-1" aria-labelledby="newformModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -169,7 +102,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="formNuevoPro">
                     <div class="col-md-3">
                         <section class="image__container">
                             <div class="profile-modal-img__container">
@@ -178,12 +111,215 @@
                                         <input type="file" name="" id="imgInput">
                                         <i class="material-icons">edit</i>
                                     </label>
-            
+
+                                    <div class="picture-profile-modal-loade__container display-none"
+                                        id="picture-profile-modal-loader">
+                                    </div>
+
+                                    <i class="material-icons person-icon-profile-picture-modal"
+                                        aria-label="Profile picture">person</i>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-md-9">
+                        <section class="form__container">
+                            <!-- <div class="input-component">
+                                <label for="nombre">Nombre del producto</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <input type="text" id="nameInput" class="form-control"
+                                        placeholder="Nombre de producto" aria-label="Sizing input"
+                                        aria-describedby="inputGroup-sizing-sm" required>
+                                </div>
+                            </div> -->
+                            <div class="input-component">
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="nameInput" class="form-control" aria-label="Sizing input"
+                                        aria-describedby="inputGroup-sizing-sm" placeholder="Nombre de producto"
+                                        required>
+                                    <label for="nombre">Nombre del producto</label>
+                                </div>
+                            </div>
+                            <!-- <div class="input-component">
+                                <label for="descripcion_breve">Descripción breve</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <input id="breveDescInput" type="text"
+                                        placeholder="Agrega una breve descripcion del producto" class="form-control"
+                                        aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm" required>
+                                </div>
+                            </div> -->
+                            <div class="input-component">
+                                <div class="form-floating mb-3">
+                                    <input id="breveDescInput" type="text" class="form-control"
+                                        aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm"
+                                        placeholder="Agrega una breve descripcion del producto" required>
+                                    <label for="descripcion_breve">Descripción breve</label>
+                                </div>
+                            </div>
+                            <!-- <div class="input-component">
+                                <label for="descripcion">Descripción detallada</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <textarea id="descripcionInput" class="form-control"
+                                        placeholder="Agrega una descripcion del producto" aria-label="With textarea"
+                                        required></textarea>
+                                </div>
+                            </div> -->
+                            <div class="input-component">
+                                <div class="form-floating mb-3">
+                                    <textarea id="descripcionInput" class="form-control" aria-label="With textarea"
+                                        placeholder="Agrega una descripcion del producto" required></textarea>
+                                    <label for="descripcion">Descripción detallada</label>
+                                </div>
+                            </div>
+                            <!-- <div class="input-component">
+                                <label class="form-label">Información</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <textarea id="informacionInput" class="form-control"
+                                        placeholder="Informacion de producto" aria-label="With textarea"
+                                        required></textarea>
+                                </div>
+                            </div> -->
+                            <div class="input-component">
+                                <div class="form-floating mb-3">
+                                    <textarea id="informacionInput" class="form-control" aria-label="With textarea"
+                                        placeholder="Informacion de producto" required></textarea>
+                                    <label class="form-label">Información</label>
+                                </div>
+                            </div>
+                            <!-- <div class="input-component">
+                                <label class="form-label">Precio</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text">$</span>
+                                    <input id="precioInput" class="form-control" type="number" placeholder="$000.00"
+                                        required>
+                                </div>
+                            </div> -->
+                            <div class="input-component">
+                                <div class="form-floating mb-3">
+                                    <input id="precioInput" class="form-control" type="number" min="0"
+                                        placeholder="$000.00" required>
+                                    <label class="form-label">Precio $</label>
+                                </div>
+                            </div>
+                            
+                        </section>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" id="btnGuerdaNP" class="btn btn-primary submit">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Moda para consutlar la infomación del producto -->
+<div class="modal fade a productos_form_modal" id="leerModal" tabindex="-1" aria-labelledby="leerModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Producto </h4>
+                <p class="fs-2 align-bottom" id="lecturaproductParagraph" style="margin-top: 15px;"></p>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formPro">
+                    <div class="col-md-3">
+
+                        <section class="image__container">
+                            <div class="profile-modal-img__container">
+                                <div class="card imgholder">
+                                    <!-- Aquí se mostrará la imagen -->
+                                    <img id="productImage" src="" alt="Imagen del producto"
+                                        style="width: 100%; height: auto;" />
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="col-md-9">
+                        <section class="form__container">
+                            <div class="input-component">
+                                <label for="nombre">Nombre del producto</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <input type="text" id="lecturanameInput" class="form-control"
+                                        placeholder="Nombre de producto" aria-label="Sizing input"
+                                        aria-describedby="inputGroup-sizing-sm" readonly>
+                                </div>
+                            </div>
+                            <div class="input-component">
+                                <label for="descripcion_breve">Descripción breve</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <input id="lecturabreveDescInput" type="text"
+                                        placeholder="Agrega una breve descripcion del producto" class="form-control"
+                                        aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm" readonly>
+                                </div>
+                            </div>
+                            <div class="input-component">
+                                <label for="descripcion">Descripción detallada</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <textarea id="lecturadescripcionInput" class="form-control"
+                                        placeholder="Agrega una descripcion del producto" aria-label="With textarea"
+                                        readonly></textarea>
+                                </div>
+                            </div>
+                            <div class="input-component">
+                                <label class="form-label">Información</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <textarea id="lecturainformacionInput" class="form-control"
+                                        placeholder="Informacion de producto" aria-label="With textarea"
+                                        readonly></textarea>
+                                </div>
+                            </div>
+                            <div class="input-component">
+                                <label class="form-label">Precio</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text">$</span>
+                                    <input id="lecturaprecioInput" class="form-control" type="number"
+                                        placeholder="$000.00" readonly>
+                                </div>
+                            </div>
+                            <br>
+                        </section>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary " data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal para Editar Productos -->
+<div class="modal fade a productos_form_modal" id="editformModal" tabindex="-1" aria-labelledby="newformModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editar producto </h4>
+                <p class="fs-2 align-bottom" id="editproductParagraph" style="margin-top: 15px;"></p>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formEditPro">
+                    <div class="col-md-3">
+                        <section class="image__container">
+                            <div class="profile-modal-img__container">
+                                <div class="card imgholder">
+                                    <label for="imgInput" class="upload">
+                                        <input type="file" name="" id="imgInput">
+                                        <i class="material-icons">edit</i>
+                                    </label>
+
                                     <div class="picture-profile-modal-loade__container display-none"
                                         id="picture-profile-modal-loader">
                                         {% include 'components/circular-loader.html' %}
                                     </div>
-            
+
                                     <i class="material-icons person-icon-profile-picture-modal"
                                         aria-label="Profile picture">person</i>
                                 </div>
@@ -194,280 +330,57 @@
                         <section class="form__container">
                             <div class="input-component">
                                 <label for="nombre">Nombre del producto</label>
-                                <input type="text" name="nombre">
+                                <div class="input-group input-group-sm mb-3">
+                                    <input type="text" id="editnameInput" class="form-control"
+                                        placeholder="Nombre de producto" aria-label="Sizing input"
+                                        aria-describedby="inputGroup-sizing-sm" required>
+                                </div>
                             </div>
                             <div class="input-component">
                                 <label for="descripcion_breve">Descripción breve</label>
-                                <input type="text" name="nombre">
+                                <div class="input-group input-group-sm mb-3">
+                                    <input id="editbreveDescInput" type="text"
+                                        placeholder="Agrega una breve descripcion del producto" class="form-control"
+                                        aria-label="Sizing input" aria-describedby="inputGroup-sizing-sm" required>
+                                </div>
                             </div>
                             <div class="input-component">
                                 <label for="descripcion">Descripción detallada</label>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                            </div>
-                            <div class="input-component">
-                                <label for="info">Información</label>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                            </div>
-                            <div class="input-component">
-                                <label for="info">Precio</label>
-                                <div class="precio__container">
-                                    <i class="material-icons">attach_money</i>
-                                    <input type="tel" name="nombre">
+                                <div class="input-group input-group-sm mb-3">
+                                    <textarea id="editdescripcionInput" class="form-control"
+                                        placeholder="Agrega una descripcion del producto" aria-label="With textarea"
+                                        required></textarea>
                                 </div>
                             </div>
+                            <div class="input-component">
+                                <label class="form-label">Información</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <textarea id="editinformacionInput" class="form-control"
+                                        placeholder="Informacion de producto" aria-label="With textarea"
+                                        required></textarea>
+                                </div>
+                            </div>
+                            <div class="input-component">
+                                <label class="form-label">Precio</label>
+                                <div class="input-group input-group-sm mb-3">
+                                    <span class="input-group-text">$</span>
+                                    <input id="editprecioInput" class="form-control" type="number" placeholder="$000.00"
+                                        required>
+                                </div>
+                            </div>
+                            <input type="hidden" id="editIDproducto" name="id_producto" readonly>
                             <br>
                         </section>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="custom-close">Cerrar</button>
-                <button type="submit" id="btnGuerdaNP" class="btn btn-primary submit">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" id="btnActualizaP" class="btn btn-primary submit">Actualizar</button>
             </div>
         </div>
     </div>
+
 </div>
-
-
-<div id="customModal" class="custom-modal" style="display: none;">
-    <form id="myForm" class="custom-modal-content">
-        <div class="help-block with-errors alert alert-danger col-md-12 d-none" id="form_error"></div>
-        <div class="modal-header">
-            <h4 class="modal-title">Nuevo producto</h4>
-            <button type="button" class="btn-close custom-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body card-group">
-            <div class="card imgholder col-1">
-                <label for="imgInput" class="upload col-1">
-                    <input type="file" name="" id="imgInput" />
-                    <i class="bi bi-plus-circle-dotted col-1"></i>
-                </label>
-                <img src="{{url_for('static',filename='modules/imgs/userCrud/image/ProfileIcon.webp')}}" alt=""
-                    width="200" height="200" class="img" />
-            </div>
-            <div class="card inputField col-11">
-                <div>
-                    <label for="name">Nombre:</label>
-                    <input type="text" name="" id="nameInput" placeholder="Nombre de producto" required />
-                </div>
-                <div>
-                    <label for="informacion">Informacion:</label>
-                    <input type="text" informacion="" id="informacionInput" placeholder="Informacion de producto"
-                        required />
-                </div>
-                <div>
-                    <label for="descripcion">Descripción:</label>
-                    <input type="text" name="" id="descripcionInput" placeholder="Agrega una descripcion del producto"
-                        required />
-                </div>
-                <div>
-                    <label for="breveDesc">Breve Desc:</label>
-                    <input type="text" name="" id="breveDescInput"
-                        placeholder="Agrega una breve descripcion del producto" required />
-                </div>
-                <div>
-                    <label for="precio">Precio: $</label>
-                    <input type="text" name="" id="precioInput" placeholder="$000.00" required />
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="custom-close">Cerrar</button>
-            <button type="submit" id="btnGuerdaNP" class="btn btn-primary submit">Guardar</button>
-        </div>
-    </form>
-</div>
-
-<!-- Modal para mostrar la información -->
-
-<div id="readDataModal" class="custom-modal">
-    <div class="custom-modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title">Producto</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-
-        <div class="modal-body">
-            <form action="#" id="myForm">
-                <div class="card imgholder">
-                    <label for="imgInput" class="upload">
-                        <input type="file" name="" id="imgInput" />
-                        <i class="bi bi-plus-circle-dotted"></i>
-                    </label>
-                    <img src="{{url_for('static',filename='modules/imgs/userCrud/image/ProfileIcon.webp')}}" alt=""
-                        width="200" height="200" class="img" />
-                </div>
-
-
-                <div class="inputField">
-                    <div>
-                        <label for="name">Nombre:</label>
-                        <input type="text" name="" id="name" placeholder="Nombre de producto" readonly />
-                    </div>
-                    <div>
-                        <label for="informacion">Informacion:</label>
-                        <input type="text" informacion="" id="informacion" placeholder="Informacion de producto"
-                            required />
-                    </div>
-                    <div>
-                        <label for="descripcion">Descripción:</label>
-                        <input type="text" name="" id="descripcion" placeholder="Agrega una descripcion del producto"
-                            required />
-                    </div>
-                    <div>
-                        <label for="breveDesc">Breve Desc:</label>
-                        <input type="text" name="" id="breveDesc"
-                            placeholder="Agrega una breve descripcion del producto" required />
-                    </div>
-                    <div>
-                        <label for="precio">Precio: $</label>
-                        <input type="text" name="" id="precio" placeholder="$000.00" required />
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="submit" form="myForm" class="btn btn-primary submit">Guardar</button>
-        </div>
-    </div>
-</div>
-
-<!-- Modal para editar la información -->
-
-<div id="userFormModal" class="custom-modal">
-    <div class="custom-modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title">Editar producto</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-
-        <div class="modal-body">
-            <form action="#" id="myForm">
-                <div class="card imgholder">
-                    <label for="imgInput" class="upload">
-                        <input type="file" name="" id="imgInput" />
-                        <i class="bi bi-plus-circle-dotted"></i>
-                    </label>
-                    <img src="{{url_for('static',filename='modules/imgs/userCrud/image/ProfileIcon.webp')}}" alt=""
-                        width="200" height="200" class="img" />
-                </div>
-
-
-                <div class="inputField">
-                    <div>
-                        <label for="name">Nombre:</label>
-                        <input type="text" name="" id="name" placeholder="Nombre de producto" required />
-                    </div>
-                    <div>
-                        <label for="informacion">Informacion:</label>
-                        <input type="text" informacion="" id="informacion" placeholder="Informacion de producto"
-                            required />
-                    </div>
-                    <div>
-                        <label for="descripcion">Descripción:</label>
-                        <input type="text" name="" id="descripcion" placeholder="Agrega una descripcion del producto"
-                            required />
-                    </div>
-                    <div>
-                        <label for="breveDesc">Breve Desc:</label>
-                        <input type="text" name="" id="breveDesc"
-                            placeholder="Agrega una breve descripcion del producto" required />
-                    </div>
-                    <div>
-                        <label for="precio">Precio: $</label>
-                        <input type="text" name="" id="precio" placeholder="$000.00" required />
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="submit" form="myForm" class="btn btn-primary submit">Guardar</button>
-        </div>
-    </div>
-</div>
-
-<!-- <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const openModalBtn = document.getElementById("openModalBtn");
-        const customModal = document.getElementById("customModal");
-        const readDataModal = document.getElementById("readDataModal");
-        const userFormModal = document.getElementById("userFormModal");
-        const readDataBtns = document.querySelectorAll(".readDataBtn");
-        const userFormBtn = document.getElementById("userForm");
-        const closeModalBtns = document.querySelectorAll(".btn-secondary");
-        const xBtnClose = document.querySelectorAll(".btn-close");
-
-        // Función para abrir el modal customModal
-        openModalBtn.addEventListener("click", function () {
-            customModal.style.display = "block";
-        });
-
-        // Funciones para abrir los modales de consulta de datos (readDataModal) al hacer clic en los botones
-        readDataBtns.forEach(btn => {
-            btn.addEventListener("click", function () {
-                readDataModal.style.display = "block";
-            });
-        });
-
-        // Función para abrir el modal de formulario de usuario (userFormModal)
-        userFormBtn.addEventListener("click", function () {
-            userFormModal.style.display = "block";
-        });
-
-        // Funciones para cerrar los modales
-        closeModalBtns.forEach(btn => {
-            btn.addEventListener("click", function () {
-                customModal.style.display = "none";
-                readDataModal.style.display = "none";
-                userFormModal.style.display = "none";
-            });
-        });
-
-        xBtnClose.forEach(btn => {
-            btn.addEventListener("click", function () {
-                customModal.style.display = "none";
-                readDataModal.style.display = "none";
-                userFormModal.style.display = "none";
-            });
-        });
-
-        // Funciones para cerrar los modales al hacer clic fuera de ellos
-        window.addEventListener("click", function (event) {
-            if (event.target == customModal) {
-                customModal.style.display = "none";
-            }
-            if (event.target == readDataModal) {
-                readDataModal.style.display = "none";
-            }
-            if (event.target == userFormModal) {
-                userFormModal.style.display = "none";
-            }
-        });
-    });
-</script> -->
-<!-- <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const openModalBtn = document.getElementById("openModalBtn");
-        const customModal = document.getElementById("customModal");
-        const customCloseBtn = document.querySelector("#customModal .custom-close");
-
-        openModalBtn.addEventListener("click", function () {
-            customModal.style.display = "block";
-        });
-
-        customCloseBtn.addEventListener("click", function () {
-            customModal.style.display = "none";
-        });
-    });
-</script> -->
-
-
-
-
-
 
 {% endblock content %}

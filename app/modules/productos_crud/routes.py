@@ -139,6 +139,31 @@ def editar_producto(id_producto):
         return handleResponseError('Error en el servidor: {}'.format(e))
     
 
+@mod.route('/eliminar/<int:id_productp>', methods=['POST'])
+def eliminar(id_productp):
+    try:
+        # Validar que venga el id_producto
+        if not id_productp:
+            return handleResponseError('Falta el id del producto', 400)
+        
+        # Validar que el producto exista
+        result = qry(SQL_STRINGS.GET_PRODUCT_COUNT_BY_ID, {'id_producto': id_productp}, True)
+        product_count = result.get('count', None)
+        
+        if not product_count:
+            return handleResponseError('No se encontró el producto.', 404)
+        
+        rows_affected = sql(SQL_STRINGS.DELETE_PRODUCT_BY_ID, {'id_producto': id_productp})
+        
+        # Validar filas afectadas
+        if rows_affected:
+            return handleResponse('Producto eliminado exitosamente')
+        else:
+            raise handleResponseError('No se pudo eliminar el producto.')
+    except Exception as e:
+        print("Ocurrio un error en @editar_producto/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
+        return handleResponseError('Error en el servidor: {}'.format(e))
+
 @mod.route('/imagen_producto/<int:id_producto>', methods=['POST'])
 def guardar_imagen_producto(id_producto):
     try:

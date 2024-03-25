@@ -48,8 +48,8 @@ class Sql_Strings():
             dt_creado AS "fecha_creado", 
             activo
         FROM servicios
+        WHERE activo = 1
         ORDER BY id ASC;
-
         """
     )
     GET_PRODCT_BY_ID = (
@@ -68,4 +68,9 @@ class Sql_Strings():
         FROM servicios
         WHERE id = %(id_producto)s
         """
+    )
+    DELETE_PRODUCT_BY_ID = (
+        "UPDATE servicios SET "
+        "   activo = 0 "
+        "WHERE id = %(id_producto)s"
     )
