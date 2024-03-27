@@ -17,7 +17,16 @@ mod = Blueprint('user_crud', __name__)
 
 @mod.route('/')
 def user_crud_template():
-    return render_template('usuario-CRUD.html')
+    usuarios_arr = None 
+    try:
+        usuarios_arr = qry(SQL_STRINGS.GET_USERS)
+    except Exception as e:
+        print(e)
+        return render_template('404.html')
+    finally:
+        if not usuarios_arr:
+            usuarios_arr = []
+        return render_template('usuario-CRUD.html', usuarios=usuarios_arr)    
 
 
 

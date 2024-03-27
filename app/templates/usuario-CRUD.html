@@ -1,6 +1,6 @@
 {% extends 'layout/base-admin.html' %}
 
-{% block title %}  | Usuarios {% endblock %}
+{% block title %} | Usuarios {% endblock %}
 
 <script> const userIconSrc = "{{url_for('static',filename='modules/imgs/userCrud/image/ProfileIcon.webp')}}" </script>
 
@@ -13,7 +13,7 @@
 {% block styles %}
 
 {{super()}}
-<link rel="stylesheet" href="{{url_for('static',filename='modules/styles/userCrud/style.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='modules/styles/admin/cruds.css')}}">
 {% endblock styles %}
 
 {% block content %}
@@ -23,7 +23,9 @@
 
     <div class="row">
         <div class="col-12">
-            <button type="button" id="openModalBtn" class="btn btn-primary" style="display: flex; align-items: center; gap: 5px;">Nuevo Usuario <i class="material-icons">group</i></button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newformModal"
+                style="display: flex; align-items: center; gap: 5px;">Nuevo Usuario<i
+                    class="material-icons">group</i></button>
         </div>
     </div>
 
@@ -32,7 +34,7 @@
             <table class="table table-striped table-hover mt-3 text-center table-bordered">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Núm. reg.</th>
                         <th>Imagen</th>
                         <th>Nombre</th>
                         <th>Correo</th>
@@ -42,200 +44,144 @@
                     </tr>
                 </thead>
 
-                <tbody id="data"></tbody>
+                <tbody id="data">
+                    {% for usuario in usuarios %}
+                    <tr>
+                        <td class="col-1">
+                            {{ loop.index }}
+                        </td>
+                        <td class="col-2">
+                            <img src="{{ url_for('user_crud.obtener_imagen_usuario', id_usuario=usuario.get('id')) }}"
+                                alt="{{ usuario.get('image_name', 'Imagen del producto') }}" width="50" height="50">
+                        </td>
+                        <td class="col-1">
+                            {{ usuario.get('nombre_usuario', 'Nombre de usuario no disponible') }}
+                        </td>
+                        <td class="col-2 td-text">
+                            {{ usuario.get('email', 'Correo de usuario no disponible') }}
+                        </td>
+                        <td class="col-2 td-text">
+                            ********************************
+                        </td>
+                        <td class="col-2 td-text">
+                            {{ usuario.get('parte_equipo', 'Rol	 de usuario no disponible') }}
+                        </td>
+                        <!-- Dentro del bloque de iteración -->
+                        <td class="col-1">
+                            <button class="btn btn-success leerDataBtn" data-product-id="{{ usuario.get('id') }}"><i
+                                    class="bi bi-eye"></i></button>
+                            <button class="btn btn-primary editDataBtn" data-product-id="{{ usuario.get('id') }}"><i
+                                    class="bi bi-pencil-square"></i></button>
+                            <button class="btn btn-danger eliminaDataBtn" data-product-id="{{ usuario.get('id') }}"><i
+                                    class="bi bi-trash"></i></button>
+                        </td>
+
+                    </tr>
+                    <div id="productos"></div>
+                    {% endfor %}
+                </tbody>
 
             </table>
         </div>
     </div>
 
 </section>
-  
-  <div id="customModal" class="custom-modal">
-    <div class="custom-modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title">Nuevo Usuario</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
 
-        <div class="modal-body">
-            <form action="#" id="myForm">
-                <div class="card imgholder">
-                    <label for="imgInput" class="upload">
-                        <input type="file" name="" id="imgInput">
-                        <i class="bi bi-plus-circle-dotted"></i>
-                    </label>
-                    <img src="{{url_for('static',filename='modules/imgs/userCrud/image/ProfileIcon.webp')}}" alt="" width="200" height="200" class="img">
-                </div>
 
-                <div class="inputField">
-                    <div>
-                        <label for="name">Nombre:</label>
-                        <input type="text" name="" id="name" placeholder="Nombre completo" required>
+<!-- Modal para nuevos Productos -->
+<div class="modal fade a productos_form_modal" id="newformModal" tabindex="-1" aria-labelledby="newformModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Nuevo Usuario</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formNuevoPro" class="needs-validation" novalidate>
+                    <div class="col-md-3">
+                        <section class="image__container">
+                            <div class="profile-modal-img__container">
+                                <div class="card imgholder">
+                                    <label for="imgInput" class="upload">
+                                        <input type="file" name="" id="imgInput">
+                                        <i class="material-icons">edit</i>
+                                    </label>
+                                    <div class="picture-profile-modal-loade__container display-none"
+                                        id="picture-profile-modal-loader">
+                                    </div>
+                                    <i class="material-icons person-icon-profile-picture-modal"
+                                        aria-label="Profile picture">person</i>
+                                </div>
+                            </div>
+                        </section>
                     </div>
-                    <div>
-                        <label for="email">Correo:</label>
-                        <input type="email" name="" id="email" placeholder="example@example.com" required>
+                    <div class="col-md-9">
+                        <section class="form__container">
+                            <div class="input-component">
+                                <div class="form-floating mb-3">
+                                    <input type="text" id="nameInput" class="form-control" aria-label="Sizing input"
+                                        aria-describedby="inputGroup-sizing-sm" placeholder="Nombre de Usuario"
+                                        required>
+                                    <label for="nombre">Nombre del Usuario</label>
+                                    <div class="invalid-feedback">
+                                        Por favor ingresa el nombre del Usuario.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-component">
+                                <div class="form-floating mb-3">
+                                    <input id="email" type="email" class="form-control" aria-label="Sizing input"
+                                        aria-describedby="inputGroup-sizing-sm" placeholder="Ingresa un Correo."
+                                        required>
+                                    <label for="descripcion_breve">Correo</label>
+                                    <div class="invalid-feedback">
+                                        Por favor ingresa un Correo.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-component">
+                                <div class="form-floating mb-3">
+                                    <input id="password" type="password" class="form-control" aria-label="Sizing input"
+                                        aria-describedby="inputGroup-sizing-sm"
+                                        placeholder="Agrega una breve descripcion del producto" required>
+                                    <label for="descripcion_breve">Contraseña</label>
+                                    <div class="invalid-feedback">
+                                        Por favor ingresa una Contraseña.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-component">
+                                <div class="form-floating mb-3">
+                                    <legend class="col-form-label col-mb-2 pt-0">Rol</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input " type="radio" name="Usuario"
+                                                id="rolUs" value="0"checked>
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Usuario
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="Usuario"
+                                                id="rolAdmin" value="1" >
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                                Administrador
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
-                    <div>
-                        <label for="password">Contraseña:</label>
-                        <input type="password" name="" id="password" maxlength="8" minlength="8" placeholder="********" required>
-                    </div>
-                    <div>
-                        <legend>Rol:</legend>
-
-                        <div>
-                            <input type="radio" id="admin" name="drone" value="admin" checked />
-                            <label for="admin">Admin</label>
-                        </div>
-
-                        <div>
-                            <input type="radio" id="user" name="drone" value="user" />
-                            <label for="user">User</label>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <div class="modal-footer">
-            <button type="button" id="closeModalBtn" class="btn btn-secondary " data-bs-dismiss="modal">Cerrar</button>
-            <button type="submit" form="myForm" class="btn btn-primary submit">Guardar</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" id="btnGuerdaNP" class="btn btn-primary submit">Guardar</button>
+            </div>
         </div>
     </div>
 </div>
 
-  
-  <script>
-    const customModal = document.querySelector('#customModal');
-  var openModalBtn = document.getElementById("openModalBtn");
-  var closeModalBtn = document.querySelector("#closeModalBtn");
-  var xBtnClose = customModal.querySelector(".btn-close");
-  
-  openModalBtn.addEventListener("click", function() {
-    customModal.style.display = "block";
-  });
-  
-  closeModalBtn.addEventListener("click", function() {
-    customModal.style.display = "none";
-  });
-  
-  xBtnClose.addEventListener("click", function() {
-    customModal.style.display = "none";
-  });
-
-  window.addEventListener("click", function(event) {
-    if (event.target == customModal) {
-      customModal.style.display = "none";
-    }
-  });
-  </script>
-
-
-    <!--Modal Form-->
-    <div class="modal fade" id="userForm">
-        <div class="modal-dialog modal-dialog-centered modal-lg new-user-container">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h4 class="modal-title">Registrar usuario</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-
-                    <form action="#" id="myForm">
-
-                        <div class="card imgholder">
-                            <label for="imgInput" class="upload">
-                                <input type="file" name="" id="imgInput">
-                                <i class="bi bi-plus-circle-dotted"></i>
-                            </label>
-                            
-                            <img src="{{url_for('static',filename='modules/imgs/userCrud/image/ProfileIcon.webp')}}" alt="" width="200" height="200" class="img">
-                        </div>
-
-                        <div class="inputField">
-                            <div>
-                                <label for="name">Nombre:</label>
-                                <input type="text" name="" id="name" required>
-                            </div>
-                            <div>
-                                <label for="email">Correo:</label>
-                                <input type="email" name="" id="email" required>
-                            </div>
-                            <div>
-                                <label for="password">Contraseña:</label>
-                                <input type="password" name="" id="password" required>
-                            </div>
-                            <div>
-                                <label for="sDate">Fecha de inicio:</label>
-                                <input type="date" name="" id="sDate" required>
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" form="myForm" class="btn btn-primary submit">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Read Data Modal -->
-    <div class="modal fade" id="readData">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h4 class="modal-title">Perfil</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-
-                    <form action="#" id="myForm">
-
-                        <div class="card imgholder">
-                            <img src="{{url_for('static',filename='modules/imgs/userCrud/image/ProfileIcon.webp')}}" alt="" width="200" height="200" class="showImg">
-                        </div>
-
-                        <div class="inputField">
-                            <div>
-                                <label for="name">Nombre:</label>
-                                <input type="text" name="" id="showName" disabled>
-                            </div>
-                            <div>
-                                <label for="email">Correo:</label>
-                                <input type="email" name="" id="showEmail" disabled>
-                            </div>
-                            <div>
-                                <label for="password">Contraseña:</label>
-                                <input type="password" name="" id="showPassword" disabled>
-                            </div>
-                            <div>
-                                <legend>Rol:</legend>
-        
-                                <div>
-                                    <input type="radio" id="admin" name="drone" value="admin" checked />
-                                    <label for="admin">Admin</label>
-                                </div>
-        
-                                <div>
-                                    <input type="radio" id="user" name="drone" value="user" />
-                                    <label for="user">User</label>
-                                </div>
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
 {% endblock content %}
-

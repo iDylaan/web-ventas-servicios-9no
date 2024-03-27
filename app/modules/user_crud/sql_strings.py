@@ -32,3 +32,19 @@ class Sql_Strings():
         "FROM usuarios "
         "WHERE id = %(id_usuario)s"
     )
+    GET_USERS = (
+        """
+        SELECT 
+            id, 
+            nombre_usuario, 
+            email, 
+            "password", 
+            dt_creado, 
+            "admin", 
+            image_bin, 
+            image_name, 
+            image_url, 
+            parte_equipo
+        FROM usuarios;
+        """
+    )
