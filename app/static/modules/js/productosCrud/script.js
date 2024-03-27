@@ -116,8 +116,6 @@ async function nuevoProducto(e) {
         }
         btnGuerdaNP.disabled = true;
         // Mostrar los datos que se van a enviar en la solicitud AJAX
-        console.log('Datos enviados:', formModel);
-
         const response = await fetch('/productos_crud/nuevo', {
             method: 'POST',
             headers: {
@@ -136,20 +134,11 @@ async function nuevoProducto(e) {
 
                 // Distructuring de la data
                 const { data: { id_producto } } = result;
-                console.log(id_producto);
-
                 // File
                 const file = imgInput.files[0]
-                console.log(file);
-
-                console.log('Dentro de la carga de la imagen')
                 const formData = new FormData();
                 formData.append('imagen', file, file.name);
-
-                console.log('Imagen cargada al formData')
-
                 if (id_producto) {
-                    console.log('Antes de empezar el registro')
                     const response = await fetch('/productos_crud/imagen_producto/' + id_producto, {
                         method: 'POST',
                         body: formData
@@ -164,12 +153,10 @@ async function nuevoProducto(e) {
                     if (result) {
                         window.location.reload();
                     }
-                    console.log(result);
                 }
             } else {
                 window.location.reload();
             }
-            console.log("success");
         } else {
             throw new Error(result.error.msg)
         }
@@ -248,9 +235,6 @@ async function actualizaProducto(e) {
         }
 
         btnActualizaP.disabled = true;
-        // Mostrar los datos que se van a enviar en la solicitud AJAX
-        console.log('Datos enviados:', editformModel);
-
         const response = await fetch('/productos_crud/editar/' + editformModel.id, {
             method: 'POST',
             headers: {
@@ -290,13 +274,6 @@ async function actualizaProducto(e) {
 }
 
 async function editaModal(data) {
-    console.log('ID del producto:', data.id);
-    console.log('Nombre del producto:', data.titulo);
-    console.log('Descripción breve:', data.descripcion_previa);
-    console.log('Descripción detallada:', data.descripcion);
-    console.log('Información:', data.info);
-    console.log('Precio:', data.precio);
-
     // Pequeño retraso para asegurar que los elementos del formulario estén disponibles
     await new Promise(resolve => setTimeout(resolve, 100));
 
@@ -331,7 +308,6 @@ async function infoProduct(id_producto) {
         if (response.ok) {
             // Convertir la respuesta a formato JSON
             const data = await response.json();
-            console.log('Respuesta del servidor:', data);
             // Llenar el modal con la información del producto
             leeModal(data);
         } else {
@@ -373,16 +349,7 @@ async function eliminaProduct(id_producto) {
 }
 
 async function leeModal(data) {
-    console.log('ID del producto:', data.id);
-    console.log('Nombre del producto:', data.titulo);
-    console.log('Descripción breve:', data.descripcion_previa);
-    console.log('Descripción detallada:', data.descripcion);
-    console.log('Información:', data.info);
-    console.log('Precio:', data.precio);
-
-    // Pequeño retraso para asegurar que los elementos del formulario estén disponibles
     await new Promise(resolve => setTimeout(resolve, 100));
-
     lecturanameInput.value = data.titulo;
     lecturainformacionInput.value = data.info;
     lecturadescripcionInput.value = data.descripcion;
@@ -413,7 +380,6 @@ async function editProduct(id_producto) {
         if (response.ok) {
             // Convertir la respuesta a formato JSON
             const data = await response.json();
-            console.log('Respuesta del servidor:', data);
             // Llenar el modal con la información del producto
             editaModal(data);
         } else {
@@ -478,8 +444,6 @@ function eventListeners() {
         btn.addEventListener('click', function () {
             // Obtener el ID del producto desde el atributo data del botón
             const id_producto = this.dataset.productId;
-            console.log('Se hizo clic en el botón leerDataBtns con ID de producto:', id_producto);
-
             // Obtener la información del producto y mostrar el modal
             infoProduct(id_producto);
         });
@@ -489,8 +453,6 @@ function eventListeners() {
         btn.addEventListener('click', function () {
             // Obtener el ID del producto desde el atributo data del botón
             const id_producto = this.dataset.productId;
-            console.log('Se hizo clic en el botón editDataBtns con ID de producto:', id_producto);
-
             // Obtener la información del producto y mostrar el modal
             editProduct(id_producto);
         });
@@ -500,8 +462,6 @@ function eventListeners() {
         btn.addEventListener('click', function () {
             // Obtener el ID del producto desde el atributo data del botón
             const id_producto = this.dataset.productId;
-            console.log('Se hizo clic en el botón eliminaDataBtn con ID de producto:', id_producto);
-
             // Obtener la información del producto y mostrar el modal
             eliminaProduct(id_producto);
         });
