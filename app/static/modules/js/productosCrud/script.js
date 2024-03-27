@@ -28,61 +28,6 @@ const editDataBtns = document.querySelectorAll('.editDataBtn');
 const eliminaDataBtn = document.querySelectorAll('.eliminaDataBtn');
 
 
-
-// Event Listeners
-function eventListeners() {
-    formNuevoPro.addEventListener('submit', function (e) {
-        // No se llama a e.preventDefault() para permitir la recarga de la página
-        // Se realiza la validación de los campos obligatorios en nuevoProducto()
-    });
-
-    btnGuerdaNP.addEventListener("click", nuevoProducto)
-
-    formEditPro.addEventListener('submit', function (e) {
-        // No se llama a e.preventDefault() para permitir la recarga de la página
-        // Se realiza la validación de los campos obligatorios en actualizaProducto()
-    });
-
-    btnActualizaP.addEventListener("click", actualizaProducto)
-
-
-    // Asignar evento al botón readDataBtn
-    leerDataBtns.forEach(btn => {
-        btn.addEventListener('click', function () {
-            // Obtener el ID del producto desde el atributo data del botón
-            const id_producto = this.dataset.productId;
-            console.log('Se hizo clic en el botón leerDataBtns con ID de producto:', id_producto);
-
-            // Obtener la información del producto y mostrar el modal
-            infoProduct(id_producto);
-        });
-    });
-
-    editDataBtns.forEach(btn => {
-        btn.addEventListener('click', function () {
-            // Obtener el ID del producto desde el atributo data del botón
-            const id_producto = this.dataset.productId;
-            console.log('Se hizo clic en el botón editDataBtns con ID de producto:', id_producto);
-
-            // Obtener la información del producto y mostrar el modal
-            editProduct(id_producto);
-        });
-    });
-
-    eliminaDataBtn.forEach(btn => {
-        btn.addEventListener('click', function () {
-            // Obtener el ID del producto desde el atributo data del botón
-            const id_producto = this.dataset.productId;
-            console.log('Se hizo clic en el botón editDataBtns con ID de producto:', id_producto);
-
-            // Obtener la información del producto y mostrar el modal
-            eliminaProduct(id_producto);
-        });
-    });
-
-
-}
-
 // Variables
 const formModel = {
     titulo: '',
@@ -113,11 +58,63 @@ async function nuevoProducto(e) {
         // Convertir el valor del precio a número antes de asignarlo a formModel.precio
         formModel.precio = parseFloat(precioInput.value);
 
-        // Verificar si los campos obligatorios están llenos
-        if (!formModel.titulo || !formModel.descripcion || !formModel.descripcion_corta || !formModel.info || !formModel.precio) {
-            throw new Error('Faltan campos obligatorios');
+        // Establecer todos los campos como no válidos (is-invalid)
+        document.querySelectorAll('.form-control').forEach(element => {
+            element.classList.remove('is-valid');
+            element.classList.add('is-invalid');
+        });
+
+        // Validar el campo 'Nombre del producto'
+        if (formModel.titulo) {
+            nameInput.classList.remove('is-invalid');
+            nameInput.classList.add('is-valid');
+        } else {
+            nameInput.classList.remove('is-valid');
+            nameInput.classList.add('is-invalid');
         }
 
+        // Validar el campo 'Descripción'
+        if (formModel.descripcion) {
+            descripcionInput.classList.remove('is-invalid');
+            descripcionInput.classList.add('is-valid');
+        } else {
+            descripcionInput.classList.remove('is-valid');
+            descripcionInput.classList.add('is-invalid');
+        }
+
+        // Validar el campo 'Descripción breve'
+        if (formModel.descripcion_corta) {
+            breveDescInput.classList.remove('is-invalid');
+            breveDescInput.classList.add('is-valid');
+        } else {
+            breveDescInput.classList.remove('is-valid');
+            breveDescInput.classList.add('is-invalid');
+        }
+
+        // Validar el campo 'Información'
+        if (formModel.info) {
+            informacionInput.classList.remove('is-invalid');
+            informacionInput.classList.add('is-valid');
+        } else {
+            informacionInput.classList.remove('is-valid');
+            informacionInput.classList.add('is-invalid');
+        }
+
+        // Validar el campo 'Precio'
+        if (formModel.precio) {
+            precioInput.classList.remove('is-invalid');
+            precioInput.classList.add('is-valid');
+        } else {
+            precioInput.classList.remove('is-valid');
+            precioInput.classList.add('is-invalid');
+        }
+
+
+        if (!formModel.titulo || !formModel.descripcion || !formModel.descripcion_corta || !formModel.info || !formModel.precio) {
+
+            throw new Error('Faltan campos obligatorios');
+        }
+        btnGuerdaNP.disabled = true;
         // Mostrar los datos que se van a enviar en la solicitud AJAX
         console.log('Datos enviados:', formModel);
 
@@ -194,11 +191,63 @@ async function actualizaProducto(e) {
         // Convertir el valor del precio a número antes de asignarlo a editformModel.precio
         editformModel.precio = parseFloat(editprecioInput.value);
 
+        // Establecer todos los campos como no válidos (is-invalid)
+        document.querySelectorAll('.form-control').forEach(element => {
+            element.classList.remove('is-valid');
+            element.classList.add('is-invalid');
+        });
+
+        // Validar el campo 'Nombre del producto'
+        if (editformModel.titulo) {
+            editnameInput.classList.remove('is-invalid');
+            editnameInput.classList.add('is-valid');
+        } else {
+            editnameInput.classList.remove('is-valid');
+            editnameInput.classList.add('is-invalid');
+        }
+
+        // Validar el campo 'Descripción'
+        if (editformModel.descripcion) {
+            editdescripcionInput.classList.remove('is-invalid');
+            editdescripcionInput.classList.add('is-valid');
+        } else {
+            editdescripcionInput.classList.remove('is-valid');
+            editdescripcionInput.classList.add('is-invalid');
+        }
+
+        // Validar el campo 'Descripción breve'
+        if (editformModel.descripcion_corta) {
+            editbreveDescInput.classList.remove('is-invalid');
+            editbreveDescInput.classList.add('is-valid');
+        } else {
+            editbreveDescInput.classList.remove('is-valid');
+            editbreveDescInput.classList.add('is-invalid');
+        }
+
+        // Validar el campo 'Información'
+        if (editformModel.info) {
+            editinformacionInput.classList.remove('is-invalid');
+            editinformacionInput.classList.add('is-valid');
+        } else {
+            editinformacionInput.classList.remove('is-valid');
+            editinformacionInput.classList.add('is-invalid');
+        }
+
+        // Validar el campo 'Precio'
+        if (editformModel.precio) {
+            editprecioInput.classList.remove('is-invalid');
+            editprecioInput.classList.add('is-valid');
+        } else {
+            editprecioInput.classList.remove('is-valid');
+            editprecioInput.classList.add('is-invalid');
+        }
+
         // Verificar si los campos obligatorios están llenos
         if (!editformModel.titulo || !editformModel.descripcion || !editformModel.descripcion_corta || !editformModel.info || !editformModel.precio) {
             throw new Error('Faltan campos obligatorios');
         }
 
+        btnActualizaP.disabled = true;
         // Mostrar los datos que se van a enviar en la solicitud AJAX
         console.log('Datos enviados:', editformModel);
 
@@ -240,6 +289,37 @@ async function actualizaProducto(e) {
     }
 }
 
+async function editaModal(data) {
+    console.log('ID del producto:', data.id);
+    console.log('Nombre del producto:', data.titulo);
+    console.log('Descripción breve:', data.descripcion_previa);
+    console.log('Descripción detallada:', data.descripcion);
+    console.log('Información:', data.info);
+    console.log('Precio:', data.precio);
+
+    // Pequeño retraso para asegurar que los elementos del formulario estén disponibles
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    editnameInput.value = data.titulo;
+    editinformacionInput.value = data.info;
+    editdescripcionInput.value = data.descripcion;
+    editbreveDescInput.value = data.descripcion_previa;
+    editprecioInput.value = data.precio;
+    editproductParagraph.textContent = data.titulo;
+    editIDproducto.value = data.id;
+
+
+    // Obtener la imagen del producto y asignarla al elemento img
+    const productImage = document.getElementById('productImage');
+    productImage.src = `/productos_crud/imagen_producto/${data.id}`;
+
+    // Mostrar el modal
+    var editformModal = new bootstrap.Modal(document.getElementById('editformModal'), {
+        backdrop: 'static',
+        keyboard: false
+    });
+    editformModal.show();
+}
 
 async function infoProduct(id_producto) {
     try {
@@ -265,17 +345,18 @@ async function infoProduct(id_producto) {
 }
 
 async function eliminaProduct(id_producto) {
+    eliminaDataBtn.disabled = true;
     try {
         const response = await fetch('/productos_crud/eliminar/' + id_producto, {
             method: 'POST',
         });
-        
+
         if (!response.ok) {
             throw new Error('Error al eliminar el producto');
         }
-        
+
         const result = await response.json();
-        
+
         // Si se eliminó el producto correctamente, recargar la página
         if (result.success) {
             window.location.reload();
@@ -285,9 +366,11 @@ async function eliminaProduct(id_producto) {
     } catch (error) {
         console.error(error);
     }
+    finally {
+        // Habilitar el botón nuevamente después de que se haya completado el proceso
+        eliminaDataBtn.disabled = false;
+    }
 }
-
-
 
 async function leeModal(data) {
     console.log('ID del producto:', data.id);
@@ -321,10 +404,11 @@ async function leeModal(data) {
 
 async function editProduct(id_producto) {
     try {
+        
         const response = await fetch('/productos_crud/obtener_productos/' + id_producto, {
             method: 'GET',
         });
-
+        
         // Verificar si la respuesta es exitosa (código de estado 200)
         if (response.ok) {
             // Convertir la respuesta a formato JSON
@@ -342,36 +426,89 @@ async function editProduct(id_producto) {
     }
 }
 
-async function editaModal(data) {
-    console.log('ID del producto:', data.id);
-    console.log('Nombre del producto:', data.titulo);
-    console.log('Descripción breve:', data.descripcion_previa);
-    console.log('Descripción detallada:', data.descripcion);
-    console.log('Información:', data.info);
-    console.log('Precio:', data.precio);
+function validarNumero(input) {
+    // Obtener el valor actual del input
+    let valor = input.value;
 
-    // Pequeño retraso para asegurar que los elementos del formulario estén disponibles
-    await new Promise(resolve => setTimeout(resolve, 100));
+    // Remover caracteres no permitidos y repetidos
+    valor = valor.replace(/[^\d.-]+|(?<=\.\d*)\./g, ''); // Remover caracteres que no sean dígitos, punto o signo negativo, y puntos repetidos
+    valor = valor.replace(/^-{2,}/g, '-'); // Mantener solo un guion "-" si hay más de uno al principio
+    valor = valor.replace(/-{2,}/g, ''); // Remover dos o más guiones "-" consecutivos después del primer carácter
 
-    editnameInput.value = data.titulo;
-    editinformacionInput.value = data.info;
-    editdescripcionInput.value = data.descripcion;
-    editbreveDescInput.value = data.descripcion_previa;
-    editprecioInput.value = data.precio;
-    editproductParagraph.textContent = data.titulo;
-    editIDproducto.value = data.id;
+    // Verificar si el valor es negativo, si lo es, eliminar el signo "-" si no está al principio
+    if (valor.indexOf('-') !== 0) {
+        valor = valor.replace(/-/g, '');
+    }
 
+    // Verificar si solo se ingresó un punto decimal
+    if (valor === '.') {
+        valor = '0.'; // Agregar un "0" antes del punto decimal
+    }
 
-    // Obtener la imagen del producto y asignarla al elemento img
-    const productImage = document.getElementById('productImage');
-    productImage.src = `/productos_crud/imagen_producto/${data.id}`;
+    // Verificar si el valor comienza con un punto decimal
+    if (valor.indexOf('.') === 0) {
+        valor = '0' + valor; // Agregar un "0" antes del punto decimal si es necesario
+    }
 
-    // Mostrar el modal
-    var editformModal = new bootstrap.Modal(document.getElementById('editformModal'), {
-        backdrop: 'static',
-        keyboard: false
-    });
-    editformModal.show();
+    // Actualizar el valor del input solo si ha habido cambios
+    if (valor !== input.value) {
+        input.value = valor;
+    }
 }
+
+// Event Listeners
+function eventListeners() {
+    formNuevoPro.addEventListener('submit', function (e) {
+        // No se llama a e.preventDefault() para permitir la recarga de la página
+        // Se realiza la validación de los campos obligatorios en nuevoProducto()
+    });
+
+    btnGuerdaNP.addEventListener("click", nuevoProducto)
+
+    formEditPro.addEventListener('submit', function (e) {
+        // No se llama a e.preventDefault() para permitir la recarga de la página
+        // Se realiza la validación de los campos obligatorios en actualizaProducto()
+    });
+
+    btnActualizaP.addEventListener("click", actualizaProducto)
+
+
+    // Asignar evento al botón readDataBtn
+    leerDataBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            // Obtener el ID del producto desde el atributo data del botón
+            const id_producto = this.dataset.productId;
+            console.log('Se hizo clic en el botón leerDataBtns con ID de producto:', id_producto);
+
+            // Obtener la información del producto y mostrar el modal
+            infoProduct(id_producto);
+        });
+    });
+
+    editDataBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            // Obtener el ID del producto desde el atributo data del botón
+            const id_producto = this.dataset.productId;
+            console.log('Se hizo clic en el botón editDataBtns con ID de producto:', id_producto);
+
+            // Obtener la información del producto y mostrar el modal
+            editProduct(id_producto);
+        });
+    });
+
+    eliminaDataBtn.forEach(btn => {
+        btn.addEventListener('click', function () {
+            // Obtener el ID del producto desde el atributo data del botón
+            const id_producto = this.dataset.productId;
+            console.log('Se hizo clic en el botón eliminaDataBtn con ID de producto:', id_producto);
+
+            // Obtener la información del producto y mostrar el modal
+            eliminaProduct(id_producto);
+        });
+    });
+
+
+}
+
 
 eventListeners();
