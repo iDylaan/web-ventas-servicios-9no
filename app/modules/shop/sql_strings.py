@@ -24,6 +24,8 @@ class Sql_Strings():
             dt_creado AS "fecha_creado", 
             activo
         FROM servicios
+        WHERE activo = 1
+        ORDER BY id ASC;
         """
     )
     
