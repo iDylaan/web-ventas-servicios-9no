@@ -61,3 +61,14 @@ class Sql_Strings():
         "FROM servicios "
         "WHERE id IN %s "
     )
+    GET_PRODUCTS_CHEKOUT_INFO_BY_ID = (
+        "SELECT "
+            "id, "
+            "srv_nom AS \"titulo\", "
+            "srv_desc AS \"descripcion\", "
+            "srv_desc_corta AS \"descripcion_previa\", "
+            "srv_precio AS \"precio\", "
+            "activo "
+        "FROM servicios "
+        "WHERE id IN %s "
+    )

@@ -40,7 +40,7 @@ async function signin() {
 
     if (validForm) {
         formBarLoader.style.display = 'block';
-        try {
+        try {   
             const response = await fetch('/auth/signin', {
                 method: 'POST',
                 headers: {

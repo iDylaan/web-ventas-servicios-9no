@@ -45,25 +45,19 @@
                                     <h5 class="text-center mb-20">Cart Totals</h5>
                                     <table>
                                         <tbody>
+                                            {% for product in productos %}
                                             <tr>
-                                                <td>Fitness UI Kits <strong>× 1</strong></td>
-                                                <td>$70.00</td>
+                                                <td>{{ product.titulo }} <strong>× {{ product.cantidad }}</strong></td>
+                                                <td>${{ product.subtotal }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                            <tr>
+                                                <td>IVA</td>
+                                                <td>${{ iva }}</td>
                                             </tr>
                                             <tr>
-                                                <td>Dashboard UI <strong>× 2</strong></td>
-                                                <td>$130.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Shipping Fee</td>
-                                                <td>$10.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Vat</td>
-                                                <td>$5.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Order Total</strong></td>
-                                                <td><strong>$225.00</strong></td>
+                                                <td><strong>Total</strong></td>
+                                                <td><strong>${{ total }}</strong></td>
                                             </tr>
                                         </tbody>
                                     </table>

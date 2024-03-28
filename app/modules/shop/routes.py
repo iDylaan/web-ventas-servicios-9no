@@ -1,9 +1,16 @@
-import sys
-from flask import Blueprint, render_template, url_for, redirect, request
+import sys, base64
+from flask import Blueprint, render_template, url_for, redirect, request, session
 from .sql_strings import Sql_Strings as SQL_STRINGS
 from app.modules.conf.conf_postgres import qry
+from app.utils.misc import login_required, handleResponse
+from decimal import Decimal, ROUND_HALF_UP
 
 mod = Blueprint('shop', __name__) 
+
+
+# CONSTANTES
+IVA = Decimal('0.16') # Porcentaje (16%)
+
 
 @mod.route('/', methods=['GET'])
 def shop_template():
@@ -33,11 +40,53 @@ def product_details_template(id_producto):
         return render_template('404.html')
 
 
+@mod.route('/checkout', methods=['POST', 'GET'])
+@login_required
+def checkout():
+    if request.method == 'POST':
+        try:
+            data = request.get_json()
+            productos_arr = data.get('productos')
+            productos_ids_arr = [producto['id'] for producto in productos_arr]
+            
+            productos_result = qry(SQL_STRINGS.GET_PRODUCTS_CHEKOUT_INFO_BY_ID, (tuple(productos_ids_arr),))
 
-@mod.route('/checkout', methods=['GET'])
-def checkout_template():
-    return render_template('checkout.html')
+            # Calcular el resumen del pedido 
+            for product in productos_result:
+                for cart_producto in productos_arr:
+                    if cart_producto['id'] == product['id']:
+                        product['cantidad'] = cart_producto['cantidad']
+                        precio = Decimal(product['precio'])
+                        cantidad = Decimal(product['cantidad'])
+                        subtotal = precio * cantidad
+                        product['subtotal'] = subtotal.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
 
+            # Guardar los productos
+            session['productos_checkout'] = productos_result
+
+            return handleResponse({'message': 'OK'})
+        except Exception as e:
+            print('Error: {}'.format(e))
+            return render_template('404.html')
+    else:  # GET
+        productos_arr = session.get('productos_checkout', [])
+        # Obtener iva y total
+        total = Decimal('0.0')
+        for product in productos_arr:
+            total += Decimal(product['subtotal'])
+        total_iva = (total * IVA).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+        total = (total + total_iva).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+
+        response = render_template('checkout.html', 
+            productos=productos_arr, 
+            total=total, 
+            iva=total_iva, 
+            user_id=session.get('user_id', 0)
+        )
+        if 'productos_checkout' in session:
+            session.pop('productos_checkout')
+        
+        return response
 
 
 @mod.route('/carrito', methods=['GET'])
@@ -46,9 +95,8 @@ def cart_template():
     productos = []
     try:
         if ids:
-            ids_list = ids.split(',')
+            ids_list = ids.split(',')   
             productos = qry(SQL_STRINGS.GET_PRODUCTS_BY_ID, (tuple(ids_list),))
-            print(productos)
     except Exception as e:
         print("Ocurrio un error en @cart_template/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
         productos = []

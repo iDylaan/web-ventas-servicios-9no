@@ -4,10 +4,15 @@
 
 {% block scripts %}
 {{super()}}
-<script src="{{ url_for('static', filename='modules/js/cart/cart.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='modules/js/cart/cart.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='modules/js/checkout/cart-checkout.js') }}" defer></script>
 {% endblock scripts %}
 
 {% block content %}
+
+<script>
+    const CHECKOUT_URL = '{{ url_for("shop.checkout") }}';
+</script>
 
 
 <!-- Page Banner Start -->
@@ -110,7 +115,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <a href="{{ url_for('shop.checkout_template') }}" class="theme-btn style-two mt-25 w-100">Proceder con el Checkout</a>
+                    <button class="theme-btn style-two mt-25 w-100" id="checkout-btn">Proceder con el Checkout</button>
+                    {% include 'components/bar-loader.html' %}
                 </div>
             </div>
         </div>

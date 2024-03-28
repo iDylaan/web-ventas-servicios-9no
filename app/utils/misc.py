@@ -1,7 +1,7 @@
 import bcrypt, sys
-from flask import jsonify
+from flask import jsonify, session, redirect, url_for
 from cerberus import Validator
-
+from functools import wraps
 
 def hash_password(password):
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
@@ -33,3 +33,12 @@ def handleResponse(data, status = 200):
         "success": True,
         "data": data
     }), status
+
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user_id' not in session or not session['user_id']:
+            return redirect(url_for('auth.signin_template'))
+        return f(*args, **kwargs)
+    return decorated_function

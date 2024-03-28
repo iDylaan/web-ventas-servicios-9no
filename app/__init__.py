@@ -27,7 +27,8 @@ def global_vars():
     return dict(
         user_logged = session.get('user_logged', False),
         user_admin = session.get('user_admin', False),
-        user_without_images = session.get('without_images', True)
+        user_without_images = session.get('without_images', True),
+        user_id = session.get('user_id', False)
     )
 
 ### Carga de respuesta de un 404 (recurso no encontrado) ###
