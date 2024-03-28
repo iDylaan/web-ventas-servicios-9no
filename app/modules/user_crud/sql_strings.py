@@ -18,6 +18,11 @@ class Sql_Strings():
         "FROM usuarios "
         "WHERE id = %(id_usuario)s"
     )
+
+    GET_USER_COUNT_BY_EMAIL = (
+        "SELECT COUNT(*) FROM usuarios "
+        "WHERE email = %(email)s"
+    )
     
     
     UPDATE_USER_IMAGE_BY_ID = (

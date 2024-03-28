@@ -29,7 +29,6 @@ def user_crud_template():
         return render_template('usuario-CRUD.html', usuarios=usuarios_arr)    
 
 
-
 @mod.route('/nuevo', methods=['POST'])
 def nuevo_usuario():
     try:
@@ -62,7 +61,12 @@ def nuevo_usuario():
             print("Error: ", errors)
             return handleResponseError(errors, 400)
         
-        # Hashear la contraseña
+        # Comprobar que el usuario que se intenta registrar no exista en la db
+        result = qry(SQL_STRINGS.GET_USER_COUNT_BY_EMAIL, {'email': email}, True)
+        if result['count'] > 0:
+            return handleResponseError('Ese correo no es valido', 400)
+        
+        # HASH de la contraseña
         new_user_dict['password'] = hash_password(password)
         
         # Guardar al nuevo usuario en la DB

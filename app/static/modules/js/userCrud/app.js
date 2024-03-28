@@ -505,7 +505,29 @@ function eventListeners() {
     
     verBtn.addEventListener('click', funncionver);
 
-    formNuevoUsuario.addEventListener('submit', function (e) {
+    formNuevoUsuario.addEventListener('submit', async function (e) {
+        console.log(e);
+        return;
+        try {
+            
+            const response = await fetch('/user_crud/nuevo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formModel)
+            })
+
+            if (!response.ok) {
+                throw new Error('Error en el servidor');
+            }
+
+            const result = await response.json();
+            console.log(result);
+        } catch (error) {
+            console.log(error);
+        }
+
         // No se llama a e.preventDefault() para permitir la recarga de la página
         // Se realiza la validación de los campos obligatorios en nuevoProducto()
     });

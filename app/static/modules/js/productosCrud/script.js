@@ -274,9 +274,6 @@ async function actualizaProducto(e) {
 }
 
 async function editaModal(data) {
-    // Pequeño retraso para asegurar que los elementos del formulario estén disponibles
-    await new Promise(resolve => setTimeout(resolve, 100));
-
     editnameInput.value = data.titulo;
     editinformacionInput.value = data.info;
     editdescripcionInput.value = data.descripcion;
@@ -284,11 +281,6 @@ async function editaModal(data) {
     editprecioInput.value = data.precio;
     editproductParagraph.textContent = data.titulo;
     editIDproducto.value = data.id;
-
-
-    // Obtener la imagen del producto y asignarla al elemento img
-    const productImage = document.getElementById('productImage');
-    productImage.src = `/productos_crud/imagen_producto/${data.id}`;
 
     // Mostrar el modal
     var editformModal = new bootstrap.Modal(document.getElementById('editformModal'), {
@@ -299,25 +291,14 @@ async function editaModal(data) {
 }
 
 async function infoProduct(id_producto) {
-    try {
-        const response = await fetch('/productos_crud/obtener_productos/' + id_producto, {
-            method: 'GET',
-        });
-
-        // Verificar si la respuesta es exitosa (código de estado 200)
-        if (response.ok) {
-            // Convertir la respuesta a formato JSON
-            const data = await response.json();
-            // Llenar el modal con la información del producto
-            leeModal(data);
-        } else {
-            // Si la respuesta no es exitosa, lanzar un error
-            throw new Error('Error al obtener la información del producto');
+    let data = null;
+    PRODUCTOS.forEach(producto => {
+        if (parseInt(producto.id) === parseInt(id_producto)) {
+            data = producto;
         }
-    } catch (error) {
-        // Manejar errores de red u otros errores
-        console.error(error);
-    }
+    })
+
+    leeModal(data);
 }
 
 async function eliminaProduct(id_producto) {
@@ -355,17 +336,12 @@ async function eliminaProduct(id_producto) {
 }
 
 async function leeModal(data) {
-    await new Promise(resolve => setTimeout(resolve, 100));
     lecturanameInput.value = data.titulo;
     lecturainformacionInput.value = data.info;
     lecturadescripcionInput.value = data.descripcion;
     lecturabreveDescInput.value = data.descripcion_previa;
     lecturaprecioInput.value = data.precio;
     lecturaproductParagraph.textContent = data.titulo;
-
-    // Obtener la imagen del producto y asignarla al elemento img
-    const productImage = document.getElementById('productImage');
-    productImage.src = `/productos_crud/imagen_producto/${data.id}`;
 
     // Mostrar el modal
     var leerModal = new bootstrap.Modal(document.getElementById('leerModal'), {
@@ -376,26 +352,15 @@ async function leeModal(data) {
 }
 
 async function editProduct(id_producto) {
-    try {
-        
-        const response = await fetch('/productos_crud/obtener_productos/' + id_producto, {
-            method: 'GET',
-        });
-        
-        // Verificar si la respuesta es exitosa (código de estado 200)
-        if (response.ok) {
-            // Convertir la respuesta a formato JSON
-            const data = await response.json();
-            // Llenar el modal con la información del producto
-            editaModal(data);
-        } else {
-            // Si la respuesta no es exitosa, lanzar un error
-            throw new Error('Error al obtener la información del producto');
+    let data = null;
+
+    PRODUCTOS.forEach(producto => {
+        if (parseInt(producto.id) === parseInt(id_producto)) {
+            data = producto;
         }
-    } catch (error) {
-        // Manejar errores de red u otros errores
-        console.error(error);
-    }
+    })
+
+    editaModal(data);
 }
 
 function validarNumero(input) {

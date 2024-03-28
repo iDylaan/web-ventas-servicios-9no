@@ -1,6 +1,6 @@
 {% extends 'layout/base-admin.html' %}
 
-{% block title %} | Producto {% endblock %}
+{% block title %} Tech Consulting | Producto {% endblock %}
 
 <script> const userIconSrc = "{{url_for('static',filename='modules/imgs/userCrud/image/ProfileIcon.webp')}}"; </script>
 
@@ -8,6 +8,8 @@
 
 {{super()}}
 <script src="{{url_for('static',filename='modules/js/productosCrud/script.js')}}" defer></script>
+<script src="{{ url_for('static', filename='modules/js/images/product-image.js') }}" defer></script>
+
 {% endblock scripts %}
 
 {% block styles %}
@@ -20,6 +22,12 @@
 {% block content %}
 
 
+<script>
+
+    const PRODUCTOS = JSON.parse('{{ productos_json|tojson|safe }}');
+
+</script>
+
 <section class="ww-do-two-area py-130 rel z-1 px-5">
     <div class="row">
         <div class="col-12">
@@ -28,7 +36,7 @@
                     class="material-icons">inventory_2</i></button>
         </div>
     </div>
-    <div class="row productos-table table-responsive    ">
+    <div class="row productos-table table-responsive">
         <div class="col-12">
             <table class="table table-striped table-hover mt-3 text-center table-bordered">
                 <thead>
@@ -50,8 +58,12 @@
                             {{ loop.index }}
                         </td>
                         <td class="col-2">
-                            <img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=producto.get('id')) }}"  
+                            {% if producto.get('imagen', False) %}
+                            <img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=producto.get('id')) }}"
                                 alt="{{ producto.get('nombre_imagen', 'Imagen del producto') }}" width="50" height="50">
+                            {% else %}
+                            <i class="material-icons">inventory_2</i>
+                            {% endif %}
                         </td>
                         <td class="col-1">
                             {{ producto.get('titulo', 'Titulo del producto') }}
@@ -196,15 +208,24 @@
                 <form id="formPro">
                     <div class="col-md-3">
 
+                        <!-- IMAGE EDITOR -->
                         <section class="image__container">
                             <div class="profile-modal-img__container">
                                 <div class="card imgholder">
-                                    <!-- Aquí se mostrará la imagen -->
-                                    <img id="productImage" src="" alt="Imagen del producto"
-                                        style="width: 100%; height: auto;" />
+
+                                    <div class="profile-modal-img__container">
+                                        <div class="card imgholder" id="image-product-viewer-container">
+                                            <div class="picture-profile-modal-loade__container"
+                                                id="viewer-product-modal-loader">
+                                                {% include 'components/circular-loader.html' %}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </section>
+                        <!-- END IMAGE EDITOR -->
+
                     </div>
                     <div class="col-md-9">
                         <section class="form__container">
@@ -272,21 +293,30 @@
             <div class="modal-body">
                 <form id="formEditPro" class="needs-validation" novalidate>
                     <div class="col-md-3">
+
+                        <!-- IMAGE EDITOR -->
                         <section class="image__container">
                             <div class="profile-modal-img__container">
                                 <div class="card imgholder">
-                                    <label for="imgInput" class="upload">
-                                        <input type="file" name="" id="imgInput">
-                                        <i class="material-icons">edit</i>
-                                    </label>
-                                    <div class="picture-profile-modal-loade__container display-none"
-                                        id="picture-profile-modal-loader">
+
+                                    <div class="profile-modal-img__container">
+                                        <div class="card imgholder" id="image-product-editor-container">
+                                            <label for="imgInput" class="upload">
+                                                <input type="file" name="" id="imgInput">
+                                                <i class="material-icons">edit</i>
+                                            </label>
+
+                                            <div class="picture-profile-modal-loade__container"
+                                                id="edit-product-modal-loader">
+                                                {% include 'components/circular-loader.html' %}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <i class="material-icons person-icon-profile-picture-modal"
-                                        aria-label="Profile picture">person</i>
                                 </div>
                             </div>
                         </section>
+                        <!-- END IMAGE EDITOR -->
+
                     </div>
                     <div class="col-md-9">
                         <section class="form__container">
