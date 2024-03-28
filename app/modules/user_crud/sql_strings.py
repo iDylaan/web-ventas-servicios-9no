@@ -48,3 +48,20 @@ class Sql_Strings():
         FROM usuarios;
         """
     )
+    GET_USERS_BY_ID = (
+        """
+        SELECT 
+            id, 
+            nombre_usuario, 
+            email, 
+            "password", 
+            dt_creado, 
+            "admin", 
+            image_bin AS "imagen", 
+            image_name, 
+            image_url , 
+            parte_equipo
+        FROM usuarios
+        WHERE id = %(id_usuario)s;
+        """
+    )

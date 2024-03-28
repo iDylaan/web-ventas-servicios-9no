@@ -223,3 +223,23 @@ def obtener_imagen_usuario(id_usuario):
     except Exception as e:
         print("Ocurrio un error en @obtener_imagen_usuario/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
         return handleResponseError('Error en el servidor: {}'.format(e))
+    
+@mod.route('/obtener_usuarios/<int:id_usuario>', methods=['GET'])
+def obtener_usuarios(id_usuario):
+    try:
+        if not id_usuario:
+            return handleResponseError('Producto faltante', 400)
+        
+        # Comprobar si el producto existe
+        result = qry(SQL_STRINGS.GET_USERS_BY_ID, {'id_usuario': id_usuario}, True)
+        
+        # Convertir la imagen a Base64
+        imagen_base64 = base64.b64encode(result['imagen']).decode('utf-8')
+        result['imagen'] = imagen_base64
+        
+        return jsonify(result)
+    except Exception as e:
+        print("Tipo de error:", type(e))
+        print("Mensaje de error:", str(e))
+        return handleResponseError('Error al obtener los usuarios', 500)
+
