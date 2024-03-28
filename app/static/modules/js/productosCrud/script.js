@@ -322,6 +322,12 @@ async function infoProduct(id_producto) {
 
 async function eliminaProduct(id_producto) {
     eliminaDataBtn.disabled = true;
+    const confirma = confirm("¿Estás seguro de eliminar este producto?");
+    
+    if(!confirma){
+        eliminaDataBtn.disabled = false;
+        return;
+    }
     try {
         const response = await fetch('/productos_crud/eliminar/' + id_producto, {
             method: 'POST',
