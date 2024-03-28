@@ -151,26 +151,19 @@
                                         class="material-icons" style="color: black;">visibility</i></button>
                             </div>
                             <div class="input-component">
-                                <div class="form-floating mb-3">
-                                    <legend class="col-form-label col-mb-2 pt-0">Rol</legend>
-                                    <div class="col-sm-10">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input " type="radio" name="Usuario" id="rolUs"
-                                                value="0" checked>
-                                            <label class="form-check-label" for="flexRadioDefault1">
-                                                Usuario
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="Usuario" id="rolAdmin"
-                                                value="1">
-                                            <label class="form-check-label" for="flexRadioDefault2">
-                                                Administrador
-                                            </label>
+                                <div class="input-component">
+                                    <div class="form-floating mb-3">
+                                        <legend class="col-form-label col-mb-2 pt-0">Rol</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="rolAdmin">
+                                                <label class="form-check-label" for="rolAdmin" style="margin-top: 4px; font-size: 22px; margin-left: 2px">  Administrador</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </section>
                     </div>
                 </form>
@@ -196,7 +189,6 @@
             <div class="modal-body">
                 <form id="forUsuario" class="needs-validation" novalidate>
                     <div class="col-md-3">
-
                         <section class="image__container">
                             <div class="profile-modal-img__container">
                                 <div class="card imgholder">
@@ -244,22 +236,14 @@
                                 </div>
                             </div>
                             <div class="input-component">
-                                <div class="form-floating mb-3">
-                                    <legend class="col-form-label col-mb-2 pt-0">Rol</legend>
-                                    <div class="col-sm-10">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input " type="radio" name="Usuario"
-                                                id="lecturarolUs" value="0" disabled>
-                                            <label class="form-check-label" for="flexRadioDefault1">
-                                                Usuario
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="Usuario"
-                                                id="lecturarolAdmin" value="1" disabled>
-                                            <label class="form-check-label" for="flexRadioDefault2">
-                                                Administrador
-                                            </label>
+                                <div class="input-component">
+                                    <div class="form-floating mb-3">
+                                        <legend class="col-form-label col-mb-2 pt-0">Rol</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="lecturarolAdmin" disabled>
+                                                <label class="form-check-label" for="lecturarolAdmin" style="margin-top: 4px; font-size: 22px; margin-left: 2px">  Administrador</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -342,26 +326,17 @@
                                 </div>
                             </div>
                             <div class="input-component">
-                                <div class="form-floating mb-3">
-                                    <legend class="col-form-label col-mb-2 pt-0">Rol</legend>
-                                    <div class="col-sm-10">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input " type="radio" name="Usuario" id="editrolUs"
-                                                value="0">
-                                            <label class="form-check-label" for="flexRadioDefault1">
-                                                Usuario
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="Usuario"
-                                                id="editradioAdmin" value="1">
-                                            <label class="form-check-label" for="flexRadioDefault2">
-                                                Administrador
-                                            </label>
+                                <div class="input-component">
+                                    <div class="form-floating mb-3">
+                                        <legend class="col-form-label col-mb-2 pt-0">Rol</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="editradioAdmin">
+                                                <label class="form-check-label" for="editradioAdmin" style="margin-top: 4px; font-size: 22px; margin-left: 2px">  Administrador</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             <input type="hidden" id="editIDUsuario" name="id_usuario" readonly>
                         </section>
                     </div>

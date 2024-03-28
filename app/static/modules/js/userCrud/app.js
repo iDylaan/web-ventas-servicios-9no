@@ -307,7 +307,7 @@ async function editaModal(data) {
 
     // Seleccionar el radio correspondiente al rol del usuario
     if (data.admin === 0) {
-        document.getElementById('editrolUs').checked = true;
+        document.getElementById('editradioAdmin').checked = false;
     } else if (data.admin === 1) {
         document.getElementById('editradioAdmin').checked = true;
     }
@@ -412,9 +412,9 @@ async function leeModal(data) {
 
     // Seleccionar el radio correspondiente al rol del usuario
     if (data.admin === 0) {
-        document.getElementById('lecturarolUs').checked = true;
+        document.getElementById('lecturarolAdmin').checked = false;
     } else if (data.admin === 1) {
-        document.getElementById('editradioAdmin').checked = true;
+        document.getElementById('lecturarolAdmin').checked = true;
     }
     // Obtener la imagen del usuario y asignarla al elemento img
     const imageUrl = await obtenerImagenUsuario(data.id);
