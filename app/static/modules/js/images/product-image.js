@@ -1,12 +1,48 @@
 (() => {
     document.addEventListener('DOMContentLoaded', () => {
         // Selectores
+        const editFormModal = document.querySelector('#editformModal');
+
+        // Variables
+        let rowID = 0;
+        // Actualizar la imagen en Modal de Editar
+        editFormModal.querySelector('#imgInputEdit').addEventListener('change', event => {
+            const file = event.target.files[0];
+            if (!file) {
+                console.error("No se seleccionó ningún archivo.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('imagen', file);
+
+            activarEditLoader();
+            fetch('/productos_crud/imagen_producto/' + rowID, {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const imageUrl = `data:image/png;base64,${data.image_base64}`;
+                    updateModaImage(imageUrl);
+                })
+                .catch(error => console.error("Error al actualizar la imagen:", error))
+                .finally(() => {
+                    desactivarEditLoader();
+                });
+        });
 
         // MODAL PARA EDITAR
         const editButtons = document.querySelectorAll('.editDataBtn');
         editButtons.forEach(editBtn => {
             editBtn.addEventListener('click', async function () {
                 const productID = this.dataset.productId;
+                rowID = productID;
 
                 await getModalImage('edit', productID);
             })
@@ -23,6 +59,23 @@
 
     })
 
+
+    function updateModaImage(image_base64) {
+        const containerTargetID = '#image-product-editor-container';
+
+        clearImage('edit');
+
+        // Crear imagen
+        const image = document.createElement('img');
+        image.id = 'profile-picture-img';
+        image.alt = 'Profile Picture';
+        image.width = '200';
+        image.height = '200';
+        image.classList.add('img');
+        image.src = image_base64;
+        document.querySelector(containerTargetID).appendChild(image);
+
+    }
 
     async function getModalImage(modal, productID) {
         let containerTargetID = '';

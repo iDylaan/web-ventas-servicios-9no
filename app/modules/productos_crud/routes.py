@@ -198,7 +198,6 @@ def guardar_imagen_producto(id_producto):
         
         # Recibir el archivo de imagen
         imagen_file = request.files.get('imagen', None)
-        print(request.files)
         filename = None
         img_byte_arr = None
         

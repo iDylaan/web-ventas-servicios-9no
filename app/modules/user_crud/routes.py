@@ -172,7 +172,7 @@ def guardar_imagen_usuario(id_usuario):
             
             img_byte_arr = io.BytesIO()
             image.save(img_byte_arr, format='PNG')
-            img_byte_arr = img_byte_arr.getvalue()
+            img_byte_arr = img_byte_arr.getvalue() 
             
             rows_affected = sql(SQL_STRINGS.UPDATE_USER_IMAGE_BY_ID, {'id_usuario': id_usuario, 'imagen': img_byte_arr, 'nombre_imagen': filename})
             if rows_affected:
