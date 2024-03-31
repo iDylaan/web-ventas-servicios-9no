@@ -4,30 +4,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Actualiza el precio total del carrito
     function updateCartPriceTotal() {
-        const cartTotals = document.querySelector(".cart-totals");
-        const subtotalTarget = cartTotals.querySelector("#subtotal");
-        const ivaTarget = cartTotals.querySelector("#iva");
-        const totalTarget = cartTotals.querySelector("#total");
+      const cartTotals = document.querySelector(".cart-totals");
+      const subtotalTarget = cartTotals.querySelector("#subtotal");
+      const ivaTarget = cartTotals.querySelector("#iva");
+      const totalTarget = cartTotals.querySelector("#total");
 
-        const cartItems = document.querySelectorAll(".cart-item");
+      const cartItems = document.querySelectorAll(".cart-item");
 
-        let subtotal = 0.0;
-        cartItems.forEach(cartItem => {
-            const itemTotal = parseFloat(cartItem.querySelector(".price-total").textContent);
-            subtotal += itemTotal;
-        })
+      let subtotal = 0.0;
+      cartItems.forEach((cartItem) => {
+        const itemTotal = parseFloat(
+          cartItem.querySelector(".price-total").textContent
+        );
+        subtotal += itemTotal;
+      });
 
-        // Agregar el subtotal
-        subtotalTarget.textContent = subtotal.toFixed(2);
+      // Agregar el subtotal
+      subtotalTarget.textContent = subtotal.toFixed(2);
 
-        // Calcular IVA
-        const iva = subtotal * 0.16;
-        ivaTarget.textContent = iva.toFixed(2);
+      // Calcular IVA
+      const iva = subtotal * 0.16;
+      ivaTarget.textContent = iva.toFixed(2);
 
-        // Calcular el total
-        const total = subtotal + iva;
-        totalTarget.textContent = total.toFixed(2);
-
+      // Calcular el total
+      const total = subtotal + iva;
+      totalTarget.textContent = total.toFixed(2);
     }
 
     // Actualizar el precio total cuando se cambia la cantidad
@@ -49,16 +50,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Función para actualizar la cantidad en el input y en localStorage
     function updateQuantity(productId, newQuantity) {
-      let quantity = newQuantity;
-      if (newQuantity < 1) {
-        quantity = 1;
-      }
-      if (newQuantity > 20) {
-        quantity = 20;
-      }
       const productInCart = carrito.find((p) => p.id === productId);
       if (productInCart) {
-        productInCart.cantidad = quantity;
+        productInCart.cantidad = newQuantity;
         localStorage.setItem("carrito", JSON.stringify(carrito));
         updatePriceTotal();
       }
@@ -71,6 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const quantityUpButton = item.querySelector(".quantity-up");
       const quantityDownButton = item.querySelector(".quantity-down");
       const closeButton = item.querySelector(".close");
+
+      console.log(quantityInput.value);
 
       // Buscar el producto en el arreglo del carrito por su id
       const productInCart = carrito.find(
@@ -96,12 +92,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Eventos de clic para los botones de incrementar y disminuir la cantidad
       quantityUpButton.addEventListener("click", function () {
-        updateQuantity(productId, parseInt(quantityInput.value));
+        const currentValue = parseInt(quantityInput.value);
+        const newValue = currentValue + 1 <= 20 ? currentValue + 1 : 20;
+        quantityInput.value = newValue; // Ajusta el valor antes de actualizar
+        updateQuantity(productId, newValue);
         updateCartPriceTotal();
       });
 
       quantityDownButton.addEventListener("click", function () {
-        updateQuantity(productId, parseInt(quantityInput.value));
+        const currentValue = parseInt(quantityInput.value);
+        const newValue = currentValue - 1 >= 1 ? currentValue - 1 : 1;
+        quantityInput.value = newValue; // Ajusta el valor antes de actualizar
+        updateQuantity(productId, newValue);
         updateCartPriceTotal();
       });
 

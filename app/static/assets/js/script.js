@@ -527,14 +527,14 @@
         
         
         // 19. Quantity Number js
-        $('.quantity-down').on('click', function(){
-            var numProduct = Number($(this).next().val());
-            if(numProduct > 1) $(this).next().val(numProduct - 1);
-        });
-        $('.quantity-up').on('click', function(){
-            var numProduct = Number($(this).prev().val());
-            if(numProduct < 20) $(this).prev().val(numProduct + 1);
-        });
+        // $('.quantity-down').on('click', function(){
+        //     var numProduct = Number($(this).next().val());
+        //     if(numProduct > 1) $(this).next().val(numProduct - 1);
+        // });
+        // $('.quantity-up').on('click', function(){
+        //     var numProduct = Number($(this).prev().val());
+        //     if(numProduct < 20) $(this).prev().val(numProduct + 1);
+        // });
         
 
         
