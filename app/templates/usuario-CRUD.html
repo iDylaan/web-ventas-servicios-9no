@@ -8,6 +8,7 @@
 
 {{super()}}
 <script src="{{url_for('static',filename='modules/js/userCrud/app.js')}}" defer></script>
+<script src="{{url_for('static',filename='modules/js/images/user-image.js')}}"></script>
 {% endblock scripts %}
 
 {% block styles %}
@@ -17,7 +18,11 @@
 {% endblock styles %}
 
 {% block content %}
+<script>
 
+    const USUARIOS = JSON.parse('{{ usuarios_json|tojson|safe }}');
+
+</script>
 
 <section class="ww-do-two-area py-130 rel z-1 px-5">
     <div class="row">
@@ -48,8 +53,12 @@
                             {{ loop.index }}
                         </td>
                         <td class="col-2">
+                            {% if usuario.get('imagen', False) %}
                             <img src="{{ url_for('user_crud.obtener_imagen_usuario', id_usuario=usuario.get('id')) }}"
                                 alt="{{ usuario.get('image_name', 'Imagen del producto') }}" width="50" height="50">
+                            {% else %}
+                            <i class="material-icons" style="font-size: 50px">person</i>
+                            {% endif %}
                         </td>
                         <td class="col-1">
                             {{ usuario.get('nombre_usuario', 'Nombre de usuario no disponible') }}
@@ -91,7 +100,7 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Nuevo Usuario</h4> 
+                <h4 class="modal-title">Nuevo Usuario</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -157,13 +166,14 @@
                                         <div class="col-sm-10">
                                             <div class="form-check form-switch">
                                                 <input class="form-check-input" type="checkbox" id="rolAdmin">
-                                                <label class="form-check-label" for="rolAdmin" style="margin-top: 4px; font-size: 22px; margin-left: 2px">  Administrador</label>
+                                                <label class="form-check-label" for="rolAdmin"
+                                                    style="margin-top: 4px; font-size: 22px; margin-left: 2px">
+                                                    Administrador</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </section>
                     </div>
                 </form>
@@ -189,15 +199,23 @@
             <div class="modal-body">
                 <form id="forUsuario" class="needs-validation" novalidate>
                     <div class="col-md-3">
+                        <!-- IMAGE EDITOR -->
                         <section class="image__container">
                             <div class="profile-modal-img__container">
                                 <div class="card imgholder">
-                                    <!-- Aquí se mostrará la imagen -->
-                                    <img id="UsuarioImage" src="" alt="Imagen del producto"
-                                        style="width: 100%; height: auto;" />
+
+                                    <div class="profile-modal-img__container">
+                                        <div class="card imgholder" id="image-product-viewer-container">
+                                            <div class="picture-profile-modal-loade__container"
+                                                id="viewer-product-modal-loader">
+                                                {% include 'components/circular-loader.html' %}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </section>
+                        <!-- END IMAGE EDITOR -->
                     </div>
                     <div class="col-md-9">
                         <section class="form__container">
@@ -241,8 +259,11 @@
                                         <legend class="col-form-label col-mb-2 pt-0">Rol</legend>
                                         <div class="col-sm-10">
                                             <div class="form-check form-switch">
-                                                <input class="form-check-input" type="checkbox" id="lecturarolAdmin" disabled>
-                                                <label class="form-check-label" for="lecturarolAdmin" style="margin-top: 4px; font-size: 22px; margin-left: 2px">  Administrador</label>
+                                                <input class="form-check-input" type="checkbox" id="lecturarolAdmin"
+                                                    disabled>
+                                                <label class="form-check-label" for="lecturarolAdmin"
+                                                    style="margin-top: 4px; font-size: 22px; margin-left: 2px">
+                                                    Administrador</label>
                                             </div>
                                         </div>
                                     </div>
@@ -270,23 +291,29 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formEditPro" class="needs-validation" novalidate>
+                <form id="formEditUser" class="needs-validation" novalidate>
                     <div class="col-md-3">
+                        <!-- IMAGE EDITOR -->
                         <section class="image__container">
                             <div class="profile-modal-img__container">
                                 <div class="card imgholder">
-                                    <label for="imgInput" class="upload">
-                                        <input type="file" name="" id="imgInput">
-                                        <i class="material-icons">edit</i>
-                                    </label>
-                                    <div class="picture-profile-modal-loade__container display-none"
-                                        id="picture-profile-modal-loader">
+                                    <div class="profile-modal-img__container">
+                                        <div class="card imgholder" id="image-product-editor-container">
+                                            <label for="imgInputEdit" class="upload">
+                                                <input type="file" name="imgInputEdit" id="imgInputEdit">
+                                                <i class="material-icons">edit</i>
+                                            </label>
+
+                                            <div class="picture-profile-modal-loade__container"
+                                                id="edit-product-modal-loader">
+                                                {% include 'components/circular-loader.html' %}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <i class="material-icons person-icon-profile-picture-modal"
-                                        aria-label="Profile picture">person</i>
                                 </div>
                             </div>
                         </section>
+                        <!-- END IMAGE EDITOR -->
                     </div>
                     <div class="col-md-9">
                         <section class="form__container">
@@ -294,8 +321,7 @@
                                 <div class="form-floating mb-3">
                                     <input type="text" id="editusernameInput" class="form-control"
                                         aria-label="Sizing input" aria-label="Sizing input"
-                                        aria-describedby="inputGroup-sizing-sm" placeholder="Nombre de Usuario"
-                                        >
+                                        aria-describedby="inputGroup-sizing-sm" placeholder="Nombre de Usuario">
                                     <label for="nombre">Nombre del Usuario</label>
                                     <div class="invalid-feedback">
                                         Por favor ingresa el nombre del Usuario.
@@ -320,9 +346,6 @@
                                         placeholder="Agrega una breve descripcion del producto"
                                         value="********************************" readonly>
                                     <label for="descripcion_breve">Contraseña</label>
-                                    <div class="invalid-feedback">
-                                        Por favor ingresa una Contraseña.
-                                    </div>
                                 </div>
                             </div>
                             <div class="input-component">
@@ -332,12 +355,14 @@
                                         <div class="col-sm-10">
                                             <div class="form-check form-switch">
                                                 <input class="form-check-input" type="checkbox" id="editradioAdmin">
-                                                <label class="form-check-label" for="editradioAdmin" style="margin-top: 4px; font-size: 22px; margin-left: 2px">  Administrador</label>
+                                                <label class="form-check-label" for="editradioAdmin"
+                                                    style="margin-top: 4px; font-size: 22px; margin-left: 2px">
+                                                    Administrador</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            <input type="hidden" id="editIDUsuario" name="id_usuario" readonly>
+                                <input type="hidden" id="editIDUsuario" name="id_usuario" readonly>
                         </section>
                     </div>
                 </form>

@@ -2,13 +2,13 @@ class Sql_Strings():
     INSERT_NEW_USER = (
         "INSERT INTO usuarios (nombre_usuario, email, password, admin) VALUES "
         "(%(nombre_usuario)s, %(email)s, %(password)s, %(admin)s)"
+        "RETURNING id "
     )
     
     UPDATE_USER_BY_ID = (
-        "UPDATE usuario SET "
+        "UPDATE usuarios SET "
         "   nombre_usuario = %(nombre_usuario)s, "
         "   email = %(email)s, "
-        "   password = %(password)s, "
         "   admin = %(admin)s " 
         "WHERE id = %(id_usuario)s"
     )
@@ -43,13 +43,8 @@ class Sql_Strings():
             id, 
             nombre_usuario, 
             email, 
-            "password", 
-            dt_creado, 
             "admin", 
-            image_bin, 
-            image_name, 
-            image_url, 
-            parte_equipo
+            image_bin AS "imagen"
         FROM usuarios;
         """
     )
@@ -59,13 +54,8 @@ class Sql_Strings():
             id, 
             nombre_usuario, 
             email, 
-            "password", 
-            dt_creado, 
             "admin", 
-            image_bin AS "imagen", 
-            image_name, 
-            image_url , 
-            parte_equipo
+            image_bin AS "imagen"
         FROM usuarios
         WHERE id = %(id_usuario)s;
         """

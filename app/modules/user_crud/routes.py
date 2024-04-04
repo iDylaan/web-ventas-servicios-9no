@@ -6,11 +6,11 @@ from app.utils.misc import (
     hash_password,
     val_req_data
 )
-from app.modules.conf.conf_postgres import qry, sql
+from app.modules.conf.conf_postgres import qry, sql, sqlv2
 from PIL import Image as PILImage
 from werkzeug.utils import secure_filename
 from .sql_strings import Sql_Strings as SQL_STRINGS
-from .schemas import new_user_scheme
+from .schemas import new_user_scheme, edit_user_scheme
 
 
 mod = Blueprint('user_crud', __name__)
@@ -18,15 +18,26 @@ mod = Blueprint('user_crud', __name__)
 @mod.route('/')
 def user_crud_template():
     usuarios_arr = None 
+    usuarios_json = []
     try:
         usuarios_arr = qry(SQL_STRINGS.GET_USERS)
+        for usuario in usuarios_arr:
+            usuario_json = {  
+                'id': usuario['id'],
+                'nombre_usuario': usuario['nombre_usuario'],
+                'email': usuario['email'],
+                'admin' : usuario['admin'],
+                'imagen_exist' : usuario['imagen'] is not None
+            }
+            usuario['imagen'] = usuario['imagen'] is not None
+            usuarios_json.append(usuario_json)  # Mueve esta línea dentro del bucle
     except Exception as e:
         print(e)
         return render_template('404.html')
     finally:
         if not usuarios_arr:
             usuarios_arr = []
-        return render_template('usuario-CRUD.html', usuarios=usuarios_arr)    
+        return render_template('usuario-CRUD.html', usuarios=usuarios_arr, usuarios_json=usuarios_json)
 
 
 @mod.route('/nuevo', methods=['POST'])
@@ -43,8 +54,7 @@ def nuevo_usuario():
         # Validar datos requeridos
         if not nombre_usuario \
         or not email \
-        or not password \
-        or not admin:
+        or not password:
             return handleResponseError('Faltan campos obligatorios', 400)
         
         # Crear el diccionario del nuevo usuario
@@ -70,11 +80,11 @@ def nuevo_usuario():
         new_user_dict['password'] = hash_password(password)
         
         # Guardar al nuevo usuario en la DB
-        rows_affected = sql(SQL_STRINGS.INSERT_NEW_USER, new_user_dict)
+        rows_affected,id_of_new_row = sqlv2(SQL_STRINGS.INSERT_NEW_USER, new_user_dict, True)
         
         # Validar filas afectadas
         if rows_affected:
-            return handleResponse('Usuario registrado exitosamente')
+            return handleResponse({'message': 'PUsuario registrado exitosamente', 'id_usuario': id_of_new_row})
         else:
             raise handleResponseError('No se pudo registrar al usuario.')
         
@@ -102,38 +112,31 @@ def editar_usuario(id_usuario):
         # Recibiar datos del usuario
         nombre_usuario = data.get('nombre_usuario', None)
         email = data.get('email', None)
-        password = data.get('password', None)
-        admin = data.get('admin', False)
+        admin = data.get('admin', None)
         
         # Validar datos requeridos
-        if not nombre_usuario \
-        or not email \
-        or not password \
-        or not admin:
+        if not nombre_usuario or not email or admin is None:
             return handleResponseError('Faltan campos obligatorios', 400)
         
         # Crear el diccionario del nuevo usuario
-        new_user_dict = {
+        edit_user_dict = {
             'nombre_usuario': nombre_usuario,
             'email': email,
-            'password': password,
             'admin': admin
         }
         
         # Validar formato de los datos
-        errors = val_req_data(new_user_dict, new_user_scheme)
+        errors = val_req_data(edit_user_dict, edit_user_scheme)
         if errors:
             print("Error: ", errors)
             return handleResponseError(errors, 400)
         
-        # Hashear la contraseña
-        new_user_dict['password'] = hash_password(password)
 
         # Agregar el id del usuario al diccionario
-        new_user_dict['id_usuario'] = id_usuario
+        edit_user_dict['id_usuario'] = id_usuario
         
         # Guardar al nuevo usuario en la DB
-        rows_affected = sql(SQL_STRINGS.UPDATE_USER_BY_ID, new_user_dict)
+        rows_affected = sql(SQL_STRINGS.UPDATE_USER_BY_ID, edit_user_dict)
         
         # Validar filas afectadas
         if rows_affected:
@@ -246,4 +249,32 @@ def obtener_usuarios(id_usuario):
         print("Tipo de error:", type(e))
         print("Mensaje de error:", str(e))
         return handleResponseError('Error al obtener los usuarios', 500)
+
+@mod.route('/imagen_usuario_base64/<int:id_usuario>', methods=['GET'])
+def obtener_imagen_usuario_base64(id_usuario):
+    try:
+        if not id_usuario:
+            return handleResponseError('Usuario faltante', 400)
+        
+        # Comprobar si el usuario existe
+        result = qry(SQL_STRINGS.GET_USER_COUNT_BY_ID, {'id_usuario': id_usuario}, True)
+        user_count = result.get('count', None)  # Corregido a user_count
+        
+        if not user_count:
+            return handleResponseError('Usuario no encontrado', 404)
+        
+        # Obtener la imagen
+        result_image = qry(SQL_STRINGS.GET_USER_IMAGE_BY_ID, {'id_usuario': id_usuario}, True)
+            
+        # Retornar la imagen del binario
+        imagen = result_image.get('image_bin', None)
+        nombre_imagen = result_image.get('image_name', None)
+        if imagen:
+            encoded_img = base64.b64encode(imagen).decode('utf-8')
+            return jsonify({'filename': nombre_imagen, 'image_base64': encoded_img})
+        else: 
+            return jsonify({'filename': False, 'image_base64': False})
+    except Exception as e:
+        print("Ocurrio un error en @imagen_usuario_base64/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
+        return handleResponseError('Error en el servidor: {}'.format(e)) 
 

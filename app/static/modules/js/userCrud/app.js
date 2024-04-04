@@ -2,24 +2,22 @@
 const usernameInput = document.querySelector("#usernameInput")
 const emailInput = document.querySelector("#emailInput")
 const passwordInput = document.querySelector("#passwordInput")
-const radioUsuario = document.querySelector('#rolUs');
 const radioAdmin = document.querySelector('#rolAdmin');
 
 const lecturaUsuarioParagraph = document.querySelector('#lecturaUsuarioParagraph');
 const lecturausernameInput = document.querySelector("#lecturausernameInput")
 const lecturaemailInput = document.querySelector("#lecturaemailInput")
-const lecturaradioUsuario = document.querySelector('#lecturarolUs');
 const lecturaradioAdmin = document.querySelector('#lecturarolAdmin');
 
 const editUsuarioParagraph = document.querySelector('#editUsuarioParagraph');
 const editIDUsuario = document.querySelector('#editIDUsuario');
 const editusernameInput = document.querySelector('#editusernameInput');
 const editemailInput = document.querySelector('#editemailInput');
-const editradioUsuario = document.querySelector('#editrolUs');
+const editpasswordInput = document.querySelector('#editpasswordInput');
 const editradioAdmin = document.querySelector('#editradioAdmin');
 
 const formNuevoUsuario = document.querySelector('#formNuevoUsuario');
-const formEditPro = document.querySelector('#formEditPro');
+const formEditUser = document.querySelector('#formEditUser');
 const btnCloseModal = document.querySelector("#readDataModal .btn-close");
 const btnGuerdaNP = document.querySelector('#btnGuerdaNP');
 const btnActualizaP = document.querySelector('#btnActualizaP');
@@ -42,21 +40,19 @@ const editformModel = {
     id: "",
 	nombre_usuario: "",
 	email: "",
-	password: "",
     admin: "",
 }
 // Funciones
-async function nuevoProducto(e) {
+async function nuevoUsuario(e) {
     e.preventDefault();
-
+    
     try {
         // Asignar los valores de los campos del formulario al objeto formModel
-        formModel.titulo = nameInput.value;
-        formModel.descripcion = descripcionInput.value;
-        formModel.descripcion_corta = breveDescInput.value;
-        formModel.info = informacionInput.value;
-        // Convertir el valor del precio a número antes de asignarlo a formModel.precio
-        formModel.precio = parseFloat(precioInput.value);
+        formModel.nombre_usuario = usernameInput.value;
+        formModel.email = emailInput.value;
+        formModel.password = passwordInput.value;
+        // Obtener el valor del checkbox #rolAdmin
+        formModel.admin = radioAdmin.checked ? 1 : 0;
 
         // Establecer todos los campos como no válidos (is-invalid)
         document.querySelectorAll('.form-control').forEach(element => {
@@ -65,52 +61,34 @@ async function nuevoProducto(e) {
         });
 
         // Validar el campo 'Nombre del producto'
-        if (formModel.titulo) {
-            nameInput.classList.remove('is-invalid');
-            nameInput.classList.add('is-valid');
+        if (formModel.nombre_usuario) {
+            usernameInput.classList.remove('is-invalid');
+            usernameInput.classList.add('is-valid');
         } else {
-            nameInput.classList.remove('is-valid');
-            nameInput.classList.add('is-invalid');
+            usernameInput.classList.remove('is-valid');
+            usernameInput.classList.add('is-invalid');
         }
 
         // Validar el campo 'Descripción'
-        if (formModel.descripcion) {
-            descripcionInput.classList.remove('is-invalid');
-            descripcionInput.classList.add('is-valid');
+        if (formModel.email) {
+            emailInput.classList.remove('is-invalid');
+            emailInput.classList.add('is-valid');
         } else {
-            descripcionInput.classList.remove('is-valid');
-            descripcionInput.classList.add('is-invalid');
+            emailInput.classList.remove('is-valid');
+            emailInput.classList.add('is-invalid');
         }
 
         // Validar el campo 'Descripción breve'
-        if (formModel.descripcion_corta) {
-            breveDescInput.classList.remove('is-invalid');
-            breveDescInput.classList.add('is-valid');
+        if (formModel.password) {
+            passwordInput.classList.remove('is-invalid');
+            passwordInput.classList.add('is-valid');
         } else {
-            breveDescInput.classList.remove('is-valid');
-            breveDescInput.classList.add('is-invalid');
-        }
-
-        // Validar el campo 'Información'
-        if (formModel.info) {
-            informacionInput.classList.remove('is-invalid');
-            informacionInput.classList.add('is-valid');
-        } else {
-            informacionInput.classList.remove('is-valid');
-            informacionInput.classList.add('is-invalid');
-        }
-
-        // Validar el campo 'Precio'
-        if (formModel.precio) {
-            precioInput.classList.remove('is-invalid');
-            precioInput.classList.add('is-valid');
-        } else {
-            precioInput.classList.remove('is-valid');
-            precioInput.classList.add('is-invalid');
+            passwordInput.classList.remove('is-valid');
+            passwordInput.classList.add('is-invalid');
         }
 
 
-        if (!formModel.titulo || !formModel.descripcion || !formModel.descripcion_corta || !formModel.info || !formModel.precio) {
+        if (!formModel.nombre_usuario || !formModel.email || !formModel.password) {
 
             throw new Error('Faltan campos obligatorios');
         }
@@ -118,7 +96,7 @@ async function nuevoProducto(e) {
         // Mostrar los datos que se van a enviar en la solicitud AJAX
         console.log('Datos enviados:', formModel);
 
-        const response = await fetch('/productos_crud/nuevo', {
+        const response = await fetch('/usuarios_crud/nuevo', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -135,8 +113,8 @@ async function nuevoProducto(e) {
             if (imgInput.files && imgInput.files[0]) {
 
                 // Distructuring de la data
-                const { data: { id_producto } } = result;
-                console.log(id_producto);
+                const { data: { id_usuario } } = result;
+                console.log(id_usuario);
 
                 // File
                 const file = imgInput.files[0]
@@ -148,9 +126,9 @@ async function nuevoProducto(e) {
 
                 console.log('Imagen cargada al formData')
 
-                if (id_producto) {
+                if (id_usuario) {
                     console.log('Antes de empezar el registro')
-                    const response = await fetch('/productos_crud/imagen_producto/' + id_producto, {
+                    const response = await fetch('/usuarios_crud/imagen_usuario/' + id_usuario, {
                         method: 'POST',
                         body: formData
                     })
@@ -184,21 +162,22 @@ async function actualizaProducto(e) {
     try {
         // Asignar los valores de los campos del formulario al objeto editformModel
         editformModel.id = editIDUsuario.value;
-        editformModel.titulo = editusernameInput.value;
-        editformModel.descripcion = editdescripcionInput.value;
-        editformModel.descripcion_corta = editbreveDescInput.value;
-        editformModel.info = editinformacionInput.value;
-        // Convertir el valor del precio a número antes de asignarlo a editformModel.precio
-        editformModel.precio = parseFloat(editprecioInput.value);
+        editformModel.nombre_usuario = editusernameInput.value;
+        editformModel.email = editemailInput.value;
+        // Obtener el valor del checkbox #rolAdmin
+        editformModel.admin = editradioAdmin.checked ? 1 : 0;
+        
 
         // Establecer todos los campos como no válidos (is-invalid)
         document.querySelectorAll('.form-control').forEach(element => {
             element.classList.remove('is-valid');
             element.classList.add('is-invalid');
+            editpasswordInput.classList.remove('is-invalid');
+            editpasswordInput.classList.remove('is-valid');
         });
 
-        // Validar el campo 'Nombre del producto'
-        if (editformModel.titulo) {
+        // Validar el campo 'Nombre del usuario'
+        if (editformModel.nombre_usuario) {
             editusernameInput.classList.remove('is-invalid');
             editusernameInput.classList.add('is-valid');
         } else {
@@ -207,51 +186,23 @@ async function actualizaProducto(e) {
         }
 
         // Validar el campo 'Descripción'
-        if (editformModel.descripcion) {
-            editdescripcionInput.classList.remove('is-invalid');
-            editdescripcionInput.classList.add('is-valid');
+        if (editformModel.email) {
+            editemailInput.classList.remove('is-invalid');
+            editemailInput.classList.add('is-valid');
         } else {
-            editdescripcionInput.classList.remove('is-valid');
-            editdescripcionInput.classList.add('is-invalid');
-        }
-
-        // Validar el campo 'Descripción breve'
-        if (editformModel.descripcion_corta) {
-            editbreveDescInput.classList.remove('is-invalid');
-            editbreveDescInput.classList.add('is-valid');
-        } else {
-            editbreveDescInput.classList.remove('is-valid');
-            editbreveDescInput.classList.add('is-invalid');
-        }
-
-        // Validar el campo 'Información'
-        if (editformModel.info) {
-            editinformacionInput.classList.remove('is-invalid');
-            editinformacionInput.classList.add('is-valid');
-        } else {
-            editinformacionInput.classList.remove('is-valid');
-            editinformacionInput.classList.add('is-invalid');
-        }
-
-        // Validar el campo 'Precio'
-        if (editformModel.precio) {
-            editprecioInput.classList.remove('is-invalid');
-            editprecioInput.classList.add('is-valid');
-        } else {
-            editprecioInput.classList.remove('is-valid');
-            editprecioInput.classList.add('is-invalid');
+            editemailInput.classList.remove('is-valid');
+            editemailInput.classList.add('is-invalid');
         }
 
         // Verificar si los campos obligatorios están llenos
-        if (!editformModel.titulo || !editformModel.descripcion || !editformModel.descripcion_corta || !editformModel.info || !editformModel.precio) {
+        if (!editformModel.nombre_usuario || !editformModel.email) {
             throw new Error('Faltan campos obligatorios');
         }
 
         btnActualizaP.disabled = true;
         // Mostrar los datos que se van a enviar en la solicitud AJAX
         console.log('Datos enviados:', editformModel);
-
-        const response = await fetch('/productos_crud/editar/' + editformModel.id, {
+        const response = await fetch('/usuarios_crud/editar/' + editformModel.id, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -269,7 +220,7 @@ async function actualizaProducto(e) {
             const formData = new FormData();
             formData.append('imagen', file, file.name);
 
-            const responseImg = await fetch('/productos_crud/imagen_producto/' + editformModel.id, {
+            const responseImg = await fetch('/usuarios_crud/imagen_usuario/' + editformModel.id, {
                 method: 'POST',
                 body: formData
             });
@@ -293,7 +244,6 @@ async function editaModal(data) {
     console.log('ID del Usuario:', data.id);
     console.log('Nombre del Usuario:', data.nombre_usuario);
     console.log('Correo:', data.email);
-    console.log('Pasword:', data.password);
     console.log('Rol:', data.admin);
 
     // Pequeño retraso para asegurar que los elementos del formulario estén disponibles
@@ -311,72 +261,42 @@ async function editaModal(data) {
     } else if (data.admin === 1) {
         document.getElementById('editradioAdmin').checked = true;
     }
-    // Obtener la imagen del usuario y asignarla al elemento img
-    const imageUrl = await obtenerImagenUsuario(data.id);
-    if (imageUrl) {
-        const UsuarioImage = document.getElementById('UsuarioImage');
-        UsuarioImage.src = imageUrl;
-    } else {
-        console.error('No se pudo obtener la imagen del usuario');
-        // Manejar la falta de imagen, si lo deseas
-    }
-
-    // Mostrar el modal
+   // Mostrar el modal
     var editformModal = new bootstrap.Modal(document.getElementById('editformModal'), {
         backdrop: 'static',
         keyboard: false
     });
     editformModal.show();
+    // Escuchar el evento cuando se cierre el modal
+    editformModal._element.addEventListener('hidden.bs.modal', function () {
+        // Activar los botones nuevamente
+        activarBotones();
+    });
 }
 
 async function infoUsuario(id_usuario) {
-    try {
-        const response = await fetch('/usuarios_crud/obtener_usuarios/' + id_usuario, {
-            method: 'GET',
-        });
+    let data = null;
 
-        // Verificar si la respuesta es exitosa (código de estado 200)
-        if (response.ok) {
-            // Convertir la respuesta a formato JSON
-            const data = await response.json();
-            console.log('Respuesta del servidor:', data);
-            // Llenar el modal con la información del producto
-            leeModal(data);
-        } else {
-            // Si la respuesta no es exitosa, lanzar un error
-            throw new Error('Error al obtener la información del producto');
+    // Verifica si USUARIOS es un objeto
+    if (typeof USUARIOS === 'object' && USUARIOS !== null) {
+        for (let key in USUARIOS) {
+            if (USUARIOS.hasOwnProperty(key)) {
+                if (parseInt(USUARIOS[key].id) === parseInt(id_usuario)) {
+                    data = USUARIOS[key];
+                    break; // Salir del bucle una vez que se encuentre el usuario
+                }
+            }
         }
-    } catch (error) {
-        // Manejar errores de red u otros errores
-        console.error(error);
+        
+    } else {
+        console.error("USUARIOS no es un objeto válido.");
+        return; // Salir de la función si USUARIOS no es un objeto válido
     }
-}
 
-async function eliminaProduct(id_producto) {
-    eliminaDataBtn.disabled = true;
-    try {
-        const response = await fetch('/productos_crud/eliminar/' + id_producto, {
-            method: 'POST',
-        });
-
-        if (!response.ok) {
-            throw new Error('Error al eliminar el producto');
-        }
-
-        const result = await response.json();
-
-        // Si se eliminó el producto correctamente, recargar la página
-        if (result.success) {
-            window.location.reload();
-        } else {
-            throw new Error('Error al eliminar el producto');
-        }
-    } catch (error) {
-        console.error(error);
-    }
-    finally {
-        // Habilitar el botón nuevamente después de que se haya completado el proceso
-        eliminaDataBtn.disabled = false;
+    if (data !== null) {
+        leeModal(data);
+    } else {
+        console.error("No se encontró ningún usuario con el ID proporcionado.");
     }
 }
 
@@ -398,94 +318,51 @@ async function obtenerImagenUsuario(id_usuario) {
 }
 
 async function leeModal(data) {
-    console.log('ID del Usuario:', data.id);
-    console.log('Nombre del Usuario:', data.nombre_usuario);
-    console.log('Correo:', data.email);
-    console.log('Rol:', data.admin);
-
-    // Pequeño retraso para asegurar que los elementos del formulario estén disponibles
-    await new Promise(resolve => setTimeout(resolve, 100));
-
     lecturausernameInput.value = data.nombre_usuario;
     lecturaemailInput.value = data.email;
     lecturaUsuarioParagraph.textContent = data.nombre_usuario;
-
     // Seleccionar el radio correspondiente al rol del usuario
     if (data.admin === 0) {
         document.getElementById('lecturarolAdmin').checked = false;
     } else if (data.admin === 1) {
         document.getElementById('lecturarolAdmin').checked = true;
     }
-    // Obtener la imagen del usuario y asignarla al elemento img
-    const imageUrl = await obtenerImagenUsuario(data.id);
-    if (imageUrl) {
-        const UsuarioImage = document.getElementById('UsuarioImage');
-        UsuarioImage.src = imageUrl;
-    } else {
-        console.error('No se pudo obtener la imagen del usuario');
-        // Manejar la falta de imagen, si lo deseas
-    }
-
     // Mostrar el modal
     var leerModal = new bootstrap.Modal(document.getElementById('leerModal'), {
         backdrop: 'static',
         keyboard: false
     });
     leerModal.show();
+    // Escuchar el evento cuando se cierre el modal
+    leerModal._element.addEventListener('hidden.bs.modal', function () {
+        // Activar los botones nuevamente
+        activarBotones();
+    });
 }
-
 
 async function editUsuario(id_usuario) {
-    try {
-        
-        const response = await fetch('/usuarios_crud/obtener_usuarios/' + id_usuario, {
-            method: 'GET',
-        });
-        
-        // Verificar si la respuesta es exitosa (código de estado 200)
-        if (response.ok) {
-            // Convertir la respuesta a formato JSON
-            const data = await response.json();
-            console.log('Respuesta del servidor:', data);
-            // Llenar el modal con la información del producto
-            editaModal(data);
-        } else {
-            // Si la respuesta no es exitosa, lanzar un error
-            throw new Error('Error al obtener la información del producto');
+    let data = null;
+
+    // Verifica si USUARIOS es un objeto
+    if (typeof USUARIOS === 'object' && USUARIOS !== null) {
+        for (let key in USUARIOS) {
+            if (USUARIOS.hasOwnProperty(key)) {
+                if (parseInt(USUARIOS[key].id) === parseInt(id_usuario)) {
+                    data = USUARIOS[key];
+                    break; // Salir del bucle una vez que se encuentre el usuario
+                }
+            }
         }
-    } catch (error) {
-        // Manejar errores de red u otros errores
-        console.error(error);
-    }
-}
-
-function validarNumero(input) {
-    // Obtener el valor actual del input
-    let valor = input.value;
-
-    // Remover caracteres no permitidos y repetidos
-    valor = valor.replace(/[^\d.-]+|(?<=\.\d*)\./g, ''); // Remover caracteres que no sean dígitos, punto o signo negativo, y puntos repetidos
-    valor = valor.replace(/^-{2,}/g, '-'); // Mantener solo un guion "-" si hay más de uno al principio
-    valor = valor.replace(/-{2,}/g, ''); // Remover dos o más guiones "-" consecutivos después del primer carácter
-
-    // Verificar si el valor es negativo, si lo es, eliminar el signo "-" si no está al principio
-    if (valor.indexOf('-') !== 0) {
-        valor = valor.replace(/-/g, '');
+        
+    } else {
+        console.error("USUARIOS no es un objeto válido.");
+        return; // Salir de la función si USUARIOS no es un objeto válido
     }
 
-    // Verificar si solo se ingresó un punto decimal
-    if (valor === '.') {
-        valor = '0.'; // Agregar un "0" antes del punto decimal
-    }
-
-    // Verificar si el valor comienza con un punto decimal
-    if (valor.indexOf('.') === 0) {
-        valor = '0' + valor; // Agregar un "0" antes del punto decimal si es necesario
-    }
-
-    // Actualizar el valor del input solo si ha habido cambios
-    if (valor !== input.value) {
-        input.value = valor;
+    if (data !== null) {
+        editaModal(data);
+    } else {
+        console.error("No se encontró ningún usuario con el ID proporcionado.");
     }
 }
 
@@ -500,55 +377,53 @@ function funncionver() {
     }
 }
 
+// Función para desactivar los botones al hacer clic
+function desactivarBotones() {
+    leerDataBtns.forEach(btn => {
+        btn.disabled = true;
+    });
+    editDataBtns.forEach(btn => {
+        btn.disabled = true;
+    });
+}
+
+// Función para activar los botones cuando se cierre el modal
+function activarBotones() {
+    leerDataBtns.forEach(btn => {
+        btn.disabled = false;
+    });
+    editDataBtns.forEach(btn => {
+        btn.disabled = false;
+    });
+}
+
 // Event Listeners
 function eventListeners() {
     
     verBtn.addEventListener('click', funncionver);
 
     formNuevoUsuario.addEventListener('submit', async function (e) {
-        console.log(e);
-        return;
-        try {
-            
-            const response = await fetch('/user_crud/nuevo', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formModel)
-            })
-
-            if (!response.ok) {
-                throw new Error('Error en el servidor');
-            }
-
-            const result = await response.json();
-            console.log(result);
-        } catch (error) {
-            console.log(error);
-        }
-
         // No se llama a e.preventDefault() para permitir la recarga de la página
         // Se realiza la validación de los campos obligatorios en nuevoProducto()
     });
 
-    btnGuerdaNP.addEventListener("click", nuevoProducto)
+    btnGuerdaNP.addEventListener("click", nuevoUsuario)
 
-    /* formEditPro.addEventListener('submit', function (e) {
+    formEditUser.addEventListener('submit', function (e) {
         // No se llama a e.preventDefault() para permitir la recarga de la página
         // Se realiza la validación de los campos obligatorios en actualizaProducto()
-    }); */
+    });
 
-    //btnActualizaP.addEventListener("click", actualizaProducto)
+    btnActualizaP.addEventListener("click", actualizaProducto)
 
 
     // Asignar evento al botón readDataBtn
     leerDataBtns.forEach(btn => {
         btn.addEventListener('click', function () {
+             // Desactivar los botones
+            desactivarBotones();
             // Obtener el ID del usuario desde el atributo data del botón
             const id_usuario = this.dataset.usuarioId;
-            console.log('Se hizo clic en el botón leerDataBtns con ID de usuario:', id_usuario);
-    
             // Obtener la información del usuario y mostrar el modal
             infoUsuario(id_usuario);
         });
@@ -556,27 +431,14 @@ function eventListeners() {
 
     editDataBtns.forEach(btn => {
         btn.addEventListener('click', function () {
+            // Desactivar los botones
+            desactivarBotones();
             // Obtener el ID del usuario desde el atributo data del botón
             const id_usuario = this.dataset.usuarioId;
-            console.log('Se hizo clic en el botón editDataBtns con ID de producto:', id_usuario);
-
             // Obtener la información del usuario y mostrar el modal
             editUsuario(id_usuario);
         });
     });
-
-    /* eliminaDataBtn.forEach(btn => {
-        btn.addEventListener('click', function () {
-            // Obtener el ID del producto desde el atributo data del botón
-            const id_producto = this.dataset.userId;
-            console.log('Se hizo clic en el botón eliminaDataBtn con ID de producto:', id_producto);
-
-            // Obtener la información del producto y mostrar el modal
-            eliminaProduct(id_producto);
-        });
-    }); */
-
-
 }
 
 
