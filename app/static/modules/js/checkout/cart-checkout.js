@@ -11,8 +11,6 @@ $(document).ready(function () {
         // Convertir la cadena JSON a un objeto de JavaScript
         const carrito = carritoJSON ? JSON.parse(carritoJSON) : [];
 
-        console.log(carrito);
-
         try {
             const response = await fetch('/tienda/checkout', {
                 method: 'POST',

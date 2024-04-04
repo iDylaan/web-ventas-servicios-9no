@@ -54,12 +54,12 @@
             {% for producto in productos %}
             <div class="col-xl-4 col-md-6 item plugin ilustration card-shop">
                 <div class="product-item wow fadeInUp delay-0-2s">
-                    <div class="image">
+                    <div class="image" style="display: grid; place-content: center;">
                         {% if producto.get('imagen', False) %}
                         <img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=producto.get('id')) }}"
                             alt="{{ producto.get('nombre_imagen', 'Imagen del producto') }}">
                         {% else %}
-                        <img src="{{ url_for('static', filename='modules/imgs/admin/UsuariosMiniatura.png') }}">
+                        <i class="material-icons" style="font-size: 250px; margin: auto;">inventory_2</i>
                         {% endif %}
                     </div>
                     <div class="content">
