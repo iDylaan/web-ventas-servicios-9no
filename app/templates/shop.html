@@ -55,8 +55,12 @@
             <div class="col-xl-4 col-md-6 item plugin ilustration card-shop">
                 <div class="product-item wow fadeInUp delay-0-2s">
                     <div class="image">
+                        {% if producto.get('imagen', False) %}
                         <img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=producto.get('id')) }}"
                             alt="{{ producto.get('nombre_imagen', 'Imagen del producto') }}">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='modules/imgs/admin/UsuariosMiniatura.png') }}">
+                        {% endif %}
                     </div>
                     <div class="content">
                         <h5>{{ producto.get('titulo', 'Titulo del producto') }}</h5>
