@@ -46,6 +46,7 @@ from .modules import (
     mod_user_crud,
     mod_productos_crud,
     mod_shop,
+    mod_compras,
 )
 
 ### BP ###
@@ -57,3 +58,4 @@ app.register_blueprint(mod_dashboard, url_prefix='/dashboard')
 app.register_blueprint(mod_user_crud, url_prefix='/usuarios_crud')
 app.register_blueprint(mod_productos_crud, url_prefix='/productos_crud')
 app.register_blueprint(mod_shop, url_prefix='/tienda')
+app.register_blueprint(mod_compras, url_prefix='/compras')
