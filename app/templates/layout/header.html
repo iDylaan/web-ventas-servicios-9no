@@ -56,8 +56,21 @@
                                                 ayuda</a></li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="{{ url_for('shop.shop_template') }}">Tienda</a>
+                                <li class="dropdown">
+                                    <a href="#">Tienda</a>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ url_for('shop.shop_template') }}">Productos</a>
+                                        </li>
+                                        {% if user_logged %}
+                                        <li>
+                                            <a href="{{ url_for('compras.mi_compras_template') }}">Mis Compras</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ url_for('compras.wishlist_template') }}">Productos Deseados</a>
+                                        </li>
+                                        {% endif %}
+                                    </ul>
                                 </li>
                                 <li>
                                     <a href="{{ url_for('pages.contacto_template') }}">Contacto</a>

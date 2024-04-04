@@ -13433,3 +13433,9 @@ h4.comment-title {
   overflow: hidden;
   white-space: nowrap;
 }
+
+.mis-compras-product-details li {
+  margin: auto;
+  display: grid;
+  place-content: center;
+}

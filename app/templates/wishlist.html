@@ -1,0 +1,74 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Tech Consulting | Deseados {% endblock %}
+
+{% block styles %}
+{{super()}}
+{% endblock styles %}
+
+{% block scripts %}
+{{super()}}
+{% endblock scripts %}
+
+{% block content %}
+
+{% block page_banner %}
+{% set pre_page_title = 'Productos' %}
+{% set page_title_underline = 'Deseados' %}
+
+{% include 'components/page-banner.html' %}
+{% endblock page_banner %}
+
+
+<!-- Blog List Area start -->
+<section class="blog-list-area py-130 rel z-1">
+    <div class="container">
+        <div class="blog-list-item wow fadeInUp delay-0-2s">
+            <div class="image">
+                <img src="{{ url_for('static', filename='assets/images/blog/blog-list1.jpg') }}" alt="Blog List">
+            </div>
+            <div class="blog-content">
+                <div class="content">
+                    <h4><a href="blog-details.html">How To Build Group Chat With Vanilla JS, Twilio Manage Accessible
+                            Design System</a></h4>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolore mquees
+                        laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architec to
+                        beatae vitae dicta sunt explicabo voluptatem quia voluptas site</p>
+                    <ul class="blog-meta">
+                        <li style="font-size: 1.2rem;">
+                            $<a href="#">100</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <ul class="pagination flex-wrap justify-content-center pt-20 wow fadeInUp delay-0-2s">
+            <li class="page-item disabled">
+                <span class="page-link"><i class="fas fa-angle-left"></i></span>
+            </li>
+            <li class="page-item active">
+                <span class="page-link">
+                    01
+                    <span class="sr-only">(current)</span>
+                </span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">02</a></li>
+            <li class="page-item"><a class="page-link" href="#">03</a></li>
+            <li class="page-item dot"></li>
+            <li class="page-item dot"></li>
+            <li class="page-item dot"></li>
+            <li class="page-item">
+                <a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
+            </li>
+        </ul>
+    </div>
+</section>
+<!-- Blog List Area end -->
+
+
+{% block get_started %}
+{% include 'components/get_started.html' %}
+{% endblock get_started %}
+
+{% endblock content %}
