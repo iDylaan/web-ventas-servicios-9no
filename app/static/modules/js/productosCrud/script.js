@@ -20,6 +20,7 @@ const editbreveDescInput = document.querySelector('#editbreveDescInput');
 const editprecioInput = document.querySelector('#editprecioInput');
 const formNuevoPro = document.querySelector('#formNuevoPro');
 const formEditPro = document.querySelector('#formEditPro');
+const btnNewProduct = document.querySelector("#btnNewProduct");
 const btnCloseModal = document.querySelector("#readDataModal .btn-close");
 const btnGuerdaNP = document.querySelector('#btnGuerdaNP');
 const btnActualizaP = document.querySelector('#btnActualizaP');
@@ -288,6 +289,11 @@ async function editaModal(data) {
         keyboard: false
     });
     editformModal.show();
+    // Escuchar el evento cuando se cierre el modal
+    editformModal._element.addEventListener('hidden.bs.modal', function () {
+        // Activar los botones nuevamente
+        activarBotones();
+    });
 }
 
 async function infoProduct(id_producto) {
@@ -302,14 +308,17 @@ async function infoProduct(id_producto) {
 }
 
 async function eliminaProduct(id_producto) {
-    eliminaDataBtn.disabled = true;
-    const confirma = confirm("¿Estás seguro de eliminar este producto?");
+    //const confirma = confirm("¿Estás seguro de eliminar este producto?");
+    const mensajeConfirmacion = "¿Estás seguro de eliminar este producto?";
+    const confirma = confirm(mensajeConfirmacion);
     
     if(!confirma){
-        eliminaDataBtn.disabled = false;
+        // Activar los botones
+        activarBotones();
         return;
     }
     try {
+        desactivarBotones();
         const response = await fetch('/productos_crud/eliminar/' + id_producto, {
             method: 'POST',
         });
@@ -331,7 +340,7 @@ async function eliminaProduct(id_producto) {
     }
     finally {
         // Habilitar el botón nuevamente después de que se haya completado el proceso
-        eliminaDataBtn.disabled = false;
+        desactivarBotones();
     }
 }
 
@@ -349,6 +358,11 @@ async function leeModal(data) {
         keyboard: false
     });
     leerModal.show();
+    // Escuchar el evento cuando se cierre el modal
+    leerModal._element.addEventListener('hidden.bs.modal', function () {
+        // Activar los botones nuevamente
+        activarBotones();
+    });
 }
 
 async function editProduct(id_producto) {
@@ -393,8 +407,40 @@ function validarNumero(input) {
     }
 }
 
+// Función para desactivar los botones al hacer clic
+function desactivarBotones() {
+    leerDataBtns.forEach(btn => {
+        btn.disabled = true;
+    });
+    editDataBtns.forEach(btn => {
+        btn.disabled = true;
+    });
+    eliminaDataBtn.forEach(btn => {
+        btn.disabled = true;
+    });
+    btnNewProduct.disabled = true;
+}
+
+// Función para activar los botones cuando se cierre el modal
+function activarBotones() {
+    leerDataBtns.forEach(btn => {
+        btn.disabled = false;
+    });
+    editDataBtns.forEach(btn => {
+        btn.disabled = false;
+    });
+    editDataBtns.forEach(btn => {
+        btn.disabled = false;
+    });
+    btnNewProduct.disabled = false  ;
+}
+
 // Event Listeners
 function eventListeners() {
+    btnNewProduct.addEventListener('click', function () {
+        // Desactivar los botones
+        desactivarBotones();
+    });
     formNuevoPro.addEventListener('submit', function (e) {
         // No se llama a e.preventDefault() para permitir la recarga de la página
         // Se realiza la validación de los campos obligatorios en nuevoProducto()
@@ -413,6 +459,8 @@ function eventListeners() {
     // Asignar evento al botón readDataBtn
     leerDataBtns.forEach(btn => {
         btn.addEventListener('click', function () {
+            // Desactivar los botones
+            desactivarBotones();
             // Obtener el ID del producto desde el atributo data del botón
             const id_producto = this.dataset.productId;
             // Obtener la información del producto y mostrar el modal
@@ -422,6 +470,8 @@ function eventListeners() {
 
     editDataBtns.forEach(btn => {
         btn.addEventListener('click', function () {
+            // Desactivar los botones
+            desactivarBotones();
             // Obtener el ID del producto desde el atributo data del botón
             const id_producto = this.dataset.productId;
             // Obtener la información del producto y mostrar el modal

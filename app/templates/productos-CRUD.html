@@ -31,7 +31,7 @@
 <section class="ww-do-two-area py-130 rel z-1 px-5">
     <div class="row">
         <div class="col-12">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newformModal"
+            <button type="button" class="btn btn-primary" id="btnNewProduct" data-bs-toggle="modal" data-bs-target="#newformModal"
                 style="display: flex; align-items: center; gap: 5px;">Nuevo producto<i
                     class="material-icons">inventory_2</i></button>
         </div>
@@ -62,7 +62,7 @@
                             <img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=producto.get('id')) }}"
                                 alt="{{ producto.get('nombre_imagen', 'Imagen del producto') }}" width="50" height="50">
                             {% else %}
-                            <i class="material-icons">inventory_2</i>
+                            <i class="material-icons" style="font-size: 50px">inventory_2</i>
                             {% endif %}
                         </td>
                         <td class="col-1">
