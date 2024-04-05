@@ -27,6 +27,7 @@ def shop_template():
 
 
 @mod.route('/detalles/<int:id_producto>', methods=['GET'])
+@login_required
 def product_details_template(id_producto):
     product = None
     try:
