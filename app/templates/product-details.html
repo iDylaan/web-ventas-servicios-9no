@@ -6,6 +6,7 @@
 {{super()}}
 <script src="{{ url_for('static', filename='modules/js/product-details/carrito-compras.js') }}" defer></script>
 <script src="{{ url_for('static', filename='modules/js/product-details/notifications.js') }}" defer></script>
+<script src="{{ url_for('static', filename='modules/js/product-details/wishlist.js') }}"></script>
 {% endblock scripts %}
 
 {% block styles %}
@@ -14,7 +15,97 @@
 
 {% block content %}
 
+<style>
+    .wishlist {
+        box-sizing: border-box;
+        position: relative;
+    }
 
+    .con-like {
+        --red: rgb(255, 50, 50);
+        position: relative;
+        width: 25px;
+        height: 25px;
+    }
+
+    .con-like .like {
+        position: absolute;
+        top: -20px !important;
+        left: -20px !important;
+        width: 67px !important;
+        height: 50px !important;
+        opacity: 0;
+        z-index: 20;
+        cursor: pointer;
+    }
+
+    .con-like .checkmark {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .con-like .outline,
+    .con-like .filled {
+        fill: var(--red);
+        position: absolute;
+    }
+
+    .con-like .filled {
+        animation: kfr-filled 0.5s;
+        display: none;
+    }
+
+    .con-like .celebrate {
+        position: absolute;
+        animation: kfr-celebrate 0.5s;
+        animation-fill-mode: forwards;
+        display: none;
+    }
+
+    .con-like .poly {
+        stroke: var(--red);
+        fill: var(--red);
+    }
+
+    .con-like .like:checked~.checkmark .filled {
+        display: block
+    }
+
+    .con-like .like:checked~.checkmark .celebrate {
+        display: block
+    }
+
+    @keyframes kfr-filled {
+        0% {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        50% {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+    }
+
+    @keyframes kfr-celebrate {
+        0% {
+            transform: scale(0);
+        }
+
+        50% {
+            opacity: 0.8;
+        }
+
+        100% {
+            transform: scale(1.2);
+            opacity: 0;
+            display: none;
+        }
+    }
+</style>
 <!-- Product Details Start -->
 <section class="product-details pt-130 rpt-100">
     <div class="container">
@@ -32,8 +123,8 @@
             <div class="col-xl-5 col-lg-6">
                 <div class="product-details-content wow fadeInRight delay-0-2s">
                     <div class="section-title">
-                        <h2>{{ producto.get('titulo', 'Titulo del producto') }}</h2>
-                        
+                        <h1>{{ user_id }}</h1>
+                        <h2>{{ producto.get('titulo', 'Titulo del producto') }}</h2>                       
                     </div>
                     <div class="ratting-price mb-30">
                         <span class="price">{{ producto.get('precio', 'indefinido') }}</span>
@@ -53,8 +144,7 @@
                             </button>
                             <button class="wishlist" style="margin-top: 0px;">
                                 <div class="con-like">
-                                    <input class="like" type="checkbox" title="like"
-                                        data-id="{{ producto.get('id', 0) }}">
+                                    <input class="like" type="checkbox" title="like" data-id="{{ producto.get('id', 0) }}" data-another="{{ user_id }}" onchange="envioDeInformacion(this)">
                                     <div class="checkmark">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="outline" viewBox="0 0 24 24">
                                             <path
@@ -78,97 +168,7 @@
                                     </div>
                                 </div>
                             </button>
-                            <style>
-                                .wishlist {
-                                    box-sizing: border-box;
-                                    position: relative;
-                                }
-
-                                .con-like {
-                                    --red: rgb(255, 50, 50);
-                                    position: relative;
-                                    width: 25px;
-                                    height: 25px;
-                                }
-
-                                .con-like .like {
-                                    position: absolute;
-                                    top: -20px !important;
-                                    left: -20px !important;
-                                    width: 67px !important;
-                                    height: 50px !important;
-                                    opacity: 0;
-                                    z-index: 20;
-                                    cursor: pointer;
-                                }
-
-                                .con-like .checkmark {
-                                    width: 100%;
-                                    height: 100%;
-                                    display: flex;
-                                    justify-content: center;
-                                    align-items: center;
-                                }
-
-                                .con-like .outline,
-                                .con-like .filled {
-                                    fill: var(--red);
-                                    position: absolute;
-                                }
-
-                                .con-like .filled {
-                                    animation: kfr-filled 0.5s;
-                                    display: none;
-                                }
-
-                                .con-like .celebrate {
-                                    position: absolute;
-                                    animation: kfr-celebrate 0.5s;
-                                    animation-fill-mode: forwards;
-                                    display: none;
-                                }
-
-                                .con-like .poly {
-                                    stroke: var(--red);
-                                    fill: var(--red);
-                                }
-
-                                .con-like .like:checked~.checkmark .filled {
-                                    display: block
-                                }
-
-                                .con-like .like:checked~.checkmark .celebrate {
-                                    display: block
-                                }
-
-                                @keyframes kfr-filled {
-                                    0% {
-                                        opacity: 0;
-                                        transform: scale(0);
-                                    }
-
-                                    50% {
-                                        opacity: 1;
-                                        transform: scale(1.2);
-                                    }
-                                }
-
-                                @keyframes kfr-celebrate {
-                                    0% {
-                                        transform: scale(0);
-                                    }
-
-                                    50% {
-                                        opacity: 0.8;
-                                    }
-
-                                    100% {
-                                        transform: scale(1.2);
-                                        opacity: 0;
-                                        display: none;
-                                    }
-                                }
-                            </style>
+                            
                         </div>
                         <div class="compra_container w-75">
                             <a href="{{ url_for('shop.checkout') }}" type="submit"
@@ -205,74 +205,6 @@
     </div>
 </section>
 <!-- Product Details End -->
-
-<!-- Related Products Area start -->
-<!-- <section class="related-products-area pb-80 rel z-1">
-    <div class="container">
-        <hr>
-        <div class="section-title pt-110 text-center mb-50 wow fadeInUp delay-0-2s">
-            <span class="sub-title style-two mb-15">Productos</span>
-            <h2>Relacionados</h2>
-        </div>
-        <div class="row">
-            <div class="col-xl-4 col-md-6">
-                <div class="product-item wow fadeInUp delay-0-2s">
-                    <div class="image">
-                        <img src="{{ url_for('static', filename='assets/images/shop/product7.jpg') }}" alt="Product">
-                    </div>
-                    <div class="content">
-                        <h5>Travel Service Templates</h5>
-                        <div class="admin-ratting">
-                            <span class="admin">By <a href="#">Webtend</a> in CMS</span>
-                        </div>
-                        <div class="price-details-btn">
-                            <span class="price">29.55</span>
-                            <a href="" class="theme-btn">Details <i
-                                    class="fas fa-angle-double-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="product-item wow fadeInUp delay-0-4s">
-                    <div class="image">
-                        <img src="{{ url_for('static', filename='assets/images/shop/product5.jpg') }}" alt="Product">
-                    </div>
-                    <div class="content">
-                        <h5>Fitness UI Kits</h5>
-                        <div class="admin-ratting">
-                            <span class="admin">By <a href="#">Webtend</a> in CMS</span>
-                        </div>
-                        <div class="price-details-btn">
-                            <span class="price">58.55</span>
-                            <a href="" class="theme-btn">Details <i
-                                    class="fas fa-angle-double-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-                <div class="product-item wow fadeInUp delay-0-6s">
-                    <div class="image">
-                        <img src="{{ url_for('static', filename='assets/images/shop/product6.jpg') }}" alt="Product">
-                    </div>
-                    <div class="content">
-                        <h5>Dashboard UI Templates</h5>
-                        <div class="admin-ratting">
-                            <span class="admin">By <a href="#">Webtend</a> in CMS</span>
-                        </div>
-                        <div class="price-details-btn">
-                            <span class="price">37.55</span>
-                            <a href="" class="theme-btn">Details <i
-                                    class="fas fa-angle-double-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
-<!-- Related Products Area end -->
 
 
 {% block get_started %}

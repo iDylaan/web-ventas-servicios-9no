@@ -1,9 +1,16 @@
 import sys, base64
 from flask import Blueprint, render_template, url_for, redirect, request, session
+from app.utils.misc import (
+    handleResponseError, 
+    handleResponse,
+    val_req_data,
+    default_converter
+)
 from .sql_strings import Sql_Strings as SQL_STRINGS
-from app.modules.conf.conf_postgres import qry
+from app.modules.conf.conf_postgres import qry,sql
 from app.utils.misc import login_required, handleResponse
 from decimal import Decimal, ROUND_HALF_UP
+from .schemes import like_scheme
 
 mod = Blueprint('shop', __name__) 
 
@@ -103,4 +110,44 @@ def cart_template():
         productos = []
     finally:
         return render_template('cart.html', productos=productos)
+    
+@mod.route('/like', methods=['POST'])
+@login_required
+def like():
+    try:
+        data = request.get_json()
+
+        # Recibir datos
+        id_servicio = data.get('dataId', None)
+        id_usuario = data.get('dataAnother', None)
+
+        # Validar datos requeridos
+        if not id_servicio \
+        or not id_usuario:
+            return handleResponseError('Error al recibir datos', 400)
+
+        # Crear el diccionario del nuevo producto
+        new_like_dict = {
+        'id_servicio': id_servicio,
+        'id_usuario': id_usuario,
+        }
+
+        # Validar formato de los datos
+        errors = val_req_data(new_like_dict, like_scheme)
+        if errors:
+            print("Error: ", errors)
+            return handleResponseError(errors, 400)
+
+        # Guardar el nuevo producto en la DB
+        rows_affected, id_of_new_row = sql(SQL_STRINGS.INSERT_DESIRED_PRODUCT, new_like_dict)
+
+        # Validar filas afectadas
+        if rows_affected:
+            return handleResponse({'message': 'Producto deseado registrado exitosamente', 'id_servicio': id_of_new_row})
+        else:
+            raise handleResponseError('No se pudo registrar el producto deseado.')
+
+    except Exception as e:
+        print("Ocurrio un error en @nuevo_producto/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
+        return handleResponseError('Error inesperado en el servidor: {}'.format(e))
         

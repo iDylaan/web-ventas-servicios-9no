@@ -74,3 +74,13 @@ class Sql_Strings():
         "FROM servicios "
         "WHERE id IN %s "
     )
+    INSERT_DESIRED_PRODUCT = (
+        """
+        INSERT INTO productos_deseados (id_servicio, id_usuario) VALUES ( %(id_servicio)s, %(id_usuario)s)
+        """
+    )
+    DELET_DESIRED_PRODUCT = (
+        """
+        DELETE FROM productos_deseados WHERE id_servicio = %(id_servicio)s and id_usuario = %(id_usuario)s
+        """
+    )
