@@ -123,7 +123,6 @@
             <div class="col-xl-5 col-lg-6">
                 <div class="product-details-content wow fadeInRight delay-0-2s">
                     <div class="section-title">
-                        <h1>{{ user_id }}</h1>
                         <h2>{{ producto.get('titulo', 'Titulo del producto') }}</h2>                       
                     </div>
                     <div class="ratting-price mb-30">
@@ -144,7 +143,7 @@
                             </button>
                             <button class="wishlist" style="margin-top: 0px;">
                                 <div class="con-like">
-                                    <input class="like" type="checkbox" title="like" data-id="{{ producto.get('id', 0) }}" data-another="{{ user_id }}" onchange="envioDeInformacion(this)">
+                                    <input class="like" type="checkbox" title="like" data-id="{{ producto.get('id', 0) }}" data-another="{{ user_id }}" onchange="envioDeInformacion(this)" checked="{{ producto.get('liked', False) }}">
                                     <div class="checkmark">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="outline" viewBox="0 0 24 24">
                                             <path

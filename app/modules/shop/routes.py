@@ -39,7 +39,13 @@ def product_details_template(id_producto):
     product = None
     try:
         product = qry(SQL_STRINGS.GET_PRODCT_BY_ID, {'id_producto':id_producto}, True)
+        result = qry(SQL_STRINGS.GET_DESIRED_PRODUCT_COUNT_BY_ID,{
+            'id_servicio':id_producto,
+            'id_usuario':session['user_id']
+            }, True)
+        
         if product:
+            product['liked'] = bool(result['count'])
             return render_template('product-details.html', producto=product)
         else:
             return render_template('404.html')
@@ -120,6 +126,7 @@ def like():
         # Recibir datos
         id_servicio = data.get('dataId', None)
         id_usuario = data.get('dataAnother', None)
+        print (id_servicio, id_usuario)
 
         # Validar datos requeridos
         if not id_servicio \
@@ -138,16 +145,20 @@ def like():
             print("Error: ", errors)
             return handleResponseError(errors, 400)
 
-        # Guardar el nuevo producto en la DB
-        rows_affected, id_of_new_row = sql(SQL_STRINGS.INSERT_DESIRED_PRODUCT, new_like_dict)
+        result = qry(SQL_STRINGS.GET_DESIRED_PRODUCT_COUNT_BY_ID, new_like_dict, True)
+        
+        qry_like= SQL_STRINGS.DELET_DESIRED_PRODUCT if result['count'] \
+            else SQL_STRINGS.INSERT_DESIRED_PRODUCT
+            
+        rows_affected = sql(qry_like, new_like_dict)
 
         # Validar filas afectadas
         if rows_affected:
-            return handleResponse({'message': 'Producto deseado registrado exitosamente', 'id_servicio': id_of_new_row})
+            return handleResponse({'message': 'Producto deseado registrado exitosamente'})
         else:
             raise handleResponseError('No se pudo registrar el producto deseado.')
 
     except Exception as e:
-        print("Ocurrio un error en @nuevo_producto/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
+        print("Ocurrio un error en @like/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
         return handleResponseError('Error inesperado en el servidor: {}'.format(e))
         

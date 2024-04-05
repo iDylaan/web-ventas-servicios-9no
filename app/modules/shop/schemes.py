@@ -1,12 +1,12 @@
 like_scheme = {
     'id_servicio': {
-        'type': 'float', 
+        'type': 'integer', 
         'required': True,
-        'min': 1
+        'empty': False
     },
     'id_usuario': {
-        'type': 'float', 
+        'type': 'integer', 
         'required': True,
-        'min': 1
+        'empty': False
     }
 } 

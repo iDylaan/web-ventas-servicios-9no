@@ -84,3 +84,8 @@ class Sql_Strings():
         DELETE FROM productos_deseados WHERE id_servicio = %(id_servicio)s and id_usuario = %(id_usuario)s
         """
     )
+    GET_DESIRED_PRODUCT_COUNT_BY_ID = (
+        "SELECT COUNT(*) AS count "
+        "FROM productos_deseados "
+        "WHERE id_servicio = %(id_servicio)s and id_usuario = %(id_usuario)s"
+    )
