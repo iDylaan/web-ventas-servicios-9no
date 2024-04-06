@@ -1,10 +1,9 @@
 import sys, base64
-from flask import Blueprint, render_template, url_for, redirect, request, session
+from flask import Blueprint, render_template, request, session, redirect, url_for
 from app.utils.misc import (
     handleResponseError, 
     handleResponse,
     val_req_data,
-    default_converter
 )
 from .sql_strings import Sql_Strings as SQL_STRINGS
 from app.modules.conf.conf_postgres import qry,sql
@@ -64,7 +63,8 @@ def checkout():
     if request.method == 'POST':
         try:
             data = request.get_json()
-            productos_arr = data.get('productos')
+            productos_arr = data.get('productos', [])
+
             productos_ids_arr = [producto['id'] for producto in productos_arr]
             
             productos_result = qry(SQL_STRINGS.GET_PRODUCTS_CHEKOUT_INFO_BY_ID, (tuple(productos_ids_arr),))
@@ -88,6 +88,9 @@ def checkout():
             return render_template('404.html')
     else:  # GET
         productos_arr = session.get('productos_checkout', [])
+
+        if not productos_arr:
+            return redirect(url_for('shop.shop_template'))
         # Obtener iva y total
         total = Decimal('0.0')
         for product in productos_arr:
