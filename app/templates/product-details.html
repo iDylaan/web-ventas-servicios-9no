@@ -107,6 +107,7 @@
     }
 </style>
 <!-- Product Details Start -->
+
 <section class="product-details pt-130 rpt-100">
     <div class="container">
         <div class="row align-items-center justify-content-between">
@@ -143,7 +144,7 @@
                             </button>
                             <button class="wishlist" style="margin-top: 0px;">
                                 <div class="con-like">
-                                    <input class="like" type="checkbox" title="like" data-id="{{ producto.get('id', 0) }}" data-another="{{ user_id }}" onchange="envioDeInformacion(this)" checked="{{ producto.get('liked', False) }}">
+                                    <input class="like" type="checkbox" title="like" data-id="{{ producto.get('id', 0) }}" data-another="{{ user_id }}" onchange="envioDeInformacion(this)" {% if producto.get('liked', False) %} checked {% endif %}>
                                     <div class="checkmark">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="outline" viewBox="0 0 24 24">
                                             <path

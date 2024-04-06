@@ -37,15 +37,20 @@ def shop_template():
 @login_required
 def product_details_template(id_producto):
     product = None
+    id_usuario = session['user_id']
     try:
         product = qry(SQL_STRINGS.GET_PRODCT_BY_ID, {'id_producto':id_producto}, True)
         result = qry(SQL_STRINGS.GET_DESIRED_PRODUCT_COUNT_BY_ID,{
             'id_servicio':id_producto,
-            'id_usuario':session['user_id']
+            'id_usuario':id_usuario
             }, True)
         
         if product:
+            print(id_producto)
+            print(id_usuario)
+            print(result['count'])
             product['liked'] = bool(result['count'])
+            print(product['liked'])
             return render_template('product-details.html', producto=product)
         else:
             return render_template('404.html')
