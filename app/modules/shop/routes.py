@@ -50,8 +50,7 @@ def product_details_template(id_producto):
             print(id_usuario)
             print(result['count'])
             product['liked'] = bool(result['count'])
-            print(product['liked'])
-            return render_template('product-details.html', producto=product)
+            return render_template('product-details.html', producto=product, id=id_producto)
         else:
             return render_template('404.html')
     except Exception as e:

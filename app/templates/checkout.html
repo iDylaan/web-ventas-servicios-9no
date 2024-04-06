@@ -2,6 +2,22 @@
 
 {% block title %} Tech Consulting | Checkout {% endblock %}
 
+{% block scripts %}
+{{super()}}
+<script
+    src="https://www.paypal.com/sdk/js?client-id=AR1h_N3kkC82rhVnTnW9nVWYyG7C35Ryl-3l6aM44B-ZPpPHDqpAvQDgVgAa-Hs019lYWxbDANz9PcZS&currency=MXN&locale=es_MX"></script>
+<script src="{{ url_for('static', filename='modules/js/checkout/paypal.js') }}" defer></script>
+<script src="{{ url_for('static', filename='modules/js/product-details/notifications.js') }}" defer></script>
+
+<script>
+    const CHECKOUT_TOTAL = parseFloat('{{ total }}');
+    const USER_ID = parseInt('{{ user_id }}');
+    const PRODUCTS = JSON.parse('{{ productos|tojson|safe }}');
+    const BUY_URL = '{{ url_for("compras.buy") }}'
+    const MIS_COMPRAS_URL = '{{ url_for("compras.mi_compras_template") }}';
+</script>
+{% endblock scripts %}
+
 {% block content %}
 
 <!-- Checkout Form Area Start -->
@@ -21,22 +37,21 @@
                                     <ul id="paymentMethod" class="mb-30">
                                         <!-- Default unchecked -->
                                         <li class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="methodthree"
+                                            <input type="radio" class="custom-control-input" id="method-paypal"
                                                 name="defaultExampleRadios">
-                                            <label class="custom-control-label collapsed" for="methodthree"
+                                            <label class="custom-control-label collapsed" for="method-paypal"
                                                 data-bs-toggle="collapse" data-bs-target="#collapsethree"
                                                 aria-controls="collapsethree">Paypal <i
                                                     class="fab fa-cc-paypal"></i></label>
 
-                                            <div id="collapsethree" class="collapse" data-bs-parent="#paymentMethod"
-                                                style="">
+                                            <div id="collapsethree" class="collapse" data-bs-parent="#paymentMethod">
                                                 <p>Paga via Payapal.</p>
                                             </div>
 
                                         </li>
                                     </ul>
-                                    <p>Your personal data will be used to process your order, support your experience
-                                        throughout this website, and for other purposes described in our privacy policy.
+                                    <p>Tu información personal sera recolectada y utilizada conforme a nuestras
+                                        políticas de privacidad y condiciones de uso.
                                     </p>
                                 </div>
                             </div>
@@ -67,7 +82,10 @@
                     </div>
                 </div>
             </div>
-            <button type="button" class="theme-btn w-100">Place order <i class="fas fa-angle-double-right"></i></button>
+            <div class="pay-btn__container" id="paypal__container">
+                <div id="paypal-button-container"></div>
+            </div>
+            {% include 'components/bar-loader.html' %}
         </div>
     </div>
 </div>

@@ -3,56 +3,68 @@
 {% block title %} Tech Consulting | Mis Compras {% endblock %}
 
 {% block styles %}
-    {{super()}}
+{{super()}}
 {% endblock styles %}
 
 {% block scripts %}
-    {{super()}}
+{{super()}}
 {% endblock scripts %}
 
 {% block content %}
 
-    {% block page_banner %}
-        {% set pre_page_title = 'Mis' %}
-        {% set page_title_underline = 'Compras' %}
+{% block page_banner %}
+{% set pre_page_title = 'Mis' %}
+{% set page_title_underline = 'Compras' %}
 
-        {% include 'components/page-banner.html' %}
-    {% endblock page_banner %}
+{% include 'components/page-banner.html' %}
+{% endblock page_banner %}
 
 
 <!-- Blog List Area start -->
 <section class="blog-list-area py-130 rel z-1">
     <div class="container">
+
+        {% for compra in compras %}
         <div class="blog-list-item wow fadeInUp delay-0-2s">
-            <div class="image">
-                <img src="{{ url_for('static', filename='assets/images/blog/blog-list1.jpg') }}" alt="Blog List">
+            <div class="image" style="overflow: hidden;">
+                {% if compra.get('imagen', False) %}
+                <img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=compra.get('id_producto')) }}"
+                    alt="{{ compra.get('nombre_imagen', 'Imagen del producto') }}" style="width: 520px; height: 364px; object-fit:cover;">
+                {% else %}
+                <i class="material-icons">inventory_2</i>
+                {% endif %}
             </div>
             <div class="blog-content w-100">
                 <div class="content">
                     <ul class="blog-meta">
                         <li>
-                            <i class="far fa-calendar-alt"></i> 25 June 2022
+                            <i class="far fa-calendar-alt"></i> {{ compra.get('fecha', '') | format_mx }}
                         </li>
                     </ul>
-                    <h4>Titulo del Producto</h4>
+                    <h4>{{ compra.get('titulo', 'Titulo del Producto') }}</h4>
                     <ul class="blog-meta mis-compras-product-details">
                         <li>
-                            Costo/u <span>$<strong>100</strong></span>
+                            Costo/u <span>$<strong>{{ compra.get('precio', 0) }}</strong></span>
                         </li>
                         <li>
-                            Cantidad <span><strong>1</strong></span>
+                            Cantidad <span><strong>{{ compra.get('cantidad', 0) }}</strong></span>
                         </li>
                         <li>
-                            IVA <span>$<strong>16</strong></span>
+                            IVA <span>$<strong>{{ compra.get('iva', 0) }}</strong></span>
                         </li>
                         <li>
-                            Total <span>$<strong>116</strong></span>
+                            Total <span>$<strong>{{ compra.get('total', 0) }}</strong></span>
                         </li>
                     </ul>
-                    <a class="read-more" href="blog-details.html">Ver producto <i class="far fa-arrow-right"></i></a>
+                    <a class="read-more"
+                        href="{{ url_for('shop.product_details_template', id_producto=compra.get('id_producto')) }}">Ver producto
+                        <i class="far fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
+        {% endfor %}
+
+
 
         <ul class="pagination flex-wrap justify-content-center pt-20 wow fadeInUp delay-0-2s">
             <li class="page-item disabled">

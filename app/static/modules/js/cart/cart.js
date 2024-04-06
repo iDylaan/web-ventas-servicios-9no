@@ -66,8 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const quantityDownButton = item.querySelector(".quantity-down");
       const closeButton = item.querySelector(".close");
 
-      console.log(quantityInput.value);
-
       // Buscar el producto en el arreglo del carrito por su id
       const productInCart = carrito.find(
         (producto) => producto.id === productId

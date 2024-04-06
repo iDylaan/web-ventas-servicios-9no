@@ -4,7 +4,7 @@ class Sql_Strings():
         "SELECT COUNT(*) AS count "
         "FROM servicios "
         "WHERE id = %(id_producto)s"
-    )
+    )   
     GET_PRODUCT_IMAGE_BY_ID = (
         "SELECT srv_imagen, srv_nombre_imagen "
         "FROM servicios "

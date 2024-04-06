@@ -6,13 +6,13 @@
 {{super()}}
     <script src="{{ url_for('static', filename='modules/js/cart/cart.js') }}" defer></script>
     <script src="{{ url_for('static', filename='modules/js/checkout/cart-checkout.js') }}" defer></script>
+    <script>
+        const CHECKOUT_URL = '{{ url_for("shop.checkout") }}';
+    </script>
 {% endblock scripts %}
 
 {% block content %}
 
-<script>
-    const CHECKOUT_URL = '{{ url_for("shop.checkout") }}';
-</script>
 
 
 <!-- Page Banner Start -->

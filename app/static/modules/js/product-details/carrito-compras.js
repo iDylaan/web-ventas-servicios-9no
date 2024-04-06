@@ -32,7 +32,7 @@ function agregarAlCarrito(e) {
             productoExistente = true;
             item.cantidad += cantidad;
         }
-    })
+    }) 
     if (!productoExistente) {
         carrito.push({ id: productoId, cantidad: cantidad });
 

@@ -1,6 +1,7 @@
 from flask import Flask, render_template, session
 from .app_config import Config
 from flask_session import Session
+import os, pytz
 
 # Crear la app
 app = Flask(__name__)
@@ -10,6 +11,8 @@ app.config.from_object(Config)
 
 ### SESSION ###
 Session(app)
+
+### PAYPAL ###
 
 ### Rutas principales ###
 @app.route('/home', methods=['GET'])
@@ -30,6 +33,15 @@ def global_vars():
         user_without_images = session.get('without_images', True),
         user_id = session.get('user_id', False)
     )
+
+### Formateador de fechas ### 
+@app.template_filter('format_mx')
+def format_mx(value, format="%d/%m/%Y"):
+    """Convierte un objeto datetime a una cadena en formato mexicano."""
+    # Asegúrate de que la fecha esté en la zona horaria adecuada, aquí usamos la zona horaria de la Ciudad de México
+    tz = pytz.timezone('America/Mexico_City')
+    value = value.astimezone(tz)
+    return value.strftime(format)
 
 ### Carga de respuesta de un 404 (recurso no encontrado) ###
 @app.errorhandler(404)
