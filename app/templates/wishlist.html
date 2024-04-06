@@ -21,49 +21,44 @@
 
 
 <!-- Blog List Area start -->
-<section class="blog-list-area py-130 rel z-1">
-    <div class="container">
-        <div class="blog-list-item wow fadeInUp delay-0-2s">
-            <div class="image">
-                <img src="{{ url_for('static', filename='assets/images/blog/blog-list1.jpg') }}" alt="Blog List">
-            </div>
-            <div class="blog-content">
-                <div class="content">
-                    <h4><a href="blog-details.html">How To Build Group Chat With Vanilla JS, Twilio Manage Accessible
-                            Design System</a></h4>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolore mquees
-                        laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architec to
-                        beatae vitae dicta sunt explicabo voluptatem quia voluptas site</p>
-                    <ul class="blog-meta">
-                        <li style="font-size: 1.2rem;">
-                            $<a href="#">100</a>
-                        </li>
-                    </ul>
+
+    <section class="col-12 blog-list-area py-130 rel z-1">
+        {% for deseado in wishlist %}
+        <div class="container">
+            <div class="blog-list-item wow fadeInUp delay-0-2s">
+                <div class="image col-6 text-center">
+                    {% if deseado['nombre_imagen'] %}
+                    <img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=deseado['id_servicio']) }}" alt="{{ deseado['nombre_imagen'] }}" width="520" height="364">
+                    {% else %}
+                    <i class="material-icons" width="520" height="364" style="font-size: 400px; ">inventory_2</i>
+                    {{ deseado['id_servicio'] }}
+                    {{ deseado.get('titulo', 'Titulo del producto') }}
+                    {% endif %}
+                </div>
+                <div class="blog-content col-6">
+                    <div class="content">
+                        <h4>
+                            <a href="{{ url_for('shop.product_details_template', id_producto=deseado['id_servicio']) }}" target="_blank">
+                                {{ deseado['titulo']|default('Titulo del producto') }}
+                            </a>
+                        </h4>
+                        <p>
+                            {{ deseado['descripcion']|default('Descripción no disponible') }}
+                        </p>
+                        <ul class="blog-meta">
+                            <li style="font-size: 1.2rem;">
+                                ${{ deseado['precio']|default('No disponible') }}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+        <br><br>
+        {% endfor %}
+    </section>
 
-        <ul class="pagination flex-wrap justify-content-center pt-20 wow fadeInUp delay-0-2s">
-            <li class="page-item disabled">
-                <span class="page-link"><i class="fas fa-angle-left"></i></span>
-            </li>
-            <li class="page-item active">
-                <span class="page-link">
-                    01
-                    <span class="sr-only">(current)</span>
-                </span>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">02</a></li>
-            <li class="page-item"><a class="page-link" href="#">03</a></li>
-            <li class="page-item dot"></li>
-            <li class="page-item dot"></li>
-            <li class="page-item dot"></li>
-            <li class="page-item">
-                <a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
-            </li>
-        </ul>
-    </div>
-</section>
+
 <!-- Blog List Area end -->
 
 
