@@ -1,7 +1,8 @@
+import os, pytz
 from flask import Flask, render_template, session
 from .app_config import Config
 from flask_session import Session
-import os, pytz
+from app.utils.misc import admin_required
 
 # Crear la app
 app = Flask(__name__)
@@ -21,6 +22,7 @@ def index():
     return render_template('index.html')
 
 @app.route('/admin', methods=['GET'])
+@admin_required
 def admin():
      return render_template('index-admin.html')
 

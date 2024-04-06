@@ -4,7 +4,9 @@ from app.utils.misc import (
     handleResponseError, 
     handleResponse,
     hash_password,
-    val_req_data
+    val_req_data,
+    admin_required,
+    login_required
 )
 from app.modules.conf.conf_postgres import qry, sql, sqlv2
 from PIL import Image as PILImage
@@ -16,6 +18,7 @@ from .schemas import new_user_scheme, edit_user_scheme
 mod = Blueprint('user_crud', __name__)
 
 @mod.route('/')
+@admin_required
 def user_crud_template():
     usuarios_arr = None 
     usuarios_json = []
@@ -41,6 +44,7 @@ def user_crud_template():
 
 
 @mod.route('/nuevo', methods=['POST'])
+@admin_required
 def nuevo_usuario():
     try:
         data = request.get_json()
@@ -94,6 +98,7 @@ def nuevo_usuario():
     
 
 @mod.route('/editar/<int:id_usuario>', methods=['POST'])
+@admin_required
 def editar_usuario(id_usuario):
     try: 
         data = request.get_json()
@@ -150,6 +155,7 @@ def editar_usuario(id_usuario):
     
 
 @mod.route('/imagen_usuario/<int:id_usuario>', methods=['POST'])
+@login_required
 def guardar_imagen_usuario(id_usuario):
     try:
         # Validar que venga el id_usuario
@@ -194,6 +200,7 @@ def guardar_imagen_usuario(id_usuario):
 
 
 @mod.route('/imagen_usuario/<int:id_usuario>', methods=['GET'])
+@login_required
 def obtener_imagen_usuario(id_usuario):
     try:
         if not id_usuario:
@@ -232,6 +239,8 @@ def obtener_imagen_usuario(id_usuario):
         return handleResponseError('Error en el servidor: {}'.format(e))
     
 @mod.route('/obtener_usuarios/<int:id_usuario>', methods=['GET'])
+@login_required
+@admin_required
 def obtener_usuarios(id_usuario):
     try:
         if not id_usuario:

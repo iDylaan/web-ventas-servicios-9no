@@ -4,7 +4,7 @@ from app.utils.misc import (
     handleResponseError, 
     handleResponse,
     val_req_data,
-    default_converter
+    admin_required
 )
 from app.modules.conf.conf_postgres import qry, sql, sqlv2
 from PIL import Image as PILImage
@@ -15,6 +15,7 @@ from .schemas import new_product_scheme
 mod = Blueprint('productos_crud', __name__)
 
 @mod.route('/', methods=['GET'])
+@admin_required
 def productos_crud_template():
     products_arr = None 
     products_json  = []
@@ -46,6 +47,7 @@ def productos_crud_template():
 
 
 @mod.route('/nuevo', methods=['POST'])
+@admin_required
 def nuevo_producto():
     try:
         data = request.get_json()
@@ -95,6 +97,7 @@ def nuevo_producto():
     
 
 @mod.route('/editar/<int:id_producto>', methods=['POST'])
+@admin_required
 def editar_producto(id_producto):
     try: 
         data = request.get_json()
@@ -158,6 +161,7 @@ def editar_producto(id_producto):
     
 
 @mod.route('/eliminar/<int:id_productp>', methods=['POST'])
+@admin_required
 def eliminar(id_productp):
     try:
         # Validar que venga el id_producto
@@ -183,6 +187,7 @@ def eliminar(id_productp):
         return handleResponseError('Error en el servidor: {}'.format(e))
 
 @mod.route('/imagen_producto/<int:id_producto>', methods=['POST'])
+@admin_required
 def guardar_imagen_producto(id_producto):
     try:
         # Validar que venga el id_producto
@@ -224,6 +229,7 @@ def guardar_imagen_producto(id_producto):
         return handleResponseError('Error en el servidor: {}'.format(e))
 
 @mod.route('/imagen_producto_base64/<int:id_producto>', methods=['GET'])
+@admin_required
 def obtener_imagen_producto_base64(id_producto):
     try:
         if not id_producto:
@@ -254,6 +260,7 @@ def obtener_imagen_producto_base64(id_producto):
 
 
 @mod.route('/imagen_producto/<int:id_producto>', methods=['GET'])
+@admin_required
 def obtener_imagen_producto(id_producto):
     try:
         if not id_producto:
@@ -286,6 +293,7 @@ def obtener_imagen_producto(id_producto):
     
     
 @mod.route('/obtener_productos/<int:id_producto>', methods=['GET'])
+@admin_required
 def obtener_producto(id_producto):
     try:
         if not id_producto:

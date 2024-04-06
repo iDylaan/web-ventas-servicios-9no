@@ -133,7 +133,6 @@ def like():
         # Recibir datos
         id_servicio = data.get('dataId', None)
         id_usuario = data.get('dataAnother', None)
-        print (id_servicio, id_usuario)
 
         # Validar datos requeridos
         if not id_servicio \

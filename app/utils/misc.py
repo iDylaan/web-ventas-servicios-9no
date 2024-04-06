@@ -46,6 +46,14 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+def admin_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user_admin' not in session or not session['user_admin']:
+            return redirect(url_for('index'))
+        return f(*args, **kwargs)
+    return decorated_function
+
 def default_converter(o):
     if isinstance(o, Decimal):
         return str(o)  
