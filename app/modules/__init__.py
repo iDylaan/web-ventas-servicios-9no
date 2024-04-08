@@ -7,3 +7,4 @@ from .user_crud.routes import mod as mod_user_crud
 from .productos_crud.routes import mod as mod_productos_crud
 from .shop.routes import mod as mod_shop
 from .compras.routes import mod as mod_compras
+from .terminos.routes import mod as terminos_condiciones
