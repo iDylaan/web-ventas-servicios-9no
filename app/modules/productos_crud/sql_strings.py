@@ -24,13 +24,12 @@ class Sql_Strings():
     
     UPDATE_PRODUCT_IMAGE_BY_ID = (
         "UPDATE servicios SET "
-        "srv_imagen = %(imagen)s, "
-        "srv_nombre_imagen = %(nombre_imagen)s"
+        "srv_imagen_url = %(imagen)s "
         "WHERE id = %(id_producto)s"
     )
     
     GET_PRODUCT_IMAGE_BY_ID = (
-        "SELECT srv_imagen, srv_nombre_imagen "
+        "SELECT srv_imagen_url AS image "
         "FROM servicios "
         "WHERE id = %(id_producto)s"
     )
@@ -43,8 +42,7 @@ class Sql_Strings():
             srv_desc_corta AS "descripcion_previa", 
             srv_info AS "info", 
             srv_precio AS "precio", 
-            srv_imagen AS "imagen", 
-            srv_nombre_imagen AS "nombre_imgen", 
+            srv_imagen_url AS "imagen", 
             dt_creado AS "fecha_creado", 
             activo
         FROM servicios
@@ -61,8 +59,7 @@ class Sql_Strings():
             srv_desc_corta AS "descripcion_previa", 
             srv_info AS "info", 
             srv_precio AS "precio", 
-            srv_imagen AS "imagen", 
-            srv_nombre_imagen AS "nombre_imgen", 
+            srv_imagen_url AS "imagen", 
             dt_creado AS "fecha_creado", 
             activo
         FROM servicios

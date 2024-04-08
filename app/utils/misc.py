@@ -4,6 +4,7 @@ from cerberus import Validator
 from functools import wraps
 from decimal import Decimal
 from datetime import datetime
+import cloudinary.uploader
 
 
 def hash_password(password):
@@ -60,3 +61,19 @@ def default_converter(o):
     elif isinstance(o, datetime):
         return o.isoformat() 
     raise TypeError('Object of type {} is not JSON serializable'.format(o.__class__.__name__))
+
+
+def cloudinary_upload_image(image_file):
+    if not image_file:
+        return {'error': 'Sin archivo recibido'}, 400
+    if image_file.filename == '':
+        return {'error': 'No hay archivo seleccionado'}, 400
+
+    try:
+        # Sube el archivo a Cloudinary
+        result = cloudinary.uploader.upload(image_file)
+        url = result.get('url')
+        return {'message': 'Imagen subida correctamente', 'image': url}, 200
+    except Exception as e:
+        return {'error': str(e)}, 500
+

@@ -9,7 +9,7 @@
                         <a href="{{ url_for('admin') }}">
                             <img src="{{ url_for('static', filename='assets/images/logos/logo-techconsulting.svg') }}"
                                 alt="Logo" title="Logo" />
-                                TECH CONSULTING
+                            TECH CONSULTING
                         </a>
                     </div>
                 </div>
@@ -22,8 +22,8 @@
                                 <a href="{{ url_for('admin') }}">
                                     <img src="{{ url_for('static', filename='assets/images/logos/logo-techconsulting.svg') }}"
                                         alt="Logo" title="Logo" style="width: 50px" /> <br />
-                                        <span style="font-size: 0.7rem">TECH CONSULTING</span>
-                                    </a>
+                                    <span style="font-size: 0.7rem">TECH CONSULTING</span>
+                                </a>
                             </div>
 
                             <!-- Toggle Button -->
@@ -49,6 +49,9 @@
                                 <li class="">
                                     <a href="{{ url_for('dashboard.dashboard_template') }}">Dashboard</a>
                                 </li>
+                                <li class="perfil-header-options">
+                                    <a href="{{ url_for('pages.contacto_template') }}">Cerrar Sesión</a>
+                                </li>
                             </ul>
                         </div>
                     </nav>
@@ -57,11 +60,30 @@
 
                 <!-- Menu Button -->
                 <div class="menu-btns">
-                    <a href="{{ url_for('auth.signup_template') }}" class="theme-btn">Cerrar Sesión<i
-                            class="fas fa-angle-double-right"></i></a>
+                    <!-- User -->
+                    <div>
+                        <a
+                            class="text-reset d-flex align-items-center hidden-arrow gap-2 login profile-header-btn btn-toggle-profile-modal">
+                            <span>{{ session.get('username', 'Admin') }}</span>
+
+                            {% if user_without_images %}
+                            <i class="material-icons">person</i>
+                            {% else %}
+                            <div class="header-card__container">
+                                <img alt="Profile Picture"
+                                    src="{{ session['user_image_url'] if session.get('user_image_url', False) else url_for('user_crud.obtener_imagen_usuario', id_usuario=session['user_id']) }}">
+                            </div>
+                            {% endif %}
+                        </a>
+                    </div>
+                    <!-- End User -->   
                 </div>
             </div>
         </div>
     </div>
     <!--End Header Upper-->
+
+    <!-- Profile Modal -->
+    {% include 'components/admin-profile-modal.html' %}
+    <!-- End Profile Modal -->
 </header>

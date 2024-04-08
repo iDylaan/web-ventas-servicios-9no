@@ -27,8 +27,8 @@
                     }
                     return response.json();
                 })
-                .then(data => {
-                    const imageUrl = `data:image/png;base64,${data.image_base64}`;
+                .then(result => {
+                    const imageUrl = result.data.image;
                     updateModaImage(imageUrl);
                 })
                 .catch(error => console.error("Error al actualizar la imagen:", error))
@@ -60,7 +60,7 @@
     })
 
 
-    function updateModaImage(image_base64) {
+    function updateModaImage(imageURL) {
         const containerTargetID = '#image-product-editor-container';
 
         clearImage('edit');
@@ -72,7 +72,7 @@
         image.width = '200';
         image.height = '200';
         image.classList.add('img');
-        image.src = image_base64;
+        image.src = imageURL;
         document.querySelector(containerTargetID).appendChild(image);
 
     }
@@ -94,15 +94,15 @@
         clearImage(modal);
 
         try {
-            const response = await fetch('/productos_crud/imagen_producto_base64/' + productID)
+            const response = await fetch('/productos_crud/imagen_producto_json/' + productID)
             if (!response.ok) {
                 throw new Error('Error en el servidor');
             }
 
             const result = await response.json();
 
-            if (result.image_base64 && result.filename) {
-                const imageUrl = `data:image/png;base64,${result.image_base64}`;
+            if (result.data.image) {
+                const imageUrl = result.data.image;
 
                 // Crear imagen
                 const image = document.createElement('img');

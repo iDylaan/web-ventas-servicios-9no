@@ -59,8 +59,8 @@
                 <tbody>
                     {% for producto in productos %}
                     <tr class="cart-item" data-producto-id="{{ producto.get('id') }}">
-                        <td><img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=producto.get('id')) }}"
-                                alt="{{ producto.get('nombre_imagen', 'Imagen del producto') }}"></td>
+                        <td><img src="{{ producto.get('imagen', '') }}"
+                                alt="Imagen del producto"></td>
                         <td><span class="title">{{ producto.titulo }}</span></td>
                         <td><span class="price price-unit">{{ producto.precio }}</span></td>
                         <td>

@@ -39,7 +39,8 @@ def global_vars():
         user_logged = session.get('user_logged', False),
         user_admin = session.get('user_admin', False),
         user_without_images = session.get('without_images', True),
-        user_id = session.get('user_id', False)
+        user_id = session.get('user_id', False),
+        user_image = session.get('user_image_url', None)
     )
 
 ### Formateador de fechas ### 

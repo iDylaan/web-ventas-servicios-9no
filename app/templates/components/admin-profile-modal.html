@@ -1,7 +1,7 @@
 <section class="vh-100 w-100 profile-modal display-none" id="profile-modal"
     style="background-color: rgba(63, 63, 63, 0.39);">
     <div class="container py-5 h-100">
-        <div class="row justify-content-center align-items-center h-100"> 
+        <div class="row justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-4">
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-header d-flex justify-content-end">
@@ -22,7 +22,8 @@
                                         {% include 'components/circular-loader.html' %}
                                     </div>
 
-                                    <i class="material-icons person-icon-profile-picture-modal" aria-label="Profile picture">person</i>
+                                    <i class="material-icons person-icon-profile-picture-modal"
+                                        aria-label="Profile picture">person</i>
                                 </div>
                             </div>
                             {% else %}
@@ -40,7 +41,7 @@
 
                                     <img alt="Profile Picture" width="200" height="200" class="img"
                                         id="profile-picture-img"
-                                        src="{{ session['image_url'] if session.get('image_url', False) else url_for('user_crud.obtener_imagen_usuario', id_usuario=session['user_id']) }}">
+                                        src="{{ session['user_image_url'] if session.get('user_image_url', False) else url_for('user_crud.obtener_imagen_usuario', id_usuario=session['user_id']) }}">
                                 </div>
                             </div>
                             {% endif %}
@@ -59,7 +60,7 @@
 
                                         const formData = new FormData();
                                         formData.append('imagen', file);
-                                        
+
                                         loader.style.display = 'grid';
                                         fetch(uploadUrl, {
                                             method: 'POST',
@@ -75,7 +76,7 @@
                                                 if ('{{ user_without_images }}' === 'True') {
                                                     window.location.reload();
                                                 }
-                                                const imagen = result.data.image
+                                                const imagen = result['image']
                                                 document.getElementById('profile-picture-img').src = imagen;    
                                             })
                                             .catch(error => console.error("Error al actualizar la imagen:", error))
@@ -87,14 +88,8 @@
                             </script>
 
 
-
                             <h5 class="mb-3 mt-2">{{ session.get('username', 'Usuario') }}</h5>
-                            <div class="bg-light rounded-3 p-2 mb-2">
-                                <p class="small text-muted mb-1">Compras</p>
-                                <p class="mb-0">{{ session.get('user_compras', 0) }}</p>
-                            </div>
                             <div class="d-flex flex-column flex-md-row pt-1">
-                                <a class="btn btn-outline-primary me-md-2 flex-grow-1 mb-2 mb-md-0">Pedidos</a>
                                 <a href="{{ url_for('auth.logout') }}" class="btn btn-primary flex-grow-1">Cerrar
                                     Sesión</a>
                             </div>

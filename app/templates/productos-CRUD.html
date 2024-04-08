@@ -59,7 +59,7 @@
                         </td>
                         <td class="col-2">
                             {% if producto.get('imagen', False) %}
-                            <img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=producto.get('id')) }}"
+                            <img src="{{ producto['imagen'] }}"
                                 alt="{{ producto.get('nombre_imagen', 'Imagen del producto') }}" width="50" height="50">
                             {% else %}
                             <i class="material-icons" style="font-size: 50px">inventory_2</i>

@@ -28,12 +28,12 @@
             <div class="blog-list-item wow fadeInUp delay-0-2s">
                 <div class="image">
                     {% if deseado['imagen'] %}
-                    <img src="{{ deseado['imagen'] }}" alt="{{ deseado['nombre_imagen'] }}" width="520" height="364">
+                    <img src="{{ deseado['imagen'] }}" alt="{{ deseado['nombre_imagen'] }}" style="width: 520px; height: 364px; object-fit:cover;">
                     {% else %}
                     <i class="material-icons" style="width: 250px; height: auto; font-size: 250px;">inventory_2</i>
                     {% endif %}
                 </div>  
-                <div class="blog-content w-100">
+                <div class="blog-content w-100"> 
                     <div class="content">
                         <h4>
                             <a href="{{ url_for('shop.product_details_template', id_producto=deseado['id_servicio']) }}" target="_blank">
