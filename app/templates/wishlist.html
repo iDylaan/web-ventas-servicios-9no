@@ -26,16 +26,14 @@
         {% for deseado in wishlist %}
         <div class="container">
             <div class="blog-list-item wow fadeInUp delay-0-2s">
-                <div class="image col-6 text-center">
-                    {% if deseado['nombre_imagen'] %}
-                    <img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=deseado['id_servicio']) }}" alt="{{ deseado['nombre_imagen'] }}" width="520" height="364">
+                <div class="image">
+                    {% if deseado['imagen'] %}
+                    <img src="{{ deseado['imagen'] }}" alt="{{ deseado['nombre_imagen'] }}" width="520" height="364">
                     {% else %}
-                    <i class="material-icons" width="520" height="364" style="font-size: 400px; ">inventory_2</i>
-                    {{ deseado['id_servicio'] }}
-                    {{ deseado.get('titulo', 'Titulo del producto') }}
+                    <i class="material-icons" style="width: 250px; height: auto; font-size: 250px;">inventory_2</i>
                     {% endif %}
-                </div>
-                <div class="blog-content col-6">
+                </div>  
+                <div class="blog-content w-100">
                     <div class="content">
                         <h4>
                             <a href="{{ url_for('shop.product_details_template', id_producto=deseado['id_servicio']) }}" target="_blank">

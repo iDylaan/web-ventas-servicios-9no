@@ -28,6 +28,7 @@ CREATE TABLE servicios (
   "srv_precio" NUMERIC NOT NULL,
   "srv_imagen" BYTEA DEFAULT NULL,
   "srv_nombre_imagen" VARCHAR DEFAULT NULL,
+  "srv_imagen_url" VARCHAR DEFAULT NULL,
   "activo" INT default 1,
   "dt_creado" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -56,8 +57,7 @@ SELECT
 	  p.id AS id_producto,
     p.srv_nom AS titulo,
     p.srv_precio AS precio,
-    p.srv_imagen AS imagen,
-    p.srv_nombre_imagen AS nombre_imagen,
+    p.srv_imagen_url AS imagen,
     c.cantidad AS cantidad,
     c.dt_compra AS fecha,
     c.id_usuario
@@ -65,3 +65,20 @@ FROM
     compras c
 JOIN 
     servicios p ON c.id_servicio = p.id;
+
+
+-- VISTA Productos Deseados
+CREATE VIEW vista_productos_deseados AS
+SELECT 
+	pd.id_usuario AS id_usuario,
+	s.id AS id_servicio,
+	s.srv_nom AS titulo, 
+	s.srv_desc AS descripcion, 
+	s.srv_desc_corta AS descripcion_previa, 
+	s.srv_info AS info, 
+	s.srv_precio AS precio,
+	s.srv_imagen_url AS iamgen
+FROM 
+	productos_deseados pd
+JOIN 
+	servicios s ON pd.id_servicio = s.id
