@@ -18,9 +18,8 @@ class Sql_Strings():
             srv_desc AS "descripcion", 
             srv_desc_corta AS "descripcion_previa", 
             srv_info AS "info", 
-            srv_precio AS "precio", 
-            srv_imagen AS "imagen", 
-            srv_nombre_imagen AS "nombre_imgen", 
+            srv_precio AS "precio",
+            srv_imagen_url AS "imagen", 
             dt_creado AS "fecha_creado", 
             activo
         FROM servicios
