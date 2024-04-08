@@ -28,10 +28,10 @@
         <div class="blog-list-item wow fadeInUp delay-0-2s">
             <div class="image" style="overflow: hidden;">
                 {% if compra.get('imagen', False) %}
-                <img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=compra.get('id_producto')) }}"
+                <img src="{{ compra.get('imagen') }}"
                     alt="{{ compra.get('nombre_imagen', 'Imagen del producto') }}" style="width: 520px; height: 364px; object-fit:cover;">
                 {% else %}
-                <i class="material-icons">inventory_2</i>
+                <i class="material-icons" style="width: 250px; height: auto; font-size: 250px;">inventory_2</i>
                 {% endif %}
             </div>
             <div class="blog-content w-100">

@@ -1,8 +1,9 @@
-import os, pytz
+import os, pytz, json
 from flask import Flask, render_template, session
 from .app_config import Config
 from flask_session import Session
 from app.utils.misc import admin_required
+import cloudinary
 
 # Crear la app
 app = Flask(__name__)
@@ -13,7 +14,12 @@ app.config.from_object(Config)
 ### SESSION ###
 Session(app)
 
-### PAYPAL ###
+### CLOUDINARY ###
+cloudinary.config(
+  cloud_name = app.config['CLOUDINARY_CLOUD_NAME'],
+  api_key = app.config['CLOUDINARY_API_KEY'],
+  api_secret = app.config['CLOUDINARY_API_SECRET']
+)
 
 ### Rutas principales ###
 @app.route('/home', methods=['GET'])
@@ -33,7 +39,8 @@ def global_vars():
         user_logged = session.get('user_logged', False),
         user_admin = session.get('user_admin', False),
         user_without_images = session.get('without_images', True),
-        user_id = session.get('user_id', False)
+        user_id = session.get('user_id', False),
+        user_image = session.get('user_image_url', None)
     )
 
 ### Formateador de fechas ### 

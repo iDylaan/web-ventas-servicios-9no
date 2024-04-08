@@ -27,13 +27,12 @@ class Sql_Strings():
     
     UPDATE_USER_IMAGE_BY_ID = (
         "UPDATE usuarios SET "
-        "image_bin = %(imagen)s, "
-        "image_name = %(nombre_imagen)s"
+        "image_url = %(imagen)s "
         "WHERE id = %(id_usuario)s"
     )
     
     GET_USER_IMAGE_BY_ID = (
-        "SELECT image_bin, image_name, image_url "
+        "SELECT image_url "
         "FROM usuarios "
         "WHERE id = %(id_usuario)s"
     )
@@ -44,7 +43,7 @@ class Sql_Strings():
             nombre_usuario, 
             email, 
             "admin", 
-            image_bin AS "imagen"
+            image_url AS "imagen"
         FROM usuarios;
         """
     )
@@ -55,7 +54,7 @@ class Sql_Strings():
             nombre_usuario, 
             email, 
             "admin", 
-            image_bin AS "imagen"
+            image_url AS "imagen"
         FROM usuarios
         WHERE id = %(id_usuario)s;
         """

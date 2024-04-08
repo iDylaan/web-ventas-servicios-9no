@@ -24,7 +24,6 @@
             formData.append('imagen', file);
             let rowID = editIDUsuarioInput.value;
             activarEditLoader();
-            console.log("ID de usuario seleccionado:", rowID);
             fetch('/usuarios_crud/imagen_usuario/' + rowID, {
                 method: 'POST',
                 body: formData,
@@ -35,8 +34,8 @@
                     }
                     return response.json();
                 })
-                .then(data => {
-                    const imageUrl = `data:image/png;base64,${data.image_base64}`;
+                .then(result => {
+                    const imageUrl = result.data.image;
                     updateModaImage(imageUrl);
                 })
                 .catch(error => console.error("Error al actualizar la imagen:", error))
@@ -101,15 +100,15 @@
         
 
         try {
-            const response = await fetch('/usuarios_crud/imagen_usuario_base64/' + id_usuario)
+            const response = await fetch('/usuarios_crud/imagen_usuario_json/' + id_usuario)
             if (!response.ok) {
                 throw new Error('Error en el servidor');
             }
 
             const result = await response.json();
 
-            if (result.image_base64 && result.filename) {
-                const imageUrl = `data:image/png;base64,${result.image_base64}`;
+            if (result.data.image) {
+                const imageUrl = result.data.image;
 
                 // Crear imagen
                 const image = document.createElement('img');

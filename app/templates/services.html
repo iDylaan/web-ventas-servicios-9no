@@ -124,7 +124,7 @@
             <img src="{{ url_for('static', filename='assets/images/services/service-four1.png') }}" alt="Service" />
           </div>
           <h5>Creación de sitios web desde Figma, XD o Photoshop</h5>
-          <a href="service-details.html" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
+          <a href="{{ url_for('services.details') }}" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
         </div>
       </div>
       <div class="col-xl-4 col-md-6">
@@ -133,7 +133,7 @@
             <img src="{{ url_for('static', filename='assets/images/services/service-four2.png') }}" alt="Service" />
           </div>
           <h5>Desarrollo de aplicaciones móviles y diseño de sitios web.</h5>
-          <a href="service-details.html" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
+          <a href="{{ url_for('services.details') }}" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
         </div>
       </div>
       <div class="col-xl-4 col-md-6">
@@ -142,7 +142,7 @@
             <img src="{{ url_for('static', filename='assets/images/services/service-four3.png') }}" alt="Service" />
           </div>
           <h5>Desarrollo de comercio electrónico.</h5>
-          <a href="service-details.html" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
+          <a href="{{ url_for('services.details') }}" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
         </div>
       </div>
       <div class="col-xl-4 col-md-6">
@@ -151,7 +151,7 @@
             <img src="{{ url_for('static', filename='assets/images/services/service-four4.png') }}" alt="Service" />
           </div>
           <h5>Diseño de sitios web responsivos (UI/UX)</h5>
-          <a href="service-details.html" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
+          <a href="{{ url_for('services.details') }}" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
         </div>
       </div>
       <div class="col-xl-4 col-md-6">
@@ -160,7 +160,7 @@
             <img src="{{ url_for('static', filename='assets/images/services/service-four5.png') }}" alt="Service" />
           </div>
           <h5>SEO (optimización de motores de búsqueda)</h5>
-          <a href="service-details.html" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
+          <a href="{{ url_for('services.details') }}" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
         </div>
       </div>
       <div class="col-xl-4 col-md-6">
@@ -169,97 +169,13 @@
             <img src="{{ url_for('static', filename='assets/images/services/service-four6.png') }}" alt="Service" />
           </div>
           <h5>Diseño y desarrollo de productos digitales</h5>
-          <a href="service-details.html" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
+          <a href="{{ url_for('services.details') }}" class="theme-btn style-three">Detalles del servicio<i class="fas fa-angle-double-right"></i></a>
         </div>
       </div>
     </div>
   </div>
 </section>
 <!-- Services Area end -->
-
-<!-- Pricing Area start -->
-<section class="pricing-area py-130 rel z-1">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-xl-8 col-lg-10">
-        <div class="section-title text-center mb-55 wow fadeInUp delay-0-2s">
-          <span class="sub-title style-two mb-20">Plan de precios</span>
-          <h2>Paquete con el mejor precio</h2>
-        </div>
-      </div>
-    </div>
-    <div class="pricing-plan-item wow fadeInUp delay-0-2s">
-      <div class="price-features">
-        <h4>Plan Básico</h4>
-        <ul class="list-style-two">
-          <li>Diseño de página de destino (10 páginas)</li>
-          <li>Proveedor de hosting dominio</li>
-          <li>Diseño HTML+CSS (12 páginas)</li>
-          <li>Soporte en línea (24 horas al día, 7 días a la semana)</li>
-          <li>Marketing de medios sociales</li>
-          <li>Desarrollo WordPres</li>
-        </ul>
-        <span class="badge">POPULAR</span>
-      </div>
-      <div class="price-and-btn">
-        <div class="content">
-          <span class="price">248 MXN</span>
-          <span class="save">Ahorra <span> 25%</span></span>
-          <a href="pricing.html" class="theme-btn style-three">Elija el paquete <i class="fas fa-angle-double-right"></i></a>
-        </div>
-      </div>
-    </div>
-    <div class="pricing-plan-item wow fadeInUp delay-0-2s">
-      <div class="price-features">
-        <h4>Plan Básico</h4>
-        <ul class="list-style-two">
-          <li>Diseño de página de destino (10 páginas)</li>
-          <li>Proveedor de hosting dominio</li>
-          <li>Diseño HTML+CSS (12 páginas)</li>
-          <li>Soporte en línea (24 horas al día, 7 días a la semana)</li>
-          <li>Marketing de medios sociales</li>
-          <li>Desarrollo WordPres</li>
-        </ul>
-        <span class="badge">POPULAR</span>
-      </div>
-      <div class="price-and-btn">
-        <div class="content">
-          <span class="price">452 MXN</span>
-          <span class="save">Ahorra<span> 43%</span></span>
-          <a href="pricing.html" class="theme-btn style-three">Elija el paquete <i class="fas fa-angle-double-right"></i></a>
-        </div>
-      </div>
-    </div>
-    <div class="pricing-plan-item wow fadeInUp delay-0-2s">
-      <div class="price-features">
-        <h4>Plan Básico</h4>
-        <ul class="list-style-two">
-          <li>Diseño de página de destino (10 páginas)</li>
-          <li>Proveedor de hosting dominio</li>
-          <li>Diseño HTML+CSS (12 páginas)</li>
-          <li>Soporte en línea (24 horas al día, 7 días a la semana)</li>
-          <li>Marketing de medios sociales</li>
-          <li>Desarrollo WordPres</li>
-        </ul>
-        <span class="badge">POPULAR</span>
-      </div>
-      <div class="price-and-btn">
-        <div class="content">
-          <span class="price">683 MXN</span>
-          <span class="save">Ahorra<span> 66%</span></span>
-          <a href="pricing.html" class="theme-btn style-three">Elija el paquete <i class="fas fa-angle-double-right"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="wave-shapes">
-    <img class="shape one" src="{{ url_for('static', filename='assets/images/shapes/pricing-light1.png') }}"
-      alt="Wave Shape" />
-    <img class="shape two" src="{{ url_for('static', filename='assets/images/shapes/pricing-light2.png') }}"
-      alt="Wave Shape" />
-  </div>
-</section>
-<!-- Pricing Area end -->
 
 {% block get_started %}
 {% include 'components/get_started.html' %}

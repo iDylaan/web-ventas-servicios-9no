@@ -1,10 +1,11 @@
 import sys, io, base64, json
-from flask import Blueprint, request, render_template, jsonify, send_file, session
+from flask import Blueprint, request, render_template, jsonify, redirect, abort
 from app.utils.misc import (
     handleResponseError, 
     handleResponse,
     val_req_data,
-    admin_required
+    admin_required,
+    cloudinary_upload_image
 )
 from app.modules.conf.conf_postgres import qry, sql, sqlv2
 from PIL import Image as PILImage
@@ -34,7 +35,6 @@ def productos_crud_template():
                 'imagen_exist': product['imagen'] is not None
             }
             products_json.append(product_json)
-            product['imagen'] = product['imagen'] is not None
     except Exception as e:
         print(e)
         return render_template('404.html')
@@ -203,22 +203,18 @@ def guardar_imagen_producto(id_producto):
         
         # Recibir el archivo de imagen
         imagen_file = request.files.get('imagen', None)
-        filename = None
-        img_byte_arr = None
+
+        upload_result, status = cloudinary_upload_image(imagen_file)
+
+        if status >= 400:
+            return handleResponseError('No se ha subido la imagen correctamente, intentelo de nuevo mas tarde', status)
         
         # Convertir la imagen a bytes usando Pillow
         if imagen_file:
-            filename = secure_filename(imagen_file.filename)
-            image = PILImage.open(imagen_file.stream)
             
-            img_byte_arr = io.BytesIO()
-            image.save(img_byte_arr, format='PNG')
-            img_byte_arr = img_byte_arr.getvalue()
-            
-            rows_affected = sql(SQL_STRINGS.UPDATE_PRODUCT_IMAGE_BY_ID, {'id_producto': id_producto, 'imagen': img_byte_arr, 'nombre_imagen': filename})
+            rows_affected = sql(SQL_STRINGS.UPDATE_PRODUCT_IMAGE_BY_ID, {'id_producto': id_producto, 'imagen': upload_result.get('image', None)})
             if rows_affected:
-                encoded_img = base64.b64encode(img_byte_arr).decode('utf-8')
-                return jsonify({'filename': filename, 'image_base64': encoded_img})
+                return handleResponse({'image': upload_result.get('image', None)})
             else:
                 raise Exception ('La imagen no se inserto correctamente')
             
@@ -228,9 +224,9 @@ def guardar_imagen_producto(id_producto):
         print("Ocurrio un error en @guardar_imagen_producto/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
         return handleResponseError('Error en el servidor: {}'.format(e))
 
-@mod.route('/imagen_producto_base64/<int:id_producto>', methods=['GET'])
+@mod.route('/imagen_producto_json/<int:id_producto>', methods=['GET'])
 @admin_required
-def obtener_imagen_producto_base64(id_producto):
+def obtener_imagen_producto_json(id_producto):
     try:
         if not id_producto:
             return handleResponseError('Producto faltante', 400)
@@ -246,15 +242,10 @@ def obtener_imagen_producto_base64(id_producto):
         result_image = qry(SQL_STRINGS.GET_PRODUCT_IMAGE_BY_ID, {'id_producto': id_producto}, True)
             
         # Retornar la imagen del binario
-        imagen = result_image.get('srv_imagen', None)
-        nombre_imagen = result_image.get('srv_nombre_imagen', None)
-        if imagen:
-            encoded_img = base64.b64encode(imagen).decode('utf-8')
-            return jsonify({'filename': nombre_imagen, 'image_base64': encoded_img})
-        else: 
-            return jsonify({'filename': False, 'image_base64': False})
+        imagen = result_image.get('image', None)
+        return handleResponse({'image': imagen})
     except Exception as e:
-        print("Ocurrio un error en @imagen_producto_base64/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
+        print("Ocurrio un error en @obtener_imagen_producto_json/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
         return handleResponseError('Error en el servidor: {}'.format(e)) 
     
 
@@ -264,32 +255,27 @@ def obtener_imagen_producto_base64(id_producto):
 def obtener_imagen_producto(id_producto):
     try:
         if not id_producto:
-            return handleResponseError('Producto faltante', 400)
-        
-        # Comprobar si el producto existe
-        result = qry(SQL_STRINGS.GET_PRODUCT_COUNT_BY_ID, {'id_producto': id_producto}, True)
-        product_count = result.get('count', None)
-        
-        if not product_count:
-            return handleResponseError('Producto no encontrado', 404)
-        
-        # Obtener la imagen
+            return jsonify('')
+
+        # Comprobar si el usuario existe y obtener la imagen
         result_image = qry(SQL_STRINGS.GET_PRODUCT_IMAGE_BY_ID, {'id_producto': id_producto}, True)
-            
-        # Retornar la imagen del binario
-        imagen = result_image.get('srv_imagen', None)
-        nombre_imagen = result_image.get('srv_nombre_imagen', None)
-        if imagen:
-            # Converitr los bits a imagen
-            img_io = io.BytesIO(imagen)
-            img_io.seek(0)
-            
-            return send_file(img_io, mimetype='image/png')
-        else: 
-            return handleResponseError('No se encontró la imágen', 404)
+
+        # Si no se encuentra la imagen, opcionalmente redirige a una imagen predeterminada o devuelve un error
+        if not result_image or not result_image.get('srv_imagen_url'):
+            # return redirect(url_for('ruta_imagen_predeterminada'))
+            return abort(404, description="Imagen no encontrada")
+
+        # Si la imagen existe y tiene una URL, redirigir a esa URL
+        imagen_url = result_image.get('srv_imagen_url')
+        return redirect(imagen_url)
+
     except Exception as e:
-        print("Ocurrio un error en @obtener_imagen_producto/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
-        return handleResponseError('Error en el servidor: {}'.format(e)) 
+        print(f"Ocurrió un error en @obtener_imagen_usuario/{e} en la línea {sys.exc_info()[-1].tb_lineno}")
+        # En caso de error en el servidor, podrías redirigir a una imagen de error o manejarlo de otra manera
+        return abort(500, description="Error en el servidor")
+    
+
+
     
     
 @mod.route('/obtener_productos/<int:id_producto>', methods=['GET'])
@@ -301,10 +287,6 @@ def obtener_producto(id_producto):
         
         # Comprobar si el producto existe
         result = qry(SQL_STRINGS.GET_PRODCT_BY_ID, {'id_producto': id_producto}, True)
-        
-        # Convertir la imagen a Base64
-        imagen_base64 = base64.b64encode(result['imagen']).decode('utf-8')
-        result['imagen'] = imagen_base64
         
         return jsonify(result)
     except Exception as e:

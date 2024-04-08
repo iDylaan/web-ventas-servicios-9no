@@ -28,6 +28,7 @@ CREATE TABLE servicios (
   "srv_precio" NUMERIC NOT NULL,
   "srv_imagen" BYTEA DEFAULT NULL,
   "srv_nombre_imagen" VARCHAR DEFAULT NULL,
+  "srv_imagen_url" VARCHAR DEFAULT NULL,
   "activo" INT default 1,
   "dt_creado" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -56,8 +57,7 @@ SELECT
 	  p.id AS id_producto,
     p.srv_nom AS titulo,
     p.srv_precio AS precio,
-    p.srv_imagen AS imagen,
-    p.srv_nombre_imagen AS nombre_imagen,
+    p.srv_imagen_url AS imagen,
     c.cantidad AS cantidad,
     c.dt_compra AS fecha,
     c.id_usuario
@@ -65,3 +65,54 @@ FROM
     compras c
 JOIN 
     servicios p ON c.id_servicio = p.id;
+
+
+-- VISTA Productos Deseados
+CREATE VIEW vista_productos_deseados AS
+SELECT 
+	pd.id_usuario AS id_usuario,
+	s.id AS id_servicio,
+	s.srv_nom AS titulo, 
+	s.srv_desc AS descripcion, 
+	s.srv_desc_corta AS descripcion_previa, 
+	s.srv_info AS info, 
+	s.srv_precio AS precio,
+	s.srv_imagen_url AS imagen
+FROM 
+	productos_deseados pd
+JOIN 
+	servicios s ON pd.id_servicio = s.id;
+
+
+-- Detalles de usuario
+CREATE VIEW vista_detalle_usuario AS
+SELECT
+  u.id,
+  u.nombre_usuario,
+  u.email,
+  COUNT(DISTINCT c.id) AS total_compras,
+  COUNT(DISTINCT pd.id) AS total_productos_deseados
+FROM
+  usuarios u
+LEFT JOIN compras c ON u.id = c.id_usuario
+LEFT JOIN productos_deseados pd ON u.id = pd.id_usuario
+GROUP BY
+  u.id;
+
+-- Productos populares
+CREATE VIEW vista_servicios_populares AS
+SELECT
+  s.id,
+  s.srv_nom,
+  s.srv_desc_corta,
+  s.srv_precio,
+  COUNT(DISTINCT c.id) AS total_compras,
+  COUNT(DISTINCT pd.id) AS veces_deseado
+FROM
+  servicios s
+LEFT JOIN compras c ON s.id = c.id_servicio
+LEFT JOIN productos_deseados pd ON s.id = pd.id_servicio
+GROUP BY
+  s.id
+ORDER BY
+  total_compras DESC, veces_deseado DESC;
