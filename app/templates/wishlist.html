@@ -1,0 +1,69 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Tech Consulting | Deseados {% endblock %}
+
+{% block styles %}
+{{super()}}
+{% endblock styles %}
+
+{% block scripts %}
+{{super()}}
+{% endblock scripts %}
+
+{% block content %}
+
+{% block page_banner %}
+{% set pre_page_title = 'Productos' %}
+{% set page_title_underline = 'Deseados' %}
+
+{% include 'components/page-banner.html' %}
+{% endblock page_banner %}
+
+
+<!-- Blog List Area start -->
+
+    <section class="col-12 blog-list-area py-130 rel z-1">
+        {% for deseado in wishlist %}
+        <div class="container">
+            <div class="blog-list-item wow fadeInUp delay-0-2s">
+                <div class="image col-6 text-center">
+                    {% if deseado['nombre_imagen'] %}
+                    <img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=deseado['id_servicio']) }}" alt="{{ deseado['nombre_imagen'] }}" width="520" height="364">
+                    {% else %}
+                    <i class="material-icons" width="520" height="364" style="font-size: 400px; ">inventory_2</i>
+                    {{ deseado['id_servicio'] }}
+                    {{ deseado.get('titulo', 'Titulo del producto') }}
+                    {% endif %}
+                </div>
+                <div class="blog-content col-6">
+                    <div class="content">
+                        <h4>
+                            <a href="{{ url_for('shop.product_details_template', id_producto=deseado['id_servicio']) }}" target="_blank">
+                                {{ deseado['titulo']|default('Titulo del producto') }}
+                            </a>
+                        </h4>
+                        <p>
+                            {{ deseado['descripcion']|default('Descripción no disponible') }}
+                        </p>
+                        <ul class="blog-meta">
+                            <li style="font-size: 1.2rem;">
+                                ${{ deseado['precio']|default('No disponible') }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        {% endfor %}
+    </section>
+
+
+<!-- Blog List Area end -->
+
+
+{% block get_started %}
+{% include 'components/get_started.html' %}
+{% endblock get_started %}
+
+{% endblock content %}

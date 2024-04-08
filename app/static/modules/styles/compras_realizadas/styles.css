@@ -1,0 +1,89 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  h1 {
+    margin: 0;
+  }
+  
+  .container {
+    margin: 20px auto;
+    width: 80%;
+  }
+  
+  /* Estilos para la tabla */
+  .table-container {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Estilos para hacer la imagen más grande al pasar el cursor */
+  td img:hover {
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Estilos para el color del texto según el estado */
+  td.estado-entregado {
+    color: #0066ff;
+  }
+  
+  td.estado-cancelado {
+    color: red;
+  }
+  
+  /* Estilos para la animación de salto */
+  @keyframes jump {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  tr:hover {
+    animation: jump 0.5s ease-in-out;
+  }
+  
+  /* Estilos para bajar la saturación del texto al pasar el cursor */
+  td:hover {
+    filter: saturate(60%); /* Reducir la saturación al 80% */
+  }
+  
+  /* Estilos para la sombra de la tabla al pasar el cursor */
+  .table-container:hover {
+    box-shadow: 0 10px 20px rgba(0, 102, 255, 0.5); /* Sombra de color azul */
+    transform: translateY(-5px); /* Elevación de la tabla */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
+  }
+  
+  

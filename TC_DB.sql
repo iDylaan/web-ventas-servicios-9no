@@ -47,3 +47,21 @@ CREATE TABLE productos_deseados (
   "id_servicio" INT REFERENCES "servicios"("id"),
   "id_usuario" INT REFERENCES "usuarios"("id")
 );
+
+
+
+-- VISTA Mis Compras
+CREATE VIEW vista_compras_servicios AS
+SELECT 
+	  p.id AS id_producto,
+    p.srv_nom AS titulo,
+    p.srv_precio AS precio,
+    p.srv_imagen AS imagen,
+    p.srv_nombre_imagen AS nombre_imagen,
+    c.cantidad AS cantidad,
+    c.dt_compra AS fecha,
+    c.id_usuario
+FROM 
+    compras c
+JOIN 
+    servicios p ON c.id_servicio = p.id;

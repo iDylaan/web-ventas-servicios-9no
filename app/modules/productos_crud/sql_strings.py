@@ -1,7 +1,8 @@
 class Sql_Strings():
     INSERT_NEW_PRODUCT = (
         "INSERT INTO servicios (srv_nom, srv_desc, srv_desc_corta, srv_info, srv_precio) VALUES "
-        "(%(titulo)s, %(descripcion)s, %(descripcion_corta)s, %(info)s, %(precio)s)"
+        "(%(titulo)s, %(descripcion)s, %(descripcion_corta)s, %(info)s, %(precio)s) "
+        "RETURNING id "
     )
     
     UPDATE_PRODUCT_BY_ID = (
@@ -31,5 +32,45 @@ class Sql_Strings():
     GET_PRODUCT_IMAGE_BY_ID = (
         "SELECT srv_imagen, srv_nombre_imagen "
         "FROM servicios "
+        "WHERE id = %(id_producto)s"
+    )
+    GET_PRODCTS = (
+        """
+        SELECT 
+            id, 
+            srv_nom AS "titulo", 
+            srv_desc AS "descripcion", 
+            srv_desc_corta AS "descripcion_previa", 
+            srv_info AS "info", 
+            srv_precio AS "precio", 
+            srv_imagen AS "imagen", 
+            srv_nombre_imagen AS "nombre_imgen", 
+            dt_creado AS "fecha_creado", 
+            activo
+        FROM servicios
+        WHERE activo = 1
+        ORDER BY id ASC;
+        """
+    )
+    GET_PRODCT_BY_ID = (
+        """
+        SELECT 
+            id, 
+            srv_nom AS "titulo", 
+            srv_desc AS "descripcion", 
+            srv_desc_corta AS "descripcion_previa", 
+            srv_info AS "info", 
+            srv_precio AS "precio", 
+            srv_imagen AS "imagen", 
+            srv_nombre_imagen AS "nombre_imgen", 
+            dt_creado AS "fecha_creado", 
+            activo
+        FROM servicios
+        WHERE id = %(id_producto)s
+        """
+    )
+    DELETE_PRODUCT_BY_ID = (
+        "UPDATE servicios SET "
+        "   activo = 0 "
         "WHERE id = %(id_producto)s"
     )

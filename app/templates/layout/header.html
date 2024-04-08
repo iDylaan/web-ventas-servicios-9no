@@ -37,34 +37,41 @@
 
                         <div class="navbar-collapse collapse clearfix">
                             <ul class="navigation clearfix">
-                                <li class="">
+                                <li>
                                     <a href="{{ url_for('index') }}">Inicio</a>
                                 </li>
-                                <li class="">
+                                <li>
                                     <a href="{{ url_for('services.index') }}">Servicios</a>
                                 </li>
-                                <li class="dropdown">
-                                    <a href="#">Nosotros</a>
-                                    <ul>
-                                        <li>
-                                            <a href="{{ url_for('pages.about_us') }}">Sobre nosotros</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ url_for('pages.team_template') }}">Equipo</a>
-                                        </li>
-                                        <li><a href="{{ url_for('pages.faqs_template') }}">Preguntas frecuentes y
-                                                ayuda</a></li>
-                                    </ul>
+                                <li>
+                                    <a href="{{ url_for('pages.about_us') }}">Nosotros</a>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#">Tienda</a>
                                     <ul>
-                                        <li><a href="{{ url_for('shop.shop_template') }}">Productos</a></li>
-                                        <li><a href="{{ url_for('shop.cart_template') }}">Carrito de compras</a></li>
+                                        <li>
+                                            <a href="{{ url_for('shop.shop_template') }}">Productos</a>
+                                        </li>
+                                        {% if user_logged %}
+                                        <li>
+                                            <a href="{{ url_for('compras.mi_compras_template') }}">Mis Compras</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ url_for('compras.wishlist_template') }}">Productos Deseados</a>
+                                        </li>
+                                        {% endif %}
                                     </ul>
                                 </li>
                                 <li>
                                     <a href="{{ url_for('pages.contacto_template') }}">Contacto</a>
+                                </li>
+                                <li>
+                                    <script>
+                                        const carrito_de_compras_url = "{{ url_for('shop.cart_template') }}";
+                                    </script>
+                                    <a href="#" id="cart-header">
+                                        <i class="material-icons">shopping_cart</i>
+                                    </a>
                                 </li>
                                 {% if not user_logged %}
                                 <li class="dropdown perfil-header-options">
@@ -75,7 +82,7 @@
                                     </ul>
                                 </li>
                                 {% else %}
-                                <li><a class="btn-toggle-profile-modal">Perfil</a></li>
+                                <li class="profile-option-no-mobile"><a class="btn-toggle-profile-modal">Perfil</a></li>
                                 {% endif %}
                             </ul>
                         </div>

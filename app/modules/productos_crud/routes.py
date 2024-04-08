@@ -1,23 +1,53 @@
-import sys, io, base64
+import sys, io, base64, json
 from flask import Blueprint, request, render_template, jsonify, send_file, session
 from app.utils.misc import (
     handleResponseError, 
     handleResponse,
-    val_req_data
+    val_req_data,
+    admin_required
 )
-from app.modules.conf.conf_postgres import qry, sql
+from app.modules.conf.conf_postgres import qry, sql, sqlv2
 from PIL import Image as PILImage
 from werkzeug.utils import secure_filename
 from .sql_strings import Sql_Strings as SQL_STRINGS
 from .schemas import new_product_scheme
+
 mod = Blueprint('productos_crud', __name__)
 
-@mod.route('/')
+@mod.route('/', methods=['GET'])
+@admin_required
 def productos_crud_template():
-    return render_template('productos-CRUD.html')
+    products_arr = None 
+    products_json  = []
+    try:
+        products_arr = qry(SQL_STRINGS.GET_PRODCTS)
+        for product in products_arr:
+            product_json = {
+                'id': product['id'],
+                'titulo': product['titulo'],
+                'descripcion': product['descripcion'],
+                'descripcion_previa': product['descripcion_previa'],
+                'info': product['info'],
+                'precio': product['precio'],
+                'fecha_creado': product['fecha_creado'],
+                'activo': product['activo'],
+                'imagen_exist': product['imagen'] is not None
+            }
+            products_json.append(product_json)
+            product['imagen'] = product['imagen'] is not None
+    except Exception as e:
+        print(e)
+        return render_template('404.html')
+    finally:
+        if not products_arr:
+            products_arr = []
+        # products_json = json.dumps(products_arr, default=default_converter)
+        return render_template('productos-CRUD.html', productos=products_arr, productos_json=products_json)    
+    
 
 
 @mod.route('/nuevo', methods=['POST'])
+@admin_required
 def nuevo_producto():
     try:
         data = request.get_json()
@@ -53,11 +83,11 @@ def nuevo_producto():
             return handleResponseError(errors, 400)
         
         # Guardar el nuevo producto en la DB
-        rows_affected = sql(SQL_STRINGS.INSERT_NEW_PRODUCT, new_product_dict)
+        rows_affected, id_of_new_row = sqlv2(SQL_STRINGS.INSERT_NEW_PRODUCT, new_product_dict, True)
         
-        # Validar filas afectadas
+        # Validar filas afectadas 
         if rows_affected:
-            return handleResponse('Producto registrado exitosamente')
+            return handleResponse({'message': 'Producto registrado exitosamente', 'id_producto': id_of_new_row})
         else:
             raise handleResponseError('No se pudo registrar el producto.')
         
@@ -67,6 +97,7 @@ def nuevo_producto():
     
 
 @mod.route('/editar/<int:id_producto>', methods=['POST'])
+@admin_required
 def editar_producto(id_producto):
     try: 
         data = request.get_json()
@@ -129,7 +160,34 @@ def editar_producto(id_producto):
         return handleResponseError('Error en el servidor: {}'.format(e))
     
 
+@mod.route('/eliminar/<int:id_productp>', methods=['POST'])
+@admin_required
+def eliminar(id_productp):
+    try:
+        # Validar que venga el id_producto
+        if not id_productp:
+            return handleResponseError('Falta el id del producto', 400)
+        
+        # Validar que el producto exista
+        result = qry(SQL_STRINGS.GET_PRODUCT_COUNT_BY_ID, {'id_producto': id_productp}, True)
+        product_count = result.get('count', None)
+        
+        if not product_count:
+            return handleResponseError('No se encontró el producto.', 404)
+        
+        rows_affected = sql(SQL_STRINGS.DELETE_PRODUCT_BY_ID, {'id_producto': id_productp})
+        
+        # Validar filas afectadas
+        if rows_affected:
+            return handleResponse('Producto eliminado exitosamente')
+        else:
+            raise handleResponseError('No se pudo eliminar el producto.')
+    except Exception as e:
+        print("Ocurrio un error en @editar_producto/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
+        return handleResponseError('Error en el servidor: {}'.format(e))
+
 @mod.route('/imagen_producto/<int:id_producto>', methods=['POST'])
+@admin_required
 def guardar_imagen_producto(id_producto):
     try:
         # Validar que venga el id_producto
@@ -170,8 +228,39 @@ def guardar_imagen_producto(id_producto):
         print("Ocurrio un error en @guardar_imagen_producto/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
         return handleResponseError('Error en el servidor: {}'.format(e))
 
+@mod.route('/imagen_producto_base64/<int:id_producto>', methods=['GET'])
+@admin_required
+def obtener_imagen_producto_base64(id_producto):
+    try:
+        if not id_producto:
+            return handleResponseError('Producto faltante', 400)
+        
+        # Comprobar si el producto existe
+        result = qry(SQL_STRINGS.GET_PRODUCT_COUNT_BY_ID, {'id_producto': id_producto}, True)
+        product_count = result.get('count', None)
+        
+        if not product_count:
+            return handleResponseError('Producto no encontrado', 404)
+        
+        # Obtener la imagen
+        result_image = qry(SQL_STRINGS.GET_PRODUCT_IMAGE_BY_ID, {'id_producto': id_producto}, True)
+            
+        # Retornar la imagen del binario
+        imagen = result_image.get('srv_imagen', None)
+        nombre_imagen = result_image.get('srv_nombre_imagen', None)
+        if imagen:
+            encoded_img = base64.b64encode(imagen).decode('utf-8')
+            return jsonify({'filename': nombre_imagen, 'image_base64': encoded_img})
+        else: 
+            return jsonify({'filename': False, 'image_base64': False})
+    except Exception as e:
+        print("Ocurrio un error en @imagen_producto_base64/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
+        return handleResponseError('Error en el servidor: {}'.format(e)) 
+    
+
 
 @mod.route('/imagen_producto/<int:id_producto>', methods=['GET'])
+@admin_required
 def obtener_imagen_producto(id_producto):
     try:
         if not id_producto:
@@ -200,4 +289,24 @@ def obtener_imagen_producto(id_producto):
             return handleResponseError('No se encontró la imágen', 404)
     except Exception as e:
         print("Ocurrio un error en @obtener_imagen_producto/{} en la linea {}".format(e, sys.exc_info()[-1].tb_lineno))
-        return handleResponseError('Error en el servidor: {}'.format(e))
+        return handleResponseError('Error en el servidor: {}'.format(e)) 
+    
+    
+@mod.route('/obtener_productos/<int:id_producto>', methods=['GET'])
+@admin_required
+def obtener_producto(id_producto):
+    try:
+        if not id_producto:
+            return handleResponseError('Producto faltante', 400)
+        
+        # Comprobar si el producto existe
+        result = qry(SQL_STRINGS.GET_PRODCT_BY_ID, {'id_producto': id_producto}, True)
+        
+        # Convertir la imagen a Base64
+        imagen_base64 = base64.b64encode(result['imagen']).decode('utf-8')
+        result['imagen'] = imagen_base64
+        
+        return jsonify(result)
+    except Exception as e:
+        print(e)
+        return handleResponseError('Error al obtener los productos', 500)

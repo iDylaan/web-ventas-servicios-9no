@@ -130,7 +130,9 @@ def signin():
             session['user_logged'] = True
             session['user_image_url'] = user['image_url']
             session['without_images'] = not user['image_url'] and not user['image_bin']
-            return handleResponse({'username': user['nombre_usuario']})
+            return handleResponse({
+                'redirect': url_for('admin') if user['admin'] else url_for('index')
+            })
         else:
             return handleResponseError('El correo o la contraseña no son correctos, valida tu información', 400)
     except Exception as e:

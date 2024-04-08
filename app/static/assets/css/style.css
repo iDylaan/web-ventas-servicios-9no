@@ -1589,6 +1589,7 @@ h6,
 .team-member:hover:after {
   -webkit-box-shadow: 10px 0 60px rgba(69, 69, 69, 0.1);
   box-shadow: 10px 0 60px rgba(69, 69, 69, 0.1);
+  min-height: 390px;
 }
 
 /*******************************************************/
@@ -6928,6 +6929,18 @@ h6,
     background: rgba(0, 102, 255, 0.1);
   }
 }
+
+.profile-option-no-mobile {
+  display: none !important;
+}
+
+
+@media (width <=992px) {
+  .profile-option-no-mobile {
+    display: block !important;
+  }
+}
+
 
 /* Responsive Design */
 @media only screen and (min-width: 992px) {
@@ -13397,4 +13410,128 @@ h4.comment-title {
   align-items: center;
   justify-content: center;
   margin-left: -12px;
+}
+
+
+
+.product-item .image {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.product-item .image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.productos-table .td-text {
+  text-wrap: nowrap;
+  text-align: left;
+  max-width: 15dvw;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.mis-compras-product-details li {
+  margin: auto;
+  display: grid;
+  place-content: center;
+}
+
+
+.wishlist {
+  box-sizing: border-box;
+  position: relative;
+}
+
+.con-like {
+  --red: rgb(255, 50, 50);
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+
+.con-like .like {
+  position: absolute;
+  top: -20px !important;
+  left: -20px !important;
+  width: 67px !important;
+  height: 50px !important;
+  opacity: 0;
+  z-index: 20;
+  cursor: pointer;
+}
+
+.con-like .checkmark {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.con-like .outline,
+.con-like .filled {
+  fill: var(--red);
+  position: absolute;
+}
+
+.con-like .filled {
+  animation: kfr-filled 0.5s;
+  display: none;
+}
+
+.con-like .celebrate {
+  position: absolute;
+  animation: kfr-celebrate 0.5s;
+  animation-fill-mode: forwards;
+  display: none;
+}
+
+.con-like .poly {
+  stroke: var(--red);
+  fill: var(--red);
+}
+
+.con-like .like:checked~.checkmark .filled {
+  display: block
+}
+
+.con-like .like:checked~.checkmark .celebrate {
+  display: block
+}
+
+@keyframes kfr-filled {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes kfr-celebrate {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+    display: none;
+  }
+}
+
+#paypal__container {
+  display: none;
 }

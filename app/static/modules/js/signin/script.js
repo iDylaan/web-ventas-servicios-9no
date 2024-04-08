@@ -40,7 +40,7 @@ async function signin() {
 
     if (validForm) {
         formBarLoader.style.display = 'block';
-        try {
+        try {   
             const response = await fetch('/auth/signin', {
                 method: 'POST',
                 headers: {
@@ -55,9 +55,10 @@ async function signin() {
 
             const result = await response.json();
             if (result.success) {
+                console.log(result);
                 mostrarMensaje("success", "¡Bienvenido!");
                 setTimeout(() => {
-                    window.location.href = indexURL;
+                    window.location.href = result.data['redirect'];
                 }, 1300);
             } else {
                 throw new Error(result.error.msg)

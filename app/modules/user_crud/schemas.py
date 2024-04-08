@@ -19,3 +19,19 @@ new_user_scheme = {
         'allowed': [0, 1]
     }
 }
+edit_user_scheme = {
+    'nombre_usuario': {
+        'type': 'string',
+        'required': True
+    },
+    'email': {
+        'type': 'string',
+        'required': True,
+        'regex': '^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    },
+    'admin': {
+        'type': 'integer',
+        'required': True,
+        'allowed': [0, 1]
+    }
+}

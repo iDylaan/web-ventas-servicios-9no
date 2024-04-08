@@ -24,4 +24,4 @@ new_product_scheme = {
         'required': True,
         'min': 0
     }
-}
+} 

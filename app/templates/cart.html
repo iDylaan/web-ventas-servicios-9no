@@ -2,131 +2,133 @@
 
 {% block title %} Tech Consulting | Carrito de compras {% endblock %}
 
+{% block scripts %}
+{{super()}}
+    <script src="{{ url_for('static', filename='modules/js/cart/cart.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='modules/js/checkout/cart-checkout.js') }}" defer></script>
+    <script>
+        const CHECKOUT_URL = '{{ url_for("shop.checkout") }}';
+    </script>
+{% endblock scripts %}
+
 {% block content %}
 
 
-        <!-- Page Banner Start -->
-        <section class="page-banner-area pt-245 rpt-150 pb-170 rpb-100 rel z-1 bgc-lighter text-center">
-            <div class="container">
-                <div class="banner-inner rpt-10">
-                    <h1 class="page-title wow fadeInUp delay-0-2s">Carrito de <span>Compras</span></h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center wow fadeInUp delay-0-4s">
-                            <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
-                            <li class="breadcrumb-item active">Carrito de Compras</li>
-                        </ol>
-                    </nav>
+
+<!-- Page Banner Start -->
+<section class="page-banner-area pt-245 rpt-150 pb-170 rpb-100 rel z-1 bgc-lighter text-center">
+    <div class="container">
+        <div class="banner-inner rpt-10">
+            <h1 class="page-title wow fadeInUp delay-0-2s">Carrito de <span>Compras</span></h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center wow fadeInUp delay-0-4s">
+                    <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Inicio</a></li>
+                    <li class="breadcrumb-item active">Carrito de Compras</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="banner-shapes">
+        <div class="circle wow zoomInLeft delay-0-2s" data-wow-duration="2s"></div>
+        <img class="shape-one" src="{{ url_for('static', filename='assets/images/shapes/hero-shape1.png') }}"
+            alt="Shape">
+        <img class="shape-two" src="{{ url_for('static', filename='assets/images/shapes/hero-shape2.png') }}"
+            alt="Shape">
+    </div>
+</section>
+<!-- Page Banner End -->
+
+
+<!-- Shopping Cart Area start -->
+<section class="shopping-cart-area py-130 rel z-1">
+    <div class="container">
+        <div class="shoping-table mb-50 wow fadeInUp delay-0-2s">
+            {% if productos %}
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Producto</th>
+                        <th>Precio Unitario</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                        <th>Remover</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                    <tr class="cart-item" data-producto-id="{{ producto.get('id') }}">
+                        <td><img src="{{ url_for('productos_crud.obtener_imagen_producto', id_producto=producto.get('id')) }}"
+                                alt="{{ producto.get('nombre_imagen', 'Imagen del producto') }}"></td>
+                        <td><span class="title">{{ producto.titulo }}</span></td>
+                        <td><span class="price price-unit">{{ producto.precio }}</span></td>
+                        <td>
+                            <div class="quantity-input" data-producto-id="{{ producto.get('id') }}">
+                                <button class="quantity-down">--</button>
+                                <input class="quantity" type="text" value="1" max="20" name="quantity">
+                                <button class="quantity-up">+</button>
+                            </div>
+                        </td>
+                        <td><b class="price price-total"></b></td>
+                        <td><button type="button" class="close">×</button></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <h4 class="form-title mb-25 text-center">No hay productos en el carrito...</h4>
+            {% endif %}
+        </div>
+        
+        <div id="mensaje-carrito-vacio" class="text-center" style="display: none;">
+            <h4>No hay productos en el carrito...</h4>
+        </div>        
+
+        <div class="row text-center text-lg-left align-items-center">
+            <div class="col-lg-12">
+                <div class="update-shopping mb-30 text-lg-end wow fadeInRight delay-0-2s">
+                    <a href="{{ url_for('shop.shop_template') }}" class="theme-btn my-5">Seguir comprando <i
+                            class="fas fa-angle-double-right"></i></a>
                 </div>
             </div>
-            <div class="banner-shapes">
-                <div class="circle wow zoomInLeft delay-0-2s" data-wow-duration="2s"></div>
-                <img class="shape-one" src="{{ url_for('static', filename='assets/images/shapes/hero-shape1.png') }}" alt="Shape">
-                <img class="shape-two" src="{{ url_for('static', filename='assets/images/shapes/hero-shape2.png') }}" alt="Shape">
-            </div>
-        </section>
-        <!-- Page Banner End -->
+        </div>
         
-        
-        <!-- Shopping Cart Area start -->
-        <section class="shopping-cart-area py-130 rel z-1">
-            <div class="container">
-                <div class="shoping-table mb-50 wow fadeInUp delay-0-2s">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Images</th>
-                                <th>Product</th>
-                                <th>Unit Price</th>
-                                <th>Quantity</th>
-                                <th>Total</th>
-                                <th>remove</th>
-                            </tr>
-                        </thead>
+        {% if productos %}
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="shoping-cart-total pt-20 wow fadeInUp delay-0-2s">
+                    <h4 class="form-title mb-25 text-center">Total del Carrito</h4>
+                    <table class="cart-totals">
                         <tbody>
                             <tr>
-                                <td><img src="{{ url_for('static', filename='assets/images/widget/news1.jpg') }}" alt="Product"></td>
-                                <td><span class="title">Fitness UI Kits</span></td>
-                                <td><span class="price">70</span></td>
-                                <td>
-                                    <div class="quantity-input">
-                                        <button class="quantity-down">--</button>
-                                        <input class="quantity" type="text" value="1" name="quantity">
-                                        <button class="quantity-up">+</button>
-                                    </div>
-                                </td>
-                                <td><b class="price">70</b></td>
-                                <td><button type="button" class="close">×</button></td>
+                                <td>Subtotal</td>
+                                <td><span id="subtotal" class="price">280</span></td>
                             </tr>
                             <tr>
-                                <td><img src="{{ url_for('static', filename='assets/images/widget/news2.jpg') }}" alt="Product"></td>
-                                <td><span class="title">Dashboard UI</span></td>
-                                <td><span class="price">65</span></td>
-                                <td>
-                                    <div class="quantity-input">
-                                        <button class="quantity-down">--</button>
-                                        <input class="quantity" type="text" value="2" name="quantity">
-                                        <button class="quantity-up">+</button>
-                                    </div>
-                                </td>
-                                <td><b class="price">130</b></td>
-                                <td><button type="button" class="close">×</button></td>
+                                <td>IVA</td>
+                                <td><span id="iva" class="price">280</span></td>
                             </tr>
                             <tr>
-                                <td><img src="{{ url_for('static', filename='assets/images/widget/news3.jpg') }}" alt="Product"></td>
-                                <td><span class="title">Plugin for WordPress</span></td>
-                                <td><span class="price">80</span></td>
-                                <td>
-                                    <div class="quantity-input">
-                                        <button class="quantity-down">--</button>
-                                        <input class="quantity" type="text" value="1" name="quantity">
-                                        <button class="quantity-up">+</button>
-                                    </div>
-                                </td>
-                                <td><b class="price">80</b></td>
-                                <td><button type="button" class="close">×</button></td>
+                                <td><strong>Total</strong></td>
+                                <td><b id="total" class="price">280</b></td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <div class="row text-center text-lg-left align-items-center">
-                    <div class="col-lg-12">
-                        <div class="update-shopping mb-30 text-lg-end wow fadeInRight delay-0-2s">
-                            <a href="{{ url_for('shop.shop_template') }}" class="theme-btn my-5">Seguir comprando <i class="fas fa-angle-double-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="shoping-cart-total pt-20 wow fadeInUp delay-0-2s">
-                            <h4 class="form-title mb-25 text-center">Cart Totals</h4>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>Cart Subtotal</td>
-                                        <td><span class="price">280</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Vat</td>
-                                        <td>$0.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Order Total</strong></td>
-                                        <td><b class="price">280</b></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <a href="checkout.html" class="theme-btn style-two mt-25 w-100">Proceder al Checkout</a>
-                        </div>
-                    </div>
+                    <button class="theme-btn style-two mt-25 w-100" id="checkout-btn">Proceder con el Checkout</button>
+                    {% include 'components/bar-loader.html' %}
                 </div>
             </div>
-        </section>
-        <!-- Shopping Cart Area start -->
+        </div>
+        {% endif %}
+    </div>
+</section>
+<!-- Shopping Cart Area start -->
 
-        
 
-        {% block get_started %}
-        {% include 'components/get_started.html' %}
-        {% endblock get_started %}
+
+{% block get_started %}
+{% include 'components/get_started.html' %}
+{% endblock get_started %}
 
 {% endblock content %}
