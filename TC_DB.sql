@@ -49,7 +49,6 @@ CREATE TABLE productos_deseados (
   "id_usuario" INT REFERENCES "usuarios"("id")
 );
 
-
 CREATE TABLE flask_sessions (
     "id" SERIAL PRIMARY KEY,
     "session_id" VARCHAR(255) UNIQUE NOT NULL,
