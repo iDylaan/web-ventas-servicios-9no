@@ -87,9 +87,9 @@ def checkout():
             print('Error: {}'.format(e))
             return render_template('404.html')
     else:  # GET
-        productos_arr = session.get('productos_checkout', [])
+        productos_arr = session.get('productos_checkout', False)
 
-        if not len(productos_arr):
+        if not productos_arr:
             return redirect(url_for('shop.cart_template'))
         # Obtener iva y total
         total = Decimal('0.0')
