@@ -50,6 +50,13 @@ CREATE TABLE productos_deseados (
 );
 
 
+CREATE TABLE flask_sessions (
+    "id" SERIAL PRIMARY KEY,
+    "session_id" VARCHAR(255) UNIQUE NOT NULL,
+    "data" BYTEA NOT NULL,
+    "expiry" TIMESTAMP NOT NULL
+);
+
 
 -- VISTA Mis Compras
 CREATE VIEW vista_compras_servicios AS

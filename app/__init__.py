@@ -1,9 +1,10 @@
 import os, pytz, json
+import cloudinary
 from flask import Flask, render_template, session
 from .app_config import Config
 from flask_session import Session
 from app.utils.misc import admin_required
-import cloudinary
+from flask_sqlalchemy import SQLAlchemy
 
 # Crear la app
 app = Flask(__name__)
@@ -11,7 +12,11 @@ app = Flask(__name__)
 # Crear la configuracion de FLASK a partir de la clase Config de app_config.py
 app.config.from_object(Config)
 
+# SQLAlchemy
+db = SQLAlchemy(app)
+
 ### SESSION ###
+app.config['SESSION_SQLALCHEMY'] = db
 Session(app)
 
 ### CLOUDINARY ###
