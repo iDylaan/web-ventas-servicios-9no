@@ -89,8 +89,8 @@ def checkout():
     else:  # GET
         productos_arr = session.get('productos_checkout', [])
 
-        if not productos_arr:
-            return redirect(url_for('shop.shop_template'))
+        if not len(productos_arr):
+            return redirect(url_for('shop.cart_template'))
         # Obtener iva y total
         total = Decimal('0.0')
         for product in productos_arr:
