@@ -1,0 +1,7 @@
+Cuenta de cliente
+correo: yair@cruz.mail
+contraseña: 1234567890
+
+Cuenta de administrador
+correo: admin-user@correo.com
+contraseña: superadmin123
